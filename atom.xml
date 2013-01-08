@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[YY Every Day]]></title>
+  <link href="http://arekyao.github.com/atom.xml" rel="self"/>
+  <link href="http://arekyao.github.com/"/>
+  <updated>2013-01-08T18:22:32+08:00</updated>
+  <id>http://arekyao.github.com/</id>
+  <author>
+    <name><![CDATA[Arek.Yao]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+</feed>
