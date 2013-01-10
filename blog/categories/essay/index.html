@@ -109,6 +109,29 @@
     
   </ul>
 </section>
+<section>
+  <h1>Tag Cloud</h1>
+    <span id="tag-cloud"><a href='/blog/categories/essay' style='font-size: 160.0%'>essay(1)</a> </span>
+</section>
+<section>
+  <h1>Categories</h1>
+  <input class="search" type="text" name="filter_tags" results="0" placeholder="Filter Tags ..."/>
+  <script type="text/javascript">
+    $('input[name=filter_tags]').keyup(function(e){
+      var val = $(this).val();
+      if (/^\s*$/.test(val) || e.keyCode == 27) { // 27 is 'esc'
+        $('#category-list li').show();
+        $(this).val('');
+        return;
+      }
+      var pattern = new RegExp(val, 'i');
+      $('#category-list li').each(function(){
+        $(this)[pattern.test($(this).find('a').text()) ? 'show' : 'hide']();
+      });
+    });
+  </script>
+    <ul id="category-list"><li><a href='/blog/categories/essay'>essay (1)</a></li></ul>
+</section>
 
 
 
