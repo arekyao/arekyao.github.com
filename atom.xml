@@ -4,7 +4,7 @@
   <title><![CDATA[YY Every Day]]></title>
   <link href="http://arekyao.github.com/atom.xml" rel="self"/>
   <link href="http://arekyao.github.com/"/>
-  <updated>2013-01-08T18:22:32+08:00</updated>
+  <updated>2013-01-10T21:01:58+08:00</updated>
   <id>http://arekyao.github.com/</id>
   <author>
     <name><![CDATA[Arek.Yao]]></name>
@@ -12,5 +12,18 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Hello World]]></title>
+    <link href="http://arekyao.github.com/blog/2013/01/10/hello-world/"/>
+    <updated>2013-01-10T20:59:00+08:00</updated>
+    <id>http://arekyao.github.com/blog/2013/01/10/hello-world</id>
+    <content type="html"><![CDATA[<p>Hello world!</p>
+
+<p>It&#8217;s my first blog on hithub.</p>
+
+<p>I decide to write my blog, totally in English.</p>
+]]></content>
+  </entry>
   
 </feed>
