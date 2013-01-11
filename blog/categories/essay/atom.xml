@@ -4,7 +4,7 @@
   <title><![CDATA[Category: essay | YY Every Day]]></title>
   <link href="http://arekyao.github.com/blog/categories/essay/atom.xml" rel="self"/>
   <link href="http://arekyao.github.com/"/>
-  <updated>2013-01-10T23:29:15+08:00</updated>
+  <updated>2013-01-11T16:08:58+08:00</updated>
   <id>http://arekyao.github.com/</id>
   <author>
     <name><![CDATA[Arek.Yao]]></name>
@@ -18,12 +18,78 @@
     <link href="http://arekyao.github.com/blog/2013/01/10/hello-world/"/>
     <updated>2013-01-10T20:59:00+08:00</updated>
     <id>http://arekyao.github.com/blog/2013/01/10/hello-world</id>
-    <content type="html"><![CDATA[<p>It's my first blog on hithub.</p>
+    <content type="html"><![CDATA[<p>It’s my first blog on github.</p>
 
 <p>At the moment,I decide to write my blog,TRY MY BEST,in English.</p>
 
-<p>Maybe it's hard at first.
+<p>Maybe it’s hard at first.
 I believe it will give me a lot beyond my imagination after that.</p>
+
+<h1 id="how-to-build-a-blog-on-hithub">How to build a blog on hithub</h1>
+
+<p>1,  apply a account &amp; some repo </p>
+
+<pre><code>apply a id on github and a new repo named "yourid.github.com"
+</code></pre>
+
+<p>2,install ruby,<a href="https://github.com/mreid/jekyll/" title="Jekyll">jekyll</a>,<a href="http://markdown.tw/">markdown</a>,etc</p>
+
+<pre><code>install rvm to manager ruby version,ruby 1.9 needed 
+gem install rdoc
+gem install jekyll
+gem install rdiscount or kramdown
+easy_install Pygments
+</code></pre>
+
+<p>this is typical structure in <a href="https://github.com/mreid/jekyll/" title="Jekyll">jekyll</a> frame</p>
+
+<pre><code>|-- _config.yml
+|-- _includes
+|-- _layouts
+|   |-- default.html
+|   `-- post.html
+|-- _posts
+|   |-- 2007-10-29-why-every-programmer-should-play-nethack.textile
+|   `-- 2009-04-26-barcamp-boston-4-roundup.textile
+|-- _site
+`-- index.html
+</code></pre>
+
+<p>3,install <a href="https://github.com/imathis/octopress">Octopress</a></p>
+
+<pre><code>$ rake new_post["title"]
+$ rake generate     
+$ rake watch       
+$ rake preview    
+</code></pre>
+
+<h3 id="reference">Reference:</h3>
+
+<ul>
+  <li><a href="http://www.cnblogs.com/TheGrandDesign/articles/2573282.html">像黑客一样写博客——Jekyll入门</a></li>
+  <li>
+    <p><a href="http://fancyoung.com/blog/octopress-study/">技术博客利器——Octopress</a></p>
+  </li>
+  <li>Ruby  <br />
+    <ul>
+      <li><a href="https://github.com/mreid/jekyll/" title="Jekyll">Jekyll</a></li>
+      <li><a href="http://tinytree.info/">Bonsai</a> 一个非常简单（但实用）的小脚本</li>
+      <li><a href="http://webgen.rubyforge.org/">Webgen</a> 一个较复杂的生成器</li>
+    </ul>
+  </li>
+  <li>Python
+    <ul>
+      <li><a href="http://ringce.com/hyde">Hyde</a> Jekyll的Python语言实现版本</li>
+      <li><a href="http://pypi.python.org/pypi/cyrax">Cyrax</a> 使用Jinja2模板引擎的生成器</li>
+    </ul>
+  </li>
+  <li>PHP
+    <ul>
+      <li><a href="http://www.phrozn.info/">Phrozn</a> PHP语言实现的静态网站生成器</li>
+    </ul>
+  </li>
+</ul>
+
 ]]></content>
   </entry>
   
