@@ -9,7 +9,8 @@
   <meta name="author" content="Arek.Yao">
 
   
-  <meta name="description" content="Hello World! Jan 10th, 2013 | Comments It’s my first blog on github. At the moment,I decide to write my blog,TRY MY BEST,in English. Maybe it’s hard &hellip;">
+  <meta name="description" content="How to Export Video From IP4s Feb 9th, 2013 | Comments Recently, a Mac Book Air comes to my life.
+As the same as before, a problem comes with it. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +66,98 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/02/09/how-to-export-video-from-ip4s/">How to Export Video From IP4s</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-09T18:39:00+08:00" pubdate data-updated="true">Feb 9<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/02/09/how-to-export-video-from-ip4s/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Recently, a Mac Book Air comes to my life.
+As the same as before, a problem comes with it.</p>
+
+<p>First, pls let me introduce some backgrounds.</p>
+
+<h1 id="the-mission">The Mission:</h1>
+
+<p>There are so many Videos, taken by IP4s, which cost too much space on phone.
+So I decide to copy them from my phone.</p>
+
+<p>That needs these steps:</p>
+
+<p>1, Copy them from phone</p>
+
+<p>Option:</p>
+
+<pre><code>ifuncbox, interface good,but it lost the info including "modify time,create time,etc."
+phoneview, works good, but it need money, $30 , too much for me  
+itools,  can not work
+...
+
+at last the simple application, iphoto, works!
+</code></pre>
+
+<p>2, Rename them</p>
+
+<p>The PM give a MRD, that asks for the name should contain video’s taken time 
+Here is the script:
+    #!/bin/bash</p>
+
+<pre><code>for i in `ls *.MOV`;
+do
+    echo $i;
+    stat $i;
+    sec=`stat -t "%s" $i | awk  '{print $12}' | sed 's/"//g'`
+    name_2=`date -r "$sec" "+%Y%m%d_%H%M%S"`
+    name_1=`echo $i | sed 's/.MOV//'`
+    newname=`echo $name_1"_"$name_2".MOV"`
+    cp $i output/$newname
+done
+</code></pre>
+
+<p>3, Convert and Compress</p>
+
+<p>Option</p>
+
+<pre><code>Xilisoft Video Converter Ultimate
+
+Change some args, like Bitrate,Frame Rate,Video codec, etc
+</code></pre>
+
+<p>That’s all, Everything works good!</p>
+
+</div>
+  
+  
+
+<br>
+<a href="/blog/2013/02/09/how-to-export-video-from-ip4s/#disqus_thread">Comments</a>
+
+    </article>
   
   
     <article>
@@ -227,6 +320,10 @@ $ rake preview
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/02/09/how-to-export-video-from-ip4s/">How to export video from IP4s</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/01/10/hello-world/">Hello World!</a>
       </li>
     
@@ -234,7 +331,7 @@ $ rake preview
 </section>
 <section>
   <h1>Tag Cloud</h1>
-    <span id="tag-cloud"><a href='/blog/categories/essay' style='font-size: 160.0%'>essay(1)</a> </span>
+    <span id="tag-cloud"><a href='/blog/categories/github' style='font-size: 160.0%'>Github(1)</a> <a href='/blog/categories/techchangeworld' style='font-size: 160.0%'>TechChangeWorld(1)</a> </span>
 </section>
 <section>
   <h1>Categories</h1>
@@ -253,7 +350,7 @@ $ rake preview
       });
     });
   </script>
-    <ul id="category-list"><li><a href='/blog/categories/essay'>essay (1)</a></li></ul>
+    <ul id="category-list"><li><a href='/blog/categories/github'>Github (1)</a></li><li><a href='/blog/categories/techchangeworld'>TechChangeWorld (1)</a></li></ul>
 </section>
 
 

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: TechChangeWorld | YY Every Day]]></title>
+  <link href="http://arekyao.github.com/blog/categories/techchangeworld/atom.xml" rel="self"/>
+  <link href="http://arekyao.github.com/"/>
+  <updated>2013-02-09T20:00:05+08:00</updated>
+  <id>http://arekyao.github.com/</id>
+  <author>
+    <name><![CDATA[Arek.Yao]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[How to export video from IP4s]]></title>
+    <link href="http://arekyao.github.com/blog/2013/02/09/how-to-export-video-from-ip4s/"/>
+    <updated>2013-02-09T18:39:00+08:00</updated>
+    <id>http://arekyao.github.com/blog/2013/02/09/how-to-export-video-from-ip4s</id>
+    <content type="html"><![CDATA[<p>Recently, a Mac Book Air comes to my life.
+As the same as before, a problem comes with it.</p>
+
+<p>First, pls let me introduce some backgrounds.</p>
+
+<h1 id="the-mission">The Mission:</h1>
+
+<p>There are so many Videos, taken by IP4s, which cost too much space on phone.
+So I decide to copy them from my phone.</p>
+
+<p>That needs these steps:</p>
+
+<p>1, Copy them from phone</p>
+
+<p>Option:</p>
+
+<pre><code>ifuncbox, interface good,but it lost the info including "modify time,create time,etc."
+phoneview, works good, but it need money, $30 , too much for me  
+itools,  can not work
+...
+
+at last the simple application, iphoto, works!
+</code></pre>
+
+<p>2, Rename them</p>
+
+<p>The PM give a MRD, that asks for the name should contain video’s taken time 
+Here is the script:
+    #!/bin/bash</p>
+
+<pre><code>for i in `ls *.MOV`;
+do
+    echo $i;
+    stat $i;
+    sec=`stat -t "%s" $i | awk  '{print $12}' | sed 's/"//g'`
+    name_2=`date -r "$sec" "+%Y%m%d_%H%M%S"`
+    name_1=`echo $i | sed 's/.MOV//'`
+    newname=`echo $name_1"_"$name_2".MOV"`
+    cp $i output/$newname
+done
+</code></pre>
+
+<p>3, Convert and Compress</p>
+
+<p>Option</p>
+
+<pre><code>Xilisoft Video Converter Ultimate
+
+Change some args, like Bitrate,Frame Rate,Video codec, etc
+</code></pre>
+
+<p>That’s all, Everything works good!</p>
+
+]]></content>
+  </entry>
+  
+</feed>

@@ -5,11 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: essay - YY Every Day</title>
+  <title>How to export video from IP4s - YY Every Day</title>
   <meta name="author" content="Arek.Yao">
 
   
-  <meta name="description" content="Category: essay">
+  <meta name="description" content="How to Export Video From IP4s Feb 9th, 2013 | Comments Recently, a Mac Book Air comes to my life.
+As the same as before, a problem comes with it. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://arekyao.github.comblog/categories/essay/">
+  <link rel="canonical" href="http://arekyao.github.com/blog/2013/02/09/how-to-export-video-from-ip4s/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -64,36 +65,147 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: Essay</h1>
+    
+      <h1 class="entry-title">How to Export Video From IP4s</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-09T18:39:00+08:00" pubdate data-updated="true">Feb 9<span>th</span>, 2013</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><p>Recently, a Mac Book Air comes to my life.
+As the same as before, a problem comes with it.</p>
 
-  
-  <h2>2013</h2>
+<p>First, pls let me introduce some backgrounds.</p>
 
-<article>
-  
-<h1><a href="/blog/2013/01/10/hello-world/">Hello World!</a></h1>
-<time datetime="2013-01-10T20:59:00+08:00" pubdate><span class='month'>Jan</span> <span class='day'>10</span> <span class='year'>2013</span></time>
+<h1 id="the-mission">The Mission:</h1>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/essay/'>essay</a></span>
-</footer>
+<p>There are so many Videos, taken by IP4s, which cost too much space on phone.
+So I decide to copy them from my phone.</p>
 
+<p>That needs these steps:</p>
 
-</article>
+<p>1, Copy them from phone</p>
+
+<p>Option:</p>
+
+<pre><code>ifuncbox, interface good,but it lost the info including "modify time,create time,etc."
+phoneview, works good, but it need money, $30 , too much for me  
+itools,  can not work
+...
+
+at last the simple application, iphoto, works!
+</code></pre>
+
+<p>2, Rename them</p>
+
+<p>The PM give a MRD, that asks for the name should contain video’s taken time 
+Here is the script:
+    #!/bin/bash</p>
+
+<pre><code>for i in `ls *.MOV`;
+do
+    echo $i;
+    stat $i;
+    sec=`stat -t "%s" $i | awk  '{print $12}' | sed 's/"//g'`
+    name_2=`date -r "$sec" "+%Y%m%d_%H%M%S"`
+    name_1=`echo $i | sed 's/.MOV//'`
+    newname=`echo $name_1"_"$name_2".MOV"`
+    cp $i output/$newname
+done
+</code></pre>
+
+<p>3, Convert and Compress</p>
+
+<p>Option</p>
+
+<pre><code>Xilisoft Video Converter Ultimate
+
+Change some args, like Bitrate,Frame Rate,Video codec, etc
+</code></pre>
+
+<p>That’s all, Everything works good!</p>
 
 </div>
 
+<br>
+<a href="#disqus_thread">Comments</a>
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Arek.Yao</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-09T18:39:00+08:00" pubdate data-updated="true">Feb 9<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/techchangeworld/'>TechChangeWorld</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://arekyao.github.com/blog/2013/02/09/how-to-export-video-from-ip4s/" data-via="" data-counturl="http://arekyao.github.com/blog/2013/02/09/how-to-export-video-from-ip4s/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/01/10/hello-world/" title="Previous Post: Hello World!">&laquo; Hello World!</a>
+      
+      
+    </p>
+  </footer>
 </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -105,6 +217,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/02/09/how-to-export-video-from-ip4s/">How to export video from IP4s</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/01/10/hello-world/">Hello World!</a>
       </li>
     
@@ -112,7 +228,7 @@
 </section>
 <section>
   <h1>Tag Cloud</h1>
-    <span id="tag-cloud"><a href='/blog/categories/essay' style='font-size: 160.0%'>essay(1)</a> </span>
+    <span id="tag-cloud"><a href='/blog/categories/github' style='font-size: 160.0%'>Github(1)</a> <a href='/blog/categories/techchangeworld' style='font-size: 160.0%'>TechChangeWorld(1)</a> </span>
 </section>
 <section>
   <h1>Categories</h1>
@@ -131,7 +247,7 @@
       });
     });
   </script>
-    <ul id="category-list"><li><a href='/blog/categories/essay'>essay (1)</a></li></ul>
+    <ul id="category-list"><li><a href='/blog/categories/github'>Github (1)</a></li><li><a href='/blog/categories/techchangeworld'>TechChangeWorld (1)</a></li></ul>
 </section>
 
 
@@ -157,7 +273,10 @@
       var disqus_shortname = 'arekyao';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://arekyao.github.com/blog/2013/02/09/how-to-export-video-from-ip4s/';
+        var disqus_url = 'http://arekyao.github.com/blog/2013/02/09/how-to-export-video-from-ip4s/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
