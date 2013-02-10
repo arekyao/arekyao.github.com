@@ -5,11 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Arek Yao - YY Every Day</title>
+  <title>How to export video from IP4s - YY Every Day</title>
   <meta name="author" content="Arek.Yao">
 
   
-  <meta name="description" content="Arek Yao Weibo Douban Recent Posts The Days We fight with Eczema How to export video from IP4s Hello World! Tag Cloud Github(1) TechChangeWorld(1) &hellip;">
+  <meta name="description" content="How to Export Video From IP4s Jan 20th, 2013 | Comments Recently, a Mac Book Air comes to my life.
+As the same as before, a problem comes with it. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://arekyao.github.com/about/">
+  <link rel="canonical" href="http://arekyao.github.com/blog/2013/01/20/how-to-export-video-from-ip4s/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -64,32 +65,149 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Arek Yao</h1>
+    
+      <h1 class="entry-title">How to Export Video From IP4s</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-20T18:39:00+08:00" pubdate data-updated="true">Jan 20<span>th</span>, 2013</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
     
   </header>
+
+
+<div class="entry-content"><p>Recently, a Mac Book Air comes to my life.
+As the same as before, a problem comes with it.</p>
+
+<p>First, pls let me introduce some backgrounds.</p>
+
+<h1 id="the-mission">The Mission:</h1>
+
+<p>There are so many Videos, taken by IP4s, which cost too much space on phone.
+So I decide to copy them from my phone.</p>
+
+<p>That needs these steps:</p>
+
+<p>1, Copy them from phone</p>
+
+<p>Option:</p>
+
+<pre><code>ifuncbox, interface good,but it lost the info including "modify time,create time,etc."
+phoneview, works good, but it need money, $30 , too much for me  
+itools,  can not work
+...
+
+at last the simple application, iphoto, works!
+</code></pre>
+
+<p>2, Rename them</p>
+
+<p>The PM give a MRD, that asks for the name should contain video’s taken time 
+Here is the script:
+    #!/bin/bash</p>
+
+<pre><code>for i in `ls *.MOV`;
+do
+    echo $i;
+    stat $i;
+    sec=`stat -t "%s" $i | awk  '{print $12}' | sed 's/"//g'`
+    name_2=`date -r "$sec" "+%Y%m%d_%H%M%S"`
+    name_1=`echo $i | sed 's/.MOV//'`
+    newname=`echo $name_1"_"$name_2".MOV"`
+    cp $i output/$newname
+done
+</code></pre>
+
+<p>3, Convert and Compress</p>
+
+<p>Option</p>
+
+<pre><code>Xilisoft Video Converter Ultimate
+
+Change some args, like Bitrate,Frame Rate,Video codec, etc
+</code></pre>
+
+<p>That’s all, Everything works good!</p>
+
+</div>
+
+<br>
+<a href="#disqus_thread">Comments</a>
+
+  <footer>
+    <p class="meta">
+      
   
-  <ul>
-  <li>
-    <h3 id="weibo">Weibo</h3>
-  </li>
-</ul>
 
-<iframe width="550" height="320" class="share_self" frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&amp;width=550&amp;height=320&amp;fansRow=2&amp;ptype=1&amp;speed=0&amp;skin=1&amp;isTitle=0&amp;noborder=0&amp;isWeibo=1&amp;isFans=1&amp;uid=1771027825&amp;verifier=f729d6d3&amp;dpc=1"></iframe>
+<span class="byline author vcard">Posted by <span class="fn">Arek.Yao</span></span>
 
-<ul>
-  <li>
-    <h3 id="douban">Douban</h3>
-  </li>
-</ul>
+      
 
-<script type="text/javascript" src="http://www.douban.com/service/badge/4826632/?show=collection&amp;select=random&amp;n=6&amp;columns=6&amp;picsize=medium&amp;hidelogo=yes&amp;hideself=yes&amp;cat=book"></script>
+
+
+
+
+
 
 
   
+
+
+<time datetime="2013-01-20T18:39:00+08:00" pubdate data-updated="true">Jan 20<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/techchangeworld/'>TechChangeWorld</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://arekyao.github.com/blog/2013/01/20/how-to-export-video-from-ip4s/" data-via="" data-counturl="http://arekyao.github.com/blog/2013/01/20/how-to-export-video-from-ip4s/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/01/10/hello-world/" title="Previous Post: Hello World!">&laquo; Hello World!</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/02/10/the-days-we-fight-with-eczema/" title="Next Post: The Days We fight with Eczema">The Days We fight with Eczema &raquo;</a>
+      
+    </p>
+  </footer>
 </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -161,7 +279,10 @@
       var disqus_shortname = 'arekyao';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://arekyao.github.com/blog/2013/01/20/how-to-export-video-from-ip4s/';
+        var disqus_url = 'http://arekyao.github.com/blog/2013/01/20/how-to-export-video-from-ip4s/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
