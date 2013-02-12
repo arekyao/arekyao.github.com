@@ -4,7 +4,7 @@
   <title><![CDATA[Category: TechChangeWorld | YY Every Day]]></title>
   <link href="http://arekyao.github.com/blog/categories/techchangeworld/atom.xml" rel="self"/>
   <link href="http://arekyao.github.com/"/>
-  <updated>2013-02-12T16:29:00+08:00</updated>
+  <updated>2013-02-12T16:30:00+08:00</updated>
   <id>http://arekyao.github.com/</id>
   <author>
     <name><![CDATA[Arek.Yao]]></name>
@@ -63,7 +63,7 @@ then
 it works in PC, but not in phone.
 </code></pre>
 
-<p>4, Install GAE-proxy</p>
+<h2 id="install-gae-proxy">4, Install GAE-proxy</h2>
 
 <p>Again better to download the App from Google Play, ( NOT From MX shop, Wandoujia ).</p>
 
@@ -78,7 +78,7 @@ Maybe it's suspicious by Facebook's spam checking program, because so many faceb
 
 <p>Facebook and Twitter can work on Spec App GAE mode, Youtube only works on ALL App GAE mode.</p>
 
-<p>5, Everything goes fine</p>
+<h2 id="everything-goes-fine">5, Everything goes fine</h2>
 
 <p>That’s all.</p>
 
