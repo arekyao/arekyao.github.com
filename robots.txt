@@ -1,4 +1,13 @@
+User-agent: Baiduspider
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Mobile
+Allow: /
+
 User-agent: *
-Disallow: 
+Disallow: / 
 
 Sitemap: http://arekyao.github.com/sitemap.xml 
