@@ -4,7 +4,7 @@
   <title><![CDATA[YY Every Day]]></title>
   <link href="http://arekyao.github.com/atom.xml" rel="self"/>
   <link href="http://arekyao.github.com/"/>
-  <updated>2013-02-14T23:15:57+08:00</updated>
+  <updated>2013-02-14T23:29:04+08:00</updated>
   <id>http://arekyao.github.com/</id>
   <author>
     <name><![CDATA[Arek.Yao]]></name>
@@ -266,12 +266,12 @@ I believe it will give me a lot beyond my imagination after that.</p>
 
 <h1 id="how-to-build-a-blog-on-hithub">How to build a blog on hithub</h1>
 
-<p>1,  apply a account &amp; some repo </p>
+<h2 id="apply-a-account--some-repo">1,  apply a account &amp; some repo</h2>
 
 <pre><code>apply a id on github and a new repo named "yourid.github.com"
 </code></pre>
 
-<p>2,install ruby,<a href="https://github.com/mreid/jekyll/" title="Jekyll">jekyll</a>,<a href="http://markdown.tw/">markdown</a>,etc</p>
+<h2 id="install-rubyjekyllmarkdownetc">2,install ruby,<a href="https://github.com/mreid/jekyll/" title="Jekyll">jekyll</a>,<a href="http://markdown.tw/">markdown</a>,etc</h2>
 
 <pre><code>install rvm to manager ruby version,ruby 1.9 needed 
 gem install rdoc
@@ -294,7 +294,7 @@ easy_install Pygments
 `-- index.html
 </code></pre>
 
-<p>3,install <a href="https://github.com/imathis/octopress">Octopress</a></p>
+<h2 id="install-octopress">3,install <a href="https://github.com/imathis/octopress">Octopress</a></h2>
 
 <pre><code>$ rake new_post["title"]
 $ rake generate     
@@ -302,11 +302,32 @@ $ rake watch
 $ rake preview    
 </code></pre>
 
+<h2 id="about-math-block">4, About Math Block</h2>
+
+<p><a href="http://www.ctex.org/LaTeX">LaTeX</a> + <a href="http://www.mathjax.org/">MathJax</a></p>
+
+<pre><code>LaTex is a document markup language and document preparation system for the TeX typesetting program
+</code></pre>
+
+<p>LaTex is just a format language, or just a standard. (not a lib or tool, just a language which doesn’t need installed)    </p>
+
+<pre><code>MathJax is a cross-browser JavaScript library that displays mathematical equations in web browser
+</code></pre>
+
+<p>MathJax is a library, even though, it does not need installed either. </p>
+
+<pre><code>The easiest way to use MathJax is to link directly to the MathJax distributed network service (see Using the MathJax CDN)
+http://docs.mathjax.org/en/latest/installation.html
+</code></pre>
+
+<p>ps : I am so stupid, try my best to download a lib, MathJax…. totally useless..   </p>
+
 <h3 id="reference">Reference:</h3>
 
 <ul>
   <li><a href="http://www.cnblogs.com/TheGrandDesign/articles/2573282.html">像黑客一样写博客——Jekyll入门</a></li>
   <li><a href="http://fancyoung.com/blog/octopress-study/">技术博客利器——Octopress</a></li>
+  <li><a href="http://liuhongjiang.github.com/tech/blog/2012/11/21/math/">公式编辑</a></li>
 </ul>
 
 <blockquote class="information">
@@ -366,7 +387,6 @@ $ rake preview
 </table>
 
 <h3 id="my-math-test">My Math Test</h3>
-<p><a href="http://liuhongjiang.github.com/tech/blog/2012/11/21/math/">Math Test</a></p>
 
 <script type="math/tex; mode=display">% &lt;![CDATA[
 
