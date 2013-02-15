@@ -4,7 +4,7 @@
   <title><![CDATA[YY Every Day]]></title>
   <link href="http://arekyao.github.com/atom.xml" rel="self"/>
   <link href="http://arekyao.github.com/"/>
-  <updated>2013-02-15T22:23:12+08:00</updated>
+  <updated>2013-02-15T22:30:25+08:00</updated>
   <id>http://arekyao.github.com/</id>
   <author>
     <name><![CDATA[Arek.Yao]]></name>
@@ -30,9 +30,12 @@ It’s just my study map, or so-called logs..</p>
 
 <p><a href="http://en.wikipedia.org/wiki/Machine_learning">Machine learning</a>, a branch of artificial intelligence, is about the construction and study of systems that can learn from data</p>
 
-<p>Refer to the difference between Machine Learning and Data Mining, the DM is the target, the ML is the way.
-&gt; Machine learning focuses on prediction, based on known properties learned from the training data.
-&gt; Data mining (which is the analysis step of Knowledge Discovery in Databases) focuses on the discovery of (previously) unknown properties on the data.</p>
+<p>Refer to the difference between Machine Learning and Data Mining, the DM is the target, the ML is the way.</p>
+
+<blockquote>
+  <p>Machine learning focuses on prediction, based on known properties learned from the training data.
+Data mining (which is the analysis step of Knowledge Discovery in Databases) focuses on the discovery of (previously) unknown properties on the data.</p>
+</blockquote>
 
 <p>Algorithms Type OF ML</p>
 
