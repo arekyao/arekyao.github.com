@@ -4,7 +4,7 @@
   <title><![CDATA[YY Every Day]]></title>
   <link href="http://arekyao.github.com/atom.xml" rel="self"/>
   <link href="http://arekyao.github.com/"/>
-  <updated>2013-02-15T22:30:25+08:00</updated>
+  <updated>2013-02-15T22:42:58+08:00</updated>
   <id>http://arekyao.github.com/</id>
   <author>
     <name><![CDATA[Arek.Yao]]></name>
@@ -12,6 +12,20 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Machine Learning ep1]]></title>
+    <link href="http://arekyao.github.com/blog/2013/02/16/machine-learning-ep1/"/>
+    <updated>2013-02-16T22:35:00+08:00</updated>
+    <id>http://arekyao.github.com/blog/2013/02/16/machine-learning-ep1</id>
+    <content type="html"><![CDATA[<p>Linear Regression</p>
+
+<p>Batch Gradient Descent
+Random Gradient Descent</p>
+
+<p>It’s not finished…</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[The Overview of Machine Learning]]></title>
@@ -55,11 +69,11 @@ Data mining (which is the analysis step of Knowledge Discovery in Databases) foc
 
 <h3 id="svm">+ SVM</h3>
 
-<h3 id="random-forrest">+, Random Forrest</h3>
+<h3 id="random-forrest">+ Random Forrest</h3>
 
-<h3 id="naive-bayes-classifier">+, Naive bayes classifier</h3>
+<h3 id="naive-bayes-classifier">+ Naive bayes classifier</h3>
 
-<h3 id="linearregression">+, Linear_regression</h3>
+<h3 id="linearregression">+ Linear_regression</h3>
 
 <h3 id="section">…</h3>
 
