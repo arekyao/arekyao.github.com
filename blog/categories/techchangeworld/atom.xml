@@ -4,7 +4,7 @@
   <title><![CDATA[Category: TechChangeWorld | YY Every Day]]></title>
   <link href="http://arekyao.github.com/blog/categories/techchangeworld/atom.xml" rel="self"/>
   <link href="http://arekyao.github.com/"/>
-  <updated>2013-02-14T23:35:39+08:00</updated>
+  <updated>2013-02-15T17:01:32+08:00</updated>
   <id>http://arekyao.github.com/</id>
   <author>
     <name><![CDATA[Arek.Yao]]></name>
@@ -119,20 +119,22 @@ at last the simple application, iphoto, works!
 <h2 id="rename-them">2, Rename them</h2>
 
 <p>The PM give a MRD, that asks for the name should contain video’s taken time.
-Here is the script:
-    #!/bin/bash</p>
+Here is the script:</p>
 
-<pre><code>for i in `ls *.MOV`;
+<p>``` 
+#!/bin/bash</p>
+
+<p>for i in <code>ls *.MOV</code>;
 do
     echo $i;
     stat $i;
-    sec=`stat -t "%s" $i | awk  '{print $12}' | sed 's/"//g'`
-    name_2=`date -r "$sec" "+%Y%m%d_%H%M%S"`
-    name_1=`echo $i | sed 's/.MOV//'`
-    newname=`echo $name_1"_"$name_2".MOV"`
+    sec=<code>stat -t "%s" $i | awk  '{print $12}' | sed 's/"//g'</code>
+    name<em>2=<code>date -r "$sec" "+%Y%m%d_%H%M%S"</code>
+    name</em>1=<code>echo $i | sed 's/.MOV//'</code>
+    newname=<code>echo $name_1"_"$name_2".MOV"</code>
     cp $i output/$newname
 done
-</code></pre>
+```</p>
 
 <h2 id="convert-and-compress">3, Convert and Compress</h2>
 
