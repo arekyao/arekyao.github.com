@@ -4,7 +4,7 @@
   <title><![CDATA[YY Every Day]]></title>
   <link href="http://arekyao.github.com/atom.xml" rel="self"/>
   <link href="http://arekyao.github.com/"/>
-  <updated>2013-02-15T17:01:32+08:00</updated>
+  <updated>2013-02-15T22:23:12+08:00</updated>
   <id>http://arekyao.github.com/</id>
   <author>
     <name><![CDATA[Arek.Yao]]></name>
@@ -12,6 +12,92 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[The Overview of Machine Learning]]></title>
+    <link href="http://arekyao.github.com/blog/2013/02/15/the-overview-of-machine-learning/"/>
+    <updated>2013-02-15T21:19:00+08:00</updated>
+    <id>http://arekyao.github.com/blog/2013/02/15/the-overview-of-machine-learning</id>
+    <content type="html"><![CDATA[<blockquote>
+  <p>First of all, I have to say, the Machine learning series have a very deep water,:)
+I dont have enough time to afford a full explaination, in detail, about the machine learning.
+It’s just my study map, or so-called logs..</p>
+</blockquote>
+
+<p>Here is the stories of it.</p>
+
+<h2 id="machine-learning">Machine Learning</h2>
+
+<p><a href="http://en.wikipedia.org/wiki/Machine_learning">Machine learning</a>, a branch of artificial intelligence, is about the construction and study of systems that can learn from data</p>
+
+<p>Refer to the difference between Machine Learning and Data Mining, the DM is the target, the ML is the way.
+&gt; Machine learning focuses on prediction, based on known properties learned from the training data.
+&gt; Data mining (which is the analysis step of Knowledge Discovery in Databases) focuses on the discovery of (previously) unknown properties on the data.</p>
+
+<p>Algorithms Type OF ML</p>
+
+<ul>
+  <li>
+    <h2 id="supervised-learning">1,Supervised learning</h2>
+  </li>
+</ul>
+
+<blockquote>
+  <p>generates a function that maps inputs to desired outputs (also called labels, because they are often provided by human experts labeling the training examples). For example, in a <code>classification</code> problem, the learner approximates a function mapping a vector into classes by looking at input-output examples of the function.</p>
+</blockquote>
+
+<h3 id="decision-tree">+ Decision Tree</h3>
+
+<h3 id="association-rule-learning">+ Association rule learning</h3>
+
+<h3 id="svm">+ SVM</h3>
+
+<h3 id="random-forrest">+, Random Forrest</h3>
+
+<h3 id="naive-bayes-classifier">+, Naive bayes classifier</h3>
+
+<h3 id="linearregression">+, Linear_regression</h3>
+
+<h3 id="section">…</h3>
+
+<ul>
+  <li>
+    <h2 id="unsupervised-learning">2,Unsupervised learning</h2>
+    <blockquote>
+      <p>models a set of inputs, like <code>clustering</code>. See also data mining and knowledge discovery. Here, labels are not known during training.</p>
+    </blockquote>
+  </li>
+  <li>
+    <h2 id="semi-supervised-learning">3,Semi-supervised learning</h2>
+  </li>
+</ul>
+
+<blockquote>
+  <p>combines both labeled and unlabeled examples to generate an appropriate function or classifier. Transduction, or transductive inference, tries to predict new outputs on specific and fixed (test) cases from observed, specific (training) cases.</p>
+</blockquote>
+
+<ul>
+  <li>
+    <h2 id="reinforcement-learning">4,Reinforcement learning</h2>
+    <blockquote>
+      <p>learns how to act given an observation of the world. Every action has some impact in the environment, and the environment provides feedback in the form of rewards that guides the learning algorithm.</p>
+    </blockquote>
+  </li>
+  <li>
+    <h2 id="learning-to-learn">5,Learning to learn</h2>
+    <p>learns its own inductive bias based on previous experience.</p>
+  </li>
+</ul>
+
+<h2 id="reference">Reference:</h2>
+<p>1, <a href="http://v.163.com/special/opencourse/machinelearning.html">网易公开课</a> </p>
+
+<p>2, <a href="http://zhfuzh.blog.163.com/blog/static/14553938720127309539465">行走的馒头</a> </p>
+
+<p>3, <a href="http://cs229.stanford.edu/materials.html">Stanford’s lesson</a></p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Break GFW with Goagent in Android MX2]]></title>
