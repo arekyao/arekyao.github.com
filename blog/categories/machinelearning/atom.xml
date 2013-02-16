@@ -4,7 +4,7 @@
   <title><![CDATA[Category: MachineLearning | YY Every Day]]></title>
   <link href="http://arekyao.github.com/blog/categories/machinelearning/atom.xml" rel="self"/>
   <link href="http://arekyao.github.com/"/>
-  <updated>2013-02-16T23:55:04+08:00</updated>
+  <updated>2013-02-16T23:56:43+08:00</updated>
   <id>http://arekyao.github.com/</id>
   <author>
     <name><![CDATA[Arek.Yao]]></name>
@@ -21,7 +21,7 @@
     <content type="html"><![CDATA[<ul>
   <li>
     <h2 id="the-general-steps-of-machine-learning">The general steps of Machine Learning</h2>
-    <p>#### 1, Traning Data &amp; Test Data</p>
+    <p>#### 1, Traning Data &amp; Test Data ####</p>
   </li>
 </ul>
 
@@ -73,6 +73,7 @@ More than that, it’s very difficult to understand where is wrong, how to impov
 </ul>
 
 <h5 id="batch-gradient-descent">Batch Gradient Descent:</h5>
+
 <blockquote>
   <p>You need to run over every training example before doing an update, which means that if you have a large dataset, you might spend much time on getting something that works.</p>
 </blockquote>
