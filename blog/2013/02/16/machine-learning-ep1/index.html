@@ -9,7 +9,7 @@
   <meta name="author" content="Arek.Yao">
 
   
-  <meta name="description" content="Machine Learning Ep1 Feb 16th, 2013 | Comments Linear Regression It’s a simple model,and very useful Batch Gradient Descent vs stochastic gradient &hellip;">
+  <meta name="description" content="Machine Learning Ep1 Feb 16th, 2013 | Comments The general steps of Machine Learning #### 1, Traning Data &amp; Test Data This step is the most &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -97,6 +97,44 @@
 
 <div class="entry-content"><ul>
   <li>
+    <h2 id="the-general-steps-of-machine-learning">The general steps of Machine Learning</h2>
+    <p>#### 1, Traning Data &amp; Test Data</p>
+  </li>
+</ul>
+
+<p>This step is the most important part in machine learning. 
+Very easy to ignore and underestimate.</p>
+
+<p>Data is wrong, all the steps afterward are wrong.
+More than that, it’s very difficult to understand where is wrong, how to impove that.</p>
+
+<p>Maybe the data can be produced by online logs by user.</p>
+
+<p>Maybe the data can not be gotten from machine, only by humans.</p>
+
+<h4 id="feature-selectionhttpenwikipediaorgwikifeatureselection">2, <a href="http://en.wikipedia.org/wiki/Feature_selection">Feature Selection</a></h4>
+<p>The less feature, the faster the model is calculated and updated</p>
+
+<p>The more feature’s meaning is ,the less prabability overfit happens </p>
+
+<p>L1-norm</p>
+
+<p>http://www.cnblogs.com/heaad/archive/2011/01/02/1924088.html</p>
+
+<h4 id="model-choosing">3, Model Choosing</h4>
+
+<p>Different model has its personality</p>
+
+<h4 id="evaluation">4, Evaluation</h4>
+
+<p>RSE</p>
+
+<p>FRTP…</p>
+
+<hr />
+
+<ul>
+  <li>
     <h2 id="linear-regressionhttpenwikipediaorgwikilinearregression"><a href="http://en.wikipedia.org/wiki/Linear_regression">Linear Regression</a></h2>
   </li>
 </ul>
@@ -111,17 +149,21 @@
   </li>
 </ul>
 
-<h6 id="batch-gradient-descent">Batch Gradient Descent:</h6>
-<p>You need to run over every training example before doing an update, which means that if you have a large dataset, you might spend much time on getting something that works.</p>
+<h5 id="batch-gradient-descent">Batch Gradient Descent:</h5>
+<blockquote>
+  <p>You need to run over every training example before doing an update, which means that if you have a large dataset, you might spend much time on getting something that works.</p>
+</blockquote>
 
-<h6 id="stochastic-gradient-descent">Stochastic gradient descent:</h6>
-<p>on the other hand, does updates every time it finds a training example, however, since it only uses one update, it may never converge, although you can still be pretty close to the minimum.</p>
+<h5 id="stochastic-gradient-descent">Stochastic gradient descent:</h5>
+<blockquote>
+  <p>on the other hand, does updates every time it finds a training example, however, since it only uses one update, it may never converge, although you can still be pretty close to the minimum.</p>
+</blockquote>
 
 <p>In conclusion, if your data is large, you might want to use Stochastic Gradient Descent.</p>
 
 <ul>
   <li>
-    <h2 id="when-to-stop-the-iteration">when to stop the iteration</h2>
+    <h2 id="when-to-stop-the-iteration-of-gradient-descent">When to stop the iteration of Gradient Descent</h2>
     <p>It has two ways.</p>
   </li>
 </ul>
