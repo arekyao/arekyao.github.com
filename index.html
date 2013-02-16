@@ -9,8 +9,7 @@
   <meta name="author" content="Arek.Yao">
 
   
-  <meta name="description" content="Machine Learning Ep1 Feb 16th, 2013 | Comments Linear Regression Batch Gradient Descent
-Random Gradient Descent It’s not finished… Comments The &hellip;">
+  <meta name="description" content="Machine Learning Ep1 Feb 16th, 2013 | Comments Linear Regression It’s a simple model,and very useful Batch Gradient Descent vs stochastic gradient &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -130,10 +129,48 @@ Random Gradient Descent It’s not finished… Comments The &hellip;">
   </header>
 
 
-  <div class="entry-content"><p>Linear Regression</p>
+  <div class="entry-content"><ul>
+  <li>
+    <h2 id="linear-regressionhttpenwikipediaorgwikilinearregression"><a href="http://en.wikipedia.org/wiki/Linear_regression">Linear Regression</a></h2>
+  </li>
+</ul>
 
-<p>Batch Gradient Descent
-Random Gradient Descent</p>
+<p>It’s a simple model,and very useful</p>
+
+<hr />
+
+<ul>
+  <li>
+    <h2 id="batch-gradient-descent-vs-stochastic-gradient-descent">Batch Gradient Descent vs stochastic gradient descent（随机梯度下降）</h2>
+  </li>
+</ul>
+
+<h6 id="batch-gradient-descent">Batch Gradient Descent:</h6>
+<p>You need to run over every training example before doing an update, which means that if you have a large dataset, you might spend much time on getting something that works.</p>
+
+<h6 id="stochastic-gradient-descent">Stochastic gradient descent:</h6>
+<p>on the other hand, does updates every time it finds a training example, however, since it only uses one update, it may never converge, although you can still be pretty close to the minimum.</p>
+
+<p>In conclusion, if your data is large, you might want to use Stochastic Gradient Descent.</p>
+
+<ul>
+  <li>
+    <h2 id="when-to-stop-the-iteration">when to stop the iteration</h2>
+    <p>It has two ways.</p>
+  </li>
+</ul>
+
+<p><code>Condition 1: the two iteration's result is so close to ignore</code></p>
+
+<p><code>Condition 2: the loss is very small, which can be ignored</code></p>
+
+<hr />
+
+<h2 id="reference">Reference:</h2>
+
+<p>http://zhfuzh.blog.163.com/blog/static/14553938720127309539465/</p>
+
+<p>http://blog.csdn.net/pennyliang/article/details/6998517</p>
 
 <p>It’s not finished…</p>
 </div>
@@ -256,6 +293,7 @@ Data mining (which is the analysis step of Knowledge Discovery in Databases) foc
 
 <p>3, <a href="http://cs229.stanford.edu/materials.html">Stanford’s lesson</a></p>
 
+<p>4, <a href="http://www.datasciencecentral.com/profiles/blogs/berkeley-course-on-data-science">Berkeley course on Data Science,北美+德国18名校的数据挖掘、数据分析、人工智能及机器学习课程资源汇总</a></p>
 </div>
   
   
