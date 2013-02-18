@@ -5,12 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>The Overview of Machine Learning - YY Every Day</title>
+  <title>Something About Python - YY Every Day</title>
   <meta name="author" content="Arek.Yao">
 
   
-  <meta name="description" content="The Overview of Machine Learning Feb 15th, 2013 | Comments First of all, I have to say, the Machine learning series have a very deep water,:)
-I dont &hellip;">
+  <meta name="description" content="Something About Python Feb 17th, 2013 | Comments Homebrew: The missing package manager for OS X 1
+$ruby -e "$(curl -fsSL https://raw.github.com/mxcl &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +19,7 @@ I dont &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://arekyao.github.com/blog/2013/02/15/the-overview-of-machine-learning/">
+  <link rel="canonical" href="http://arekyao.github.com/blog/2013/02/17/something-about-python/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -71,7 +71,7 @@ I dont &hellip;">
   
   <header>
     
-      <h1 class="entry-title">The Overview of Machine Learning</h1>
+      <h1 class="entry-title">Something About Python</h1>
     
     
       <p class="meta">
@@ -87,7 +87,7 @@ I dont &hellip;">
   
 
 
-<time datetime="2013-02-15T21:19:00+08:00" pubdate data-updated="true">Feb 15<span>th</span>, 2013</time>
+<time datetime="2013-02-17T12:46:00+08:00" pubdate data-updated="true">Feb 17<span>th</span>, 2013</time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -96,88 +96,36 @@ I dont &hellip;">
   </header>
 
 
-<div class="entry-content"><blockquote>
-  <p>First of all, I have to say, the Machine learning series have a very deep water,:)
-I dont have enough time to afford a full explaination, in detail, about the machine learning.
-It’s just my study map, or so-called logs..</p>
-</blockquote>
+<div class="entry-content"><h2 id="homebrew-the-missing-package-manager-for-os-xhttpmxclgithubcomhomebrew"><a href="http://mxcl.github.com/homebrew/">Homebrew: The missing package manager for OS X</a></h2>
 
-<p>Here is the stories of it.</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">$ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<h2 id="machine-learning">Machine Learning</h2>
+<p>with brew, you can install anything in command. eg:</p>
 
-<p><a href="http://en.wikipedia.org/wiki/Machine_learning">Machine learning</a>, a branch of artificial intelligence, is about the construction and study of systems that can learn from data</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">$brew install lighttpd</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<p>Refer to the difference between Machine Learning and Data Mining, the DM is the target, the ML is the way.</p>
-
+<h2 id="easyinstallhttppypipythonorgpypisetuptools"><a href="http://pypi.python.org/pypi/setuptools/">Easy_install</a></h2>
 <blockquote>
-  <p>Machine learning focuses on prediction, based on known properties learned from the training data.
-Data mining (which is the analysis step of Knowledge Discovery in Databases) focuses on the discovery of (previously) unknown properties on the data.</p>
+  <p>Download the appropriate egg for your version of Python (e.g. setuptools-0.6c9-py2.4.egg). Do NOT rename it.
+Run it as if it were a shell script, e.g. sh setuptools-0.6c9-py2.4.egg. 
+Setuptools will install itself using the matching version of Python (e.g. python2.4), and will place the easy_install executable in the default location for installing Python scripts (as determined by the standard distutils configuration files, or by the Python installation).</p>
+
 </blockquote>
 
-<p>Algorithms Type OF ML</p>
+<p>with this, you can install anything abou python package in command. eg:</p>
 
-<ul>
-  <li>
-    <h2 id="supervised-learning">1,Supervised learning</h2>
-  </li>
-</ul>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">easy_install xxx</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<blockquote>
-  <p>generates a function that maps inputs to desired outputs (also called labels, because they are often provided by human experts labeling the training examples). For example, in a <code>classification</code> problem, the learner approximates a function mapping a vector into classes by looking at input-output examples of the function.</p>
-</blockquote>
+<h2 id="rvm-ruby-version-managerhttpsrvmio"><a href="https://rvm.io/">RVM: Ruby Version Manager</a></h2>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">$ \curl -L https://get.rvm.io | bash -s stable --ruby</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<h3 id="decision-tree">+ Decision Tree</h3>
+<hr />
 
-<h3 id="association-rule-learning">+ Association rule learning</h3>
-
-<h3 id="svm">+ SVM</h3>
-
-<h3 id="random-forrest">+ Random Forrest</h3>
-
-<h3 id="naive-bayes-classifier">+ Naive bayes classifier</h3>
-
-<h3 id="linearregression">+ Linear_regression</h3>
-
-<h3 id="section">…</h3>
-
-<ul>
-  <li>
-    <h2 id="unsupervised-learning">2,Unsupervised learning</h2>
-    <blockquote>
-      <p>models a set of inputs, like <code>clustering</code>. See also data mining and knowledge discovery. Here, labels are not known during training.</p>
-    </blockquote>
-  </li>
-  <li>
-    <h2 id="semi-supervised-learning">3,Semi-supervised learning</h2>
-  </li>
-</ul>
-
-<blockquote>
-  <p>combines both labeled and unlabeled examples to generate an appropriate function or classifier. Transduction, or transductive inference, tries to predict new outputs on specific and fixed (test) cases from observed, specific (training) cases.</p>
-</blockquote>
-
-<ul>
-  <li>
-    <h2 id="reinforcement-learning">4,Reinforcement learning</h2>
-    <blockquote>
-      <p>learns how to act given an observation of the world. Every action has some impact in the environment, and the environment provides feedback in the form of rewards that guides the learning algorithm.</p>
-    </blockquote>
-  </li>
-  <li>
-    <h2 id="learning-to-learn">5,Learning to learn</h2>
-    <p>learns its own inductive bias based on previous experience.</p>
-  </li>
-</ul>
-
-<h2 id="reference">Reference:</h2>
-<p>1, <a href="http://v.163.com/special/opencourse/machinelearning.html">网易公开课</a> </p>
-
-<p>2, <a href="http://zhfuzh.blog.163.com/blog/static/14553938720127309539465">行走的馒头</a> </p>
-
-<p>3, <a href="http://cs229.stanford.edu/materials.html">Stanford’s lesson</a></p>
-
-<p>4, <a href="http://www.datasciencecentral.com/profiles/blogs/berkeley-course-on-data-science">Berkeley course on Data Science,北美+德国18名校的数据挖掘、数据分析、人工智能及机器学习课程资源汇总</a></p>
+<p>http://www.cnblogs.com/vamei/archive/2013/02/06/2892628.html</p>
 </div>
 
 <br>
@@ -202,12 +150,12 @@ Data mining (which is the analysis step of Knowledge Discovery in Databases) foc
   
 
 
-<time datetime="2013-02-15T21:19:00+08:00" pubdate data-updated="true">Feb 15<span>th</span>, 2013</time>
+<time datetime="2013-02-17T12:46:00+08:00" pubdate data-updated="true">Feb 17<span>th</span>, 2013</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/machinelearning/'>MachineLearning</a>
+    <a class='category' href='/blog/categories/tools/'>Tools</a>
   
 </span>
 
@@ -216,7 +164,7 @@ Data mining (which is the analysis step of Knowledge Discovery in Databases) foc
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://arekyao.github.com/blog/2013/02/15/the-overview-of-machine-learning/" data-via="" data-counturl="http://arekyao.github.com/blog/2013/02/15/the-overview-of-machine-learning/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://arekyao.github.com/blog/2013/02/17/something-about-python/" data-via="" data-counturl="http://arekyao.github.com/blog/2013/02/17/something-about-python/" >Tweet</a>
   
   
   
@@ -225,10 +173,8 @@ Data mining (which is the analysis step of Knowledge Discovery in Databases) foc
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2013/02/12/break-gfw-with-goagent-in-android-mx2/" title="Previous Post: Break GFW with Goagent in Android MX2">&laquo; Break GFW with Goagent in Android MX2</a>
+        <a class="basic-alignment left" href="/blog/2013/02/16/machine-learning-ep1/" title="Previous Post: Machine Learning ep1">&laquo; Machine Learning ep1</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2013/02/16/machine-learning-ep1/" title="Next Post: Machine Learning ep1">Machine Learning ep1 &raquo;</a>
       
     </p>
   </footer>
@@ -319,8 +265,8 @@ Data mining (which is the analysis step of Knowledge Discovery in Databases) foc
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://arekyao.github.com/blog/2013/02/15/the-overview-of-machine-learning/';
-        var disqus_url = 'http://arekyao.github.com/blog/2013/02/15/the-overview-of-machine-learning/';
+        var disqus_identifier = 'http://arekyao.github.com/blog/2013/02/17/something-about-python/';
+        var disqus_url = 'http://arekyao.github.com/blog/2013/02/17/something-about-python/';
         var disqus_script = 'embed.js';
       
     (function () {
