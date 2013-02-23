@@ -4,7 +4,7 @@
   <title><![CDATA[Category: MachineLearning | YY Every Day]]></title>
   <link href="http://arekyao.github.com/blog/categories/machinelearning/atom.xml" rel="self"/>
   <link href="http://arekyao.github.com/"/>
-  <updated>2013-02-23T20:45:22+08:00</updated>
+  <updated>2013-02-23T21:30:51+08:00</updated>
   <id>http://arekyao.github.com/</id>
   <author>
     <name><![CDATA[Arek.Yao]]></name>
@@ -65,6 +65,14 @@ More than that, it’s very difficult to understand where is wrong, how to impov
 
 <p>It’s a simple model,and very useful</p>
 
+<ul>
+  <li>
+    <h2 id="locally-weighted-linear-regression">Locally Weighted Linear Regression</h2>
+  </li>
+</ul>
+
+<p>the training data only contain the data near X  (is not it cool?)</p>
+
 <hr />
 
 <ul>
@@ -96,6 +104,14 @@ More than that, it’s very difficult to understand where is wrong, how to impov
 <p><code>Condition 1: the two iteration's result is so close to ignore</code></p>
 
 <p><code>Condition 2: the loss is very small, which can be ignored</code></p>
+
+<ul>
+  <li>parametric learning algorithm &amp; non-parametric learning algorithm</li>
+</ul>
+
+<blockquote>
+  <p>non-parametric learning: the number of arguments will go with size of training data</p>
+</blockquote>
 
 <hr />
 
