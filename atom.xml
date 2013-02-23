@@ -4,7 +4,7 @@
   <title><![CDATA[YY Every Day]]></title>
   <link href="http://arekyao.github.com/atom.xml" rel="self"/>
   <link href="http://arekyao.github.com/"/>
-  <updated>2013-02-18T23:43:17+08:00</updated>
+  <updated>2013-02-23T20:38:46+08:00</updated>
   <id>http://arekyao.github.com/</id>
   <author>
     <name><![CDATA[Arek.Yao]]></name>
@@ -18,7 +18,11 @@
     <link href="http://arekyao.github.com/blog/2013/02/17/something-about-python/"/>
     <updated>2013-02-17T12:46:00+08:00</updated>
     <id>http://arekyao.github.com/blog/2013/02/17/something-about-python</id>
-    <content type="html"><![CDATA[<h2 id="homebrew-the-missing-package-manager-for-os-xhttpmxclgithubcomhomebrew"><a href="http://mxcl.github.com/homebrew/">Homebrew: The missing package manager for OS X</a></h2>
+    <content type="html"><![CDATA[<p>First, let me introduce something about develop environment, such as Brew, easy_install,RVM, … etc. </p>
+
+<h1 id="mac-develop-environment">Mac Develop Environment</h1>
+
+<h2 id="homebrew-the-missing-package-manager-for-os-xhttpmxclgithubcomhomebrew"><a href="http://mxcl.github.com/homebrew/">Homebrew: The missing package manager for OS X</a></h2>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 </pre></td><td class="code"><pre><code class=""><span class="line">$ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"</span></code></pre></td></tr></table></div></figure></notextile></div>
@@ -41,13 +45,220 @@ Setuptools will install itself using the matching version of Python (e.g. python
 <div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 </pre></td><td class="code"><pre><code class=""><span class="line">easy_install xxx</span></code></pre></td></tr></table></div></figure></notextile></div>
 
+<p>BTW: 
+You can check package info in “/Library/Python/2.7/site-packages”</p>
+
 <h2 id="rvm-ruby-version-managerhttpsrvmio"><a href="https://rvm.io/">RVM: Ruby Version Manager</a></h2>
 <div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 </pre></td><td class="code"><pre><code class=""><span class="line">$ \curl -L https://get.rvm.io | bash -s stable --ruby</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <hr />
 
-<p>http://www.cnblogs.com/vamei/archive/2013/02/06/2892628.html</p>
+<h1 id="common-python-libraryhttpwwwpythonorgaboutapps"><a href="http://www.python.org/about/apps/">Common Python Library</a></h1>
+
+<h2 id="nlp">1, NLP:</h2>
+<p>nltk:  <a href="http://nltk.org/">http://nltk.org/</a></p>
+
+<h2 id="machine-learning">2, Machine Learning</h2>
+<p>scikit_learn: <a href="https://pypi.python.org/pypi/scikit-learn/">https://pypi.python.org/pypi/scikit-learn/</a></p>
+
+<p>However,ML’s scikit-learn lib have to depend on lots of other package(scipy….)
+Here is a good scipt for mac 10.8 user
+<a href="http://fonnesbeck.github.com/ScipySuperpack/">http://fonnesbeck.github.com/ScipySuperpack/</a></p>
+
+<p><a href="https://raw.github.com/fonnesbeck/ScipySuperpack/master/install_superpack.sh">the scipt code</a> :</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+<span class="line-number">42</span>
+<span class="line-number">43</span>
+<span class="line-number">44</span>
+<span class="line-number">45</span>
+<span class="line-number">46</span>
+<span class="line-number">47</span>
+<span class="line-number">48</span>
+<span class="line-number">49</span>
+<span class="line-number">50</span>
+<span class="line-number">51</span>
+<span class="line-number">52</span>
+<span class="line-number">53</span>
+<span class="line-number">54</span>
+<span class="line-number">55</span>
+<span class="line-number">56</span>
+<span class="line-number">57</span>
+<span class="line-number">58</span>
+<span class="line-number">59</span>
+<span class="line-number">60</span>
+<span class="line-number">61</span>
+<span class="line-number">62</span>
+<span class="line-number">63</span>
+<span class="line-number">64</span>
+<span class="line-number">65</span>
+<span class="line-number">66</span>
+<span class="line-number">67</span>
+<span class="line-number">68</span>
+<span class="line-number">69</span>
+<span class="line-number">70</span>
+<span class="line-number">71</span>
+<span class="line-number">72</span>
+<span class="line-number">73</span>
+<span class="line-number">74</span>
+<span class="line-number">75</span>
+<span class="line-number">76</span>
+<span class="line-number">77</span>
+<span class="line-number">78</span>
+<span class="line-number">79</span>
+<span class="line-number">80</span>
+<span class="line-number">81</span>
+<span class="line-number">82</span>
+<span class="line-number">83</span>
+<span class="line-number">84</span>
+<span class="line-number">85</span>
+<span class="line-number">86</span>
+<span class="line-number">87</span>
+<span class="line-number">88</span>
+<span class="line-number">89</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">#!/bin/sh
+</span><span class="line">PYTHON='/usr/bin/python'
+</span><span class="line">GIT_FILENAME='git-1.7.7.3-intel-universal-snow-leopard'
+</span><span class="line">GIT_VOLUME='/Volumes/Git 1.7.7.3 Snow Leopard Intel Universal/'
+</span><span class="line">GFORTRAN='gcc-42-5666.3-darwin11.pkg'
+</span><span class="line">SUDO='sudo'
+</span><span class="line">
+</span><span class="line">if [ -z "$VIRTUAL_ENV" ]; then
+</span><span class="line">    # Standard Python env
+</span><span class="line">    PYTHON=/usr/bin/python
+</span><span class="line">    SUDO=${SUDO}
+</span><span class="line">else
+</span><span class="line">    # Virtualenv
+</span><span class="line">    PYTHON=python
+</span><span class="line">    SUDO="" #${SUDO} is not required in a virtualenv
+</span><span class="line">fi
+</span><span class="line">
+</span><span class="line">if  [ -d ".git" ]; then
+</span><span class="line">    
+</span><span class="line">    SUPERPACK_PATH='.'
+</span><span class="line">    
+</span><span class="line">else
+</span><span class="line">    
+</span><span class="line">    SUPERPACK_PATH='ScipySuperpack'
+</span><span class="line">    
+</span><span class="line">    hash git &amp;&gt; /dev/null
+</span><span class="line">    if [ $? -eq 1 ]; then
+</span><span class="line">        echo 'Downloading Git for OS X ...'
+</span><span class="line">        curl -o ${GIT_FILENAME}.dmg http://git-osx-installer.googlecode.com/files/${GIT_FILENAME}.dmg
+</span><span class="line">        echo 'Installing Git ...'
+</span><span class="line">        hdiutil mount ${GIT_FILENAME}.dmg
+</span><span class="line">        ${SUDO} installer -pkg "${GIT_VOLUME}${GIT_FILENAME}.pkg" -target '/'
+</span><span class="line">        hdiutil unmount "${GIT_VOLUME}"
+</span><span class="line">        echo 'Cleaning up'
+</span><span class="line">        rm ${GIT_FILENAME}.dmg
+</span><span class="line">        echo 'Cloning Scipy Superpack'
+</span><span class="line">        /usr/local/git/bin/git clone --depth=1 git://github.com/fonnesbeck/ScipySuperpack.git
+</span><span class="line">    else
+</span><span class="line">        echo 'Cloning Scipy Superpack'
+</span><span class="line">        git clone --depth=1 git://github.com/fonnesbeck/ScipySuperpack.git
+</span><span class="line">    fi
+</span><span class="line">fi
+</span><span class="line">
+</span><span class="line"># hash gfortran &amp;&gt; /dev/null
+</span><span class="line"># if [ $? -eq 1 ]; then
+</span><span class="line">echo 'Downloading gFortran ...'
+</span><span class="line">curl -o ${GFORTRAN} http://r.research.att.com/tools/${GFORTRAN}
+</span><span class="line">echo 'Installing gFortran ...'
+</span><span class="line">${SUDO} installer -pkg ${GFORTRAN} -target '/'
+</span><span class="line"># fi
+</span><span class="line">
+</span><span class="line">hash easy_install &amp;&gt; /dev/null
+</span><span class="line">if [ $? -eq 1 ]; then
+</span><span class="line">    echo 'Downloading ez_setup ...'
+</span><span class="line">    curl -o ez_setup.py http://peak.telecommunity.com/dist/ez_setup.py
+</span><span class="line">    echo 'Installing ez_setup ...'
+</span><span class="line">    ${SUDO} "${PYTHON}" ez_setup.py
+</span><span class="line">    rm ez_setup.py
+</span><span class="line">fi
+</span><span class="line">
+</span><span class="line">echo 'Installing Scipy Superpack ...'
+</span><span class="line">${SUDO} "${PYTHON}" -m easy_install -N -Z ${SUPERPACK_PATH}/*.egg
+</span><span class="line">
+</span><span class="line">echo 'Installing readline ...'
+</span><span class="line">${SUDO} "${PYTHON}" -m easy_install -N -Z readline
+</span><span class="line">echo 'Installing nose ...'
+</span><span class="line">${SUDO} "${PYTHON}" -m easy_install -N -Z nose
+</span><span class="line">echo 'Installing six'
+</span><span class="line">${SUDO} "${PYTHON}" -m easy_install -N -Z six
+</span><span class="line">echo 'Installing python-dateutil'
+</span><span class="line">${SUDO} "${PYTHON}" -m easy_install -N -Z python-dateutil
+</span><span class="line">echo 'Installing pytz'
+</span><span class="line">${SUDO} "${PYTHON}" -m easy_install -N -Z pytz
+</span><span class="line">echo 'Installing Tornado'
+</span><span class="line">${SUDO} "${PYTHON}" -m easy_install -N -Z tornado
+</span><span class="line">echo 'Installing pyzmq'
+</span><span class="line">${SUDO} "${PYTHON}" -m easy_install -N -Z pyzmq
+</span><span class="line">echo 'Installing pika'
+</span><span class="line">${SUDO} "${PYTHON}" -m easy_install -N -Z pika
+</span><span class="line">echo 'Installing jinja2'
+</span><span class="line">${SUDO} "${PYTHON}" -m easy_install -N -Z jinja2
+</span><span class="line">echo 'Installing patsy'
+</span><span class="line">${SUDO} "${PYTHON}" -m easy_install -N -Z patsy
+</span><span class="line">if  [ ! -d ".git" ]; then
+</span><span class="line">    echo 'Cleaning up'  
+</span><span class="line">    rm -rf ${SUPERPACK_PATH}
+</span><span class="line">fi
+</span><span class="line">
+</span><span class="line">echo 'Done'
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="scrapyhttpscrapyorgdownload">3, <a href="http://scrapy.org/download/">Scrapy</a></h2>
+
+<p>A Spider Structure based on Python</p>
+
+<h2 id="ipythonhttpipythonorginstallhtml">4, <a href="http://ipython.org/install.html">IPython</a></h2>
+<p>a good Python IDE</p>
+
+<h2 id="reference">Reference</h2>
+
+<p>http://www.cnblogs.com/vamei/archive/2013/02/06/2892628.html
+http://www.python.org/about/apps/</p>
 ]]></content>
   </entry>
   
