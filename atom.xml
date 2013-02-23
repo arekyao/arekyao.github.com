@@ -4,7 +4,7 @@
   <title><![CDATA[YY Every Day]]></title>
   <link href="http://arekyao.github.com/atom.xml" rel="self"/>
   <link href="http://arekyao.github.com/"/>
-  <updated>2013-02-23T20:38:46+08:00</updated>
+  <updated>2013-02-23T20:40:49+08:00</updated>
   <id>http://arekyao.github.com/</id>
   <author>
     <name><![CDATA[Arek.Yao]]></name>
@@ -51,6 +51,10 @@ You can check package info in “/Library/Python/2.7/site-packages”</p>
 <h2 id="rvm-ruby-version-managerhttpsrvmio"><a href="https://rvm.io/">RVM: Ruby Version Manager</a></h2>
 <div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 </pre></td><td class="code"><pre><code class=""><span class="line">$ \curl -L https://get.rvm.io | bash -s stable --ruby</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<hr />
+
+<hr />
 
 <hr />
 
