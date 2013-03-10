@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Tools | YY Every Day]]></title>
   <link href="http://arekyao.github.com/blog/categories/tools/atom.xml" rel="self"/>
   <link href="http://arekyao.github.com/"/>
-  <updated>2013-02-23T21:30:51+08:00</updated>
+  <updated>2013-03-10T11:18:17+08:00</updated>
   <id>http://arekyao.github.com/</id>
   <author>
     <name><![CDATA[Arek.Yao]]></name>
@@ -58,7 +58,7 @@ $ \curl -L https://get.rvm.io | bash -s stable --ruby
 
 <hr />
 
-<h1 id="common-python-libraryhttpwwwpythonorgaboutapps"><a href="http://www.python.org/about/apps/">Common Python Library</a></h1>
+<h1 id="common-python-library">Common Python Library</h1>
 
 <h2 id="nlp">1, NLP:</h2>
 <p>nltk:  <a href="http://nltk.org/">http://nltk.org/</a></p>
@@ -172,6 +172,8 @@ fi</p>
 
 <h2 id="ipythonhttpipythonorginstallhtml">4, <a href="http://ipython.org/install.html">IPython</a></h2>
 <p>a good Python IDE</p>
+
+<h2 id="morehttpwwwpythonorgaboutapps"><a href="http://www.python.org/about/apps/">More…</a></h2>
 
 <h2 id="reference">Reference</h2>
 

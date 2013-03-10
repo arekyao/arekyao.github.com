@@ -5,12 +5,14 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>The Overview of Machine Learning - YY Every Day</title>
+  <title>machine learning ep2 - YY Every Day</title>
   <meta name="author" content="Arek.Yao">
 
   
-  <meta name="description" content="The Overview of Machine Learning Feb 15th, 2013 | Comments First of all, I have to say, the Machine learning series have a very deep water,:)
-I dont &hellip;">
+  <meta name="description" content="Machine Learning Ep2 Mar 9th, 2013 | Comments Discriminative learning algorithm learn $$
+P(y|x)
+$$
+or h_{\theta}(x) \in \left \{ 0,1 \right \} &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +21,7 @@ I dont &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://arekyao.github.com/blog/2013/02/15/the-overview-of-machine-learning/">
+  <link rel="canonical" href="http://arekyao.github.com/blog/2013/03/09/machine-learning-ep2/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -30,6 +32,37 @@ I dont &hellip;">
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 
+
+<!--JS for show math symbols -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 
 
   
@@ -71,7 +104,7 @@ I dont &hellip;">
   
   <header>
     
-      <h1 class="entry-title">The Overview of Machine Learning</h1>
+      <h1 class="entry-title">Machine Learning Ep2</h1>
     
     
       <p class="meta">
@@ -87,7 +120,7 @@ I dont &hellip;">
   
 
 
-<time datetime="2013-02-15T21:19:00+08:00" pubdate data-updated="true">Feb 15<span>th</span>, 2013</time>
+<time datetime="2013-03-09T22:56:00+08:00" pubdate data-updated="true">Mar 9<span>th</span>, 2013</time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -96,88 +129,50 @@ I dont &hellip;">
   </header>
 
 
-<div class="entry-content"><blockquote>
-  <p>First of all, I have to say, the Machine learning series have a very deep water,:)
-I dont have enough time to afford a full explaination, in detail, about the machine learning.
-It’s just my study map, or so-called logs..</p>
-</blockquote>
-
-<p>Here is the stories of it.</p>
-
-<h2 id="machine-learning">Machine Learning</h2>
-
-<p><a href="http://en.wikipedia.org/wiki/Machine_learning">Machine learning</a>, a branch of artificial intelligence, is about the construction and study of systems that can learn from data</p>
-
-<p>Refer to the difference between Machine Learning and Data Mining, the DM is the target, the ML is the way.</p>
-
-<blockquote>
-  <p>Machine learning focuses on prediction, based on known properties learned from the training data.
-Data mining (which is the analysis step of Knowledge Discovery in Databases) focuses on the discovery of (previously) unknown properties on the data.</p>
-</blockquote>
-
-<p>Algorithms Type OF ML</p>
-
-<ul>
+<div class="entry-content"><ul>
   <li>
-    <h2 id="supervised-learning">1,Supervised learning</h2>
+    <h4 id="discriminative-learning-algorithm">Discriminative learning algorithm</h4>
   </li>
 </ul>
 
-<blockquote>
-  <p>generates a function that maps inputs to desired outputs (also called labels, because they are often provided by human experts labeling the training examples). For example, in a <code>classification</code> problem, the learner approximates a function mapping a vector into classes by looking at input-output examples of the function.</p>
-</blockquote>
+<p>learn 
+$$
+P(y|x)
+$$
+or</p>
 
-<h3 id="decision-tree">+ Decision Tree</h3>
+<script type="math/tex; mode=display"> 
+h_{\theta}(x) \in \left \{ 0,1 \right \}
+</script>
 
-<h3 id="association-rule-learning">+ Association rule learning</h3>
-
-<h3 id="svm">+ SVM</h3>
-
-<h3 id="random-forrest">+ Random Forrest</h3>
-
-<h3 id="naive-bayes-classifier">+ Naive bayes classifier</h3>
-
-<h3 id="linearregression">+ Linear_regression</h3>
-
-<h3 id="section">…</h3>
+<p>directly</p>
 
 <ul>
   <li>
-    <h2 id="unsupervised-learning">2,Unsupervised learning</h2>
-    <blockquote>
-      <p>models a set of inputs, like <code>clustering</code>. See also data mining and knowledge discovery. Here, labels are not known during training.</p>
-    </blockquote>
-  </li>
-  <li>
-    <h2 id="semi-supervised-learning">3,Semi-supervised learning</h2>
+    <h4 id="generative-learning-algorithm">Generative learning algorithm</h4>
   </li>
 </ul>
 
-<blockquote>
-  <p>combines both labeled and unlabeled examples to generate an appropriate function or classifier. Transduction, or transductive inference, tries to predict new outputs on specific and fixed (test) cases from observed, specific (training) cases.</p>
-</blockquote>
+<p>learn
+P(x|y)</p>
+
+<p>then
+P(y)</p>
+
+<p>such as Native Bayes</p>
 
 <ul>
   <li>
-    <h2 id="reinforcement-learning">4,Reinforcement learning</h2>
-    <blockquote>
-      <p>learns how to act given an observation of the world. Every action has some impact in the environment, and the environment provides feedback in the form of rewards that guides the learning algorithm.</p>
-    </blockquote>
-  </li>
-  <li>
-    <h2 id="learning-to-learn">5,Learning to learn</h2>
-    <p>learns its own inductive bias based on previous experience.</p>
+    <h4 id="laplace-smoothing">Laplace smoothing</h4>
   </li>
 </ul>
 
-<h2 id="reference">Reference:</h2>
-<p>1, <a href="http://v.163.com/special/opencourse/machinelearning.html">网易公开课</a> </p>
+<p>A/B</p>
 
-<p>2, <a href="http://zhfuzh.blog.163.com/blog/static/14553938720127309539465">行走的馒头</a> </p>
+<p>==&gt;</p>
 
-<p>3, <a href="http://cs229.stanford.edu/materials.html">Stanford’s lesson</a></p>
+<p>(A+1)/(B+1)</p>
 
-<p>4, <a href="http://www.datasciencecentral.com/profiles/blogs/berkeley-course-on-data-science">Berkeley course on Data Science,北美+德国18名校的数据挖掘、数据分析、人工智能及机器学习课程资源汇总</a></p>
 </div>
 
 <br>
@@ -202,7 +197,7 @@ Data mining (which is the analysis step of Knowledge Discovery in Databases) foc
   
 
 
-<time datetime="2013-02-15T21:19:00+08:00" pubdate data-updated="true">Feb 15<span>th</span>, 2013</time>
+<time datetime="2013-03-09T22:56:00+08:00" pubdate data-updated="true">Mar 9<span>th</span>, 2013</time>
       
 
 <span class="categories">
@@ -216,7 +211,7 @@ Data mining (which is the analysis step of Knowledge Discovery in Databases) foc
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://arekyao.github.com/blog/2013/02/15/the-overview-of-machine-learning/" data-via="" data-counturl="http://arekyao.github.com/blog/2013/02/15/the-overview-of-machine-learning/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://arekyao.github.com/blog/2013/03/09/machine-learning-ep2/" data-via="" data-counturl="http://arekyao.github.com/blog/2013/03/09/machine-learning-ep2/" >Tweet</a>
   
   
   
@@ -225,10 +220,10 @@ Data mining (which is the analysis step of Knowledge Discovery in Databases) foc
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2013/02/12/break-gfw-with-goagent-in-android-mx2/" title="Previous Post: Break GFW with Goagent in Android MX2">&laquo; Break GFW with Goagent in Android MX2</a>
+        <a class="basic-alignment left" href="/blog/2013/02/17/something-about-python/" title="Previous Post: Something About Python">&laquo; Something About Python</a>
       
       
-        <a class="basic-alignment right" href="/blog/2013/02/16/machine-learning-ep1/" title="Next Post: Machine Learning ep1">Machine Learning ep1 &raquo;</a>
+        <a class="basic-alignment right" href="/blog/2013/03/10/air-cleaner-and-english-study/" title="Next Post: Air cleaner and English study">Air cleaner and English study &raquo;</a>
       
     </p>
   </footer>
@@ -320,8 +315,8 @@ Data mining (which is the analysis step of Knowledge Discovery in Databases) foc
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://arekyao.github.com/blog/2013/02/15/the-overview-of-machine-learning/';
-        var disqus_url = 'http://arekyao.github.com/blog/2013/02/15/the-overview-of-machine-learning/';
+        var disqus_identifier = 'http://arekyao.github.com/blog/2013/03/09/machine-learning-ep2/';
+        var disqus_url = 'http://arekyao.github.com/blog/2013/03/09/machine-learning-ep2/';
         var disqus_script = 'embed.js';
       
     (function () {

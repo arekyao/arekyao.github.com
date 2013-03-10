@@ -4,7 +4,7 @@
   <title><![CDATA[Category: MachineLearning | YY Every Day]]></title>
   <link href="http://arekyao.github.com/blog/categories/machinelearning/atom.xml" rel="self"/>
   <link href="http://arekyao.github.com/"/>
-  <updated>2013-02-23T21:30:51+08:00</updated>
+  <updated>2013-03-10T11:18:17+08:00</updated>
   <id>http://arekyao.github.com/</id>
   <author>
     <name><![CDATA[Arek.Yao]]></name>
@@ -12,6 +12,58 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[machine learning ep2]]></title>
+    <link href="http://arekyao.github.com/blog/2013/03/09/machine-learning-ep2/"/>
+    <updated>2013-03-09T22:56:00+08:00</updated>
+    <id>http://arekyao.github.com/blog/2013/03/09/machine-learning-ep2</id>
+    <content type="html"><![CDATA[<ul>
+  <li>
+    <h4 id="discriminative-learning-algorithm">Discriminative learning algorithm</h4>
+  </li>
+</ul>
+
+<p>learn 
+$$
+P(y|x)
+$$
+or</p>
+
+<script type="math/tex; mode=display"> 
+h_{\theta}(x) \in \left \{ 0,1 \right \}
+</script>
+
+<p>directly</p>
+
+<ul>
+  <li>
+    <h4 id="generative-learning-algorithm">Generative learning algorithm</h4>
+  </li>
+</ul>
+
+<p>learn
+P(x|y)</p>
+
+<p>then
+P(y)</p>
+
+<p>such as Native Bayes</p>
+
+<ul>
+  <li>
+    <h4 id="laplace-smoothing">Laplace smoothing</h4>
+  </li>
+</ul>
+
+<p>A/B</p>
+
+<p>==&gt;</p>
+
+<p>(A+1)/(B+1)</p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Machine Learning ep1]]></title>
@@ -94,6 +146,10 @@ More than that, it’s very difficult to understand where is wrong, how to impov
 
 <p>In conclusion, if your data is large, you might want to use Stochastic Gradient Descent.</p>
 
+<h4 id="newton-method">Newton Method:</h4>
+<p>Advantage: fast iteration to get result
+Disadvantage: have to invert the N*N’s (N is the number of feature) every step</p>
+
 <ul>
   <li>
     <h2 id="when-to-stop-the-iteration-of-gradient-descent">When to stop the iteration of Gradient Descent</h2>
@@ -112,6 +168,18 @@ More than that, it’s very difficult to understand where is wrong, how to impov
 <blockquote>
   <p>non-parametric learning: the number of arguments will go with size of training data</p>
 </blockquote>
+
+<ul>
+  <li>
+    <h2 id="exponential-distribution-family">Exponential distribution family</h2>
+    <p>eg: Normal Distribution, Poisson Distribution, Bernouli Distribution </p>
+  </li>
+  <li>
+    <h2 id="logistic-regression--softmax-regression">Logistic Regression &amp; Softmax Regression</h2>
+    <p>Logistic Regression only 2 kinds
+Softmax Regession can solve multi</p>
+  </li>
+</ul>
 
 <hr />
 
