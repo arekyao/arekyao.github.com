@@ -4,7 +4,7 @@
   <title><![CDATA[YY Every Day]]></title>
   <link href="http://arekyao.github.com/atom.xml" rel="self"/>
   <link href="http://arekyao.github.com/"/>
-  <updated>2013-03-24T18:41:02+08:00</updated>
+  <updated>2013-04-11T23:47:09+08:00</updated>
   <id>http://arekyao.github.com/</id>
   <author>
     <name><![CDATA[Arek.Yao]]></name>
@@ -12,6 +12,299 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Something about the Practice]]></title>
+    <link href="http://arekyao.github.com/blog/2013/04/10/something-about-the-practice/"/>
+    <updated>2013-04-10T22:22:00+08:00</updated>
+    <id>http://arekyao.github.com/blog/2013/04/10/something-about-the-practice</id>
+    <content type="html"><![CDATA[<h2 id="whats-the-practice">What’s the practice</h2>
+
+<p>The Practice is an American TV series, legal drama. 
+This show won the Emmy in 1998 and 1999 for Best Drama Series.</p>
+
+<p>The Practice focused on the law firm of Robert Donnell and Associates (later becoming Donnell, Young, Dole, &amp; Frutt, and ultimately Young, Frutt, &amp; Berluti). 
+Every story per ep, is made up one or two cases, including both criminal and civil cases, which often mirror current events.Conflict between legal ethics and personal morality was a recurring theme. </p>
+
+<p>Robert Donnell is the boss, which is tall, handsome, rich, whose gf, linsay Dole and Helen Gamble.
+Eugene Young is my favourite lawyer actor, black, strong in debating.
+Rebecca Washington, assist of the law firm.
+Jimmy Berluti, some poooor guy, fired by last firm for doing something awful and cheating to help bobby donnell.
+Ellenor Frutt, fat woman, with a sharp teeth.</p>
+
+<p>Bobby is an idealist, a lawyer and wanna help the innocent men out.
+However, he soon learns that drug dealers and other undeniably guilty clients tend to be the ones who provide the business that keep the firm running.
+After realize that, Bobby change his idea that defending for the innocent to defending for the system.
+(the jury system, defend lawyer and district attorney PK, the judge is just a monitor, the jury make the decision)</p>
+
+<p>Helen is a DA, wanna to put the bad men into jail, limited to the jury system, which is her tool too.</p>
+
+<p>The Practice is the greatest legal drama, no other series in the same level with it.</p>
+
+<h2 id="my-practice">My Practice</h2>
+<p>The practice has eight season.
+Seaon 8 is my first.</p>
+
+<p>I got shocked and attracted as soon as the s8ep1. even though, at first the reason is alan shore (some guy from Boston Legal)</p>
+
+<p>Maybe two or three years later, the season 1 ,2, 3 come out ,thanks for Douban KW Group.</p>
+
+<p>Here is the problem.
+After KW group has tranlated S1,S2,S3, they decided to stop their work.
+The stop reason is heard that Season 4,5,6,7 is not as good as S1-3
+However, I still wanna see them, so far</p>
+
+<p>It’s difficult for me to see them totally without any subtitle.
+So I got some english subtitle from shooter.cn
+Generally, it is OK for me, but still a litter confusing when debating in the law room.
+It’s too fast to follow it.</p>
+
+<p>So I decide to do a chn &amp; eng mixed subtitle.</p>
+
+<h2 id="mixed-subtitle">Mixed Subtitle</h2>
+<p>1, Got the English subtitle</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">
+</span><span class="line">1
+</span><span class="line">00:00:00,312 --&gt; 00:00:01,833
+</span><span class="line">Previously on The Practice
+</span><span class="line">
+</span><span class="line">2
+</span><span class="line">00:00:01,959 --&gt; 00:00:03,488
+</span><span class="line">Something wrong, Ellenor? 
+</span><span class="line">
+</span><span class="line">3
+</span><span class="line">00:00:03,584 --&gt; 00:00:04,848
+</span><span class="line">You came to kill me? 
+</span><span class="line">
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>2, translate it to Chinese </p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">
+</span><span class="line">1 
+</span><span class="line">00:00:00,312 - &gt; 00:00:01,833 
+</span><span class="line">以前的做法 
+</span><span class="line">
+</span><span class="line">2 
+</span><span class="line">00:00:01,959 - &gt; 00:00:03,488 
+</span><span class="line">有什么问题，Ellenor？ 
+</span><span class="line">
+</span><span class="line">3 
+</span><span class="line">00:00:03,584 - &gt; 00:00:04,848 
+</span><span class="line">你来杀我吗？ 
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>3, Merge it </p>
+
+<p>the code is like this:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+<span class="line-number">42</span>
+<span class="line-number">43</span>
+<span class="line-number">44</span>
+<span class="line-number">45</span>
+<span class="line-number">46</span>
+<span class="line-number">47</span>
+<span class="line-number">48</span>
+<span class="line-number">49</span>
+<span class="line-number">50</span>
+<span class="line-number">51</span>
+<span class="line-number">52</span>
+<span class="line-number">53</span>
+<span class="line-number">54</span>
+<span class="line-number">55</span>
+<span class="line-number">56</span>
+<span class="line-number">57</span>
+<span class="line-number">58</span>
+<span class="line-number">59</span>
+<span class="line-number">60</span>
+<span class="line-number">61</span>
+<span class="line-number">62</span>
+<span class="line-number">63</span>
+<span class="line-number">64</span>
+<span class="line-number">65</span>
+<span class="line-number">66</span>
+<span class="line-number">67</span>
+<span class="line-number">68</span>
+<span class="line-number">69</span>
+<span class="line-number">70</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">#! /usr/bin/env python
+</span><span class="line">
+</span><span class="line">import time
+</span><span class="line">import sys
+</span><span class="line">import exceptions
+</span><span class="line">import string
+</span><span class="line">
+</span><span class="line">
+</span><span class="line">def main(argv=sys.argv):
+</span><span class="line">	englist_title_file = open(argv[1],"r")
+</span><span class="line">	chinese_title_file = open(argv[2],"r")
+</span><span class="line">	mixed_title_file = open(argv[3],"w")
+</span><span class="line">	sub_index = 1
+</span><span class="line">	sub_content = {}
+</span><span class="line">	while 1 :
+</span><span class="line">		### index line
+</span><span class="line">		line = englist_title_file.readline()
+</span><span class="line">
+</span><span class="line">		if not line or line=="" or line=="\r" or line=="\r\n":
+</span><span class="line">			break
+</span><span class="line">
+</span><span class="line">		if sub_index == string.atoi(line):
+</span><span class="line">			### sub time line
+</span><span class="line">			englist_title_file.readline()
+</span><span class="line">			### english subtitle line
+</span><span class="line">			sub_content[sub_index] = englist_title_file.readline()
+</span><span class="line">			### blank line
+</span><span class="line">			englist_title_file.readline()
+</span><span class="line">
+</span><span class="line">			sub_index += 1	
+</span><span class="line">	sub_index_max = sub_index		
+</span><span class="line">	sub_index = 1	
+</span><span class="line">	while 1 :
+</span><span class="line">		### index line
+</span><span class="line">		line = chinese_title_file.readline()
+</span><span class="line">		mixed_title_file.write(line)
+</span><span class="line">
+</span><span class="line">		print "xxxxx=    "+line
+</span><span class="line">		if not line or line=="" or line=="\r" or line=="\r\n":
+</span><span class="line">			break
+</span><span class="line">
+</span><span class="line">		if sub_index == string.atoi(line):
+</span><span class="line">			### sub time line
+</span><span class="line">			line = chinese_title_file.readline()
+</span><span class="line">			mixed_title_file.write(line)
+</span><span class="line">			### chinese subtitle line
+</span><span class="line">			line = chinese_title_file.readline()
+</span><span class="line">			mixed_title_file.write(line)
+</span><span class="line">			### english subtitle line
+</span><span class="line">			line = sub_content[sub_index]
+</span><span class="line">			mixed_title_file.write(line)
+</span><span class="line">			### blank line
+</span><span class="line">			line = chinese_title_file.readline()
+</span><span class="line">			mixed_title_file.write(line)
+</span><span class="line">
+</span><span class="line">			sub_index += 1
+</span><span class="line">		if sub_index &gt;= sub_index_max :
+</span><span class="line">			break
+</span><span class="line">
+</span><span class="line">	englist_title_file.close()
+</span><span class="line">	chinese_title_file.close()
+</span><span class="line">	mixed_title_file.close()
+</span><span class="line">
+</span><span class="line">
+</span><span class="line">
+</span><span class="line">if __name__ == "__main__":
+</span><span class="line">	sys.exit(main())
+</span><span class="line">
+</span><span class="line">
+</span><span class="line">
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>4, The mixed subtitle is done</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">
+</span><span class="line">1 
+</span><span class="line">00:00:00,312 - &gt; 00:00:01,833 
+</span><span class="line">以前的做法 
+</span><span class="line">Previously on The Practice
+</span><span class="line">
+</span><span class="line">2 
+</span><span class="line">00:00:01,959 - &gt; 00:00:03,488 
+</span><span class="line">有什么问题，Ellenor？ 
+</span><span class="line">Something wrong, Ellenor? 
+</span><span class="line">
+</span><span class="line">3 
+</span><span class="line">00:00:03,584 - &gt; 00:00:04,848 
+</span><span class="line">你来杀我吗？ 
+</span><span class="line">You came to kill me? 
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Is that COOOOOOL?!
+Tech Changes World</p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Something About Life in China]]></title>
@@ -214,6 +507,8 @@ You can check package info in “/Library/Python/2.7/site-packages”</p>
 <h2 id="nlp">1, NLP:</h2>
 <p>nltk:  <a href="http://nltk.org/">http://nltk.org/</a></p>
 
+<p>chinese word segment <a href="https://github.com/fxsjy/jieba">https://github.com/fxsjy/jieba</a></p>
+
 <h2 id="machine-learning">2, Machine Learning</h2>
 <p>scikit_learn: <a href="https://pypi.python.org/pypi/scikit-learn/">https://pypi.python.org/pypi/scikit-learn/</a></p>
 
@@ -410,12 +705,27 @@ Here is a good scipt for mac 10.8 user
 <h2 id="ipythonhttpipythonorginstallhtml">4, <a href="http://ipython.org/install.html">IPython</a></h2>
 <p>a good Python IDE</p>
 
+<h2 id="web-frameworkhttpwikipythonorgmoinwebframeworks">5, <a href="http://wiki.python.org/moin/WebFrameworks">Web Framework</a></h2>
+
+<p><a href="http://www.douban.com/group/web.py/">Web.py</a></p>
+
+<p><a href="http://www.douban.com/group/django/">Django</a></p>
+
+<p>http://www.douban.com/group/django/</p>
+
+<h2 id="python-study">6, Python study</h2>
+
+<p>http://gnosis.cx/TPiP/</p>
+
+<p>http://docs.python-guide.org/en/latest/</p>
+
 <h2 id="morehttpwwwpythonorgaboutapps"><a href="http://www.python.org/about/apps/">More…</a></h2>
 
 <h2 id="reference">Reference</h2>
 
 <p>http://www.cnblogs.com/vamei/archive/2013/02/06/2892628.html
-http://www.python.org/about/apps/</p>
+http://www.python.org/about/apps/
+http://docs.python-guide.org/en/latest/</p>
 ]]></content>
   </entry>
   

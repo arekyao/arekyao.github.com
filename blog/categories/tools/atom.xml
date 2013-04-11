@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Tools | YY Every Day]]></title>
   <link href="http://arekyao.github.com/blog/categories/tools/atom.xml" rel="self"/>
   <link href="http://arekyao.github.com/"/>
-  <updated>2013-03-24T18:41:02+08:00</updated>
+  <updated>2013-04-11T23:47:09+08:00</updated>
   <id>http://arekyao.github.com/</id>
   <author>
     <name><![CDATA[Arek.Yao]]></name>
@@ -62,6 +62,8 @@ $ \curl -L https://get.rvm.io | bash -s stable --ruby
 
 <h2 id="nlp">1, NLP:</h2>
 <p>nltk:  <a href="http://nltk.org/">http://nltk.org/</a></p>
+
+<p>chinese word segment <a href="https://github.com/fxsjy/jieba">https://github.com/fxsjy/jieba</a></p>
 
 <h2 id="machine-learning">2, Machine Learning</h2>
 <p>scikit_learn: <a href="https://pypi.python.org/pypi/scikit-learn/">https://pypi.python.org/pypi/scikit-learn/</a></p>
@@ -173,12 +175,27 @@ fi</p>
 <h2 id="ipythonhttpipythonorginstallhtml">4, <a href="http://ipython.org/install.html">IPython</a></h2>
 <p>a good Python IDE</p>
 
+<h2 id="web-frameworkhttpwikipythonorgmoinwebframeworks">5, <a href="http://wiki.python.org/moin/WebFrameworks">Web Framework</a></h2>
+
+<p><a href="http://www.douban.com/group/web.py/">Web.py</a></p>
+
+<p><a href="http://www.douban.com/group/django/">Django</a></p>
+
+<p>http://www.douban.com/group/django/</p>
+
+<h2 id="python-study">6, Python study</h2>
+
+<p>http://gnosis.cx/TPiP/</p>
+
+<p>http://docs.python-guide.org/en/latest/</p>
+
 <h2 id="morehttpwwwpythonorgaboutapps"><a href="http://www.python.org/about/apps/">More…</a></h2>
 
 <h2 id="reference">Reference</h2>
 
 <p>http://www.cnblogs.com/vamei/archive/2013/02/06/2892628.html
-http://www.python.org/about/apps/</p>
+http://www.python.org/about/apps/
+http://docs.python-guide.org/en/latest/</p>
 ]]></content>
   </entry>
   
