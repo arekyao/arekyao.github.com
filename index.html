@@ -9,7 +9,8 @@
   <meta name="author" content="Arek.Yao">
 
   
-  <meta name="description" content="Something About the Practice Apr 10th, 2013 | Comments What’s the practice The Practice is an American TV series, legal drama. This show won the &hellip;">
+  <meta name="description" content="Something Interesting About AI Apr 21st, 2013 | Comments Generate Music Algorithmically Music Feature Music is compose by lots of note.
+The feature &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -98,6 +99,427 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/04/21/something-interesting-about-ai/">Something Interesting About AI</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-21T19:53:00+08:00" pubdate data-updated="true">Apr 21<span>st</span>, 2013</time>
+        
+         | <a href="/blog/2013/04/21/something-interesting-about-ai/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><ul>
+  <li>
+    <h2 id="generate-music-algorithmicallyhttpwwwdatabozocom20130412generatingmusicalgorithmicallyhtml"><a href="http://www.databozo.com/2013/04/12/Generating_music_algorithmically.html">Generate Music Algorithmically</a></h2>
+  </li>
+</ul>
+
+<h3 id="music-feature">Music Feature</h3>
+
+<p>Music is compose by lots of note.<br />
+The feature of note is frequece and length.</p>
+
+<h3 id="markov-chain">Markov Chain</h3>
+
+<p>The idea tech of Markov Chain is that, the next state (to us,it’s music note) is decided by the previous N states, only.</p>
+
+<p>That means:<br />
+the next note’s freq is decided by the previous’s.
+the next note’s length is decided by the previous’s.</p>
+
+<h3 id="machine-learning">Machine Learning</h3>
+<p>First, learn the trans probability throught lots of music sample.</p>
+
+<p>Then, we got the probability from Freq A to Freq B, From length 1/2 to 1/4</p>
+
+<p>Last, generate note by probability, random. Create music file according to the note data.</p>
+
+<h3 id="code">Code</h3>
+
+<p>The lib “pysynth.py” for gen music through two arg (freq and length)</p>
+
+<p>The key program “MarkovBuilder.py” for TransArray&amp;GenerateNote</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+<span class="line-number">42</span>
+<span class="line-number">43</span>
+<span class="line-number">44</span>
+<span class="line-number">45</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">
+</span><span class="line">'''
+</span><span class="line">Created on May 14, 2009
+</span><span class="line">
+</span><span class="line">@author: darkxanthos
+</span><span class="line">'''
+</span><span class="line">import random
+</span><span class="line">
+</span><span class="line">class MarkovBuilder:
+</span><span class="line">    def __init__(self, value_list):
+</span><span class="line">        self._values_added = 0
+</span><span class="line">        self._reverse_value_lookup = value_list
+</span><span class="line">        self._value_lookup = {}
+</span><span class="line">        for i in range(0, len(value_list)):
+</span><span class="line">            self._value_lookup[value_list[i]] = i
+</span><span class="line">        #Initialize our adjacency matrix with the initial
+</span><span class="line">        #probabilities for note transitions.
+</span><span class="line">        self._matrix=[[0 for x in range(0,len(value_list))] for i in range(0,len(value_list))]
+</span><span class="line">
+</span><span class="line">    def add(self, from_value, to_value):
+</span><span class="line">        """Add a path from a note to another note. Re-adding a path between notes will increase the associated weight."""
+</span><span class="line">        value = self._value_lookup
+</span><span class="line">        self._matrix[value[from_value]][value[to_value]] += 1
+</span><span class="line">        self._values_added = self._values_added + 1
+</span><span class="line">        
+</span><span class="line">    def next_value(self, from_value):
+</span><span class="line">        value = self._value_lookup[from_value]
+</span><span class="line">        value_counts = self._matrix[value]
+</span><span class="line">        value_index = self.randomly_choose(value_counts)
+</span><span class="line">        if(value_index &lt; 0):
+</span><span class="line">            raise RuntimeError, "Non-existent value selected."
+</span><span class="line">        else:
+</span><span class="line">            return self._reverse_value_lookup[value_index]
+</span><span class="line">            
+</span><span class="line">    def randomly_choose(self, choice_counts):
+</span><span class="line">        """Given an array of counts, returns the index that was randomly chosen"""
+</span><span class="line">        counted_sum = 0
+</span><span class="line">        count_sum = sum(choice_counts)
+</span><span class="line">        selected_count = random.randrange(1, count_sum + 1)
+</span><span class="line">        for index in range(0, len(choice_counts)):
+</span><span class="line">            counted_sum += choice_counts[index]
+</span><span class="line">            if(counted_sum &gt;= selected_count):
+</span><span class="line">                return index
+</span><span class="line">        raise RuntimeError, "Impossible value selection made. BAD!"
+</span><span class="line">
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Main Program “MarkovMusic.py”</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+<span class="line-number">42</span>
+<span class="line-number">43</span>
+<span class="line-number">44</span>
+<span class="line-number">45</span>
+<span class="line-number">46</span>
+<span class="line-number">47</span>
+<span class="line-number">48</span>
+<span class="line-number">49</span>
+<span class="line-number">50</span>
+<span class="line-number">51</span>
+<span class="line-number">52</span>
+<span class="line-number">53</span>
+<span class="line-number">54</span>
+<span class="line-number">55</span>
+<span class="line-number">56</span>
+<span class="line-number">57</span>
+<span class="line-number">58</span>
+<span class="line-number">59</span>
+<span class="line-number">60</span>
+<span class="line-number">61</span>
+<span class="line-number">62</span>
+<span class="line-number">63</span>
+<span class="line-number">64</span>
+<span class="line-number">65</span>
+<span class="line-number">66</span>
+<span class="line-number">67</span>
+<span class="line-number">68</span>
+<span class="line-number">69</span>
+<span class="line-number">70</span>
+<span class="line-number">71</span>
+<span class="line-number">72</span>
+<span class="line-number">73</span>
+<span class="line-number">74</span>
+<span class="line-number">75</span>
+<span class="line-number">76</span>
+<span class="line-number">77</span>
+<span class="line-number">78</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">
+</span><span class="line">'''
+</span><span class="line">Created on May 12, 2009
+</span><span class="line">
+</span><span class="line">@author: Justin Bozonier
+</span><span class="line">'''
+</span><span class="line">import pysynth
+</span><span class="line">from MarkovBuilder import MarkovBuilder
+</span><span class="line">
+</span><span class="line">class MusicMatrix:
+</span><span class="line">    def __init__(self):
+</span><span class="line">        self._previous_note = None
+</span><span class="line">        self._markov = MarkovBuilder(["a", "a#", "b", "c", "c#", "d", "d#", "e", "f", "f#", "g", "g#"])
+</span><span class="line">        self._timings = MarkovBuilder([1, 2, 4, 8, 16])
+</span><span class="line">
+</span><span class="line">    def add(self, to_note):
+</span><span class="line">        """Add a path from a note to another note. Re-adding a path between notes will increase the associated weight."""
+</span><span class="line">        if(self._previous_note is None):
+</span><span class="line">            self._previous_note = to_note
+</span><span class="line">            return
+</span><span class="line">        from_note = self._previous_note
+</span><span class="line">        self._markov.add(from_note[0], to_note[0])
+</span><span class="line">        self._timings.add(from_note[1], to_note[1])
+</span><span class="line">        self._previous_note = to_note
+</span><span class="line">        
+</span><span class="line">    def next_note(self, from_note):
+</span><span class="line">        return [self._markov.next_value(from_note[0]), self._timings.next_value(from_note[1])]
+</span><span class="line">
+</span><span class="line"># Playing it comes next :)
+</span><span class="line">#test = [['c',4], ['e',4], ['g',4], ['c5',1]]
+</span><span class="line">#pysynth.make_wav(test, fn = "test.wav")
+</span><span class="line">
+</span><span class="line">musicLearner = MusicMatrix()
+</span><span class="line">
+</span><span class="line"># Input the melody of Row, Row, Row Your Boat
+</span><span class="line"># The MusicMatrix will automatically use this to 
+</span><span class="line"># model our own song after it.
+</span><span class="line">musicLearner.add(["c", 4])
+</span><span class="line">musicLearner.add(["c", 4])
+</span><span class="line">musicLearner.add(["c", 4])
+</span><span class="line">musicLearner.add(["d", 8])
+</span><span class="line">musicLearner.add(["e", 4])
+</span><span class="line">musicLearner.add(["e", 4])
+</span><span class="line">musicLearner.add(["d", 8])
+</span><span class="line">musicLearner.add(["e", 4])
+</span><span class="line">musicLearner.add(["f", 8])
+</span><span class="line">musicLearner.add(["g", 2])
+</span><span class="line">
+</span><span class="line">musicLearner.add(["c", 8])
+</span><span class="line">musicLearner.add(["c", 8])
+</span><span class="line">musicLearner.add(["c", 8])
+</span><span class="line">
+</span><span class="line">musicLearner.add(["g", 8])
+</span><span class="line">musicLearner.add(["g", 8])
+</span><span class="line">musicLearner.add(["g", 8])
+</span><span class="line">
+</span><span class="line">musicLearner.add(["e", 8])
+</span><span class="line">musicLearner.add(["e", 8])
+</span><span class="line">musicLearner.add(["e", 8])
+</span><span class="line">
+</span><span class="line">musicLearner.add(["c", 8])
+</span><span class="line">musicLearner.add(["c", 8])
+</span><span class="line">musicLearner.add(["c", 8])
+</span><span class="line">
+</span><span class="line">musicLearner.add(["g", 4])
+</span><span class="line">musicLearner.add(["f", 8])
+</span><span class="line">musicLearner.add(["e", 4])
+</span><span class="line">musicLearner.add(["d", 8])
+</span><span class="line">musicLearner.add(["c", 2])
+</span><span class="line">
+</span><span class="line">random_score = []
+</span><span class="line">current_note = ["c", 4]
+</span><span class="line">for i in range(0,100):
+</span><span class="line">    print current_note[0] + ", " + str(current_note[1])
+</span><span class="line">    current_note = musicLearner.next_note(current_note)
+</span><span class="line">    random_score.append(current_note)
+</span><span class="line">
+</span><span class="line">pysynth.make_wav(random_score, fn = "first_score.wav")
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>code src: <br />
+<a href="http://github.com/jcbozonier/MarkovMusic/tree/master">http://github.com/jcbozonier/MarkovMusic/tree/master</a></p>
+
+<ul>
+  <li>
+    <h2 id="ai-snakehttphawsteincompostssnake-aihtml"><a href="http://hawstein.com/posts/snake-ai.html">AI Snake</a></h2>
+  </li>
+</ul>
+
+<h4 id="strategy-1">Strategy 1</h4>
+
+<p>If Target is the food, choose the shortest path</p>
+
+<h4 id="strategy-2">Strategy 2</h4>
+
+<p>If Target is the tail, choose the longest path</p>
+
+<p>code src:<br />
+<a href="">https://github.com/Hawstein/snake-ai</a></p>
+
+<ul>
+  <li>
+    <h2 id="ai-solves-super-mario-bros-and-other-classic-nes-gameshttpwwwwiredcouknewsarchive2013-0412super-mario-solved"><a href="http://www.wired.co.uk/news/archive/2013-04/12/super-mario-solved">AI ‘solves’ Super Mario Bros. and other classic NES games</a></h2>
+  </li>
+</ul>
+
+<embed src="http://player.youku.com/player.php/sid/XNTQzMTM1NDky/v.swf" allowfullscreen="true" quality="high" width="480" height="400" align="middle" allowscriptaccess="always" type="application/x-shockwave-flash" />
+
+<p><a href="">http://v.youku.com/v_show/id_XNTQzMTM1NDky.html</a></p>
+
+<p><a href="">http://www.cs.cmu.edu/~tom7/mario/mario.pdf</a></p>
+
+</div>
+  
+  
+
+<br>
+<a href="/blog/2013/04/21/something-interesting-about-ai/#disqus_thread">Comments</a>
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/04/20/android-dev-on-osx/">Android Dev on OSX</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-20T00:00:00+08:00" pubdate data-updated="true">Apr 20<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/04/20/android-dev-on-osx/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2 id="android-emulator-key-mapping-on-osx">Android Emulator Key Mapping On OSX</h2>
+
+<p>from http://developer.android.com/tools/help/emulator.html</p>
+
+<p>Home = HOME (FN + left_arrow on Macbooks)<br />
+Menu (left softkey) = F2 or Page-up button<br />
+Star (right softkey) = Shift-F2 or Page Down<br />
+Back = ESC<br />
+Call/dial button = F3<br />
+Hangup/end call button = F4<br />
+Search = F5<br />
+Power button = F7<br />
+Audio volume up button = KEYPAD_PLUS, Ctrl-F5<br />
+Audio volume down button = KEYPAD_MINUS, Ctrl-F6<br />
+Camera button = Ctrl-KEYPAD<em>5, Ctrl-F3<br />
+Switch to previous layout orientation (for example, portrait, landscape) = KEYPAD</em>7, Ctrl-F11<br />
+Switch to next layout orientation (for example, portrait, landscape) = KEYPAD<em>9, Ctrl-F12<br />
+Toggle cell networking on/off = F8<br />
+Toggle code profiling = F9 (only with -trace startup option)<br />
+Toggle fullscreen mode = Alt-Enter<br />
+Toggle trackball mode = F6
+Enter trackball mode temporarily (while key is pressed) = Delete
+DPad left/up/right/down = KEYPAD</em>4/8/6/2
+DPad center click = KEYPAD_5
+Onion alpha increase/decrease = KEYPAD_MULTIPLY(*) / KEYPAD_DIVIDE(/)</p>
+
+<p>http://stackoverflow.com/questions/7628606/how-to-emulate-pressing-home-button-in-android-emulator</p>
+</div>
+  
+  
+
+<br>
+<a href="/blog/2013/04/20/android-dev-on-osx/#disqus_thread">Comments</a>
+
+    </article>
   
   
     <article>
@@ -1358,245 +1780,6 @@ Maybe it's suspicious by Facebook's spam checking program, because so many faceb
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/02/10/the-days-we-fight-against-eczema/">The Days We Fight Against Eczema</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-02-10T12:14:00+08:00" pubdate data-updated="true">Feb 10<span>th</span>, 2013</time>
-        
-         | <a href="/blog/2013/02/10/the-days-we-fight-against-eczema/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>2012, special year, a cute girl comes into our life, named QianShu.</p>
-
-<h2 id="new-life">New Life</h2>
-
-<p>In her 1st month :</p>
-
-<p>Weight, good.</p>
-
-<p>Height, good.</p>
-
-<p>Breast milk, good.</p>
-
-<p>Everything goes well.</p>
-
-<h2 id="nd-month">2nd Month</h2>
-
-<p>However, something changed in 2nd month, that is <a href="http://en.wikipedia.org/wiki/Eczema">ECZEMA</a></p>
-
-<p>In the beginning, we did not pay too much attention to it, 
-because almost every new born baby would have this reaction and situation.
-(ps: difficult to call it illness).</p>
-
-<p>The eczema is not serious, at that time.
-Only a few in face, none in body. Looks bearable for me.</p>
-
-<p>We bought YuMeiJing, which is tranditional, old brand in Beijing.
-It’s used by lots of workmates, when they were babies.</p>
-
-<p>It works, when in 1 or 2 weeks. 
-After that, it turn worse.</p>
-
-<h2 id="rd-month">3rd Month</h2>
-
-<p>The red spots spread from face to the whole body, including legs, back and butt…
-From then on, we got that ,we should take it serious.</p>
-
-<p>We got a lot of infomation on Internet.</p>
-
-<blockquote class="information">
-  <p>Symptoms:
-      redness, skin edema, itching and dryness, crusting, flaking, blistering, cracking, oozing, or bleeding.</p>
-
-  <pre><code>  Scratching open a healing lesion may result in scarring and may enlarge the rash.
-</code></pre>
-
-  <p>Cause:
-       The cause of eczema is unknown but is presumed to be a combination of genetic and environmental factors.</p>
-</blockquote>
-
-<p>At last, We get used to this kind of view;</p>
-
-<pre><code>The Eczema is a reaction, from the body can not get used to Environment.
-</code></pre>
-
-<p>Baby is a new life, from Mom’s body.</p>
-
-<p>Everything is new for it.</p>
-
-<pre><code>It needs to get with Environment, like food, air, water...etc.
-</code></pre>
-
-<p>So we take some actions to avoid its allergy.</p>
-
-<pre><code>The most dangerous FOOD (which contain much protein):
-milk, eggs, fish, peanut, etc.
-</code></pre>
-
-<p>After we forbid those food, it did not look better, at first.</p>
-
-<p>Think…for half a day, we found a suspious food, “Mixed Food Oil”.
-The mixed oil contain peanut oil…..:(</p>
-
-<p>After that acts, it goes right way.
-Baby’s eczema is beaten and lost its battle field.
-Though a few wrong things happened, but the general situation is better than before.</p>
-
-<h2 id="th-month">4th Month</h2>
-<p>Air Cleaner&amp; Wet machine is bought before Lunar New Year.
-So far, hard to say whether it is useful ,
-It need time to prove.</p>
-
-<h2 id="now">Now</h2>
-<p>Only its face is still red and hot, and there are lots of red spots on face.
-Sometimes good, Sometime bad…</p>
-
-<p>The battle is still on….
-Maybe it will never ends…</p>
-
-<p>We will fight against it …. </p>
-
-<h2 id="reference">Reference:</h2>
-
-<p>1, <a href="http://blog.sina.com.cn/doctorcui">Doctor CuiYutao</a></p>
-
-<p>2, <a href="http://en.wikipedia.org/wiki/Eczema">Eczema</a></p>
-
-</div>
-  
-  
-
-<br>
-<a href="/blog/2013/02/10/the-days-we-fight-against-eczema/#disqus_thread">Comments</a>
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/01/20/how-to-export-video-from-ip4s/">How to Export Video From IP4s</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-01-20T18:39:00+08:00" pubdate data-updated="true">Jan 20<span>th</span>, 2013</time>
-        
-         | <a href="/blog/2013/01/20/how-to-export-video-from-ip4s/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Recently, a Mac Book Air comes to my life.
-As the same as before, a problem comes with it.</p>
-
-<p>First, pls let me introduce some backgrounds.</p>
-
-<h1 id="the-mission">The Mission:</h1>
-
-<p>There are so many Videos, taken by IP4s, which cost too much space on phone.
-So I decide to copy them from my phone.</p>
-
-<p>That needs these steps:</p>
-
-<h2 id="copy-them-from-phone">1, Copy them from phone</h2>
-
-<p>Option:</p>
-
-<pre><code>ifuncbox, interface good,but it lost the info including "modify time,create time,etc."
-phoneview, works good, but it need money, $30 , too much for me. 
-itools,  can not work.
-...
-
-at last the simple application, iphoto, works!
-</code></pre>
-
-<h2 id="rename-them">2, Rename them</h2>
-
-<p>The PM give a MRD, that asks for the name should contain video’s taken time.
-Here is the script:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">#!/bin/bash
-</span><span class="line">
-</span><span class="line">for i in `ls *.MOV`;
-</span><span class="line">do
-</span><span class="line">    echo $i;
-</span><span class="line">    stat $i;
-</span><span class="line">    sec=`stat -t "%s" $i | awk  '{print $12}' | sed 's/"//g'`
-</span><span class="line">    name_2=`date -r "$sec" "+%Y%m%d_%H%M%S"`
-</span><span class="line">    name_1=`echo $i | sed 's/.MOV//'`
-</span><span class="line">    newname=`echo $name_1"_"$name_2".MOV"`
-</span><span class="line">    cp $i output/$newname
-</span><span class="line">done</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h2 id="convert-and-compress">3, Convert and Compress</h2>
-
-<p>Option</p>
-
-<pre><code>Xilisoft Video Converter Ultimate.
-
-Change some args, like Bitrate,Frame Rate,Video codec, etc.
-</code></pre>
-
-<h2 id="thats-all-everything-works-good">That’s all, Everything works good!</h2>
-
-</div>
-  
-  
-
-<br>
-<a href="/blog/2013/01/20/how-to-export-video-from-ip4s/#disqus_thread">Comments</a>
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -1613,6 +1796,14 @@ Change some args, like Bitrate,Frame Rate,Video codec, etc.
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/04/21/something-interesting-about-ai/">Something Interesting about AI</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/04/20/android-dev-on-osx/">Android Dev on OSX</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/04/10/something-about-the-practice/">Something about the Practice</a>
       </li>
     
@@ -1624,19 +1815,11 @@ Change some args, like Bitrate,Frame Rate,Video codec, etc.
         <a href="/blog/2013/03/10/air-cleaner-and-english-study/">Air cleaner and English study</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2013/03/09/machine-learning-ep2/">machine learning ep2</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/02/17/something-about-python/">Something About Python</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tag Cloud</h1>
-    <span id="tag-cloud"><a href='/blog/categories/babylife' style='font-size: 160.0%'>BabyLife(3)</a> <a href='/blog/categories/github' style='font-size: 120.0%'>Github(1)</a> <a href='/blog/categories/machinelearning' style='font-size: 160.0%'>MachineLearning(3)</a> <a href='/blog/categories/techchangeworld' style='font-size: 160.0%'>TechChangeWorld(3)</a> <a href='/blog/categories/tools' style='font-size: 120.0%'>Tools(1)</a> </span>
+    <span id="tag-cloud"><a href='/blog/categories/android' style='font-size: 120.0%'>Android(1)</a> <a href='/blog/categories/babylife' style='font-size: 160.0%'>BabyLife(3)</a> <a href='/blog/categories/github' style='font-size: 120.0%'>Github(1)</a> <a href='/blog/categories/machinelearning' style='font-size: 160.0%'>MachineLearning(3)</a> <a href='/blog/categories/techchangeworld' style='font-size: 160.0%'>TechChangeWorld(3)</a> <a href='/blog/categories/techspark' style='font-size: 120.0%'>TechSpark(1)</a> <a href='/blog/categories/tools' style='font-size: 120.0%'>Tools(1)</a> </span>
 </section>
 <section>
   <h1>Categories</h1>
@@ -1655,7 +1838,7 @@ Change some args, like Bitrate,Frame Rate,Video codec, etc.
       });
     });
   </script>
-    <ul id="category-list"><li><a href='/blog/categories/babylife'>BabyLife (3)</a></li><li><a href='/blog/categories/github'>Github (1)</a></li><li><a href='/blog/categories/machinelearning'>MachineLearning (3)</a></li><li><a href='/blog/categories/techchangeworld'>TechChangeWorld (3)</a></li><li><a href='/blog/categories/tools'>Tools (1)</a></li></ul>
+    <ul id="category-list"><li><a href='/blog/categories/android'>Android (1)</a></li><li><a href='/blog/categories/babylife'>BabyLife (3)</a></li><li><a href='/blog/categories/github'>Github (1)</a></li><li><a href='/blog/categories/machinelearning'>MachineLearning (3)</a></li><li><a href='/blog/categories/techchangeworld'>TechChangeWorld (3)</a></li><li><a href='/blog/categories/techspark'>TechSpark (1)</a></li><li><a href='/blog/categories/tools'>Tools (1)</a></li></ul>
 </section>
 
 

@@ -1,0 +1,603 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Something Interesting about AI - YY Every Day</title>
+  <meta name="author" content="Arek.Yao">
+
+  
+  <meta name="description" content="Something Interesting About AI Apr 21st, 2013 | Comments Generate Music Algorithmically Music Feature Music is compose by lots of note.
+The feature &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://arekyao.github.com/blog/2013/04/21/something-interesting-about-ai/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="YY Every Day" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">YY Every Day</a></h1>
+  
+    <h2>Never say never, because limits like fears, are often just an illusion.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:arekyao.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about/index.html">About Me</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Something Interesting About AI</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-21T19:53:00+08:00" pubdate data-updated="true">Apr 21<span>st</span>, 2013</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><ul>
+  <li>
+    <h2 id="generate-music-algorithmicallyhttpwwwdatabozocom20130412generatingmusicalgorithmicallyhtml"><a href="http://www.databozo.com/2013/04/12/Generating_music_algorithmically.html">Generate Music Algorithmically</a></h2>
+  </li>
+</ul>
+
+<h3 id="music-feature">Music Feature</h3>
+
+<p>Music is compose by lots of note.<br />
+The feature of note is frequece and length.</p>
+
+<h3 id="markov-chain">Markov Chain</h3>
+
+<p>The idea tech of Markov Chain is that, the next state (to us,it’s music note) is decided by the previous N states, only.</p>
+
+<p>That means:<br />
+the next note’s freq is decided by the previous’s.
+the next note’s length is decided by the previous’s.</p>
+
+<h3 id="machine-learning">Machine Learning</h3>
+<p>First, learn the trans probability throught lots of music sample.</p>
+
+<p>Then, we got the probability from Freq A to Freq B, From length 1/2 to 1/4</p>
+
+<p>Last, generate note by probability, random. Create music file according to the note data.</p>
+
+<h3 id="code">Code</h3>
+
+<p>The lib “pysynth.py” for gen music through two arg (freq and length)</p>
+
+<p>The key program “MarkovBuilder.py” for TransArray&amp;GenerateNote</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+<span class="line-number">42</span>
+<span class="line-number">43</span>
+<span class="line-number">44</span>
+<span class="line-number">45</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">
+</span><span class="line">'''
+</span><span class="line">Created on May 14, 2009
+</span><span class="line">
+</span><span class="line">@author: darkxanthos
+</span><span class="line">'''
+</span><span class="line">import random
+</span><span class="line">
+</span><span class="line">class MarkovBuilder:
+</span><span class="line">    def __init__(self, value_list):
+</span><span class="line">        self._values_added = 0
+</span><span class="line">        self._reverse_value_lookup = value_list
+</span><span class="line">        self._value_lookup = {}
+</span><span class="line">        for i in range(0, len(value_list)):
+</span><span class="line">            self._value_lookup[value_list[i]] = i
+</span><span class="line">        #Initialize our adjacency matrix with the initial
+</span><span class="line">        #probabilities for note transitions.
+</span><span class="line">        self._matrix=[[0 for x in range(0,len(value_list))] for i in range(0,len(value_list))]
+</span><span class="line">
+</span><span class="line">    def add(self, from_value, to_value):
+</span><span class="line">        """Add a path from a note to another note. Re-adding a path between notes will increase the associated weight."""
+</span><span class="line">        value = self._value_lookup
+</span><span class="line">        self._matrix[value[from_value]][value[to_value]] += 1
+</span><span class="line">        self._values_added = self._values_added + 1
+</span><span class="line">        
+</span><span class="line">    def next_value(self, from_value):
+</span><span class="line">        value = self._value_lookup[from_value]
+</span><span class="line">        value_counts = self._matrix[value]
+</span><span class="line">        value_index = self.randomly_choose(value_counts)
+</span><span class="line">        if(value_index &lt; 0):
+</span><span class="line">            raise RuntimeError, "Non-existent value selected."
+</span><span class="line">        else:
+</span><span class="line">            return self._reverse_value_lookup[value_index]
+</span><span class="line">            
+</span><span class="line">    def randomly_choose(self, choice_counts):
+</span><span class="line">        """Given an array of counts, returns the index that was randomly chosen"""
+</span><span class="line">        counted_sum = 0
+</span><span class="line">        count_sum = sum(choice_counts)
+</span><span class="line">        selected_count = random.randrange(1, count_sum + 1)
+</span><span class="line">        for index in range(0, len(choice_counts)):
+</span><span class="line">            counted_sum += choice_counts[index]
+</span><span class="line">            if(counted_sum &gt;= selected_count):
+</span><span class="line">                return index
+</span><span class="line">        raise RuntimeError, "Impossible value selection made. BAD!"
+</span><span class="line">
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Main Program “MarkovMusic.py”</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+<span class="line-number">42</span>
+<span class="line-number">43</span>
+<span class="line-number">44</span>
+<span class="line-number">45</span>
+<span class="line-number">46</span>
+<span class="line-number">47</span>
+<span class="line-number">48</span>
+<span class="line-number">49</span>
+<span class="line-number">50</span>
+<span class="line-number">51</span>
+<span class="line-number">52</span>
+<span class="line-number">53</span>
+<span class="line-number">54</span>
+<span class="line-number">55</span>
+<span class="line-number">56</span>
+<span class="line-number">57</span>
+<span class="line-number">58</span>
+<span class="line-number">59</span>
+<span class="line-number">60</span>
+<span class="line-number">61</span>
+<span class="line-number">62</span>
+<span class="line-number">63</span>
+<span class="line-number">64</span>
+<span class="line-number">65</span>
+<span class="line-number">66</span>
+<span class="line-number">67</span>
+<span class="line-number">68</span>
+<span class="line-number">69</span>
+<span class="line-number">70</span>
+<span class="line-number">71</span>
+<span class="line-number">72</span>
+<span class="line-number">73</span>
+<span class="line-number">74</span>
+<span class="line-number">75</span>
+<span class="line-number">76</span>
+<span class="line-number">77</span>
+<span class="line-number">78</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">
+</span><span class="line">'''
+</span><span class="line">Created on May 12, 2009
+</span><span class="line">
+</span><span class="line">@author: Justin Bozonier
+</span><span class="line">'''
+</span><span class="line">import pysynth
+</span><span class="line">from MarkovBuilder import MarkovBuilder
+</span><span class="line">
+</span><span class="line">class MusicMatrix:
+</span><span class="line">    def __init__(self):
+</span><span class="line">        self._previous_note = None
+</span><span class="line">        self._markov = MarkovBuilder(["a", "a#", "b", "c", "c#", "d", "d#", "e", "f", "f#", "g", "g#"])
+</span><span class="line">        self._timings = MarkovBuilder([1, 2, 4, 8, 16])
+</span><span class="line">
+</span><span class="line">    def add(self, to_note):
+</span><span class="line">        """Add a path from a note to another note. Re-adding a path between notes will increase the associated weight."""
+</span><span class="line">        if(self._previous_note is None):
+</span><span class="line">            self._previous_note = to_note
+</span><span class="line">            return
+</span><span class="line">        from_note = self._previous_note
+</span><span class="line">        self._markov.add(from_note[0], to_note[0])
+</span><span class="line">        self._timings.add(from_note[1], to_note[1])
+</span><span class="line">        self._previous_note = to_note
+</span><span class="line">        
+</span><span class="line">    def next_note(self, from_note):
+</span><span class="line">        return [self._markov.next_value(from_note[0]), self._timings.next_value(from_note[1])]
+</span><span class="line">
+</span><span class="line"># Playing it comes next :)
+</span><span class="line">#test = [['c',4], ['e',4], ['g',4], ['c5',1]]
+</span><span class="line">#pysynth.make_wav(test, fn = "test.wav")
+</span><span class="line">
+</span><span class="line">musicLearner = MusicMatrix()
+</span><span class="line">
+</span><span class="line"># Input the melody of Row, Row, Row Your Boat
+</span><span class="line"># The MusicMatrix will automatically use this to 
+</span><span class="line"># model our own song after it.
+</span><span class="line">musicLearner.add(["c", 4])
+</span><span class="line">musicLearner.add(["c", 4])
+</span><span class="line">musicLearner.add(["c", 4])
+</span><span class="line">musicLearner.add(["d", 8])
+</span><span class="line">musicLearner.add(["e", 4])
+</span><span class="line">musicLearner.add(["e", 4])
+</span><span class="line">musicLearner.add(["d", 8])
+</span><span class="line">musicLearner.add(["e", 4])
+</span><span class="line">musicLearner.add(["f", 8])
+</span><span class="line">musicLearner.add(["g", 2])
+</span><span class="line">
+</span><span class="line">musicLearner.add(["c", 8])
+</span><span class="line">musicLearner.add(["c", 8])
+</span><span class="line">musicLearner.add(["c", 8])
+</span><span class="line">
+</span><span class="line">musicLearner.add(["g", 8])
+</span><span class="line">musicLearner.add(["g", 8])
+</span><span class="line">musicLearner.add(["g", 8])
+</span><span class="line">
+</span><span class="line">musicLearner.add(["e", 8])
+</span><span class="line">musicLearner.add(["e", 8])
+</span><span class="line">musicLearner.add(["e", 8])
+</span><span class="line">
+</span><span class="line">musicLearner.add(["c", 8])
+</span><span class="line">musicLearner.add(["c", 8])
+</span><span class="line">musicLearner.add(["c", 8])
+</span><span class="line">
+</span><span class="line">musicLearner.add(["g", 4])
+</span><span class="line">musicLearner.add(["f", 8])
+</span><span class="line">musicLearner.add(["e", 4])
+</span><span class="line">musicLearner.add(["d", 8])
+</span><span class="line">musicLearner.add(["c", 2])
+</span><span class="line">
+</span><span class="line">random_score = []
+</span><span class="line">current_note = ["c", 4]
+</span><span class="line">for i in range(0,100):
+</span><span class="line">    print current_note[0] + ", " + str(current_note[1])
+</span><span class="line">    current_note = musicLearner.next_note(current_note)
+</span><span class="line">    random_score.append(current_note)
+</span><span class="line">
+</span><span class="line">pysynth.make_wav(random_score, fn = "first_score.wav")
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>code src: <br />
+<a href="http://github.com/jcbozonier/MarkovMusic/tree/master">http://github.com/jcbozonier/MarkovMusic/tree/master</a></p>
+
+<ul>
+  <li>
+    <h2 id="ai-snakehttphawsteincompostssnake-aihtml"><a href="http://hawstein.com/posts/snake-ai.html">AI Snake</a></h2>
+  </li>
+</ul>
+
+<h4 id="strategy-1">Strategy 1</h4>
+
+<p>If Target is the food, choose the shortest path</p>
+
+<h4 id="strategy-2">Strategy 2</h4>
+
+<p>If Target is the tail, choose the longest path</p>
+
+<p>code src:<br />
+<a href="">https://github.com/Hawstein/snake-ai</a></p>
+
+<ul>
+  <li>
+    <h2 id="ai-solves-super-mario-bros-and-other-classic-nes-gameshttpwwwwiredcouknewsarchive2013-0412super-mario-solved"><a href="http://www.wired.co.uk/news/archive/2013-04/12/super-mario-solved">AI ‘solves’ Super Mario Bros. and other classic NES games</a></h2>
+  </li>
+</ul>
+
+<embed src="http://player.youku.com/player.php/sid/XNTQzMTM1NDky/v.swf" allowfullscreen="true" quality="high" width="480" height="400" align="middle" allowscriptaccess="always" type="application/x-shockwave-flash" />
+
+<p><a href="">http://v.youku.com/v_show/id_XNTQzMTM1NDky.html</a></p>
+
+<p><a href="">http://www.cs.cmu.edu/~tom7/mario/mario.pdf</a></p>
+
+</div>
+
+<br>
+<a href="#disqus_thread">Comments</a>
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Arek.Yao</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-21T19:53:00+08:00" pubdate data-updated="true">Apr 21<span>st</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/techspark/'>TechSpark</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://arekyao.github.com/blog/2013/04/21/something-interesting-about-ai/" data-via="" data-counturl="http://arekyao.github.com/blog/2013/04/21/something-interesting-about-ai/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/04/20/android-dev-on-osx/" title="Previous Post: Android Dev on OSX">&laquo; Android Dev on OSX</a>
+      
+      
+    </p>
+  </footer>
+</article>
+<script type="text/javascript" id="wumiiRelatedItems"></script>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <iframe width="100%" height="320" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=320&fansRow=2&ptype=1&speed=0&skin=1&isTitle=0&noborder=0&isWeibo=1&isFans=1&uid=1771027825&verifier=f729d6d3&dpc=1"></iframe>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/04/21/something-interesting-about-ai/">Something Interesting about AI</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/04/20/android-dev-on-osx/">Android Dev on OSX</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/04/10/something-about-the-practice/">Something about the Practice</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/03/24/something-about-life-in-china/">Something About Life in China</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/03/10/air-cleaner-and-english-study/">Air cleaner and English study</a>
+      </li>
+    
+  </ul>
+</section>
+<section>
+  <h1>Tag Cloud</h1>
+    <span id="tag-cloud"><a href='/blog/categories/android' style='font-size: 120.0%'>Android(1)</a> <a href='/blog/categories/babylife' style='font-size: 160.0%'>BabyLife(3)</a> <a href='/blog/categories/github' style='font-size: 120.0%'>Github(1)</a> <a href='/blog/categories/machinelearning' style='font-size: 160.0%'>MachineLearning(3)</a> <a href='/blog/categories/techchangeworld' style='font-size: 160.0%'>TechChangeWorld(3)</a> <a href='/blog/categories/techspark' style='font-size: 120.0%'>TechSpark(1)</a> <a href='/blog/categories/tools' style='font-size: 120.0%'>Tools(1)</a> </span>
+</section>
+<section>
+  <h1>Categories</h1>
+  <input class="search" type="text" name="filter_tags" results="0" placeholder="Filter Tags ..."/>
+  <script type="text/javascript">
+    $('input[name=filter_tags]').keyup(function(e){
+      var val = $(this).val();
+      if (/^\s*$/.test(val) || e.keyCode == 27) { // 27 is 'esc'
+        $('#category-list li').show();
+        $(this).val('');
+        return;
+      }
+      var pattern = new RegExp(val, 'i');
+      $('#category-list li').each(function(){
+        $(this)[pattern.test($(this).find('a').text()) ? 'show' : 'hide']();
+      });
+    });
+  </script>
+    <ul id="category-list"><li><a href='/blog/categories/android'>Android (1)</a></li><li><a href='/blog/categories/babylife'>BabyLife (3)</a></li><li><a href='/blog/categories/github'>Github (1)</a></li><li><a href='/blog/categories/machinelearning'>MachineLearning (3)</a></li><li><a href='/blog/categories/techchangeworld'>TechChangeWorld (3)</a></li><li><a href='/blog/categories/techspark'>TechSpark (1)</a></li><li><a href='/blog/categories/tools'>Tools (1)</a></li></ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Arek.Yao -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'arekyao';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://arekyao.github.com/blog/2013/04/21/something-interesting-about-ai/';
+        var disqus_url = 'http://arekyao.github.com/blog/2013/04/21/something-interesting-about-ai/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+  <script type="text/javascript">
+    var wumiiPermaLink = ""; //
+    var wumiiTitle = ""; //
+    var wumiiTags = ""; //"1,2"
+    var wumiiSitePrefix = "http://arekyao.github.com/";
+    var wumiiParams = "&num=5&mode=3&pf=JAVASCRIPT";
+</script>
+<script type="text/javascript" src="http://widget.wumii.com/ext/relatedItemsWidget"></script>
+<a href="http://www.wumii.com/widget/relatedItems" style="border:0;">
+<img src="http://static.wumii.cn/images/pixel.png" alt="" style="border:0;padding:0;margin:0;" />
+</a>
+  <meta name="baidu-site-verification" content="QSLeJw3wwyA8dGHl" />
+  <script type="text/javascript">
+    var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F6b519082c0cda60aab2be100c6319f3e' type='text/javascript'%3E%3C/script%3E"));
+  </script>
+</body>
+</html>
