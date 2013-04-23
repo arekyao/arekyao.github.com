@@ -4,7 +4,7 @@
   <title><![CDATA[YY Every Day]]></title>
   <link href="http://arekyao.github.com/atom.xml" rel="self"/>
   <link href="http://arekyao.github.com/"/>
-  <updated>2013-04-21T20:58:18+08:00</updated>
+  <updated>2013-04-24T00:13:47+08:00</updated>
   <id>http://arekyao.github.com/</id>
   <author>
     <name><![CDATA[Arek.Yao]]></name>
@@ -12,6 +12,164 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Database Overview]]></title>
+    <link href="http://arekyao.github.com/blog/2013/04/23/database-overview/"/>
+    <updated>2013-04-23T22:46:00+08:00</updated>
+    <id>http://arekyao.github.com/blog/2013/04/23/database-overview</id>
+    <content type="html"><![CDATA[<h2 id="preface">Preface</h2>
+
+<p>What’s the most important?
+Infomation!</p>
+
+<p>How to get and save infomation?
+Database.</p>
+
+<p>Here is some story about database.</p>
+
+<p>Generally, database can be divided into two arm, SQL and NoSQL.</p>
+
+<h2 id="sqlhttpenwikipediaorgwikistructuredquerylanguage"><a href="http://en.wikipedia.org/wiki/Structured_Query_Language">SQL</a></h2>
+
+<p>SQL (Structured Query Language) is very common.<br />
+mysql ,sybase and oracle are well-known as database, which is used a lot</p>
+
+<table class="mytable">
+  <thead>
+    <tr>
+      <th>Source</th>
+      <th style="text-align: left">Common name</th>
+      <th style="text-align: center">Full name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Microsoft / Sybase</td>
+      <td style="text-align: left">T-SQL</td>
+      <td style="text-align: center">Transact-SQL</td>
+    </tr>
+    <tr>
+      <td>MySQL</td>
+      <td style="text-align: left">SQL/PSM</td>
+      <td style="text-align: center">SQL/Persistent Stored Module (implements SQL/PSM)</td>
+    </tr>
+    <tr>
+      <td>Oracle</td>
+      <td style="text-align: left">PL/SQL</td>
+      <td style="text-align: center">Procedural Language/SQL (based on Ada)</td>
+    </tr>
+    <tr>
+      <td>Sybase</td>
+      <td style="text-align: left">Watcom-SQL	SQL Anywhere</td>
+      <td style="text-align: center">Watcom-SQL Dialect</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="nosqlhttpenwikipediaorgwikinosql"><a href="http://en.wikipedia.org/wiki/Nosql">NoSQL</a></h2>
+
+<p>Feature:
+It provides mechanism for storage and retrieval of data that use looser consistency models than traditional relational databases  </p>
+
+<p>Achieve horizontal scaling and higher availability</p>
+
+<ul>
+  <li>
+    <h5 id="document-store">Document Store</h5>
+  </li>
+</ul>
+
+<p>Document is encoded to some 
+In general, they all assume that documents <strong>encapsulate</strong> and <strong>encode</strong> data (or information) in some standard formats or encodings.
+Such as, XML, Jason, YAML etc.</p>
+
+<table class="mytable">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th style="text-align: left">Language</th>
+      <th style="text-align: center">Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>BaseX</td>
+      <td style="text-align: left">Java, XQuery</td>
+      <td style="text-align: center">XML database</td>
+    </tr>
+    <tr>
+      <td>Couchbase Server</td>
+      <td style="text-align: left">Erlang, C++</td>
+      <td style="text-align: center">Support for JSON and binary documents</td>
+    </tr>
+    <tr>
+      <td>Apache CouchDB</td>
+      <td style="text-align: left">Erlang</td>
+      <td style="text-align: center">JSON store</td>
+    </tr>
+    <tr>
+      <td>MongoDB</td>
+      <td style="text-align: left">C++, C#</td>
+      <td style="text-align: center">BSON store (binary format JSON)</td>
+    </tr>
+    <tr>
+      <td>SimpleDB</td>
+      <td style="text-align: left">Erlang</td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td>Oracle NoSQL Database</td>
+      <td style="text-align: left">Java</td>
+      <td style="text-align: center"> </td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>
+    <h5 id="graph">Graph</h5>
+  </li>
+</ul>
+
+<p>The kind of data could be social relations, public transport links, road maps or network topologies, for example.</p>
+
+<ul>
+  <li>
+    <h5 id="key-value-store">Key Value Store</h5>
+    <p>kv cache in RAM
+Radis 
+Memcached</p>
+  </li>
+</ul>
+
+<p>Keyvalue stores on solid state or rotating disk
+MemcacheDB
+MongoDB</p>
+
+<ul>
+  <li>
+    <h5 id="multivalue-database">Multivalue database</h5>
+    <p>InfinityDB</p>
+  </li>
+  <li>
+    <h5 id="object-databasehttpenwikipediaorgwikiobjectdatabase"><a href="http://en.wikipedia.org/wiki/Object_database">Object database</a></h5>
+  </li>
+  <li>
+    <h5 id="tabular">Tabular</h5>
+  </li>
+</ul>
+
+<p>Apache Accumulo</p>
+
+<p>BigTable</p>
+
+<p>Apache Hbase</p>
+
+<p>Hypertable</p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Something Interesting about AI]]></title>
@@ -342,7 +500,23 @@ the next note’s length is decided by the previous’s.</p>
     <link href="http://arekyao.github.com/blog/2013/04/20/android-dev-on-osx/"/>
     <updated>2013-04-20T00:00:00+08:00</updated>
     <id>http://arekyao.github.com/blog/2013/04/20/android-dev-on-osx</id>
-    <content type="html"><![CDATA[<h2 id="android-emulator-key-mapping-on-osx">Android Emulator Key Mapping On OSX</h2>
+    <content type="html"><![CDATA[<h2 id="some-gossip">Some gossip</h2>
+
+<p>Today it prove the conclusion that Google is much better than baidu, esp in Tech Problem.</p>
+
+<p>here is one:</p>
+
+<p>Android Emulation Key HOME is not found on OSX.  </p>
+
+<p>There is not HOME key on OSX.</p>
+
+<p>After lots of try, i got ESC, but it’s BACK key.</p>
+
+<p>By Bidu, try lots of query, it does not work.</p>
+
+<p>By google, it works immediately</p>
+
+<h2 id="android-emulator-key-mapping-on-osx">Android Emulator Key Mapping On OSX</h2>
 
 <p>from http://developer.android.com/tools/help/emulator.html</p>
 
