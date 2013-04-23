@@ -1,0 +1,224 @@
+---
+layout: post
+title: "Something about the Practice"
+date: 2013-04-10 22:22
+comments: true
+categories: TechChangeWorld
+---
+
+What's the practice
+-----
+
+The Practice is an American TV series, legal drama. 
+
+This show won the Emmy in 1998 and 1999 for Best Drama Series.  
+The Practice focused on the law firm of Robert Donnell and Associates (later becoming Donnell, Young, Dole, & Frutt, and ultimately Young, Frutt, & Berluti).   
+
+Every story per ep, is made up one or two cases, including both criminal and civil cases, which often mirror current events.Conflict between legal ethics and personal morality was a recurring theme.   
+
+
+
+Robert Donnell is the boss, which is tall, handsome, rich, whose gf, linsay Dole and Helen Gamble.  
+Eugene Young is my favourite lawyer actor, black, strong in debating.   
+Rebecca Washington, assist of the law firm.  
+Jimmy Berluti, some poooor guy, fired by last firm for doing something awful and cheating to help bobby donnell.  
+Ellenor Frutt, fat woman, with a sharp teeth.  
+
+
+Bobby is an idealist, a lawyer and wanna help the innocent men out.  However, he soon learns that drug dealers and other undeniably guilty clients tend to be the ones who provide the business that keep the firm running.
+After realize that, Bobby change his idea that defending for the innocent to defending for the system.
+
+(the jury system, defend lawyer and district attorney PK, the judge is just a monitor, the jury make the decision)
+
+
+
+Helen is a DA, wanna to put the bad men into jail, limited to the jury system, which is her tool too.
+
+
+The Practice is the greatest legal drama, no other series in the same level with it.
+
+My Practice 
+-------
+The practice has eight season.
+Seaon 8 is my first.
+
+I got shocked and attracted as soon as the s8ep1. even though, at first the reason is alan shore (some guy from Boston Legal)
+
+Maybe two or three years later, the season 1 ,2, 3 come out ,thanks for Douban KW Group.
+
+Here is the problem.
+After KW group has tranlated S1,S2,S3, they decided to stop their work.
+The stop reason is heard that Season 4,5,6,7 is not as good as S1-3
+However, I still wanna see them, so far
+
+It's difficult for me to see them totally without any subtitle.
+So I got some english subtitle from shooter.cn
+Generally, it is OK for me, but still a litter confusing when debating in the law room.
+It's too fast to follow it.
+
+So I decide to do a chn & eng mixed subtitle.
+
+Mixed Subtitle 
+---------
+1, Got the English subtitle
+
+```
+
+1
+00:00:00,312 --> 00:00:01,833
+Previously on The Practice
+
+2
+00:00:01,959 --> 00:00:03,488
+Something wrong, Ellenor? 
+
+3
+00:00:03,584 --> 00:00:04,848
+You came to kill me? 
+
+
+```
+
+2, translate it to Chinese 
+
+```
+
+1 
+00:00:00,312 - > 00:00:01,833 
+以前的做法 
+
+2 
+00:00:01,959 - > 00:00:03,488 
+有什么问题，Ellenor？ 
+
+3 
+00:00:03,584 - > 00:00:04,848 
+你来杀我吗？ 
+
+```
+
+3, Merge it 
+
+the code is like this:
+
+
+
+```
+#! /usr/bin/env python
+
+import time
+import sys
+import exceptions
+import string
+
+
+def main(argv=sys.argv):
+	englist_title_file = open(argv[1],"r")
+	chinese_title_file = open(argv[2],"r")
+	mixed_title_file = open(argv[3],"w")
+	sub_index = 1
+	sub_content = {}
+	while 1 :
+		### index line
+		line = englist_title_file.readline()
+
+		if not line or line=="" or line=="\r" or line=="\r\n":
+			break
+
+		if sub_index == string.atoi(line):
+			### sub time line
+			englist_title_file.readline()
+			### english subtitle line
+			sub_content[sub_index] = englist_title_file.readline()
+			### blank line
+			englist_title_file.readline()
+
+			sub_index += 1	
+	sub_index_max = sub_index		
+	sub_index = 1	
+	while 1 :
+		### index line
+		line = chinese_title_file.readline()
+		mixed_title_file.write(line)
+
+		print "xxxxx=    "+line
+		if not line or line=="" or line=="\r" or line=="\r\n":
+			break
+
+		if sub_index == string.atoi(line):
+			### sub time line
+			line = chinese_title_file.readline()
+			mixed_title_file.write(line)
+			### chinese subtitle line
+			line = chinese_title_file.readline()
+			mixed_title_file.write(line)
+			### english subtitle line
+			line = sub_content[sub_index]
+			mixed_title_file.write(line)
+			### blank line
+			line = chinese_title_file.readline()
+			mixed_title_file.write(line)
+
+			sub_index += 1
+		if sub_index >= sub_index_max :
+			break
+
+	englist_title_file.close()
+	chinese_title_file.close()
+	mixed_title_file.close()
+
+
+
+if __name__ == "__main__":
+	sys.exit(main())
+
+
+
+
+```
+
+4, The mixed subtitle is done
+
+```
+
+1 
+00:00:00,312 - > 00:00:01,833 
+以前的做法 
+Previously on The Practice
+
+2 
+00:00:01,959 - > 00:00:03,488 
+有什么问题，Ellenor？ 
+Something wrong, Ellenor? 
+
+3 
+00:00:03,584 - > 00:00:04,848 
+你来杀我吗？ 
+You came to kill me? 
+
+```
+
+Is that COOOOOOL?!
+Tech Changes World
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

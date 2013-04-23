@@ -26,3 +26,5 @@
 {% else %}
 <div class="entry-content">{{ content }}</div>
 {% endif %}
+<br>
+<a href="{% if index %}{{ root_url }}{{ post.url }}{% endif %}#disqus_thread">Comments</a>
