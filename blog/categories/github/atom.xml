@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Github | YY Every Day]]></title>
   <link href="http://arekyao.github.com/blog/categories/github/atom.xml" rel="self"/>
   <link href="http://arekyao.github.com/"/>
-  <updated>2013-04-24T08:38:37+08:00</updated>
+  <updated>2013-04-25T17:29:48+08:00</updated>
   <id>http://arekyao.github.com/</id>
   <author>
     <name><![CDATA[Arek.Yao]]></name>
@@ -84,7 +84,13 @@ http://docs.mathjax.org/en/latest/installation.html
 <p>LaTex Tools:
   <a href="http://www.codecogs.com/latex/eqneditor.php">Online LaTeX Equation Editor</a></p>
 
-<p>ps : I am so stupid, try my best to download a lib, MathJax…. totally useless..   </p>
+<p>ps : I am so stupid, try my best to download a lib, MathJax…. totally useless.. </p>
+
+<h2 id="about-git">5, About Git</h2>
+
+<p><a href="">http://rogerdudler.github.io/git-guide/index.zh.html</a></p>
+
+<p><a href="">http://marklodato.github.io/visual-git-guide/index-en.html</a></p>
 
 <h3 id="reference">Reference:</h3>
 
