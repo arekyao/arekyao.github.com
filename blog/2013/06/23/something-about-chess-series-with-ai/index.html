@@ -1,0 +1,669 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Something about Chess series with AI - YY Every Day</title>
+  <meta name="author" content="Arek.Yao">
+
+  
+  <meta name="description" content="Something About Chess Series With AI Jun 23rd, 2013 | Comments Preface
+One day, I want to learn some knowledge about the Game AI topic.
+Chess series &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://arekyao.github.com/blog/2013/06/23/something-about-chess-series-with-ai/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="YY Every Day" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">YY Every Day</a></h1>
+  
+    <h2>Never say never, because limits like fears, are often just an illusion.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:arekyao.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about/index.html">About Me</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Something About Chess Series With AI</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-23T20:48:00+08:00" pubdate data-updated="true">Jun 23<span>rd</span>, 2013</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h2 id="preface">Preface</h2>
+<p>One day, I want to learn some knowledge about the Game AI topic.
+Chess series is supposed to a big collection in Game.
+Xiangqi is my fav chess game, and I am familiar with it.
+It’s a good choice.</p>
+
+<p>Besides, six years ago, I have developed xiangqi program both in java &amp; C++.
+I can use it to learn AI engine ,and the program developed before , can be seen as a GUI.
+Techinically, it will be OK then.
+Reality is cruel, the Java version is lost at home, and the C++ version have to run on Window, not my Mac OSX.</p>
+
+<h2 id="chess--ai">Chess &amp; AI</h2>
+<p><a href="http://www.chessvariants.org/d.chess/chess.html">Chess</a> is a two-player strategy board game played on a chessboard, a checkered gameboard with 64 squares arranged in an eight-by-eight grid. <br />
+It is one of the world’s most popular games, played by millions of people worldwide at home, in clubs, online, by correspondence, and in tournaments.</p>
+
+<p>So if chess has AI, then we can compete with Computer.  </p>
+
+<p>More interestingly, we can let two Computer with AI fight with each other.</p>
+
+<p>There are all kinds of chess game, which seems alike.</p>
+
+<p>They have these Feature:
+* board with X * Y
+* pieces with some rule</p>
+
+<p>Chess(International)
+http://www.chessvariants.org/d.chess/chess.html</p>
+
+<p>Xiangqi(Chinese Chess)
+http://www.chessvariants.org/xiangqi.html</p>
+
+<h2 id="xboard--fairymax">Xboard &amp; FairyMax</h2>
+<p>Xboard is a chess program, FairyMax is a chess engine(AI)</p>
+
+<p><a href="http://www.gnu.org/software/xboard/">Xboard</a> is a graphical user interface for chess in all its major forms, <br />
+including international chess, xiangqi (Chinese chess), shogi (Japanese chess) and Makruk, <br />
+in addition to many minor variants such as Losers Chess, Crazyhouse, Chess960 and Capablanca Chess.  </p>
+
+<p><a href="http://home.hccnet.nl/h.g.muller/CVfairy.html">FairyMax</a>
+FairyMax is developed by H.G.Muller, who is super fan of chess.
+Maxqi is the xiangqi engine.</p>
+
+<h2 id="learing">Learing</h2>
+
+<h5 id="first--install-xboard--fairymax">First , install xboard &amp; Fairymax</h5>
+
+<p>Here is a way:</p>
+
+<p>https://github.com/Homebrew/homebrew-games</p>
+
+<h5 id="second-problem-is-how-to-run-xboard">Second Problem is how to run xboard….</h5>
+
+<p>Don’t underestimate it.
+It takes me lots of time to test it.</p>
+
+<p>Help information? xboard help?     It does not work <br />
+The output is full of useless infomation</p>
+
+<p>Xboard web help? User guide ? It does not work.<br />
+http://www.gnu.org/software/xboard/user_guide/UserGuide.html</p>
+
+<p>at last, I have to learn how to run, From an appication on Window..</p>
+
+<p>OMG….</p>
+
+<p>1, copy the xboard.ini to be used as xboard.rc</p>
+
+<p>2, then I got the knowledge, the viariant arg…supposed to be the xiangqi</p>
+
+<p>3, use fcp can call the maxqi. from user guide</p>
+
+<p>now, it almost works but have a problem
+xiangqi can compatible with maxqi engine</p>
+
+<p>4, firstProtocolVersion is need.</p>
+
+<p>ok,then you can run xboard</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">xboard -variant xiangqi -firstProtocolVersion 1 -fcp maxqi</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h5 id="review-the-maxqi-code">review the maxqi code</h5>
+<p>Now the biggest problem,which I will face, is coming….</p>
+
+<p>Why?</p>
+
+<p>Becaure somebody want to program the engine with 1200 characters.</p>
+
+<p>Here is the code, are you crazy? especially, the Function D()…..</p>
+
+<p>I got the code little by little, and hesitate when D() function come to me…</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+<span class="line-number">42</span>
+<span class="line-number">43</span>
+<span class="line-number">44</span>
+<span class="line-number">45</span>
+<span class="line-number">46</span>
+<span class="line-number">47</span>
+<span class="line-number">48</span>
+<span class="line-number">49</span>
+<span class="line-number">50</span>
+<span class="line-number">51</span>
+<span class="line-number">52</span>
+<span class="line-number">53</span>
+<span class="line-number">54</span>
+<span class="line-number">55</span>
+<span class="line-number">56</span>
+<span class="line-number">57</span>
+<span class="line-number">58</span>
+<span class="line-number">59</span>
+<span class="line-number">60</span>
+<span class="line-number">61</span>
+<span class="line-number">62</span>
+<span class="line-number">63</span>
+<span class="line-number">64</span>
+<span class="line-number">65</span>
+<span class="line-number">66</span>
+<span class="line-number">67</span>
+<span class="line-number">68</span>
+<span class="line-number">69</span>
+<span class="line-number">70</span>
+<span class="line-number">71</span>
+<span class="line-number">72</span>
+<span class="line-number">73</span>
+<span class="line-number">74</span>
+<span class="line-number">75</span>
+<span class="line-number">76</span>
+<span class="line-number">77</span>
+<span class="line-number">78</span>
+<span class="line-number">79</span>
+<span class="line-number">80</span>
+<span class="line-number">81</span>
+<span class="line-number">82</span>
+<span class="line-number">83</span>
+<span class="line-number">84</span>
+<span class="line-number">85</span>
+<span class="line-number">86</span>
+<span class="line-number">87</span>
+<span class="line-number">88</span>
+<span class="line-number">89</span>
+<span class="line-number">90</span>
+<span class="line-number">91</span>
+<span class="line-number">92</span>
+<span class="line-number">93</span>
+<span class="line-number">94</span>
+<span class="line-number">95</span>
+<span class="line-number">96</span>
+<span class="line-number">97</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">
+</span><span class="line">D(k,q,l,e,z,n)          /* recursive minimax search, k=moving side, n=depth*/
+</span><span class="line">    int k,q,l,e,z,n;        /* (q,l)=window, e=current eval. score, E=e.p. sqr.*/
+</span><span class="line">{                       /* e=score, z=prev.dest; J,Z=hashkeys; return score*/
+</span><span class="line">    int j,r,m,v,d,h,i,P,V,f=J,g=Z,C,s,flag,F;
+</span><span class="line">    unsigned char t,p,u,x,y,X,Y,B,lu;
+</span><span class="line">    struct _*a=A+(J+k&amp;U-1);                       /* lookup pos. in hash table*/
+</span><span class="line">    q-=q&lt;e;l-=l&lt;=e;                               /* adj. window: delay bonus */
+</span><span class="line">    d=a-&gt;D;m=a-&gt;V;F=a-&gt;F;                         /* resume at stored depth   */
+</span><span class="line">    X=a-&gt;X;Y=a-&gt;Y;                                /* start at best-move hint  */
+</span><span class="line">    if(z&amp;S&amp;&amp;a-&gt;K==Z)printf("# root hit %d %d %x\n",a-&gt;D,a-&gt;V,a-&gt;F);
+</span><span class="line">    if(a-&gt;K-Z|z&amp;S  |                              /* miss: other pos. or empty*/
+</span><span class="line">            !(m&lt;=q|F&amp;8&amp;&amp;m&gt;=l|F&amp;S))                       /*   or window incompatible */
+</span><span class="line">        d=X=0,Y=-1;                                  /* start iter. from scratch */
+</span><span class="line">    W(d++&lt;n||d&lt;3||              /*** min depth = 2   iterative deepening loop */
+</span><span class="line">            z&amp;S&amp;&amp;K==I&amp;&amp;(GetTickCount()-Ticks&lt;tlim&amp;d&lt;=MaxDepth|| /* root: deepen upto time   */
+</span><span class="line">                (K=X,L=Y,d=3)))                             /* time's up: go do best    */
+</span><span class="line">    {x=B=X;lu=1;                                  /* start scan at prev. best */
+</span><span class="line">        h=Y-255;                                       /* if move, request 1st try */
+</span><span class="line">        P=d&gt;2&amp;&amp;l+I?D(16-k,-l,1-l,-e,2*S,d-3):I;      /* search null move         */
+</span><span class="line">        m=-P&lt;l|R&lt;5?d-2?-I:e:-P;   /*** prune if &gt; beta  unconsidered:static eval */
+</span><span class="line">        N++;                                         /* node count (for timing)  */
+</span><span class="line">        do{u=b[x];                                   /* scan board looking for   */
+</span><span class="line">            if(u)m=lu|u&amp;15^3?m:(d=98,I),lu=u&amp;15^3;        /* Kings facing each other  */
+</span><span class="line">            if(u&amp;&amp;(u&amp;16)==k)                            /*  own piece (inefficient!)*/
+</span><span class="line">            {r=p=u&15;                                  /* p = piece type (set r&gt;0) */
+</span><span class="line">                j=od[p];                                   /* first step vector f.piece*/
+</span><span class="line">                W(r=o[++j])                                /* loop over directions o[] */
+</span><span class="line">                {A:                                        /* resume normal after best */
+</span><span class="line">                    flag=h?3:of[j];                           /* move modes (for fairies) */
+</span><span class="line">                    y=x;                                      /* (x,y)=move               */
+</span><span class="line">                    do{                                       /* y traverses ray, or:     */
+</span><span class="line">                        y=h?Y:y+r;                               /* sneak in prev. best move */
+</span><span class="line">                        if(y&gt;=16*BH|(y&amp;15)&gt;=BW)break;            /* board edge hit           */
+</span><span class="line">                        t=b[y];                                  /* captured piece           */
+</span><span class="line">                        if(flag&amp;1+!t)                            /* mode (capt/nonc) allowed?*/
+</span><span class="line">                        {if(t&amp;&amp;(t&amp;16)==k||flag&gt;&gt;10&amp;zn[y])break;  /* capture own or bad zone  */
+</span><span class="line">                            i=w[t&amp;15];                              /* value of capt. piece t   */
+</span><span class="line">                            if(i&lt;0)m=I,d=98;                        /* K capture                */
+</span><span class="line">                            if(m&gt;=l&amp;d&gt;1)goto C;                     /* abort on fail high       */
+</span><span class="line">                            v=d-1?e:i-p;                            /*** MVV/LVA scoring if d=1**/
+</span><span class="line">                            if(d-!t&gt;1)                              /*** all captures if d=2  ***/
+</span><span class="line">                            {v=centr[p]?b[x+257]-b[y+257]:0;        /* center positional pts.   */
+</span><span class="line">                                b[x]=0;b[y]=u;                         /* do move                  */
+</span><span class="line">                                v-=w[p]&gt;0|R&lt;10?0:20;                   /*** freeze K in mid-game ***/
+</span><span class="line">                                if(p&lt;3)                                /* pawns:                   */
+</span><span class="line">                                {v+=2;                                 /* end-game Pawn-push bonus */
+</span><span class="line">                                    if(zn[x]-zn[y])b[y]+=5,               /* upgrade Pawn and         */
+</span><span class="line">                                        i+=w[p+5]-w[p];                      /*          promotion bonus */
+</span><span class="line">                                }
+</span><span class="line">                                if(z&amp;S &amp;&amp; GamePtr&lt;6) v+=(rand()&gt;&gt;10&amp;31)-16; // randomize in root
+</span><span class="line">                                J+=J(0);Z+=J(4);
+</span><span class="line">                                v+=e+i;V=m&gt;q?m:q;                      /*** new eval &amp; alpha    ****/
+</span><span class="line">                                C=d-1-(d&gt;5&amp;p&gt;2&amp;!t&amp;!h);                 /* nw depth, reduce non-cpt.*/
+</span><span class="line">                                C=R&lt;10|P-I|d&lt;3||t&amp;&amp;p-3?C:d;            /* extend 1 ply if in-check */
+</span><span class="line">                                do
+</span><span class="line">                                    s=C&gt;2|v&gt;V?-D(16-k,-l,-V,-v,/*** futility, recursive eval. of reply */
+</span><span class="line">                                            0,C):v;
+</span><span class="line">                                W(s&gt;q&amp;++C&lt;d); v=s;                     /* no fail:re-srch unreduced*/
+</span><span class="line">                                if(z&amp;S&amp;&amp;K-I)                           /* move pending: check legal*/
+</span><span class="line">                                {if(v+I&amp;&amp;x==K&amp;y==L)                    /*   if move found          */
+</span><span class="line">                                    {Q=-e-i;
+</span><span class="line">                                        a-&gt;D=99;a-&gt;V=500;                    /* lock game in hash as loss*/
+</span><span class="line">                                        R-=i/FAC;                            /*** total captd material ***/
+</span><span class="line">                                        Fifty = t|p&lt;3?0:Fifty+1;
+</span><span class="line">                                        return l;}                /*   &amp; not in check, signal */
+</span><span class="line">                                        v=m;                                  /* (prevent fail-lows on    */
+</span><span class="line">                                }                                      /*   K-capt. replies)       */
+</span><span class="line">                                J=f;Z=g;
+</span><span class="line">                                b[y]=t;b[x]=u;                         /* undo move                */
+</span><span class="line">                            }                                       /*          if non-castling */
+</span><span class="line">                            if(v&gt;m)                                 /* new best, update max,best*/
+</span><span class="line">                                m=v,X=x,Y=y;                           /* no marking!              */
+</span><span class="line">                            if(h){h=0;goto A;}                      /* redo after doing old best*/
+</span><span class="line">                        }
+</span><span class="line">                        s=t;
+</span><span class="line">                        t+=flag&4;                               /* fake capt. for nonsliding*/
+</span><span class="line">                        if(s&amp;&amp;flag&amp;8)t=0,flag^=flag&gt;&gt;4&15;       /* hoppers go to next phase */
+</span><span class="line">                        if(!(flag&amp;S))                            /* zig-zag piece?           */
+</span><span class="line">                            r^=flag&gt;&gt;12,flag^=flag&gt;&gt;4&15;           /* alternate vector &amp; mode  */
+</span><span class="line">                    }W(!t);                                   /* if not capt. continue ray*/
+</span><span class="line">                }}
+</span><span class="line">                if((++x&amp;15)&gt;=BW)x=x+16&amp;240,lu=1;            /* next sqr. of board, wrap */
+</span><span class="line">                if(x&gt;=16*BH)x=0;
+</span><span class="line">        }W(x-B);           
+</span><span class="line">C:if(a-&gt;D&lt;99)                                  /* protect game history     */
+</span><span class="line">      a-&gt;K=Z,a-&gt;V=m,a-&gt;D=d,a-&gt;X=X,                /* always store in hash tab */
+</span><span class="line">          a-&gt;F=8*(m&gt;q)|S*(m&lt;l),a-&gt;Y=Y;                /* move, type (bound/exact),*/
+</span><span class="line">  if(z&amp;S&amp;&amp;Post){
+</span><span class="line">      printf("%2d ",d-2);
+</span><span class="line">      printf("%6d ",m);
+</span><span class="line">      printf("%8d %10d %c%c%c%c\n",(GetTickCount()-Ticks)/10,N,
+</span><span class="line">              'i'-(X&gt;&gt;4&amp;15),'9'-(X&amp;15),'i'-(Y&gt;&gt;4&amp;15),'9'-(Y&amp;15)),fflush(stdout);}
+</span><span class="line">    }                                             /*    encoded in X S,8 bits */
+</span><span class="line">    if(z&amp;4*S)K=X,L=Y&amp;~S;
+</span><span class="line">    return m+=m&lt;e;                                /* delayed-loss bonus       */
+</span><span class="line">}
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Then I think for a while….</p>
+
+<p>maxqi engine is so pop, why nobody discuss this??</p>
+
+<p>why no notes? Google maxqi,no good results.</p>
+
+<p>Then I Google fairymax, still no good results…</p>
+
+<p>At last, I saw that the fairymax derived from Micro-Max…</p>
+
+<p>then ,i got everything….</p>
+
+<h5 id="micro-maxhttphomehccnetnlhgmullermax-src2html"><a href="http://home.hccnet.nl/h.g.muller/max-src2.html">micro-max</a></h5>
+
+<h6 id="basic-data-representations"># Basic Data Representations</h6>
+
+<ul>
+  <li>Piece Encoding</li>
+  <li>Board Representation</li>
+  <li>Move Generation</li>
+</ul>
+
+<h6 id="basic-moves"># Basic Moves</h6>
+
+<ul>
+  <li>En Passant Capture</li>
+  <li>Castling</li>
+  <li>Pawn Promotions</li>
+</ul>
+
+<h6 id="search-algorithm"># Search Algorithm</h6>
+
+<ul>
+  <li>Alpha-Beta Minimax</li>
+  <li>Quiescence Search</li>
+  <li>Do and Undo Move</li>
+  <li>Iterative Deepening</li>
+  <li>Move Sorting</li>
+</ul>
+
+<h6 id="transposition-table"># Transposition Table</h6>
+
+<ul>
+  <li>Hashing</li>
+  <li>Replacement</li>
+</ul>
+
+<h6 id="evaluation">#Evaluation</h6>
+<ul>
+  <li>Material</li>
+  <li>Piece-Square Table</li>
+  <li>Checkmate and Stalemate</li>
+  <li>Delay Penalty</li>
+</ul>
+
+<h6 id="the-interface"># The Interface</h6>
+<p>Move Legality Checking</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">function alphabeta(node, depth, a, b, Player)        
+</span><span class="line">    if depth = 0 or node is a terminal node
+</span><span class="line">        return the heuristic value of node
+</span><span class="line">    if Player = MaxPlayer
+</span><span class="line">        for each child of node
+</span><span class="line">            a := max(a, alphabeta(child, depth-1, a, b, not(Player) ))    
+</span><span class="line">            if b &lt;= a
+</span><span class="line">                break                             (* Beta cut-off *)
+</span><span class="line">        return a
+</span><span class="line">    else
+</span><span class="line">        for each child of node
+</span><span class="line">            b := min(b, alphabeta(child, depth-1, a, b, not(Player) ))    
+</span><span class="line">            if b &lt;= a
+</span><span class="line">                break                             (* Alpha cut-off *)
+</span><span class="line">        return b
+</span><span class="line">(* Initial call *)
+</span><span class="line">alphabeta(origin, depth, -infinity, +infinity, MaxPlayer)</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+</div>
+
+<br>
+<a href="#disqus_thread">Comments</a>
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Arek.Yao</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-23T20:48:00+08:00" pubdate data-updated="true">Jun 23<span>rd</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/techspark/'>TechSpark</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://arekyao.github.com/blog/2013/06/23/something-about-chess-series-with-ai/" data-via="" data-counturl="http://arekyao.github.com/blog/2013/06/23/something-about-chess-series-with-ai/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/04/23/database-overview/" title="Previous Post: Database Overview">&laquo; Database Overview</a>
+      
+      
+    </p>
+  </footer>
+</article>
+<script type="text/javascript" id="wumiiRelatedItems"></script>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <iframe width="100%" height="320" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=320&fansRow=2&ptype=1&speed=0&skin=1&isTitle=0&noborder=0&isWeibo=1&isFans=1&uid=1771027825&verifier=f729d6d3&dpc=1"></iframe>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/06/23/something-about-chess-series-with-ai/">Something about Chess series with AI</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/04/23/database-overview/">Database Overview</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/04/21/something-interesting-about-ai/">Something Interesting about AI</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/04/20/android-dev-on-osx/">Android Dev on OSX</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/04/10/something-about-the-practice/">Something about the Practice</a>
+      </li>
+    
+  </ul>
+</section>
+<section>
+  <h1>Tag Cloud</h1>
+    <span id="tag-cloud"><a href='/blog/categories/android' style='font-size: 120.0%'>Android(1)</a> <a href='/blog/categories/babylife' style='font-size: 160.0%'>BabyLife(3)</a> <a href='/blog/categories/github' style='font-size: 120.0%'>Github(1)</a> <a href='/blog/categories/machinelearning' style='font-size: 160.0%'>MachineLearning(3)</a> <a href='/blog/categories/techchangeworld' style='font-size: 160.0%'>TechChangeWorld(3)</a> <a href='/blog/categories/techspark' style='font-size: 140.0%'>TechSpark(2)</a> <a href='/blog/categories/tools' style='font-size: 140.0%'>Tools(2)</a> </span>
+</section>
+<section>
+  <h1>Categories</h1>
+  <input class="search" type="text" name="filter_tags" results="0" placeholder="Filter Tags ..."/>
+  <script type="text/javascript">
+    $('input[name=filter_tags]').keyup(function(e){
+      var val = $(this).val();
+      if (/^\s*$/.test(val) || e.keyCode == 27) { // 27 is 'esc'
+        $('#category-list li').show();
+        $(this).val('');
+        return;
+      }
+      var pattern = new RegExp(val, 'i');
+      $('#category-list li').each(function(){
+        $(this)[pattern.test($(this).find('a').text()) ? 'show' : 'hide']();
+      });
+    });
+  </script>
+    <ul id="category-list"><li><a href='/blog/categories/android'>Android (1)</a></li><li><a href='/blog/categories/babylife'>BabyLife (3)</a></li><li><a href='/blog/categories/github'>Github (1)</a></li><li><a href='/blog/categories/machinelearning'>MachineLearning (3)</a></li><li><a href='/blog/categories/techchangeworld'>TechChangeWorld (3)</a></li><li><a href='/blog/categories/techspark'>TechSpark (2)</a></li><li><a href='/blog/categories/tools'>Tools (2)</a></li></ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Arek.Yao -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'arekyao';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://arekyao.github.com/blog/2013/06/23/something-about-chess-series-with-ai/';
+        var disqus_url = 'http://arekyao.github.com/blog/2013/06/23/something-about-chess-series-with-ai/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+  <script type="text/javascript">
+    var wumiiPermaLink = ""; //
+    var wumiiTitle = ""; //
+    var wumiiTags = ""; //"1,2"
+    var wumiiSitePrefix = "http://arekyao.github.com/";
+    var wumiiParams = "&num=5&mode=3&pf=JAVASCRIPT";
+</script>
+<script type="text/javascript" src="http://widget.wumii.com/ext/relatedItemsWidget"></script>
+<a href="http://www.wumii.com/widget/relatedItems" style="border:0;">
+<img src="http://static.wumii.cn/images/pixel.png" alt="" style="border:0;padding:0;margin:0;" />
+</a>
+  <meta name="baidu-site-verification" content="QSLeJw3wwyA8dGHl" />
+  <script type="text/javascript">
+    var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F6b519082c0cda60aab2be100c6319f3e' type='text/javascript'%3E%3C/script%3E"));
+  </script>
+</body>
+</html>
