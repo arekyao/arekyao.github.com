@@ -9,9 +9,7 @@
   <meta name="author" content="Arek.Yao">
 
   
-  <meta name="description" content="Something About Chess Series With AI Jun 23rd, 2013 | Comments Preface
-One day, I want to learn some knowledge about the Game AI topic.
-Chess series &hellip;">
+  <meta name="description" content="The Key Tech in Simple XiangQi Engine MaxQi Jul 2nd, 2013 | Comments 1,mini-max algorithm minimize the opponent’s potential max profit. easy to &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -106,6 +104,136 @@ Chess series &hellip;">
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2013/07/02/the-key-tech-in-simple-xiangqi-engine-maxqi/">The Key Tech in Simple XiangQi Engine MaxQi</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-02T08:30:00+08:00" pubdate data-updated="true">Jul 2<span>nd</span>, 2013</time>
+        
+         | <a href="/blog/2013/07/02/the-key-tech-in-simple-xiangqi-engine-maxqi/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2 id="mini-max-algorithm">1,mini-max algorithm</h2>
+
+<p>minimize the opponent’s potential max profit.</p>
+
+<p>easy to understand,right?</p>
+
+<h2 id="alpha-beta-cutoff">2,alpha-beta cutoff</h2>
+
+<p>It stops completely evaluating a move when at least one possibility has been found that proves the move to be worse than a previously examined move.  <br />
+ Such moves need not be evaluated further. <br />
+ When applied to a standard minimax tree, it returns the same move as minimax would, but prunes away branches that cannot possibly influence the final decision</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">function alphabeta(node, depth, a, b, Player)        
+</span><span class="line">    if depth = 0 or node is a terminal node
+</span><span class="line">        return the heuristic value of node
+</span><span class="line">    if Player = MaxPlayer
+</span><span class="line">        for each child of node
+</span><span class="line">            a := max(a, alphabeta(child, depth-1, a, b, not(Player) ))    
+</span><span class="line">            if b &lt;= a
+</span><span class="line">                break                             (* Beta cut-off *)
+</span><span class="line">        return a
+</span><span class="line">    else
+</span><span class="line">        for each child of node
+</span><span class="line">            b := min(b, alphabeta(child, depth-1, a, b, not(Player) ))    
+</span><span class="line">            if b &lt;= a
+</span><span class="line">                break                             (* Alpha cut-off *)
+</span><span class="line">        return b
+</span><span class="line">(* Initial call *)
+</span><span class="line">alphabeta(origin, depth, -infinity, +infinity, MaxPlayer)</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="quiescence-search">3,Quiescence search</h2>
+
+<p>When have to recapture , it have to search until there is no tradeoff</p>
+
+<h2 id="iterative-search">4,Iterative search</h2>
+
+<p>the key is the search depth.</p>
+
+<p>The efficiency of the alpha-beta search is strongly enhanced (in terms of the number of nodes searched) <br />
+if the best move is tried first, and trying idiotic moves first (such as both Queens getting berserk) can easily lead to an explosion of the search.  </p>
+
+<p>Rather than aggressively starting a search of the required depth, proceed carefully and first invest some time doing a search of shallower depth.  </p>
+
+<p>What it can get ,through the shallower depth search , the window (alpha-beta,the min &amp; max) and the best move, which is supposed to search first in deepen search</p>
+
+<h2 id="hash-table">5, Hash table</h2>
+
+<p>Use the result which has been faced last time.</p>
+
+<p>So it is needed some hash key to describe the whole board </p>
+
+<p>The Zobrist Keys show up!</p>
+
+<h2 id="zobrist-hashing">6,Zobrist hashing</h2>
+
+<p>Zobrist hashing starts by randomly generating bitstrings for each possible element of a board game</p>
+
+<p>The final Zobrist hash is computed by combining those bitstrings using bitwise XOR.</p>
+
+<p>the good is the hash key is recalculated by two “xor”</p>
+
+<h2 id="monte-carlo-methods">7,Monte Carlo methods</h2>
+
+<p>This method can be used to estimate the board status(which side is at better thant the other side)</p>
+
+<p>Monte Carlo methods vary, but tend to follow a particular pattern:</p>
+
+<p>a). Define a domain of possible inputs.<br />
+  b). Generate inputs randomly from a probability distribution over the domain.<br />
+  c). Perform a deterministic computation on the inputs.<br />
+  d). Aggregate the results.  </p>
+
+<p>However, in maxqi, it’s not used.<br />
+The other way the piece’s weight sum is used to estimate.</p>
+</div>
+  
+  
+
+<br>
+<a href="/blog/2013/07/02/the-key-tech-in-simple-xiangqi-engine-maxqi/#disqus_thread">Comments</a>
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2013/06/23/something-about-chess-series-with-ai/">Something About Chess Series With AI</a></h1>
     
     
@@ -179,7 +307,7 @@ Maxqi is the xiangqi engine.</p>
 
 <p>Here is a way:</p>
 
-<p>https://github.com/Homebrew/homebrew-games</p>
+<p><a href="">https://github.com/Homebrew/homebrew-games</a></p>
 
 <h5 id="second-problem-is-how-to-run-xboard">Second Problem is how to run xboard….</h5>
 
@@ -223,7 +351,7 @@ xiangqi can compatible with maxqi engine</p>
 
 <p>I got the code little by little, and hesitate when D() function come to me…</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Function D</span><a href="http://fairymax.sourcearchive.com/documentation/4.8q-2/maxqi_8c_source.html">Source Article</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
@@ -319,104 +447,102 @@ xiangqi can compatible with maxqi engine</p>
 <span class="line-number">94</span>
 <span class="line-number">95</span>
 <span class="line-number">96</span>
-<span class="line-number">97</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">
-</span><span class="line">D(k,q,l,e,z,n)          /* recursive minimax search, k=moving side, n=depth*/
-</span><span class="line">    int k,q,l,e,z,n;        /* (q,l)=window, e=current eval. score, E=e.p. sqr.*/
-</span><span class="line">{                       /* e=score, z=prev.dest; J,Z=hashkeys; return score*/
-</span><span class="line">    int j,r,m,v,d,h,i,P,V,f=J,g=Z,C,s,flag,F;
-</span><span class="line">    unsigned char t,p,u,x,y,X,Y,B,lu;
-</span><span class="line">    struct _*a=A+(J+k&amp;U-1);                       /* lookup pos. in hash table*/
-</span><span class="line">    q-=q&lt;e;l-=l&lt;=e;                               /* adj. window: delay bonus */
-</span><span class="line">    d=a-&gt;D;m=a-&gt;V;F=a-&gt;F;                         /* resume at stored depth   */
-</span><span class="line">    X=a-&gt;X;Y=a-&gt;Y;                                /* start at best-move hint  */
-</span><span class="line">    if(z&amp;S&amp;&amp;a-&gt;K==Z)printf("# root hit %d %d %x\n",a-&gt;D,a-&gt;V,a-&gt;F);
-</span><span class="line">    if(a-&gt;K-Z|z&amp;S  |                              /* miss: other pos. or empty*/
-</span><span class="line">            !(m&lt;=q|F&amp;8&amp;&amp;m&gt;=l|F&amp;S))                       /*   or window incompatible */
-</span><span class="line">        d=X=0,Y=-1;                                  /* start iter. from scratch */
-</span><span class="line">    W(d++&lt;n||d&lt;3||              /*** min depth = 2   iterative deepening loop */
-</span><span class="line">            z&amp;S&amp;&amp;K==I&amp;&amp;(GetTickCount()-Ticks&lt;tlim&amp;d&lt;=MaxDepth|| /* root: deepen upto time   */
-</span><span class="line">                (K=X,L=Y,d=3)))                             /* time's up: go do best    */
-</span><span class="line">    {x=B=X;lu=1;                                  /* start scan at prev. best */
-</span><span class="line">        h=Y-255;                                       /* if move, request 1st try */
-</span><span class="line">        P=d&gt;2&amp;&amp;l+I?D(16-k,-l,1-l,-e,2*S,d-3):I;      /* search null move         */
-</span><span class="line">        m=-P&lt;l|R&lt;5?d-2?-I:e:-P;   /*** prune if &gt; beta  unconsidered:static eval */
-</span><span class="line">        N++;                                         /* node count (for timing)  */
-</span><span class="line">        do{u=b[x];                                   /* scan board looking for   */
-</span><span class="line">            if(u)m=lu|u&amp;15^3?m:(d=98,I),lu=u&amp;15^3;        /* Kings facing each other  */
-</span><span class="line">            if(u&amp;&amp;(u&amp;16)==k)                            /*  own piece (inefficient!)*/
-</span><span class="line">            {r=p=u&15;                                  /* p = piece type (set r&gt;0) */
-</span><span class="line">                j=od[p];                                   /* first step vector f.piece*/
-</span><span class="line">                W(r=o[++j])                                /* loop over directions o[] */
-</span><span class="line">                {A:                                        /* resume normal after best */
-</span><span class="line">                    flag=h?3:of[j];                           /* move modes (for fairies) */
-</span><span class="line">                    y=x;                                      /* (x,y)=move               */
-</span><span class="line">                    do{                                       /* y traverses ray, or:     */
-</span><span class="line">                        y=h?Y:y+r;                               /* sneak in prev. best move */
-</span><span class="line">                        if(y&gt;=16*BH|(y&amp;15)&gt;=BW)break;            /* board edge hit           */
-</span><span class="line">                        t=b[y];                                  /* captured piece           */
-</span><span class="line">                        if(flag&amp;1+!t)                            /* mode (capt/nonc) allowed?*/
-</span><span class="line">                        {if(t&amp;&amp;(t&amp;16)==k||flag&gt;&gt;10&amp;zn[y])break;  /* capture own or bad zone  */
-</span><span class="line">                            i=w[t&amp;15];                              /* value of capt. piece t   */
-</span><span class="line">                            if(i&lt;0)m=I,d=98;                        /* K capture                */
-</span><span class="line">                            if(m&gt;=l&amp;d&gt;1)goto C;                     /* abort on fail high       */
-</span><span class="line">                            v=d-1?e:i-p;                            /*** MVV/LVA scoring if d=1**/
-</span><span class="line">                            if(d-!t&gt;1)                              /*** all captures if d=2  ***/
-</span><span class="line">                            {v=centr[p]?b[x+257]-b[y+257]:0;        /* center positional pts.   */
-</span><span class="line">                                b[x]=0;b[y]=u;                         /* do move                  */
-</span><span class="line">                                v-=w[p]&gt;0|R&lt;10?0:20;                   /*** freeze K in mid-game ***/
-</span><span class="line">                                if(p&lt;3)                                /* pawns:                   */
-</span><span class="line">                                {v+=2;                                 /* end-game Pawn-push bonus */
-</span><span class="line">                                    if(zn[x]-zn[y])b[y]+=5,               /* upgrade Pawn and         */
-</span><span class="line">                                        i+=w[p+5]-w[p];                      /*          promotion bonus */
-</span><span class="line">                                }
-</span><span class="line">                                if(z&amp;S &amp;&amp; GamePtr&lt;6) v+=(rand()&gt;&gt;10&amp;31)-16; // randomize in root
-</span><span class="line">                                J+=J(0);Z+=J(4);
-</span><span class="line">                                v+=e+i;V=m&gt;q?m:q;                      /*** new eval &amp; alpha    ****/
-</span><span class="line">                                C=d-1-(d&gt;5&amp;p&gt;2&amp;!t&amp;!h);                 /* nw depth, reduce non-cpt.*/
-</span><span class="line">                                C=R&lt;10|P-I|d&lt;3||t&amp;&amp;p-3?C:d;            /* extend 1 ply if in-check */
-</span><span class="line">                                do
-</span><span class="line">                                    s=C&gt;2|v&gt;V?-D(16-k,-l,-V,-v,/*** futility, recursive eval. of reply */
-</span><span class="line">                                            0,C):v;
-</span><span class="line">                                W(s&gt;q&amp;++C&lt;d); v=s;                     /* no fail:re-srch unreduced*/
-</span><span class="line">                                if(z&amp;S&amp;&amp;K-I)                           /* move pending: check legal*/
-</span><span class="line">                                {if(v+I&amp;&amp;x==K&amp;y==L)                    /*   if move found          */
-</span><span class="line">                                    {Q=-e-i;
-</span><span class="line">                                        a-&gt;D=99;a-&gt;V=500;                    /* lock game in hash as loss*/
-</span><span class="line">                                        R-=i/FAC;                            /*** total captd material ***/
-</span><span class="line">                                        Fifty = t|p&lt;3?0:Fifty+1;
-</span><span class="line">                                        return l;}                /*   &amp; not in check, signal */
-</span><span class="line">                                        v=m;                                  /* (prevent fail-lows on    */
-</span><span class="line">                                }                                      /*   K-capt. replies)       */
-</span><span class="line">                                J=f;Z=g;
-</span><span class="line">                                b[y]=t;b[x]=u;                         /* undo move                */
-</span><span class="line">                            }                                       /*          if non-castling */
-</span><span class="line">                            if(v&gt;m)                                 /* new best, update max,best*/
-</span><span class="line">                                m=v,X=x,Y=y;                           /* no marking!              */
-</span><span class="line">                            if(h){h=0;goto A;}                      /* redo after doing old best*/
-</span><span class="line">                        }
-</span><span class="line">                        s=t;
-</span><span class="line">                        t+=flag&4;                               /* fake capt. for nonsliding*/
-</span><span class="line">                        if(s&amp;&amp;flag&amp;8)t=0,flag^=flag&gt;&gt;4&15;       /* hoppers go to next phase */
-</span><span class="line">                        if(!(flag&amp;S))                            /* zig-zag piece?           */
-</span><span class="line">                            r^=flag&gt;&gt;12,flag^=flag&gt;&gt;4&15;           /* alternate vector &amp; mode  */
-</span><span class="line">                    }W(!t);                                   /* if not capt. continue ray*/
-</span><span class="line">                }}
-</span><span class="line">                if((++x&amp;15)&gt;=BW)x=x+16&amp;240,lu=1;            /* next sqr. of board, wrap */
-</span><span class="line">                if(x&gt;=16*BH)x=0;
-</span><span class="line">        }W(x-B);           
-</span><span class="line">C:if(a-&gt;D&lt;99)                                  /* protect game history     */
-</span><span class="line">      a-&gt;K=Z,a-&gt;V=m,a-&gt;D=d,a-&gt;X=X,                /* always store in hash tab */
-</span><span class="line">          a-&gt;F=8*(m&gt;q)|S*(m&lt;l),a-&gt;Y=Y;                /* move, type (bound/exact),*/
-</span><span class="line">  if(z&amp;S&amp;&amp;Post){
-</span><span class="line">      printf("%2d ",d-2);
-</span><span class="line">      printf("%6d ",m);
-</span><span class="line">      printf("%8d %10d %c%c%c%c\n",(GetTickCount()-Ticks)/10,N,
-</span><span class="line">              'i'-(X&gt;&gt;4&amp;15),'9'-(X&amp;15),'i'-(Y&gt;&gt;4&amp;15),'9'-(Y&amp;15)),fflush(stdout);}
-</span><span class="line">    }                                             /*    encoded in X S,8 bits */
-</span><span class="line">    if(z&amp;4*S)K=X,L=Y&amp;~S;
-</span><span class="line">    return m+=m&lt;e;                                /* delayed-loss bonus       */
-</span><span class="line">}
+</pre></td><td class="code"><pre><code class="c"><span class="line"><span class="n">D</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">q</span><span class="p">,</span><span class="n">l</span><span class="p">,</span><span class="n">e</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>          <span class="cm">/* recursive minimax search, k=moving side, n=depth*/</span>
+</span><span class="line">    <span class="kt">int</span> <span class="n">k</span><span class="p">,</span><span class="n">q</span><span class="p">,</span><span class="n">l</span><span class="p">,</span><span class="n">e</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">n</span><span class="p">;</span>        <span class="cm">/* (q,l)=window, e=current eval. score, E=e.p. sqr.*/</span>
+</span><span class="line"><span class="p">{</span>                       <span class="cm">/* e=score, z=prev.dest; J,Z=hashkeys; return score*/</span>
+</span><span class="line">    <span class="kt">int</span> <span class="n">j</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">h</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">P</span><span class="p">,</span><span class="n">V</span><span class="p">,</span><span class="n">f</span><span class="o">=</span><span class="n">J</span><span class="p">,</span><span class="n">g</span><span class="o">=</span><span class="n">Z</span><span class="p">,</span><span class="n">C</span><span class="p">,</span><span class="n">s</span><span class="p">,</span><span class="n">flag</span><span class="p">,</span><span class="n">F</span><span class="p">;</span>
+</span><span class="line">    <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">t</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">u</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">lu</span><span class="p">;</span>
+</span><span class="line">    <span class="k">struct</span> <span class="n">_</span><span class="o">*</span><span class="n">a</span><span class="o">=</span><span class="n">A</span><span class="o">+</span><span class="p">(</span><span class="n">J</span><span class="o">+</span><span class="n">k</span><span class="o">&amp;</span><span class="n">U</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>                       <span class="cm">/* lookup pos. in hash table*/</span>
+</span><span class="line">    <span class="n">q</span><span class="o">-=</span><span class="n">q</span><span class="o">&lt;</span><span class="n">e</span><span class="p">;</span><span class="n">l</span><span class="o">-=</span><span class="n">l</span><span class="o">&lt;=</span><span class="n">e</span><span class="p">;</span>                               <span class="cm">/* adj. window: delay bonus */</span>
+</span><span class="line">    <span class="n">d</span><span class="o">=</span><span class="n">a</span><span class="o">-&gt;</span><span class="n">D</span><span class="p">;</span><span class="n">m</span><span class="o">=</span><span class="n">a</span><span class="o">-&gt;</span><span class="n">V</span><span class="p">;</span><span class="n">F</span><span class="o">=</span><span class="n">a</span><span class="o">-&gt;</span><span class="n">F</span><span class="p">;</span>                         <span class="cm">/* resume at stored depth   */</span>
+</span><span class="line">    <span class="n">X</span><span class="o">=</span><span class="n">a</span><span class="o">-&gt;</span><span class="n">X</span><span class="p">;</span><span class="n">Y</span><span class="o">=</span><span class="n">a</span><span class="o">-&gt;</span><span class="n">Y</span><span class="p">;</span>                                <span class="cm">/* start at best-move hint  */</span>
+</span><span class="line">    <span class="k">if</span><span class="p">(</span><span class="n">z</span><span class="o">&amp;</span><span class="n">S</span><span class="o">&amp;&amp;</span><span class="n">a</span><span class="o">-&gt;</span><span class="n">K</span><span class="o">==</span><span class="n">Z</span><span class="p">)</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;# root hit %d %d %x</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">a</span><span class="o">-&gt;</span><span class="n">D</span><span class="p">,</span><span class="n">a</span><span class="o">-&gt;</span><span class="n">V</span><span class="p">,</span><span class="n">a</span><span class="o">-&gt;</span><span class="n">F</span><span class="p">);</span>
+</span><span class="line">    <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="o">-&gt;</span><span class="n">K</span><span class="o">-</span><span class="n">Z</span><span class="o">|</span><span class="n">z</span><span class="o">&amp;</span><span class="n">S</span>  <span class="o">|</span>                              <span class="cm">/* miss: other pos. or empty*/</span>
+</span><span class="line">            <span class="o">!</span><span class="p">(</span><span class="n">m</span><span class="o">&lt;=</span><span class="n">q</span><span class="o">|</span><span class="n">F</span><span class="o">&amp;</span><span class="mi">8</span><span class="o">&amp;&amp;</span><span class="n">m</span><span class="o">&gt;=</span><span class="n">l</span><span class="o">|</span><span class="n">F</span><span class="o">&amp;</span><span class="n">S</span><span class="p">))</span>                       <span class="cm">/*   or window incompatible */</span>
+</span><span class="line">        <span class="n">d</span><span class="o">=</span><span class="n">X</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">Y</span><span class="o">=-</span><span class="mi">1</span><span class="p">;</span>                                  <span class="cm">/* start iter. from scratch */</span>
+</span><span class="line">    <span class="n">W</span><span class="p">(</span><span class="n">d</span><span class="o">++&lt;</span><span class="n">n</span><span class="o">||</span><span class="n">d</span><span class="o">&lt;</span><span class="mi">3</span><span class="o">||</span>              <span class="cm">/*** min depth = 2   iterative deepening loop */</span>
+</span><span class="line">            <span class="n">z</span><span class="o">&amp;</span><span class="n">S</span><span class="o">&amp;&amp;</span><span class="n">K</span><span class="o">==</span><span class="n">I</span><span class="o">&amp;&amp;</span><span class="p">(</span><span class="n">GetTickCount</span><span class="p">()</span><span class="o">-</span><span class="n">Ticks</span><span class="o">&lt;</span><span class="n">tlim</span><span class="o">&amp;</span><span class="n">d</span><span class="o">&lt;=</span><span class="n">MaxDepth</span><span class="o">||</span> <span class="cm">/* root: deepen upto time   */</span>
+</span><span class="line">                <span class="p">(</span><span class="n">K</span><span class="o">=</span><span class="n">X</span><span class="p">,</span><span class="n">L</span><span class="o">=</span><span class="n">Y</span><span class="p">,</span><span class="n">d</span><span class="o">=</span><span class="mi">3</span><span class="p">)))</span>                             <span class="cm">/* time&#39;s up: go do best    */</span>
+</span><span class="line">    <span class="p">{</span><span class="n">x</span><span class="o">=</span><span class="n">B</span><span class="o">=</span><span class="n">X</span><span class="p">;</span><span class="n">lu</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>                                  <span class="cm">/* start scan at prev. best */</span>
+</span><span class="line">        <span class="n">h</span><span class="o">=</span><span class="n">Y</span><span class="o">-</span><span class="mi">255</span><span class="p">;</span>                                       <span class="cm">/* if move, request 1st try */</span>
+</span><span class="line">        <span class="n">P</span><span class="o">=</span><span class="n">d</span><span class="o">&gt;</span><span class="mi">2</span><span class="o">&amp;&amp;</span><span class="n">l</span><span class="o">+</span><span class="n">I</span><span class="o">?</span><span class="n">D</span><span class="p">(</span><span class="mi">16</span><span class="o">-</span><span class="n">k</span><span class="p">,</span><span class="o">-</span><span class="n">l</span><span class="p">,</span><span class="mi">1</span><span class="o">-</span><span class="n">l</span><span class="p">,</span><span class="o">-</span><span class="n">e</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="n">S</span><span class="p">,</span><span class="n">d</span><span class="o">-</span><span class="mi">3</span><span class="p">)</span><span class="o">:</span><span class="n">I</span><span class="p">;</span>      <span class="cm">/* search null move         */</span>
+</span><span class="line">        <span class="n">m</span><span class="o">=-</span><span class="n">P</span><span class="o">&lt;</span><span class="n">l</span><span class="o">|</span><span class="n">R</span><span class="o">&lt;</span><span class="mi">5</span><span class="o">?</span><span class="n">d</span><span class="o">-</span><span class="mi">2</span><span class="o">?-</span><span class="n">I</span><span class="o">:</span><span class="n">e</span><span class="o">:-</span><span class="n">P</span><span class="p">;</span>   <span class="cm">/*** prune if &gt; beta  unconsidered:static eval */</span>
+</span><span class="line">        <span class="n">N</span><span class="o">++</span><span class="p">;</span>                                         <span class="cm">/* node count (for timing)  */</span>
+</span><span class="line">        <span class="k">do</span><span class="p">{</span><span class="n">u</span><span class="o">=</span><span class="n">b</span><span class="p">[</span><span class="n">x</span><span class="p">];</span>                                   <span class="cm">/* scan board looking for   */</span>
+</span><span class="line">            <span class="k">if</span><span class="p">(</span><span class="n">u</span><span class="p">)</span><span class="n">m</span><span class="o">=</span><span class="n">lu</span><span class="o">|</span><span class="n">u</span><span class="o">&amp;</span><span class="mi">15</span><span class="o">^</span><span class="mi">3</span><span class="o">?</span><span class="n">m</span><span class="o">:</span><span class="p">(</span><span class="n">d</span><span class="o">=</span><span class="mi">98</span><span class="p">,</span><span class="n">I</span><span class="p">),</span><span class="n">lu</span><span class="o">=</span><span class="n">u</span><span class="o">&amp;</span><span class="mi">15</span><span class="o">^</span><span class="mi">3</span><span class="p">;</span>        <span class="cm">/* Kings facing each other  */</span>
+</span><span class="line">            <span class="k">if</span><span class="p">(</span><span class="n">u</span><span class="o">&amp;&amp;</span><span class="p">(</span><span class="n">u</span><span class="o">&amp;</span><span class="mi">16</span><span class="p">)</span><span class="o">==</span><span class="n">k</span><span class="p">)</span>                            <span class="cm">/*  own piece (inefficient!)*/</span>
+</span><span class="line">            <span class="p">{</span><span class="n">r</span><span class="o">=</span><span class="n">p</span><span class="o">=</span><span class="n">u</span><span class="o">&amp;</span><span class="mi">15</span><span class="p">;</span>                                  <span class="cm">/* p = piece type (set r&gt;0) */</span>
+</span><span class="line">                <span class="n">j</span><span class="o">=</span><span class="n">od</span><span class="p">[</span><span class="n">p</span><span class="p">];</span>                                   <span class="cm">/* first step vector f.piece*/</span>
+</span><span class="line">                <span class="n">W</span><span class="p">(</span><span class="n">r</span><span class="o">=</span><span class="n">o</span><span class="p">[</span><span class="o">++</span><span class="n">j</span><span class="p">])</span>                                <span class="cm">/* loop over directions o[] */</span>
+</span><span class="line">                <span class="p">{</span><span class="n">A</span><span class="o">:</span>                                        <span class="cm">/* resume normal after best */</span>
+</span><span class="line">                    <span class="n">flag</span><span class="o">=</span><span class="n">h</span><span class="o">?</span><span class="mi">3</span><span class="o">:</span><span class="n">of</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>                           <span class="cm">/* move modes (for fairies) */</span>
+</span><span class="line">                    <span class="n">y</span><span class="o">=</span><span class="n">x</span><span class="p">;</span>                                      <span class="cm">/* (x,y)=move               */</span>
+</span><span class="line">                    <span class="k">do</span><span class="p">{</span>                                       <span class="cm">/* y traverses ray, or:     */</span>
+</span><span class="line">                        <span class="n">y</span><span class="o">=</span><span class="n">h</span><span class="o">?</span><span class="n">Y</span><span class="o">:</span><span class="n">y</span><span class="o">+</span><span class="n">r</span><span class="p">;</span>                               <span class="cm">/* sneak in prev. best move */</span>
+</span><span class="line">                        <span class="k">if</span><span class="p">(</span><span class="n">y</span><span class="o">&gt;=</span><span class="mi">16</span><span class="o">*</span><span class="n">BH</span><span class="o">|</span><span class="p">(</span><span class="n">y</span><span class="o">&amp;</span><span class="mi">15</span><span class="p">)</span><span class="o">&gt;=</span><span class="n">BW</span><span class="p">)</span><span class="k">break</span><span class="p">;</span>            <span class="cm">/* board edge hit           */</span>
+</span><span class="line">                        <span class="n">t</span><span class="o">=</span><span class="n">b</span><span class="p">[</span><span class="n">y</span><span class="p">];</span>                                  <span class="cm">/* captured piece           */</span>
+</span><span class="line">                        <span class="k">if</span><span class="p">(</span><span class="n">flag</span><span class="o">&amp;</span><span class="mi">1</span><span class="o">+!</span><span class="n">t</span><span class="p">)</span>                            <span class="cm">/* mode (capt/nonc) allowed?*/</span>
+</span><span class="line">                        <span class="p">{</span><span class="k">if</span><span class="p">(</span><span class="n">t</span><span class="o">&amp;&amp;</span><span class="p">(</span><span class="n">t</span><span class="o">&amp;</span><span class="mi">16</span><span class="p">)</span><span class="o">==</span><span class="n">k</span><span class="o">||</span><span class="n">flag</span><span class="o">&gt;&gt;</span><span class="mi">10</span><span class="o">&amp;</span><span class="n">zn</span><span class="p">[</span><span class="n">y</span><span class="p">])</span><span class="k">break</span><span class="p">;</span>  <span class="cm">/* capture own or bad zone  */</span>
+</span><span class="line">                            <span class="n">i</span><span class="o">=</span><span class="n">w</span><span class="p">[</span><span class="n">t</span><span class="o">&amp;</span><span class="mi">15</span><span class="p">];</span>                              <span class="cm">/* value of capt. piece t   */</span>
+</span><span class="line">                            <span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">)</span><span class="n">m</span><span class="o">=</span><span class="n">I</span><span class="p">,</span><span class="n">d</span><span class="o">=</span><span class="mi">98</span><span class="p">;</span>                        <span class="cm">/* K capture                */</span>
+</span><span class="line">                            <span class="k">if</span><span class="p">(</span><span class="n">m</span><span class="o">&gt;=</span><span class="n">l</span><span class="o">&amp;</span><span class="n">d</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">)</span><span class="k">goto</span> <span class="n">C</span><span class="p">;</span>                     <span class="cm">/* abort on fail high       */</span>
+</span><span class="line">                            <span class="n">v</span><span class="o">=</span><span class="n">d</span><span class="o">-</span><span class="mi">1</span><span class="o">?</span><span class="n">e</span><span class="o">:</span><span class="n">i</span><span class="o">-</span><span class="n">p</span><span class="p">;</span>                            <span class="cm">/*** MVV/LVA scoring if d=1**/</span>
+</span><span class="line">                            <span class="k">if</span><span class="p">(</span><span class="n">d</span><span class="o">-!</span><span class="n">t</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">)</span>                              <span class="cm">/*** all captures if d=2  ***/</span>
+</span><span class="line">                            <span class="p">{</span><span class="n">v</span><span class="o">=</span><span class="n">centr</span><span class="p">[</span><span class="n">p</span><span class="p">]</span><span class="o">?</span><span class="n">b</span><span class="p">[</span><span class="n">x</span><span class="o">+</span><span class="mi">257</span><span class="p">]</span><span class="o">-</span><span class="n">b</span><span class="p">[</span><span class="n">y</span><span class="o">+</span><span class="mi">257</span><span class="p">]</span><span class="o">:</span><span class="mi">0</span><span class="p">;</span>        <span class="cm">/* center positional pts.   */</span>
+</span><span class="line">                                <span class="n">b</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">b</span><span class="p">[</span><span class="n">y</span><span class="p">]</span><span class="o">=</span><span class="n">u</span><span class="p">;</span>                         <span class="cm">/* do move                  */</span>
+</span><span class="line">                                <span class="n">v</span><span class="o">-=</span><span class="n">w</span><span class="p">[</span><span class="n">p</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">0</span><span class="o">|</span><span class="n">R</span><span class="o">&lt;</span><span class="mi">10</span><span class="o">?</span><span class="mi">0</span><span class="o">:</span><span class="mi">20</span><span class="p">;</span>                   <span class="cm">/*** freeze K in mid-game ***/</span>
+</span><span class="line">                                <span class="k">if</span><span class="p">(</span><span class="n">p</span><span class="o">&lt;</span><span class="mi">3</span><span class="p">)</span>                                <span class="cm">/* pawns:                   */</span>
+</span><span class="line">                                <span class="p">{</span><span class="n">v</span><span class="o">+=</span><span class="mi">2</span><span class="p">;</span>                                 <span class="cm">/* end-game Pawn-push bonus */</span>
+</span><span class="line">                                    <span class="k">if</span><span class="p">(</span><span class="n">zn</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">-</span><span class="n">zn</span><span class="p">[</span><span class="n">y</span><span class="p">])</span><span class="n">b</span><span class="p">[</span><span class="n">y</span><span class="p">]</span><span class="o">+=</span><span class="mi">5</span><span class="p">,</span>               <span class="cm">/* upgrade Pawn and         */</span>
+</span><span class="line">                                        <span class="n">i</span><span class="o">+=</span><span class="n">w</span><span class="p">[</span><span class="n">p</span><span class="o">+</span><span class="mi">5</span><span class="p">]</span><span class="o">-</span><span class="n">w</span><span class="p">[</span><span class="n">p</span><span class="p">];</span>                      <span class="cm">/*          promotion bonus */</span>
+</span><span class="line">                                <span class="p">}</span>
+</span><span class="line">                                <span class="k">if</span><span class="p">(</span><span class="n">z</span><span class="o">&amp;</span><span class="n">S</span> <span class="o">&amp;&amp;</span> <span class="n">GamePtr</span><span class="o">&lt;</span><span class="mi">6</span><span class="p">)</span> <span class="n">v</span><span class="o">+=</span><span class="p">(</span><span class="n">rand</span><span class="p">()</span><span class="o">&gt;&gt;</span><span class="mi">10</span><span class="o">&amp;</span><span class="mi">31</span><span class="p">)</span><span class="o">-</span><span class="mi">16</span><span class="p">;</span> <span class="c1">// randomize in root</span>
+</span><span class="line">                                <span class="n">J</span><span class="o">+=</span><span class="n">J</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="n">Z</span><span class="o">+=</span><span class="n">J</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+</span><span class="line">                                <span class="n">v</span><span class="o">+=</span><span class="n">e</span><span class="o">+</span><span class="n">i</span><span class="p">;</span><span class="n">V</span><span class="o">=</span><span class="n">m</span><span class="o">&gt;</span><span class="n">q</span><span class="o">?</span><span class="n">m</span><span class="o">:</span><span class="n">q</span><span class="p">;</span>                      <span class="cm">/*** new eval &amp; alpha    ****/</span>
+</span><span class="line">                                <span class="n">C</span><span class="o">=</span><span class="n">d</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="p">(</span><span class="n">d</span><span class="o">&gt;</span><span class="mi">5</span><span class="o">&amp;</span><span class="n">p</span><span class="o">&gt;</span><span class="mi">2</span><span class="o">&amp;!</span><span class="n">t</span><span class="o">&amp;!</span><span class="n">h</span><span class="p">);</span>                 <span class="cm">/* nw depth, reduce non-cpt.*/</span>
+</span><span class="line">                                <span class="n">C</span><span class="o">=</span><span class="n">R</span><span class="o">&lt;</span><span class="mi">10</span><span class="o">|</span><span class="n">P</span><span class="o">-</span><span class="n">I</span><span class="o">|</span><span class="n">d</span><span class="o">&lt;</span><span class="mi">3</span><span class="o">||</span><span class="n">t</span><span class="o">&amp;&amp;</span><span class="n">p</span><span class="o">-</span><span class="mi">3</span><span class="o">?</span><span class="n">C</span><span class="o">:</span><span class="n">d</span><span class="p">;</span>            <span class="cm">/* extend 1 ply if in-check */</span>
+</span><span class="line">                                <span class="k">do</span>
+</span><span class="line">                                    <span class="n">s</span><span class="o">=</span><span class="n">C</span><span class="o">&gt;</span><span class="mi">2</span><span class="o">|</span><span class="n">v</span><span class="o">&gt;</span><span class="n">V</span><span class="o">?-</span><span class="n">D</span><span class="p">(</span><span class="mi">16</span><span class="o">-</span><span class="n">k</span><span class="p">,</span><span class="o">-</span><span class="n">l</span><span class="p">,</span><span class="o">-</span><span class="n">V</span><span class="p">,</span><span class="o">-</span><span class="n">v</span><span class="p">,</span><span class="cm">/*** futility, recursive eval. of reply */</span>
+</span><span class="line">                                            <span class="mi">0</span><span class="p">,</span><span class="n">C</span><span class="p">)</span><span class="o">:</span><span class="n">v</span><span class="p">;</span>
+</span><span class="line">                                <span class="n">W</span><span class="p">(</span><span class="n">s</span><span class="o">&gt;</span><span class="n">q</span><span class="o">&amp;++</span><span class="n">C</span><span class="o">&lt;</span><span class="n">d</span><span class="p">);</span> <span class="n">v</span><span class="o">=</span><span class="n">s</span><span class="p">;</span>                     <span class="cm">/* no fail:re-srch unreduced*/</span>
+</span><span class="line">                                <span class="k">if</span><span class="p">(</span><span class="n">z</span><span class="o">&amp;</span><span class="n">S</span><span class="o">&amp;&amp;</span><span class="n">K</span><span class="o">-</span><span class="n">I</span><span class="p">)</span>                           <span class="cm">/* move pending: check legal*/</span>
+</span><span class="line">                                <span class="p">{</span><span class="k">if</span><span class="p">(</span><span class="n">v</span><span class="o">+</span><span class="n">I</span><span class="o">&amp;&amp;</span><span class="n">x</span><span class="o">==</span><span class="n">K</span><span class="o">&amp;</span><span class="n">y</span><span class="o">==</span><span class="n">L</span><span class="p">)</span>                    <span class="cm">/*   if move found          */</span>
+</span><span class="line">                                    <span class="p">{</span><span class="n">Q</span><span class="o">=-</span><span class="n">e</span><span class="o">-</span><span class="n">i</span><span class="p">;</span>
+</span><span class="line">                                        <span class="n">a</span><span class="o">-&gt;</span><span class="n">D</span><span class="o">=</span><span class="mi">99</span><span class="p">;</span><span class="n">a</span><span class="o">-&gt;</span><span class="n">V</span><span class="o">=</span><span class="mi">500</span><span class="p">;</span>                    <span class="cm">/* lock game in hash as loss*/</span>
+</span><span class="line">                                        <span class="n">R</span><span class="o">-=</span><span class="n">i</span><span class="o">/</span><span class="n">FAC</span><span class="p">;</span>                            <span class="cm">/*** total captd material ***/</span>
+</span><span class="line">                                        <span class="n">Fifty</span> <span class="o">=</span> <span class="n">t</span><span class="o">|</span><span class="n">p</span><span class="o">&lt;</span><span class="mi">3</span><span class="o">?</span><span class="mi">0</span><span class="o">:</span><span class="n">Fifty</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+</span><span class="line">                                        <span class="k">return</span> <span class="n">l</span><span class="p">;}</span>                <span class="cm">/*   &amp; not in check, signal */</span>
+</span><span class="line">                                        <span class="n">v</span><span class="o">=</span><span class="n">m</span><span class="p">;</span>                                  <span class="cm">/* (prevent fail-lows on    */</span>
+</span><span class="line">                                <span class="p">}</span>                                      <span class="cm">/*   K-capt. replies)       */</span>
+</span><span class="line">                                <span class="n">J</span><span class="o">=</span><span class="n">f</span><span class="p">;</span><span class="n">Z</span><span class="o">=</span><span class="n">g</span><span class="p">;</span>
+</span><span class="line">                                <span class="n">b</span><span class="p">[</span><span class="n">y</span><span class="p">]</span><span class="o">=</span><span class="n">t</span><span class="p">;</span><span class="n">b</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">=</span><span class="n">u</span><span class="p">;</span>                         <span class="cm">/* undo move                */</span>
+</span><span class="line">                            <span class="p">}</span>                                       <span class="cm">/*          if non-castling */</span>
+</span><span class="line">                            <span class="k">if</span><span class="p">(</span><span class="n">v</span><span class="o">&gt;</span><span class="n">m</span><span class="p">)</span>                                 <span class="cm">/* new best, update max,best*/</span>
+</span><span class="line">                                <span class="n">m</span><span class="o">=</span><span class="n">v</span><span class="p">,</span><span class="n">X</span><span class="o">=</span><span class="n">x</span><span class="p">,</span><span class="n">Y</span><span class="o">=</span><span class="n">y</span><span class="p">;</span>                           <span class="cm">/* no marking!              */</span>
+</span><span class="line">                            <span class="k">if</span><span class="p">(</span><span class="n">h</span><span class="p">){</span><span class="n">h</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="k">goto</span> <span class="n">A</span><span class="p">;}</span>                      <span class="cm">/* redo after doing old best*/</span>
+</span><span class="line">                        <span class="p">}</span>
+</span><span class="line">                        <span class="n">s</span><span class="o">=</span><span class="n">t</span><span class="p">;</span>
+</span><span class="line">                        <span class="n">t</span><span class="o">+=</span><span class="n">flag</span><span class="o">&amp;</span><span class="mi">4</span><span class="p">;</span>                               <span class="cm">/* fake capt. for nonsliding*/</span>
+</span><span class="line">                        <span class="k">if</span><span class="p">(</span><span class="n">s</span><span class="o">&amp;&amp;</span><span class="n">flag</span><span class="o">&amp;</span><span class="mi">8</span><span class="p">)</span><span class="n">t</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">flag</span><span class="o">^=</span><span class="n">flag</span><span class="o">&gt;&gt;</span><span class="mi">4</span><span class="o">&amp;</span><span class="mi">15</span><span class="p">;</span>       <span class="cm">/* hoppers go to next phase */</span>
+</span><span class="line">                        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">flag</span><span class="o">&amp;</span><span class="n">S</span><span class="p">))</span>                            <span class="cm">/* zig-zag piece?           */</span>
+</span><span class="line">                            <span class="n">r</span><span class="o">^=</span><span class="n">flag</span><span class="o">&gt;&gt;</span><span class="mi">12</span><span class="p">,</span><span class="n">flag</span><span class="o">^=</span><span class="n">flag</span><span class="o">&gt;&gt;</span><span class="mi">4</span><span class="o">&amp;</span><span class="mi">15</span><span class="p">;</span>           <span class="cm">/* alternate vector &amp; mode  */</span>
+</span><span class="line">                    <span class="p">}</span><span class="n">W</span><span class="p">(</span><span class="o">!</span><span class="n">t</span><span class="p">);</span>                                   <span class="cm">/* if not capt. continue ray*/</span>
+</span><span class="line">                <span class="p">}}</span>
+</span><span class="line">                <span class="k">if</span><span class="p">((</span><span class="o">++</span><span class="n">x</span><span class="o">&amp;</span><span class="mi">15</span><span class="p">)</span><span class="o">&gt;=</span><span class="n">BW</span><span class="p">)</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="o">+</span><span class="mi">16</span><span class="o">&amp;</span><span class="mi">240</span><span class="p">,</span><span class="n">lu</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>            <span class="cm">/* next sqr. of board, wrap */</span>
+</span><span class="line">                <span class="k">if</span><span class="p">(</span><span class="n">x</span><span class="o">&gt;=</span><span class="mi">16</span><span class="o">*</span><span class="n">BH</span><span class="p">)</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span><span class="line">        <span class="p">}</span><span class="n">W</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">B</span><span class="p">);</span>
+</span><span class="line"><span class="nl">C:</span><span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="o">-&gt;</span><span class="n">D</span><span class="o">&lt;</span><span class="mi">99</span><span class="p">)</span>                                  <span class="cm">/* protect game history     */</span>
+</span><span class="line">      <span class="n">a</span><span class="o">-&gt;</span><span class="n">K</span><span class="o">=</span><span class="n">Z</span><span class="p">,</span><span class="n">a</span><span class="o">-&gt;</span><span class="n">V</span><span class="o">=</span><span class="n">m</span><span class="p">,</span><span class="n">a</span><span class="o">-&gt;</span><span class="n">D</span><span class="o">=</span><span class="n">d</span><span class="p">,</span><span class="n">a</span><span class="o">-&gt;</span><span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span>                <span class="cm">/* always store in hash tab */</span>
+</span><span class="line">          <span class="n">a</span><span class="o">-&gt;</span><span class="n">F</span><span class="o">=</span><span class="mi">8</span><span class="o">*</span><span class="p">(</span><span class="n">m</span><span class="o">&gt;</span><span class="n">q</span><span class="p">)</span><span class="o">|</span><span class="n">S</span><span class="o">*</span><span class="p">(</span><span class="n">m</span><span class="o">&lt;</span><span class="n">l</span><span class="p">),</span><span class="n">a</span><span class="o">-&gt;</span><span class="n">Y</span><span class="o">=</span><span class="n">Y</span><span class="p">;</span>                <span class="cm">/* move, type (bound/exact),*/</span>
+</span><span class="line">  <span class="k">if</span><span class="p">(</span><span class="n">z</span><span class="o">&amp;</span><span class="n">S</span><span class="o">&amp;&amp;</span><span class="n">Post</span><span class="p">){</span>
+</span><span class="line">      <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%2d &quot;</span><span class="p">,</span><span class="n">d</span><span class="o">-</span><span class="mi">2</span><span class="p">);</span>
+</span><span class="line">      <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%6d &quot;</span><span class="p">,</span><span class="n">m</span><span class="p">);</span>
+</span><span class="line">      <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%8d %10d %c%c%c%c</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,(</span><span class="n">GetTickCount</span><span class="p">()</span><span class="o">-</span><span class="n">Ticks</span><span class="p">)</span><span class="o">/</span><span class="mi">10</span><span class="p">,</span><span class="n">N</span><span class="p">,</span>
+</span><span class="line">              <span class="sc">&#39;i&#39;</span><span class="o">-</span><span class="p">(</span><span class="n">X</span><span class="o">&gt;&gt;</span><span class="mi">4</span><span class="o">&amp;</span><span class="mi">15</span><span class="p">),</span><span class="sc">&#39;9&#39;</span><span class="o">-</span><span class="p">(</span><span class="n">X</span><span class="o">&amp;</span><span class="mi">15</span><span class="p">),</span><span class="sc">&#39;i&#39;</span><span class="o">-</span><span class="p">(</span><span class="n">Y</span><span class="o">&gt;&gt;</span><span class="mi">4</span><span class="o">&amp;</span><span class="mi">15</span><span class="p">),</span><span class="sc">&#39;9&#39;</span><span class="o">-</span><span class="p">(</span><span class="n">Y</span><span class="o">&amp;</span><span class="mi">15</span><span class="p">)),</span><span class="n">fflush</span><span class="p">(</span><span class="n">stdout</span><span class="p">);}</span>
+</span><span class="line">    <span class="p">}</span>                                             <span class="cm">/*    encoded in X S,8 bits */</span>
+</span><span class="line">    <span class="k">if</span><span class="p">(</span><span class="n">z</span><span class="o">&amp;</span><span class="mi">4</span><span class="o">*</span><span class="n">S</span><span class="p">)</span><span class="n">K</span><span class="o">=</span><span class="n">X</span><span class="p">,</span><span class="n">L</span><span class="o">=</span><span class="n">Y</span><span class="o">&amp;~</span><span class="n">S</span><span class="p">;</span>
+</span><span class="line">    <span class="k">return</span> <span class="n">m</span><span class="o">+=</span><span class="n">m</span><span class="o">&lt;</span><span class="n">e</span><span class="p">;</span>                                <span class="cm">/* delayed-loss bonus       */</span>
+</span><span class="line"><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>Then I think for a while….</p>
@@ -476,41 +602,6 @@ xiangqi can compatible with maxqi engine</p>
 
 <h6 id="the-interface"># The Interface</h6>
 <p>Move Legality Checking</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">function alphabeta(node, depth, a, b, Player)        
-</span><span class="line">    if depth = 0 or node is a terminal node
-</span><span class="line">        return the heuristic value of node
-</span><span class="line">    if Player = MaxPlayer
-</span><span class="line">        for each child of node
-</span><span class="line">            a := max(a, alphabeta(child, depth-1, a, b, not(Player) ))    
-</span><span class="line">            if b &lt;= a
-</span><span class="line">                break                             (* Beta cut-off *)
-</span><span class="line">        return a
-</span><span class="line">    else
-</span><span class="line">        for each child of node
-</span><span class="line">            b := min(b, alphabeta(child, depth-1, a, b, not(Player) ))    
-</span><span class="line">            if b &lt;= a
-</span><span class="line">                break                             (* Alpha cut-off *)
-</span><span class="line">        return b
-</span><span class="line">(* Initial call *)
-</span><span class="line">alphabeta(origin, depth, -infinity, +infinity, MaxPlayer)</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 </div>
   
@@ -2033,167 +2124,6 @@ Here is a good scipt for mac 10.8 user
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/02/16/machine-learning-ep1/">Machine Learning Ep1</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-02-16T22:35:00+08:00" pubdate data-updated="true">Feb 16<span>th</span>, 2013</time>
-        
-         | <a href="/blog/2013/02/16/machine-learning-ep1/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><ul>
-  <li>
-    <h2 id="the-general-steps-of-machine-learning">The general steps of Machine Learning</h2>
-  </li>
-</ul>
-
-<h4 id="traning-data--test-data">1, Traning Data &amp; Test Data</h4>
-
-<p>This step is the most important part in machine learning. 
-Very easy to ignore and underestimate.</p>
-
-<p>Data is wrong, all the steps afterward are wrong.
-More than that, it’s very difficult to understand where is wrong, how to impove that.</p>
-
-<p>Maybe the data can be produced by online logs by user.</p>
-
-<p>Maybe the data can not be gotten from machine, only by humans.</p>
-
-<h4 id="feature-selectionhttpenwikipediaorgwikifeatureselection">2, <a href="http://en.wikipedia.org/wiki/Feature_selection">Feature Selection</a></h4>
-<p>The less feature, the faster the model is calculated and updated</p>
-
-<p>The more feature’s meaning is ,the less prabability overfit happens </p>
-
-<p>L1-norm</p>
-
-<p>http://www.cnblogs.com/heaad/archive/2011/01/02/1924088.html</p>
-
-<h4 id="model-choosing">3, Model Choosing</h4>
-
-<p>Different model has its personality</p>
-
-<h4 id="evaluation">4, Evaluation</h4>
-
-<p>RSE</p>
-
-<p>FRTP…</p>
-
-<hr />
-
-<ul>
-  <li>
-    <h2 id="linear-regressionhttpenwikipediaorgwikilinearregression"><a href="http://en.wikipedia.org/wiki/Linear_regression">Linear Regression</a></h2>
-  </li>
-</ul>
-
-<p>It’s a simple model,and very useful</p>
-
-<ul>
-  <li>
-    <h2 id="locally-weighted-linear-regression">Locally Weighted Linear Regression</h2>
-  </li>
-</ul>
-
-<p>the training data only contain the data near X  (is not it cool?)</p>
-
-<hr />
-
-<ul>
-  <li>
-    <h2 id="batch-gradient-descent-vs-stochastic-gradient-descent">Batch Gradient Descent vs stochastic gradient descent（随机梯度下降）</h2>
-  </li>
-</ul>
-
-<h5 id="batch-gradient-descent">Batch Gradient Descent:</h5>
-
-<blockquote>
-  <p>You need to run over every training example before doing an update, which means that if you have a large dataset, you might spend much time on getting something that works.</p>
-</blockquote>
-
-<h5 id="stochastic-gradient-descent">Stochastic gradient descent:</h5>
-<blockquote>
-  <p>on the other hand, does updates every time it finds a training example, however, since it only uses one update, it may never converge, although you can still be pretty close to the minimum.</p>
-</blockquote>
-
-<p>In conclusion, if your data is large, you might want to use Stochastic Gradient Descent.</p>
-
-<h4 id="newton-method">Newton Method:</h4>
-<p>Advantage: fast iteration to get result
-Disadvantage: have to invert the N*N’s (N is the number of feature) every step</p>
-
-<ul>
-  <li>
-    <h2 id="when-to-stop-the-iteration-of-gradient-descent">When to stop the iteration of Gradient Descent</h2>
-    <p>It has two ways.</p>
-  </li>
-</ul>
-
-<p><code>Condition 1: the two iteration's result is so close to ignore</code></p>
-
-<p><code>Condition 2: the loss is very small, which can be ignored</code></p>
-
-<ul>
-  <li>parametric learning algorithm &amp; non-parametric learning algorithm</li>
-</ul>
-
-<blockquote>
-  <p>non-parametric learning: the number of arguments will go with size of training data</p>
-</blockquote>
-
-<ul>
-  <li>
-    <h2 id="exponential-distribution-family">Exponential distribution family</h2>
-    <p>eg: Normal Distribution, Poisson Distribution, Bernouli Distribution </p>
-  </li>
-  <li>
-    <h2 id="logistic-regression--softmax-regression">Logistic Regression &amp; Softmax Regression</h2>
-    <p>Logistic Regression only 2 kinds
-Softmax Regession can solve multi</p>
-  </li>
-</ul>
-
-<hr />
-
-<h2 id="reference">Reference:</h2>
-
-<p><a href="">http://zhfuzh.blog.163.com/blog/static/14553938720127309539465/</a></p>
-
-<p><a href="">http://blog.csdn.net/pennyliang/article/details/6998517</a></p>
-
-<p><a href="">http://deeplearning.stanford.edu/wiki/index.php/UFLDL%E6%95%99%E7%A8%8B</a></p>
-
-<p>It’s not finished…</p>
-</div>
-  
-  
-
-<br>
-<a href="/blog/2013/02/16/machine-learning-ep1/#disqus_thread">Comments</a>
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -2210,6 +2140,10 @@ Softmax Regession can solve multi</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/07/02/the-key-tech-in-simple-xiangqi-engine-maxqi/">The Key Tech in Simple XiangQi Engine MaxQi</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/06/23/something-about-chess-series-with-ai/">Something about Chess series with AI</a>
       </li>
     
@@ -2223,10 +2157,6 @@ Softmax Regession can solve multi</p>
     
       <li class="post">
         <a href="/blog/2013/04/20/android-dev-on-osx/">Android Dev on OSX</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/04/10/something-about-the-practice/">Something about the Practice</a>
       </li>
     
   </ul>

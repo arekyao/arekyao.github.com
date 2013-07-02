@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: TechChangeWorld - YY Every Day</title>
+  <title>The Key Tech in Simple XiangQi Engine MaxQi - YY Every Day</title>
   <meta name="author" content="Arek.Yao">
 
   
-  <meta name="description" content="Category: TechChangeWorld">
+  <meta name="description" content="The Key Tech in Simple XiangQi Engine MaxQi Jul 2nd, 2013 | Comments 1,mini-max algorithm minimize the opponent’s potential max profit. easy to &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://arekyao.github.comblog/categories/techchangeworld/">
+  <link rel="canonical" href="http://arekyao.github.com/blog/2013/07/02/the-key-tech-in-simple-xiangqi-engine-maxqi/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -66,64 +66,180 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: TechChangeWorld</h1>
+    
+      <h1 class="entry-title">The Key Tech in Simple XiangQi Engine MaxQi</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-02T08:30:00+08:00" pubdate data-updated="true">Jul 2<span>nd</span>, 2013</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><h2 id="mini-max-algorithm">1,mini-max algorithm</h2>
 
-  
-  <h2>2013</h2>
+<p>minimize the opponent’s potential max profit.</p>
 
-<article>
-  
-<h1><a href="/blog/2013/04/10/something-about-the-practice/">Something about the Practice</a></h1>
-<time datetime="2013-04-10T22:22:00+08:00" pubdate><span class='month'>Apr</span> <span class='day'>10</span> <span class='year'>2013</span></time>
+<p>easy to understand,right?</p>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/techchangeworld/'>TechChangeWorld</a></span>
-</footer>
+<h2 id="alpha-beta-cutoff">2,alpha-beta cutoff</h2>
 
+<p>It stops completely evaluating a move when at least one possibility has been found that proves the move to be worse than a previously examined move.  <br />
+ Such moves need not be evaluated further. <br />
+ When applied to a standard minimax tree, it returns the same move as minimax would, but prunes away branches that cannot possibly influence the final decision</p>
 
-</article>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">function alphabeta(node, depth, a, b, Player)        
+</span><span class="line">    if depth = 0 or node is a terminal node
+</span><span class="line">        return the heuristic value of node
+</span><span class="line">    if Player = MaxPlayer
+</span><span class="line">        for each child of node
+</span><span class="line">            a := max(a, alphabeta(child, depth-1, a, b, not(Player) ))    
+</span><span class="line">            if b &lt;= a
+</span><span class="line">                break                             (* Beta cut-off *)
+</span><span class="line">        return a
+</span><span class="line">    else
+</span><span class="line">        for each child of node
+</span><span class="line">            b := min(b, alphabeta(child, depth-1, a, b, not(Player) ))    
+</span><span class="line">            if b &lt;= a
+</span><span class="line">                break                             (* Alpha cut-off *)
+</span><span class="line">        return b
+</span><span class="line">(* Initial call *)
+</span><span class="line">alphabeta(origin, depth, -infinity, +infinity, MaxPlayer)</span></code></pre></td></tr></table></div></figure></notextile></div>
 
+<h2 id="quiescence-search">3,Quiescence search</h2>
 
+<p>When have to recapture , it have to search until there is no tradeoff</p>
 
-<article>
-  
-<h1><a href="/blog/2013/02/12/break-gfw-with-goagent-in-android-mx2/">Break GFW with Goagent in Android MX2</a></h1>
-<time datetime="2013-02-12T15:36:00+08:00" pubdate><span class='month'>Feb</span> <span class='day'>12</span> <span class='year'>2013</span></time>
+<h2 id="iterative-search">4,Iterative search</h2>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/techchangeworld/'>TechChangeWorld</a></span>
-</footer>
+<p>the key is the search depth.</p>
 
+<p>The efficiency of the alpha-beta search is strongly enhanced (in terms of the number of nodes searched) <br />
+if the best move is tried first, and trying idiotic moves first (such as both Queens getting berserk) can easily lead to an explosion of the search.  </p>
 
-</article>
+<p>Rather than aggressively starting a search of the required depth, proceed carefully and first invest some time doing a search of shallower depth.  </p>
 
+<p>What it can get ,through the shallower depth search , the window (alpha-beta,the min &amp; max) and the best move, which is supposed to search first in deepen search</p>
 
+<h2 id="hash-table">5, Hash table</h2>
 
-<article>
-  
-<h1><a href="/blog/2013/01/20/how-to-export-video-from-ip4s/">How to export video from IP4s</a></h1>
-<time datetime="2013-01-20T18:39:00+08:00" pubdate><span class='month'>Jan</span> <span class='day'>20</span> <span class='year'>2013</span></time>
+<p>Use the result which has been faced last time.</p>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/techchangeworld/'>TechChangeWorld</a></span>
-</footer>
+<p>So it is needed some hash key to describe the whole board </p>
 
+<p>The Zobrist Keys show up!</p>
 
-</article>
+<h2 id="zobrist-hashing">6,Zobrist hashing</h2>
 
+<p>Zobrist hashing starts by randomly generating bitstrings for each possible element of a board game</p>
+
+<p>The final Zobrist hash is computed by combining those bitstrings using bitwise XOR.</p>
+
+<p>the good is the hash key is recalculated by two “xor”</p>
+
+<h2 id="monte-carlo-methods">7,Monte Carlo methods</h2>
+
+<p>This method can be used to estimate the board status(which side is at better thant the other side)</p>
+
+<p>Monte Carlo methods vary, but tend to follow a particular pattern:</p>
+
+<p>a). Define a domain of possible inputs.<br />
+  b). Generate inputs randomly from a probability distribution over the domain.<br />
+  c). Perform a deterministic computation on the inputs.<br />
+  d). Aggregate the results.  </p>
+
+<p>However, in maxqi, it’s not used.<br />
+The other way the piece’s weight sum is used to estimate.</p>
 </div>
 
+<br>
+<a href="#disqus_thread">Comments</a>
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Arek.Yao</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-02T08:30:00+08:00" pubdate data-updated="true">Jul 2<span>nd</span>, 2013</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://arekyao.github.com/blog/2013/07/02/the-key-tech-in-simple-xiangqi-engine-maxqi/" data-via="" data-counturl="http://arekyao.github.com/blog/2013/07/02/the-key-tech-in-simple-xiangqi-engine-maxqi/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/06/23/something-about-chess-series-with-ai/" title="Previous Post: Something about Chess series with AI">&laquo; Something about Chess series with AI</a>
+      
+      
+    </p>
+  </footer>
 </article>
+<script type="text/javascript" id="wumiiRelatedItems"></script>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -203,7 +319,10 @@
       var disqus_shortname = 'arekyao';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://arekyao.github.com/blog/2013/07/02/the-key-tech-in-simple-xiangqi-engine-maxqi/';
+        var disqus_url = 'http://arekyao.github.com/blog/2013/07/02/the-key-tech-in-simple-xiangqi-engine-maxqi/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

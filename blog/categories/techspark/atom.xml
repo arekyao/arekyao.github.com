@@ -4,7 +4,7 @@
   <title><![CDATA[Category: TechSpark | YY Every Day]]></title>
   <link href="http://arekyao.github.com/blog/categories/techspark/atom.xml" rel="self"/>
   <link href="http://arekyao.github.com/"/>
-  <updated>2013-06-27T23:11:15+08:00</updated>
+  <updated>2013-07-02T08:40:11+08:00</updated>
   <id>http://arekyao.github.com/</id>
   <author>
     <name><![CDATA[Arek.Yao]]></name>
@@ -66,7 +66,7 @@ Maxqi is the xiangqi engine.</p>
 
 <p>Here is a way:</p>
 
-<p>https://github.com/Homebrew/homebrew-games</p>
+<p><a href="">https://github.com/Homebrew/homebrew-games</a></p>
 
 <h5 id="second-problem-is-how-to-run-xboard">Second Problem is how to run xboard….</h5>
 
@@ -111,7 +111,7 @@ xiangqi can compatible with maxqi engine</p>
 
 <p>I got the code little by little, and hesitate when D() function come to me…</p>
 
-<p>```</p>
+<p>```c Function D http://fairymax.sourcearchive.com/documentation/4.8q-2/maxqi_8c_source.html Source Article</p>
 
 <p>D(k,q,l,e,z,n)          /* recursive minimax search, k=moving side, n=depth<em>/
     int k,q,l,e,z,n;        /</em> (q,l)=window, e=current eval. score, E=e.p. sqr.<em>/
@@ -269,26 +269,6 @@ C:if(a-&gt;D&lt;99)                                  /* protect game history    
 
 <h6 id="the-interface"># The Interface</h6>
 <p>Move Legality Checking</p>
-
-<p><code>
-function alphabeta(node, depth, a, b, Player)        
-    if depth = 0 or node is a terminal node
-        return the heuristic value of node
-    if Player = MaxPlayer
-        for each child of node
-            a := max(a, alphabeta(child, depth-1, a, b, not(Player) ))    
-            if b &lt;= a
-                break                             (* Beta cut-off *)
-        return a
-    else
-        for each child of node
-            b := min(b, alphabeta(child, depth-1, a, b, not(Player) ))    
-            if b &lt;= a
-                break                             (* Alpha cut-off *)
-        return b
-(* Initial call *)
-alphabeta(origin, depth, -infinity, +infinity, MaxPlayer)
-</code></p>
 
 ]]></content>
   </entry>
