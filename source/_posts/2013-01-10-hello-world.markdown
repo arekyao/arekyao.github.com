@@ -74,7 +74,14 @@ LaTex Tools:
   [Online LaTeX Equation Editor](http://www.codecogs.com/latex/eqneditor.php)
 
     
-ps : I am so stupid, try my best to download a lib, MathJax.... totally useless..   
+ps : I am so stupid, try my best to download a lib, MathJax.... totally useless.. 
+
+5, About Git
+----------
+  
+  [http://rogerdudler.github.io/git-guide/index.zh.html]()
+  
+  [http://marklodato.github.io/visual-git-guide/index-en.html]()
 
 ###Reference:
 

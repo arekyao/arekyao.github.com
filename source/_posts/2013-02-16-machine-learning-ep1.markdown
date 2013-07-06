@@ -101,10 +101,10 @@ Softmax Regession can solve multi
 Reference:
 ----------
 
-http://zhfuzh.blog.163.com/blog/static/14553938720127309539465/
+[http://zhfuzh.blog.163.com/blog/static/14553938720127309539465/]()
 
-http://blog.csdn.net/pennyliang/article/details/6998517
+[http://blog.csdn.net/pennyliang/article/details/6998517]()
 
-http://deeplearning.stanford.edu/wiki/index.php/UFLDL%E6%95%99%E7%A8%8B
+[http://deeplearning.stanford.edu/wiki/index.php/UFLDL%E6%95%99%E7%A8%8B]()
 
 It's not finished...

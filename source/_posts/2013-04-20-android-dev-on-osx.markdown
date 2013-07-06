@@ -28,7 +28,7 @@ Android Emulator Key Mapping On OSX
 ------
 
 
-from http://developer.android.com/tools/help/emulator.html
+from [http://developer.android.com/tools/help/emulator.html]()
 
 Home = HOME (FN + left_arrow on Macbooks)  
 Menu (left softkey) = F2 or Page-up button  
@@ -53,4 +53,4 @@ DPad center click = KEYPAD_5
 Onion alpha increase/decrease = KEYPAD_MULTIPLY(*) / KEYPAD_DIVIDE(/)
 
 
-http://stackoverflow.com/questions/7628606/how-to-emulate-pressing-home-button-in-android-emulator
+[http://stackoverflow.com/questions/7628606/how-to-emulate-pressing-home-button-in-android-emulator]()

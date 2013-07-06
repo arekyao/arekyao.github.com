@@ -201,9 +201,9 @@ http://www.douban.com/group/django/
 6, Python study
 --------
 
-http://gnosis.cx/TPiP/
+[http://gnosis.cx/TPiP/]()
 
-http://docs.python-guide.org/en/latest/
+[http://docs.python-guide.org/en/latest/]()
 
 [More...](http://www.python.org/about/apps/)
 ------
@@ -211,6 +211,6 @@ http://docs.python-guide.org/en/latest/
 Reference
 --------
 
-http://www.cnblogs.com/vamei/archive/2013/02/06/2892628.html
-http://www.python.org/about/apps/
-http://docs.python-guide.org/en/latest/
+[http://www.cnblogs.com/vamei/archive/2013/02/06/2892628.html]()
+[http://www.python.org/about/apps/]()
+[http://docs.python-guide.org/en/latest/]()
