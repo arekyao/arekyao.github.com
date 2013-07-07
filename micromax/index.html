@@ -1,0 +1,555 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Micro-Max, 一个短小精干的棋类引擎（仅133行 ） - YY Every Day</title>
+  <meta name="author" content="Arek.Yao">
+
+  
+  <meta name="description" content="Micro-Max, 一个短小精干的棋类引擎（仅133行 ） 我最初的目标是写一个不到1024字符的棋类引擎程序，迄今为止，尚未成功。
+甚至当我放弃了国际棋联各种细节规则，比如王車易位（入堡，castling）和吃过路兵，我都未能将程序大小控制在1200字符内。 所以我改变我的目标， &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://arekyao.github.com/micromax/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="YY Every Day" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">YY Every Day</a></h1>
+  
+    <h2>Never say never, because limits like fears, are often just an illusion.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:arekyao.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/micromax/index.html">Micro-Max</a></li>
+  <li><a href="/about/index.html">About Me</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article role="article">
+  
+  <header>
+    <h1 class="entry-title">Micro-Max, 一个短小精干的棋类引擎（仅133行 ）</h1>
+    
+  </header>
+  
+  <p>我最初的目标是写一个不到1024字符的棋类引擎程序，迄今为止，尚未成功。<br />
+甚至当我放弃了国际棋联各种细节规则，比如王車易位（入堡，castling）和吃过路兵，我都未能将程序大小控制在1200字符内。</p>
+
+<p>所以我改变我的目标，完成了一个不到2000字符的棋类引擎程序。
+这也给我足够的空间去实现哈希转移表，走法正确性验证，完整国际棋类规则。
+但是不包括兵的升变，因为程序是永远不可能发现自己在那样一个有用的情况下，所以这个我认为是一个的无趣输入问题。</p>
+
+<p>（对于真正的棋手：一个接近最小的版本，并完全遵守国际棋联规则包括兵的升变，可以在这里找到。它只有1433个字符。
+实现兵的升变用了一行代码，32个字符。要玩这个，输入1，2，3作为输入的移动第五个字符，可分别晋升为车，像，马。如果不输入任何字符或者输入0，则晋升为后）
+据我所知，这使得micro-Max任何是目前最小的C语言的棋类引擎程序。有一个竞争对手，托莱多，仅有2168个字符。
+尽管它的体积小，micor-Max似乎很容易击败托莱多。）</p>
+
+<p>接下来，将从如下方面介绍micro-Max：</p>
+
+<ul>
+  <li>
+    <h2 id="section">基本数据表示</h2>
+    <p><a href="piece_encoding.html">棋子编码</a><br />
+<a href="board_representation.html">棋盘表示</a>  </p>
+  </li>
+  <li>
+    <h2 id="section-1">棋法</h2>
+    <p><a href="basic_move.html">基础走法  </a><br />
+<a href="en_passant_capture.html">过路吃兵</a><br />
+<a href="castling.html">王车易位</a><br />
+<a href="pawn_promotions.html">兵的升变</a>  </p>
+  </li>
+  <li>
+    <h2 id="section-2">搜索算法</h2>
+  </li>
+</ul>
+
+<p><a href="alpha_beta_minimax.html">Alpha-Beta Minimax</a><br />
+<a href="quiescence_search.html">Quiescence搜索</a><br />
+<a href="do_and_undo_move,html">进一步&amp;退一步</a><br />
+<a href="iterative_deepening.html">迭代深入搜索</a>  </p>
+
+<ul>
+  <li>
+    <h2 id="move-sorting">棋法排序（Move Sorting）</h2>
+    <p><a href="transposition_table.html">转移表</a><br />
+<a href="hashing.html">哈希</a><br />
+<a href="replacement.html">替换</a>  </p>
+  </li>
+  <li>
+    <h2 id="evaluation">棋局评估（Evaluation）</h2>
+    <p>Material
+Piece-Square Table
+[将死与偷子]Checkmate and Stalemate
+Delay Penalty</p>
+  </li>
+  <li>
+    <h2 id="the-interface">The Interface</h2>
+    <p>Move Legality Checking</p>
+  </li>
+</ul>
+
+<h2 id="version-4">Version 4</h2>
+
+<p>General &amp; Hash Table<br />
+Futility Pruning<br />
+All-captures Quiescence Search<br />
+King Safety<br />
+Null-Move Pruning<br />
+Self-Deepening IID  </p>
+
+<p>An overview of the meaning of all variables in the program can be found here. To make it easier for those who want to study the algorithm, there now also is a version that uses more meaningful (and much longer…) variable names.
+Downloading</p>
+
+<p>If you want to try micro-Max on your PC, you can copy-paste the source and compile it yourself. Details on how to do this can be found here.</p>
+
+<p>Future</p>
+
+<p>There are still plenty places where I can scavenge a few characters off the source code. (E.g. A-&gt;K in stead of A[0].K, and a-&gt;X&amp;M^M in stead of (a-&gt;X&amp;M)!=M, and perhaps combining the two Zobrist keys in a 64-bit type.) The castling code is also rather dumb and bulky. I hope to be able to compact the code enough (without loss of functionality) to make room for new features, in particular null-move threat detection. I will post the progress of this project regularly on separate pages, so that it does not mess up the tutorial on micro-Max 3.2. If some clearly defined feature is added to future versions of micro-Max, the page explaining it will be included in the index above.
+Below is the complete source code of micro-Max 3.2. (Click on the various code lines to go directly to their explanation.) If you want to copy-paste it, it is recommended you do it from here, because if I correct a small bug or typo I am generally too lazy to do it on all other pages where the source occurs. So I do it here, and on the page where the particular feature needing the correction is discussed and highlighted.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+<span class="line-number">42</span>
+<span class="line-number">43</span>
+<span class="line-number">44</span>
+<span class="line-number">45</span>
+<span class="line-number">46</span>
+<span class="line-number">47</span>
+<span class="line-number">48</span>
+<span class="line-number">49</span>
+<span class="line-number">50</span>
+<span class="line-number">51</span>
+<span class="line-number">52</span>
+<span class="line-number">53</span>
+<span class="line-number">54</span>
+<span class="line-number">55</span>
+<span class="line-number">56</span>
+<span class="line-number">57</span>
+<span class="line-number">58</span>
+<span class="line-number">59</span>
+<span class="line-number">60</span>
+<span class="line-number">61</span>
+<span class="line-number">62</span>
+<span class="line-number">63</span>
+<span class="line-number">64</span>
+<span class="line-number">65</span>
+<span class="line-number">66</span>
+<span class="line-number">67</span>
+<span class="line-number">68</span>
+<span class="line-number">69</span>
+<span class="line-number">70</span>
+<span class="line-number">71</span>
+<span class="line-number">72</span>
+<span class="line-number">73</span>
+<span class="line-number">74</span>
+<span class="line-number">75</span>
+<span class="line-number">76</span>
+<span class="line-number">77</span>
+<span class="line-number">78</span>
+<span class="line-number">79</span>
+<span class="line-number">80</span>
+<span class="line-number">81</span>
+<span class="line-number">82</span>
+<span class="line-number">83</span>
+<span class="line-number">84</span>
+<span class="line-number">85</span>
+<span class="line-number">86</span>
+<span class="line-number">87</span>
+<span class="line-number">88</span>
+<span class="line-number">89</span>
+<span class="line-number">90</span>
+<span class="line-number">91</span>
+<span class="line-number">92</span>
+<span class="line-number">93</span>
+<span class="line-number">94</span>
+<span class="line-number">95</span>
+<span class="line-number">96</span>
+<span class="line-number">97</span>
+<span class="line-number">98</span>
+<span class="line-number">99</span>
+<span class="line-number">100</span>
+<span class="line-number">101</span>
+<span class="line-number">102</span>
+<span class="line-number">103</span>
+<span class="line-number">104</span>
+<span class="line-number">105</span>
+<span class="line-number">106</span>
+<span class="line-number">107</span>
+<span class="line-number">108</span>
+<span class="line-number">109</span>
+<span class="line-number">110</span>
+<span class="line-number">111</span>
+<span class="line-number">112</span>
+<span class="line-number">113</span>
+<span class="line-number">114</span>
+<span class="line-number">115</span>
+<span class="line-number">116</span>
+<span class="line-number">117</span>
+<span class="line-number">118</span>
+<span class="line-number">119</span>
+<span class="line-number">120</span>
+<span class="line-number">121</span>
+<span class="line-number">122</span>
+<span class="line-number">123</span>
+<span class="line-number">124</span>
+<span class="line-number">125</span>
+<span class="line-number">126</span>
+<span class="line-number">127</span>
+<span class="line-number">128</span>
+<span class="line-number">129</span>
+<span class="line-number">130</span>
+<span class="line-number">131</span>
+<span class="line-number">132</span>
+<span class="line-number">133</span>
+<span class="line-number">134</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">
+</span><span class="line">/***************************************************************************/
+</span><span class="line">/*                               micro-Max,                                */
+</span><span class="line">/* A chess program smaller than 2KB (of non-blank source), by H.G. Muller  */
+</span><span class="line">/***************************************************************************/
+</span><span class="line">/* version 3.2 (2000 characters) features:                                 */
+</span><span class="line">/* - recursive negamax search                                              */
+</span><span class="line">/* - quiescence search with recaptures                                     */
+</span><span class="line">/* - recapture extensions                                                  */
+</span><span class="line">/* - (internal) iterative deepening                                        */
+</span><span class="line">/* - best-move-first 'sorting'                                             */
+</span><span class="line">/* - a hash table storing score and best move                              */
+</span><span class="line">/* - full FIDE rules (expt minor ptomotion) and move-legality checking     */
+</span><span class="line">
+</span><span class="line">#define F(I,S,N) for(I=S;I&lt;N;I++)
+</span><span class="line">#define W(A) while(A)
+</span><span class="line">#define K(A,B) *(int*)(T+A+(B&amp;8)+S*(B&amp;7))
+</span><span class="line">#define J(A) K(y+A,b[y])-K(x+A,u)-K(H+A,t)
+</span><span class="line">
+</span><span class="line">#define U 16777224
+</span><span class="line">struct _ {int K,V;char X,Y,D;} A[U];           /* hash table, 16M+8 entries*/
+</span><span class="line">
+</span><span class="line">int V=112,M=136,S=128,I=8e4,C=799,Q,N,i;       /* V=0x70=rank mask, M=0x88 */
+</span><span class="line">
+</span><span class="line">char O,K,L,
+</span><span class="line">w[]={0,1,1,3,-1,3,5,9},                        /* relative piece values    */
+</span><span class="line">o[]={-16,-15,-17,0,1,16,0,1,16,15,17,0,14,18,31,33,0, /* step-vector lists */
+</span><span class="line">     7,-1,11,6,8,3,6,                          /* 1st dir. in o[] per piece*/
+</span><span class="line">     6,3,5,7,4,5,3,6},                         /* initial piece setup      */
+</span><span class="line">b[129],                                        /* board: half of 16x8+dummy*/
+</span><span class="line">T[1035],                                       /* hash translation table   */
+</span><span class="line">
+</span><span class="line">n[]=".?+nkbrq?*?NKBRQ";                        /* piece symbols on printout*/
+</span><span class="line">
+</span><span class="line">D(k,q,l,e,J,Z,E,z,n)    /* recursive minimax search, k=moving side, n=depth*/
+</span><span class="line">int k,q,l,e,J,Z,E,z,n;  /* (q,l)=window, e=current eval. score, E=e.p. sqr.*/
+</span><span class="line">{                       /* e=score, z=prev.dest; J,Z=hashkeys; return score*/
+</span><span class="line"> int j,r,m,v,d,h,i=9,F,G;
+</span><span class="line"> char t,p,u,x,y,X,Y,H,B;
+</span><span class="line"> struct _*a=A;
+</span><span class="line">                                               /* lookup pos. in hash table*/
+</span><span class="line"> j=(k*E^J)&U-9;                                /* try 8 consec. locations  */
+</span><span class="line"> W((h=A[++j].K)&amp;&amp;h-Z&amp;&amp;--i);                    /* first empty or match     */
+</span><span class="line"> a+=i?j:0;                                     /* dummy A[0] if miss &amp; full*/
+</span><span class="line"> if(a-&gt;K)                                      /* hit: pos. is in hash tab */
+</span><span class="line"> {d=a-&gt;D;v=a-&gt;V;X=a-&gt;X;                        /* examine stored data      */
+</span><span class="line">  if(d&gt;=n)                                     /* if depth sufficient:     */
+</span><span class="line">  {if(v&gt;=l|X&amp;S&amp;&amp;v&lt;=q|X&amp;8)return v;             /* use if window compatible */
+</span><span class="line">   d=n-1;                                      /* or use as iter. start    */
+</span><span class="line">  }X&amp;=~M;Y=a-&gt;Y;                               /*      with best-move hint */
+</span><span class="line">  Y=d?Y:0;                                     /* don't try best at d=0    */
+</span><span class="line"> }else d=X=Y=0;                                /* start iter., no best yet */
+</span><span class="line"> N++;                                          /* node count (for timing)  */
+</span><span class="line"> W(d++&lt;n|z==8&amp;N&lt;1e7&amp;d&lt;98)                      /* iterative deepening loop */
+</span><span class="line"> {x=B=X;                                       /* start scan at prev. best */
+</span><span class="line">  Y|=8&amp;Y&gt;&gt;4;                                   /* request try noncastl. 1st*/
+</span><span class="line">  m=d&gt;1?-I:e;                                  /* unconsidered:static eval */
+</span><span class="line">  do{u=b[x];                                   /* scan board looking for   */
+</span><span class="line">   if(u&amp;k)                                     /*  own piece (inefficient!)*/
+</span><span class="line">   {r=p=u&7;                                   /* p = piece type (set r&gt;0) */
+</span><span class="line">    j=o[p+16];                                 /* first step vector f.piece*/
+</span><span class="line">    W(r=p&gt;2&amp;r&lt;0?-r:-o[++j])                    /* loop over directions o[] */
+</span><span class="line">    {A:                                        /* resume normal after best */
+</span><span class="line">     y=x;F=G=S;                                /* (x,y)=move, (F,G)=castl.R*/
+</span><span class="line">     do{H=y+=r;                                /* y traverses ray          */
+</span><span class="line">      if(Y&amp;8)H=y=Y&amp;~M;                         /* sneak in prev. best move */
+</span><span class="line">      if(y&amp;M)break;                            /* board edge hit           */
+</span><span class="line">      if(p&lt;3&amp;y==E)H=y^16;                      /* shift capt.sqr. H if e.p.*/
+</span><span class="line">      t=b[H];if(t&amp;k|p&lt;3&amp;!(r&amp;7)!=!t)break;      /* capt. own, bad pawn mode */
+</span><span class="line">      i=99*w[t&amp;7];                             /* value of capt. piece t   */
+</span><span class="line">      if(i&lt;0||E-S&amp;&amp;b[E]&amp;&amp;y-E&lt;2&amp;E-y&lt;2)m=I;      /* K capt. or bad castling  */
+</span><span class="line">      if(m&gt;=l)goto C;                          /* abort on fail high       */
+</span><span class="line">    
+</span><span class="line">      if(h=d-(y!=z))                           /* remaining depth(-recapt.)*/
+</span><span class="line">      {v=p&lt;6?b[x+8]-b[y+8]:0;                  /* center positional pts.   */
+</span><span class="line">       b[G]=b[H]=b[x]=0;b[y]=u&31;             /* do move, strip virgin-bit*/
+</span><span class="line">       if(!(G&amp;M)){b[F]=k+6;v+=30;}             /* castling: put R &amp; score  */
+</span><span class="line">       if(p&lt;3)                                 /* pawns:                   */
+</span><span class="line">       {v-=9*(((x-2)&amp;M||b[x-2]!=u)+            /* structure, undefended    */
+</span><span class="line">              ((x+2)&amp;M||b[x+2]!=u)-1);         /*        squares plus bias */
+</span><span class="line">        if(y+r+1&amp;S){b[y]|=7;i+=C;}             /* promote p to Q, add score*/
+</span><span class="line">       }
+</span><span class="line">       v=-D(24-k,-l-(l&gt;e),m&gt;q?-m:-q,-e-v-i,    /* recursive eval. of reply */
+</span><span class="line">            J+J(0),Z+J(8)+G-S,F,y,h);          /* J,Z: hash keys           */
+</span><span class="line">       v-=v&gt;e;                                 /* delayed-gain penalty     */
+</span><span class="line">       if(z==9)                                /* called as move-legality  */
+</span><span class="line">       {if(v!=-I&amp;x==K&amp;y==L)                    /*   checker: if move found */
+</span><span class="line">        {Q=-e-i;O=F;return l;}                 /*   &amp; not in check, signal */
+</span><span class="line">        v=m;                                   /* (prevent fail-lows on    */
+</span><span class="line">       }                                       /*   K-capt. replies)       */
+</span><span class="line">       b[G]=k+38;b[F]=b[y]=0;b[x]=u;b[H]=t;    /* undo move,G can be dummy */
+</span><span class="line">       if(Y&amp;8){m=v;Y&amp;=~8;goto A;}              /* best=1st done,redo normal*/
+</span><span class="line">       if(v&gt;m){m=v;X=x;Y=y|S&G;}               /* update max, mark with S  */
+</span><span class="line">      }                                        /*          if non castling */
+</span><span class="line">      t+=p&lt;5;                                  /* fake capt. for nonsliding*/
+</span><span class="line">      if(p&lt;3&amp;6*k+(y&amp;V)==S                      /* pawn on 3rd/6th, or      */
+</span><span class="line">          ||(u&amp;~24)==36&amp;j==7&amp;&amp;                 /* virgin K moving sideways,*/
+</span><span class="line">          G&amp;M&amp;&amp;b[G=(x|7)-(r&gt;&gt;1&amp;7)]&amp;32          /* 1st, virgin R in corner G*/
+</span><span class="line">          &amp;&amp;!(b[G^1]|b[G^2])                   /* 2 empty sqrs. next to R  */
+</span><span class="line">      ){F=y;t--;}                              /* unfake capt., enable e.p.*/
+</span><span class="line">     }W(!t);                                   /* if not capt. continue ray*/
+</span><span class="line">  }}}W((x=x+9&amp;~M)-B);                          /* next sqr. of board, wrap */
+</span><span class="line">C:if(m&gt;I/4|m&lt;-I/4)d=99;                        /* mate is indep. of depth  */
+</span><span class="line">  m=m+I?m:-D(24-k,-I,I,0,J,Z,S,S,1)/2;         /* best loses K: (stale)mate*/
+</span><span class="line">  if(!a-&gt;K|(a-&gt;X&amp;M)!=M|a-&gt;D&lt;=d)                /* if new/better type/depth:*/
+</span><span class="line">  {a-&gt;K=Z;a-&gt;V=m;a-&gt;D=d;A-&gt;K=0;                /* store in hash,dummy stays*/
+</span><span class="line">   a-&gt;X=X|8*(m&gt;q)|S*(m&lt;l);a-&gt;Y=Y;              /* empty, type (limit/exact)*/
+</span><span class="line">  }                                            /*    encoded in X S,8 bits */
+</span><span class="line">/*if(z==8)printf("%2d ply, %9d searched, %6d by (%2x,%2x)\n",d-1,N,m,X,Y&amp;0x77);*/
+</span><span class="line"> }
+</span><span class="line"> if(z&amp;8){K=X;L=Y&amp;~M;}
+</span><span class="line"> return m;                                     
+</span><span class="line">}
+</span><span class="line">
+</span><span class="line">main()
+</span><span class="line">{
+</span><span class="line"> int j,k=8,*p,c[9];
+</span><span class="line">
+</span><span class="line"> F(i,0,8)
+</span><span class="line"> {b[i]=(b[i+V]=o[i+24]+40)+8;b[i+16]=18;b[i+96]=9;   /* initial board setup*/
+</span><span class="line">  F(j,0,8)b[16*j+i+8]=(i-4)*(i-4)+(j-3.5)*(j-3.5);   /* center-pts table   */
+</span><span class="line"> }                                                   /*(in unused half b[])*/
+</span><span class="line"> F(i,M,1035)T[i]=random()&gt;&gt;9;
+</span><span class="line">
+</span><span class="line"> W(1)                                                /* play loop          */
+</span><span class="line"> {F(i,0,121)printf(" %c",i&amp;8&amp;&amp;(i+=7)?10:n[b[i]&amp;15]); /* print board        */
+</span><span class="line">  p=c;W((*p++=getchar())&gt;10);                        /* read input line    */
+</span><span class="line">  N=0;
+</span><span class="line">  if(*c-10){K=c[0]-16*c[1]+C;L=c[2]-16*c[3]+C;}else  /* parse entered move */
+</span><span class="line">   D(k,-I,I,Q,1,1,O,8,0);                            /* or think up one    */
+</span><span class="line">  F(i,0,U)A[i].K=0;                                  /* clear hash table   */
+</span><span class="line">  if(D(k,-I,I,Q,1,1,O,9,2)==I)k^=24;                 /* check legality &amp; do*/
+</span><span class="line"> }
+</span><span class="line">}
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>In the following pages you will find a detailed discussion of the various features of Micro-Max, and how they are implemented.</p>
+
+<p>Previous   Next</p>
+
+  
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <iframe width="100%" height="320" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=320&fansRow=2&ptype=1&speed=0&skin=1&isTitle=0&noborder=0&isWeibo=1&isFans=1&uid=1771027825&verifier=f729d6d3&dpc=1"></iframe>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/07/02/the-key-tech-in-simple-xiangqi-engine-maxqi/">The Key Tech in Simple XiangQi Engine MaxQi</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/23/something-about-chess-series-with-ai/">Something about Chess series with AI</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/04/23/database-overview/">Database Overview</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/04/21/something-interesting-about-ai/">Something Interesting about AI</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/04/20/android-dev-on-osx/">Android Dev on OSX</a>
+      </li>
+    
+  </ul>
+</section>
+<section>
+  <h1>Tag Cloud</h1>
+    <span id="tag-cloud"><a href='/blog/categories/android' style='font-size: 120.0%'>Android(1)</a> <a href='/blog/categories/babylife' style='font-size: 160.0%'>BabyLife(3)</a> <a href='/blog/categories/github' style='font-size: 120.0%'>Github(1)</a> <a href='/blog/categories/machinelearning' style='font-size: 160.0%'>MachineLearning(3)</a> <a href='/blog/categories/techchangeworld' style='font-size: 160.0%'>TechChangeWorld(3)</a> <a href='/blog/categories/techspark' style='font-size: 160.0%'>TechSpark(3)</a> <a href='/blog/categories/tools' style='font-size: 140.0%'>Tools(2)</a> </span>
+</section>
+<section>
+  <h1>Categories</h1>
+  <input class="search" type="text" name="filter_tags" results="0" placeholder="Filter Tags ..."/>
+  <script type="text/javascript">
+    $('input[name=filter_tags]').keyup(function(e){
+      var val = $(this).val();
+      if (/^\s*$/.test(val) || e.keyCode == 27) { // 27 is 'esc'
+        $('#category-list li').show();
+        $(this).val('');
+        return;
+      }
+      var pattern = new RegExp(val, 'i');
+      $('#category-list li').each(function(){
+        $(this)[pattern.test($(this).find('a').text()) ? 'show' : 'hide']();
+      });
+    });
+  </script>
+    <ul id="category-list"><li><a href='/blog/categories/android'>Android (1)</a></li><li><a href='/blog/categories/babylife'>BabyLife (3)</a></li><li><a href='/blog/categories/github'>Github (1)</a></li><li><a href='/blog/categories/machinelearning'>MachineLearning (3)</a></li><li><a href='/blog/categories/techchangeworld'>TechChangeWorld (3)</a></li><li><a href='/blog/categories/techspark'>TechSpark (3)</a></li><li><a href='/blog/categories/tools'>Tools (2)</a></li></ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Arek.Yao -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'arekyao';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+  <script type="text/javascript">
+    var wumiiPermaLink = ""; //
+    var wumiiTitle = ""; //
+    var wumiiTags = ""; //"1,2"
+    var wumiiSitePrefix = "http://arekyao.github.com/";
+    var wumiiParams = "&num=5&mode=3&pf=JAVASCRIPT";
+</script>
+<script type="text/javascript" src="http://widget.wumii.com/ext/relatedItemsWidget"></script>
+<a href="http://www.wumii.com/widget/relatedItems" style="border:0;">
+<img src="http://static.wumii.cn/images/pixel.png" alt="" style="border:0;padding:0;margin:0;" />
+</a>
+  <meta name="baidu-site-verification" content="QSLeJw3wwyA8dGHl" />
+  <script type="text/javascript">
+    var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F6b519082c0cda60aab2be100c6319f3e' type='text/javascript'%3E%3C/script%3E"));
+  </script>
+</body>
+</html>

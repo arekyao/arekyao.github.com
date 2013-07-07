@@ -5,11 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Break GFW with Goagent in Android MX2 - YY Every Day</title>
+  <title>棋盘表示 - YY Every Day</title>
   <meta name="author" content="Arek.Yao">
 
   
-  <meta name="description" content="Break GFW With Goagent in Android MX2 Feb 12th, 2013 | Comments A new phone MX2 goes into my life. with a problem like before. Facebook, twitter, &hellip;">
+  <meta name="description" content="棋盘表示 我最初的目标是写一个不到1024字符的棋类引擎程序，迄今为止，尚未成功。
+甚至当我放弃了国际棋联各种细节规则，比如王車易位（入堡，castling）和吃过路兵，我都未能将程序大小控制在1200字符内。 Recent Posts The Key Tech in Simple &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://arekyao.github.com/blog/2013/02/12/break-gfw-with-goagent-in-android-mx2/">
+  <link rel="canonical" href="http://arekyao.github.com/micromax/board_representation.html">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -67,163 +68,19 @@
   <div id="main">
     <div id="content">
       <div>
-<article class="hentry" role="article">
+<article role="article">
   
   <header>
-    
-      <h1 class="entry-title">Break GFW With Goagent in Android MX2</h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-02-12T15:36:00+08:00" pubdate data-updated="true">Feb 12<span>th</span>, 2013</time>
-        
-         | <a href="#disqus_thread">Comments</a>
-        
-      </p>
+    <h1 class="entry-title">棋盘表示</h1>
     
   </header>
-
-
-<div class="entry-content"><p>A new phone <a href="http://www.meizu.com/products/mx2fun.html">MX2</a> goes into my life.</p>
-
-<p>with a problem like before.</p>
-
-<p>Facebook, twitter, Youtube are blocked by fucking GFW.</p>
-
-<p>Here is a solution to kick that out of your way.</p>
-
-<h2 id="root-your-phone">1, Root your phone</h2>
-
-<p>MX2 have a pretty function, which give you easy way to root.</p>
-
-<p>Just go into Account Menu, and click “you wanna root”, then reboot your phone.</p>
-
-<p>After the phone restart, it’s rooted.</p>
-
-<p>However, it has a bug that will give your alert “will you give the App root Authority” again and again,</p>
-
-<p>unless you are dead or your phone.</p>
-
-<h2 id="install-superuser">2, Install SuperUser</h2>
-
-<p>It is used to get the right of root Authority Publishing from MX2 Flyme system, to solve the problem we referred above.</p>
-
-<p>Better to download the App from Google Play, ( NOT From MX shop, Wandoujia ).</p>
-
-<p>After installing, update the SuperUser in infomation Tab,</p>
-
-<p>it will Make some configuration automatically.</p>
-
-<h2 id="install-goagent">3, Install GoAgent</h2>
-<p><a href="https://code.google.com/p/goagent/">Goagent</a>, a open source sofeware, using Google App id’s function to give a tunnel to break GFW.  </p>
-
-<p>Every day ,it can offer 1G per app id, and every Email account can have 10 appids.</p>
-
-<p>Goagent’s design is very good, Language used is python, so you can ignore the system, whatever your PC is based on Windows, Linux, Mac, etc..</p>
-
-<pre><code>apply an account on google appid
-download the goagent
-make some configuration and upload the server part
-make some configuration and start the proxy.py.
-then
-it works in PC, but not in phone.
-</code></pre>
-
-<h2 id="install-gae-proxy">4, Install GAE-proxy</h2>
-
-<p>Again better to download the App from Google Play, ( NOT From MX shop, Wandoujia ).</p>
-
-<p>MX shop and other offical shop can give you the App, which https function have some bugs……</p>
-
-<p>Facebook:</p>
-
-<pre><code>Facebook will identify your ID and phone, by give some Friends' Photo and let you mark it.
-
-Maybe it's suspicious by Facebook's spam checking program, because so many facebook id from same ip gived by Google. 
-</code></pre>
-
-<p>Facebook and Twitter can work on Spec App GAE mode, Youtube only works on ALL App GAE mode.</p>
-
-<h2 id="everything-goes-fine">5, Everything goes fine</h2>
-
-<p>That’s all.</p>
-
-<p>Any Problem, you can Solve it by Google.</p>
-
-</div>
-
-<br>
-<a href="#disqus_thread">Comments</a>
-
-  <footer>
-    <p class="meta">
-      
   
-
-<span class="byline author vcard">Posted by <span class="fn">Arek.Yao</span></span>
-
-      
-
-
-
-
-
-
+  <p>我最初的目标是写一个不到1024字符的棋类引擎程序，迄今为止，尚未成功。<br />
+甚至当我放弃了国际棋联各种细节规则，比如王車易位（入堡，castling）和吃过路兵，我都未能将程序大小控制在1200字符内。</p>
 
 
   
-
-
-<time datetime="2013-02-12T15:36:00+08:00" pubdate data-updated="true">Feb 12<span>th</span>, 2013</time>
-      
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/techchangeworld/'>TechChangeWorld</a>
-  
-</span>
-
-
-    </p>
-    
-      <div class="sharing">
-  
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://arekyao.github.com/blog/2013/02/12/break-gfw-with-goagent-in-android-mx2/" data-via="" data-counturl="http://arekyao.github.com/blog/2013/02/12/break-gfw-with-goagent-in-android-mx2/" >Tweet</a>
-  
-  
-  
-</div>
-
-    
-    <p class="meta">
-      
-        <a class="basic-alignment left" href="/blog/2013/02/10/the-days-we-fight-against-eczema/" title="Previous Post: The Days We fight against Eczema">&laquo; The Days We fight against Eczema</a>
-      
-      
-        <a class="basic-alignment right" href="/blog/2013/02/15/the-overview-of-machine-learning/" title="Next Post: The Overview of Machine Learning">The Overview of Machine Learning &raquo;</a>
-      
-    </p>
-  </footer>
 </article>
-<script type="text/javascript" id="wumiiRelatedItems"></script>
-
-  <section>
-    <h1>Comments</h1>
-    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</div>
-  </section>
 
 </div>
 
@@ -303,10 +160,7 @@ Maybe it's suspicious by Facebook's spam checking program, because so many faceb
       var disqus_shortname = 'arekyao';
       
         
-        // var disqus_developer = 1;
-        var disqus_identifier = 'http://arekyao.github.com/blog/2013/02/12/break-gfw-with-goagent-in-android-mx2/';
-        var disqus_url = 'http://arekyao.github.com/blog/2013/02/12/break-gfw-with-goagent-in-android-mx2/';
-        var disqus_script = 'embed.js';
+        var disqus_script = 'count.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
