@@ -35,7 +35,7 @@ The lib "pysynth.py" for gen music through two arg (freq and length)
 
 The key program "MarkovBuilder.py" for TransArray&GenerateNote
 
-```
+```py
 
 '''
 Created on May 14, 2009

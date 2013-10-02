@@ -39,7 +39,7 @@ The PM give a MRD, that asks for the name should contain video's taken time.
 Here is the script:
 
 
-``` 
+``` sh
 #!/bin/bash
 
 for i in `ls *.MOV`;

@@ -6,49 +6,66 @@ footer: false
 
 我最初的目标是写一个不到1024字符的棋类引擎程序，迄今为止，尚未成功。  
 甚至当我放弃了国际棋联各种细节规则，比如王車易位（入堡，castling）和吃过路兵，我都未能将程序大小控制在1200字符内。
+
 所以我改变我的目标，完成了一个不到2000字符的棋类引擎程序。
 这也给我足够的空间去实现哈希转移表，走法正确性验证，完整国际棋类规则。
+但是不包括兵的升变，因为程序是永远不可能发现自己在那样一个有用的情况下，所以这个我认为是一个的无趣输入问题。
 
+（对于真正的棋手：一个接近最小的版本，并完全遵守国际棋联规则包括兵的升变，可以在这里找到。它只有1433个字符。
+实现兵的升变用了一行代码，32个字符。要玩这个，输入1，2，3作为输入的移动第五个字符，可分别晋升为车，像，马。如果不输入任何字符或者输入0，则晋升为后）
+据我所知，这使得micro-Max任何是目前最小的C语言的棋类引擎程序。有一个竞争对手，托莱多，仅有2168个字符。
+尽管它的体积小，micor-Max似乎很容易击败托莱多。）
 
-Except for under-promotions, which I considered a dull input problem, since the program is unlikely to ever find itself in a situation where it would be useful to play one.
+接下来，将从如下方面介绍micro-Max：
 
-(For real purists: a close-to-minimal version that does understand full FIDE rules including under-promotion can be found here. It measures 1433 characters. The under-promotions are implemented in a single line that wastes 32 characters. To play one, type 1, 2, or 3 as the 5th character of the input move, for promotion to R, B, or N, respectively. If you type nothing, or 0, promotion is to Q.)
+* 基本数据表示
+----
+[棋子编码](piece_encoding.html)  
+[棋盘表示](board_representation.html)  
 
-As far as I am aware, this still makes micro-Max the smallest C Chess program in existence. A close competitor for this honor, Toledo, measures 2168 characters. Despite its smaller size, micro-Max seems to beat Toledo easily.
+* 棋法
+----
+[基础走法  ](basic_move.html)  
+[过路吃兵](en_passant_capture.html)  
+[王车易位](castling.html)  
+[兵的升变](pawn_promotions.html)  
 
-On these pages various aspects of micro-Max are described:
+* 搜索算法
+----
 
-Basic Data Representations
-Piece Encoding
-Board Representation
-Move Generation
-Basic Moves
-En Passant Capture
-Castling
-Pawn Promotions
-Search Algorithm
-Alpha-Beta Minimax
-Quiescence Search
-Do and Undo Move
-Iterative Deepening
-Move Sorting
-Transposition Table
-Hashing
-Replacement
-Evaluation
-Material
-Piece-Square Table
-Checkmate and Stalemate
-Delay Penalty
-The Interface
+[Alpha-Beta Minimax](alpha_beta_minimax.html)  
+[Quiescence搜索](quiescence_search.html)  
+[进一步&退一步](do_and_undo_move,html)  
+[迭代深入搜索](iterative_deepening.html)  
+
+* 棋法排序（Move Sorting）
+-----
+[转移表](transposition_table.html)  
+[哈希](hashing.html)  
+[替换](replacement.html)  
+
+* 棋局评估（Evaluation）
+----
+Material  
+Piece-Square Table  
+[将死与偷子]Checkmate and Stalemate  
+Delay Penalty  
+
+* The Interface
+------
 Move Legality Checking
+
+
 Version 4
-General & Hash Table
-Futility Pruning
-All-captures Quiescence Search
-King Safety
-Null-Move Pruning
-Self-Deepening IID
+------
+
+General & Hash Table  
+Futility Pruning  
+All-captures Quiescence Search  
+King Safety  
+Null-Move Pruning  
+Self-Deepening IID  
+
 An overview of the meaning of all variables in the program can be found here. To make it easier for those who want to study the algorithm, there now also is a version that uses more meaningful (and much longer...) variable names.
 Downloading
 
@@ -58,6 +75,8 @@ Future
 
 There are still plenty places where I can scavenge a few characters off the source code. (E.g. A->K in stead of A[0].K, and a->X&M^M in stead of (a->X&M)!=M, and perhaps combining the two Zobrist keys in a 64-bit type.) The castling code is also rather dumb and bulky. I hope to be able to compact the code enough (without loss of functionality) to make room for new features, in particular null-move threat detection. I will post the progress of this project regularly on separate pages, so that it does not mess up the tutorial on micro-Max 3.2. If some clearly defined feature is added to future versions of micro-Max, the page explaining it will be included in the index above.
 Below is the complete source code of micro-Max 3.2. (Click on the various code lines to go directly to their explanation.) If you want to copy-paste it, it is recommended you do it from here, because if I correct a small bug or typo I am generally too lazy to do it on all other pages where the source occurs. So I do it here, and on the page where the particular feature needing the correction is discussed and highlighted.
+
+```
 
 /***************************************************************************/
 /*                               micro-Max,                                */
@@ -192,6 +211,9 @@ main()
   if(D(k,-I,I,Q,1,1,O,9,2)==I)k^=24;                 /* check legality & do*/
  }
 }
+
+```
+
 In the following pages you will find a detailed discussion of the various features of Micro-Max, and how they are implemented.
 
 Previous   Next
