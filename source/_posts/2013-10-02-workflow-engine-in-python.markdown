@@ -46,10 +46,10 @@ the right way is by callback function
 ps: i was stuck by this for two or three days.
 
 
-4, a better example using spiff workflow
+4, one better example using spiff workflow
 -------
 
-the case code 
+the case code :
 
 ```py
 
