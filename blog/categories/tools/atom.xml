@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Tools | YY Every Day]]></title>
   <link href="http://arekyao.github.io/blog/categories/tools/atom.xml" rel="self"/>
   <link href="http://arekyao.github.io/"/>
-  <updated>2013-10-02T10:34:51+08:00</updated>
+  <updated>2013-10-02T12:41:20+08:00</updated>
   <id>http://arekyao.github.io/</id>
   <author>
     <name><![CDATA[Arek.Yao]]></name>
@@ -43,16 +43,18 @@ from Business Process Model and Notation (BPMN) documents.</p>
 
 <p>Generally, it can work like this:</p>
 
-<p>a, template ,which define the workflow based on <a href="http://www.workflowpatterns.com/">workflow pattern</a> <br />
-b, tools  which can transform the template to real object in spiff object
-c, engine, which is used to make spiff workflow object work like flow,lol</p>
+<ul>
+  <li>a, template ,which define the workflow based on <a href="http://www.workflowpatterns.com/">workflow pattern</a>   </li>
+  <li>b, tools  which can transform the template to real object in spiff object  </li>
+  <li>c, engine, which is used to make spiff workflow object work like flow,lol  </li>
+</ul>
 
 <p>However,there is some trap in it.
 you can make it work by function,complete_all() or complete_next()
 but you can not know how the flow works by getting ready task,
 the right way is by callback function</p>
 
-<p>ps: i was stuck by this for two or three days.</p>
+<p>ps: I was stuck by this for two or three days.</p>
 
 <h2 id="one-better-example-using-spiff-workflow">4, one better example using spiff workflow</h2>
 
