@@ -34,16 +34,16 @@ There are many test cases in test directory, you would know how it works, at lea
 
 Generally, it can work like this:
 
-a, template ,which define the workflow based on [workflow pattern](http://www.workflowpatterns.com/)   
-b, tools  which can transform the template to real object in spiff object
-c, engine, which is used to make spiff workflow object work like flow,lol
+* a, template ,which define the workflow based on [workflow pattern](http://www.workflowpatterns.com/)   
+* b, tools  which can transform the template to real object in spiff object  
+* c, engine, which is used to make spiff workflow object work like flow,lol  
 
 However,there is some trap in it.
 you can make it work by function,complete_all() or complete_next()
 but you can not know how the flow works by getting ready task,
 the right way is by callback function
 
-ps: i was stuck by this for two or three days.
+ps: I was stuck by this for two or three days.
 
 
 4, one better example using spiff workflow

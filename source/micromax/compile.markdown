@@ -1,29 +1,43 @@
 ---
 layout: page
-title: 基本数据表示 Basic Data Representations 
+title: Micro-Max, 一个短小精干的棋类引擎（仅133行 ）
 footer: false
 ---
 
+编译 micro-Max  
+-------
 
+Compiling micro-Max
+-------
 
+####Compiler
 
-[棋子编码 Piece Encoding](http://home.hccnet.nl/h.g.muller/encode.html)
----------
+Micro-Max was originally written in Kernighan&Ritchie C, because that allows more compact code than the ANSI dialect. It can be compiled with gcc, under Windows I use cygwin to run gcc. The command line to compile under cygwin if you also want to be able to run from the normal Windows command prompt is:
 
+gcc -O2 -mno-cygwin max.c -o max.exe  
+To play you must enter moves in algebraic notation, and to make the computer do a move you should press an extra enter. You can alternate sides whenever you want, the program accepts or plays moves for the side whose turn it is to move. After having done a move, be it yours or his own, micro-Max prints a board with the new position. To quit type control-c.
 
+Adapting the Source
 
-Pieces are encoded as integers, which (like anything else on a binary digital computer) are eventually bitpatterns. The encoding makes use of the binary representation by assigning a specific meaning to some bits of the integer encoding: the '8'-bit is used (i.e. set) to indicate a white piece, the '16'-bit indicates a black piece. This makes it easy to test if a piece u belongs to white, by bitwise anding with 8 (u&8). The code uses a variable k to indicate the side that should move, which has the value 8 on white's turn, or 16 for black, so that u&k tells us if a piece belongs to the side to move. The '32'-bit is used to indicate that a piece is in the original position (the 'virgin bit'). (Since this is only important for Kings and Rooks in connection with castling, Micro-Max doesn't bother to set the virgin bit on pawns.
+If you want to change the hash-table size, because 192MB is too large for your memory (and the system starts swapping like mad), you should lower the value of U as set by the #define statement. Be sure to pick a size that is a power-of-two plus 8. The simplest way to do this is enter the number in hexadecimal, e.g.
 
-The three low-order bits can be interpreted as a number 0-7 that indicates the piece type, and have a meaning that is independent of piece color. This makes tables that do not have to distingush by color (like piece value w[u&7]) half as small. Tables that would like to make this distinction (like the character to used to representthe piece on printout) can simply be indexed with the 4 low-order bits (n[u&15]).
+```
+#define U 0x100008
+for a hash table of 12MB in stead of 192MB. 0x200008 and 0x400008 are also good values.
+```
 
-Upstream moving pawns are considered different pieces than downstream moving pawns (type 1 and 2, respectively). Each side has only one of the types of pawns, moving in the appropriate direction, although the engine would not frown at putting pieces on the board that move 'backwards'. The encoding is further chosen such that tests if a piece belongs to a certain group is easy: the sliding pieces (BRQ) are giving the highest type numbers (5,6,7), so that crawling pieces can be recognized by piece type p (=u&7) p<5. Pieces that are awarded for moving towards the center of the board (everything but RQ) are recognized by p<6, pawns by p<3. The complete list thus is {1,2,3,4,5,6,7} = {P+,P-,N,K,B,R,Q}. Type 0 is not used, so it can indicate empty squares on the board.
+If you want to adjust the time per move, you can change the constant 1e7 in N<1e7. This is the number of nodes that is minimally searched, and the time per move is directly proportional to it. So for faster play you could try 1e6 or even 1e5. Micro-Max finishes the ply it was searching, and this causes strongly variable time per move. The actual number of nodes searched is sometimes up to 10 times larger than the number given, if it starts a deeper search after the prevous one was just under the requested number of nodes.
 
-The following highlights places that show how the piece encoding is used in Micro-Max.
+ANSI C
 
-[更好的看代码的地址](http://home.hccnet.nl/h.g.muller/encode.html)
+If your compiler only understands ANSI C, you can copy-paste the listing below. The main difference with the K&R version is the declaration of the routines D() and main(), that needs specification of the types within the argument list, rather than in a separate declaration outside the function body, and that main() now explicitly returns an integer (namely zero). In addition, random() was changed to rand(), because the former does not seem to be universal (gcc recognizes both). To make sure the linker recognizes printf() and getchar() in a C++ environment, the header files stdio.h and math.h are included.
 
+The truly lazy can download an executable that runs under Windows, which uses 48MB hash table and searches 1 million positions.
+
+A source of micro-Max in ANSI C:
 
 ```c
+
 /***************************************************************************/
 /*                               micro-Max,                                */
 /* A chess program smaller than 2KB (of non-blank source), by H.G. Muller  */
@@ -36,6 +50,9 @@ The following highlights places that show how the piece encoding is used in Micr
 /* - best-move-first 'sorting'                                             */
 /* - a hash table storing score and best move                              */
 /* - full FIDE rules (expt minor ptomotion) and move-legality checking     */
+
+#include <stdio.h>
+#include <math.h>
 
 #define F(I,S,N) for(I=S;I<N;I++)
 #define W(A) while(A)
@@ -57,15 +74,17 @@ T[1035],                                       /* hash translation table   */
 
 n[]=".?+nkbrq?*?NKBRQ";                        /* piece symbols on printout*/
 
-D(k,q,l,e,J,Z,E,z,n)    /* recursive minimax search, k=moving side, n=depth*/
-int k,q,l,e,J,Z,E,z,n;  /* (q,l)=window, e=current eval. score, E=e.p. sqr.*/
-{                       /* e=score, z=prev.dest; J,Z=hashkeys; return score*/
- int j,r,m,v,d,h,i=9,F,G;
+int D(int k,int q,int l,int e,int J,int Z,int E,int z,int n)    
+/* recursive minimax search, k=moving side, n=depth*/
+/* (q,l)=window, e=current eval. score, E=e.p. sqr.*/
+/* e=score, z=prev.dest; J,Z=hashkeys; return score*/
+{                       
+ int j,r,m,v,d,h,i=8,F,G;
  char t,p,u,x,y,X,Y,H,B;
  struct _*a=A;
                                                /* lookup pos. in hash table*/
  j=(k*E^J)&U-9;                                /* try 8 consec. locations  */
- W((h=A[++j].K)&&h-Z&&--i);                    /* first empty or match     */
+ while((h=A[++j].K)&&h-Z&&--i);                /* first empty or match     */
  a+=i?j:0;                                     /* dummy A[0] if miss & full*/
  if(a->K)                                      /* hit: pos. is in hash tab */
  {d=a->D;v=a->V;X=a->X;                        /* examine stored data      */
@@ -126,7 +145,7 @@ int k,q,l,e,J,Z,E,z,n;  /* (q,l)=window, e=current eval. score, E=e.p. sqr.*/
      }W(!t);                                   /* if not capt. continue ray*/
   }}}W((x=x+9&~M)-B);                          /* next sqr. of board, wrap */
 C:if(m>I/4|m<-I/4)d=99;                        /* mate is indep. of depth  */
-  m=m+I?m:-D(24-k,-I,I,0,J,Z,S,z,1)/2;         /* best loses K: (stale)mate*/
+  m=m+I?m:-D(24-k,-I,I,0,J,K,S,z,1)/2;         /* best loses K: (stale)mate*/
   if(!a->K|(a->X&M)!=M|a->D<=d)                /* if new/better type/depth:*/
   {a->K=Z;a->V=m;a->D=d;A->K=0;                /* store in hash,dummy stays*/
    a->X=X|8*(m>q)|S*(m<l);a->Y=Y;              /* empty, type (limit/exact)*/
@@ -137,7 +156,7 @@ C:if(m>I/4|m<-I/4)d=99;                        /* mate is indep. of depth  */
  return m;                                     
 }
 
-main()
+int main(void)
 {
  int j,k=8,*p,c[9];
 
@@ -145,7 +164,7 @@ main()
  {b[i]=(b[i+V]=o[i+24]+40)+8;b[i+16]=18;b[i+96]=9;   /* initial board setup*/
   F(j,0,8)b[16*j+i+8]=(i-4)*(i-4)+(j-3.5)*(j-3.5);   /* center-pts table   */
  }                                                   /*(in unused half b[])*/
- F(i,M,1035)T[i]=random()>>9;
+ F(i,M,1035)T[i]=rand()>>9;
 
  W(1)                                                /* play loop          */
  {F(i,0,121)printf(" %c",i&8&&(i+=7)?10:n[b[i]&15]); /* print board        */
@@ -153,12 +172,11 @@ main()
   N=0;
   if(*c-10){K=c[0]-16*c[1]+C;L=c[2]-16*c[3]+C;}else  /* parse entered move */
    D(k,-I,I,Q,1,1,O,8,0);                            /* or think up one    */
-  F(i,0,U)A[i].K=0;                                  /* clear hash table   */
+  for(i=0;i<U;i++)A[i].K=0;                          /* clear hash table   */
   if(D(k,-I,I,Q,1,1,O,9,2)==I)k^=24;                 /* check legality & do*/
  }
+ return 0;
 }
 
 ```
-The initial boad setup might deserve some explanation: the piece types in the back of the array o[] are copied to the 1st and 8th rank of the board. On the 1st rank 40 = 8 + 32 is added, which sets the 'white' and the 'virgin' bit. On the 8th rank an extra 8 is added, for a total of 48 = 16 + 32, the 'black' and 'virgin' bits. The 18 = 16 + 2 and 9 = 8 + 1 are the encodings for a black P- and a white P+, respectively.
-
 
