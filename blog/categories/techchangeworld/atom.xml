@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: TechChangeWorld | YY Every Day]]></title>
-  <link href="http://arekyao.github.com/blog/categories/techchangeworld/atom.xml" rel="self"/>
-  <link href="http://arekyao.github.com/"/>
-  <updated>2013-10-02T10:02:58+08:00</updated>
-  <id>http://arekyao.github.com/</id>
+  <link href="http://arekyao.github.io/blog/categories/techchangeworld/atom.xml" rel="self"/>
+  <link href="http://arekyao.github.io/"/>
+  <updated>2013-10-02T10:16:46+08:00</updated>
+  <id>http://arekyao.github.io/</id>
   <author>
     <name><![CDATA[Arek.Yao]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[TV series the Practice]]></title>
-    <link href="http://arekyao.github.com/blog/2013/04/10/tv-series-the-practice/"/>
+    <link href="http://arekyao.github.io/blog/2013/04/10/tv-series-the-practice/"/>
     <updated>2013-04-10T22:22:00+08:00</updated>
-    <id>http://arekyao.github.com/blog/2013/04/10/tv-series-the-practice</id>
+    <id>http://arekyao.github.io/blog/2013/04/10/tv-series-the-practice</id>
     <content type="html"><![CDATA[<h2 id="whats-the-practice">What’s the practice</h2>
 
 <p>The Practice is an American TV series, legal drama. </p>
@@ -201,9 +201,9 @@ Tech Changes World</p>
   
   <entry>
     <title type="html"><![CDATA[Break GFW with Goagent in Android MX2]]></title>
-    <link href="http://arekyao.github.com/blog/2013/02/12/break-gfw-with-goagent-in-android-mx2/"/>
+    <link href="http://arekyao.github.io/blog/2013/02/12/break-gfw-with-goagent-in-android-mx2/"/>
     <updated>2013-02-12T15:36:00+08:00</updated>
-    <id>http://arekyao.github.com/blog/2013/02/12/break-gfw-with-goagent-in-android-mx2</id>
+    <id>http://arekyao.github.io/blog/2013/02/12/break-gfw-with-goagent-in-android-mx2</id>
     <content type="html"><![CDATA[<p>A new phone <a href="http://www.meizu.com/products/mx2fun.html">MX2</a> goes into my life.</p>
 
 <p>with a problem like before.</p>
@@ -275,9 +275,9 @@ Maybe it's suspicious by Facebook's spam checking program, because so many faceb
   
   <entry>
     <title type="html"><![CDATA[How to export video from IP4s]]></title>
-    <link href="http://arekyao.github.com/blog/2013/01/20/how-to-export-video-from-ip4s/"/>
+    <link href="http://arekyao.github.io/blog/2013/01/20/how-to-export-video-from-ip4s/"/>
     <updated>2013-01-20T18:39:00+08:00</updated>
-    <id>http://arekyao.github.com/blog/2013/01/20/how-to-export-video-from-ip4s</id>
+    <id>http://arekyao.github.io/blog/2013/01/20/how-to-export-video-from-ip4s</id>
     <content type="html"><![CDATA[<p>Recently, a Mac Book Air comes to my life.
 As the same as before, a problem comes with it.</p>
 

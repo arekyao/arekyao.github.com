@@ -1,107 +1,105 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
-        <loc>http://arekyao.github.com/blog/2013/01/10/hello-world/</loc>
+        <loc>http://arekyao.github.io/blog/2013/01/10/hello-world/</loc>
         <lastmod>2013-04-25T11:13:46+08:00</lastmod>
     </url>
     <url>
-        <loc>http://arekyao.github.com/blog/2013/01/20/how-to-export-video-from-ip4s/</loc>
+        <loc>http://arekyao.github.io/blog/2013/01/20/how-to-export-video-from-ip4s/</loc>
         <lastmod>2013-10-02T08:17:35+08:00</lastmod>
     </url>
     <url>
-        <loc>http://arekyao.github.com/blog/2013/02/10/the-days-we-fight-against-eczema/</loc>
+        <loc>http://arekyao.github.io/blog/2013/02/10/the-days-we-fight-against-eczema/</loc>
         <lastmod>2013-02-18T23:43:16+08:00</lastmod>
     </url>
     <url>
-        <loc>
-            http://arekyao.github.com/blog/2013/02/12/break-gfw-with-goagent-in-android-mx2/
-        </loc>
+        <loc>http://arekyao.github.io/blog/2013/02/12/break-gfw-with-goagent-in-android-mx2/</loc>
         <lastmod>2013-02-18T23:43:16+08:00</lastmod>
     </url>
     <url>
-        <loc>http://arekyao.github.com/blog/2013/02/15/the-overview-of-machine-learning/</loc>
+        <loc>http://arekyao.github.io/blog/2013/02/15/the-overview-of-machine-learning/</loc>
         <lastmod>2013-02-18T23:43:16+08:00</lastmod>
     </url>
     <url>
-        <loc>http://arekyao.github.com/blog/2013/02/16/machine-learning-ep1/</loc>
+        <loc>http://arekyao.github.io/blog/2013/02/16/machine-learning-ep1/</loc>
         <lastmod>2013-04-24T08:37:00+08:00</lastmod>
     </url>
     <url>
-        <loc>http://arekyao.github.com/blog/2013/02/17/going-to-python-world-step-by-step/</loc>
+        <loc>http://arekyao.github.io/blog/2013/02/17/going-to-python-world-step-by-step/</loc>
         <lastmod>2013-10-02T08:18:17+08:00</lastmod>
     </url>
     <url>
-        <loc>http://arekyao.github.com/blog/2013/03/09/machine-learning-ep2/</loc>
+        <loc>http://arekyao.github.io/blog/2013/03/09/machine-learning-ep2/</loc>
         <lastmod>2013-03-09T23:53:53+08:00</lastmod>
     </url>
     <url>
-        <loc>http://arekyao.github.com/blog/2013/03/10/air-cleaner-and-english-study/</loc>
+        <loc>http://arekyao.github.io/blog/2013/03/10/air-cleaner-and-english-study/</loc>
         <lastmod>2013-03-10T11:17:48+08:00</lastmod>
     </url>
     <url>
-        <loc>http://arekyao.github.com/blog/2013/03/24/life-in-china/</loc>
+        <loc>http://arekyao.github.io/blog/2013/03/24/life-in-china/</loc>
         <lastmod>2013-10-02T07:48:35+08:00</lastmod>
     </url>
     <url>
-        <loc>http://arekyao.github.com/blog/2013/04/10/tv-series-the-practice/</loc>
+        <loc>http://arekyao.github.io/blog/2013/04/10/tv-series-the-practice/</loc>
         <lastmod>2013-10-02T08:19:00+08:00</lastmod>
     </url>
     <url>
-        <loc>http://arekyao.github.com/blog/2013/04/20/android-dev-on-osx/</loc>
+        <loc>http://arekyao.github.io/blog/2013/04/20/android-dev-on-osx/</loc>
         <lastmod>2013-04-24T08:41:24+08:00</lastmod>
     </url>
     <url>
-        <loc>http://arekyao.github.com/blog/2013/04/21/something-interesting-about-ai/</loc>
+        <loc>http://arekyao.github.io/blog/2013/04/21/something-interesting-about-ai/</loc>
         <lastmod>2013-10-02T08:19:11+08:00</lastmod>
     </url>
     <url>
-        <loc>http://arekyao.github.com/blog/2013/04/23/database-overview/</loc>
+        <loc>http://arekyao.github.io/blog/2013/04/23/database-overview/</loc>
         <lastmod>2013-04-28T13:07:19+08:00</lastmod>
     </url>
     <url>
-        <loc>http://arekyao.github.com/blog/2013/06/23/something-about-chess-series-with-ai/</loc>
+        <loc>http://arekyao.github.io/blog/2013/06/23/something-about-chess-series-with-ai/</loc>
         <lastmod>2013-07-02T08:32:11+08:00</lastmod>
     </url>
     <url>
         <loc>
-            http://arekyao.github.com/blog/2013/07/02/the-key-technologies-in-simple-xiangqi-engine-maxqi/
+            http://arekyao.github.io/blog/2013/07/02/the-key-technologies-in-simple-xiangqi-engine-maxqi/
         </loc>
         <lastmod>2013-10-02T08:19:34+08:00</lastmod>
     </url>
     <url>
-        <loc>http://arekyao.github.com/blog/2013/10/02/workflow-engine-in-python/</loc>
+        <loc>http://arekyao.github.io/blog/2013/10/02/workflow-engine-in-python/</loc>
         <lastmod>2013-10-02T10:02:51+08:00</lastmod>
     </url>
     <url>
-        <loc>http://arekyao.github.com/404.html</loc>
+        <loc>http://arekyao.github.io/404.html</loc>
         <lastmod>2013-02-18T23:43:16+08:00</lastmod>
     </url>
     <url>
-        <loc>http://arekyao.github.com/about/</loc>
+        <loc>http://arekyao.github.io/about/</loc>
         <lastmod>2013-02-18T23:43:16+08:00</lastmod>
     </url>
     <url>
-        <loc>http://arekyao.github.com/blog/archives/</loc>
+        <loc>http://arekyao.github.io/blog/archives/</loc>
         <lastmod>2013-10-02T10:02:51+08:00</lastmod>
     </url>
     <url>
-        <loc>http://arekyao.github.com/</loc>
+        <loc>http://arekyao.github.io/</loc>
         <lastmod>2013-10-02T10:02:51+08:00</lastmod>
     </url>
     <url>
-        <loc>http://arekyao.github.com/micromax/board_representation.html</loc>
+        <loc>http://arekyao.github.io/micromax/board_representation.html</loc>
         <lastmod>2013-07-06T18:55:11+08:00</lastmod>
     </url>
     <url>
-        <loc>http://arekyao.github.com/micromax/</loc>
+        <loc>http://arekyao.github.io/micromax/</loc>
         <lastmod>2013-07-08T10:53:02+08:00</lastmod>
     </url>
     <url>
-        <loc>http://arekyao.github.com/micromax/piece_encoding.html</loc>
+        <loc>http://arekyao.github.io/micromax/piece_encoding.html</loc>
         <lastmod>2013-07-06T18:54:59+08:00</lastmod>
     </url>
     <url>
-        <loc>http://arekyao.github.com/robots.txt</loc>
+        <loc>http://arekyao.github.io/robots.txt</loc>
         <lastmod>2013-02-12T11:07:15+08:00</lastmod>
     </url>
 </urlset>

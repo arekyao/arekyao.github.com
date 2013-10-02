@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Tools | YY Every Day]]></title>
-  <link href="http://arekyao.github.com/blog/categories/tools/atom.xml" rel="self"/>
-  <link href="http://arekyao.github.com/"/>
-  <updated>2013-10-02T10:02:58+08:00</updated>
-  <id>http://arekyao.github.com/</id>
+  <link href="http://arekyao.github.io/blog/categories/tools/atom.xml" rel="self"/>
+  <link href="http://arekyao.github.io/"/>
+  <updated>2013-10-02T10:16:46+08:00</updated>
+  <id>http://arekyao.github.io/</id>
   <author>
     <name><![CDATA[Arek.Yao]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Workflow Engine in Python]]></title>
-    <link href="http://arekyao.github.com/blog/2013/10/02/workflow-engine-in-python/"/>
+    <link href="http://arekyao.github.io/blog/2013/10/02/workflow-engine-in-python/"/>
     <updated>2013-10-02T07:49:00+08:00</updated>
-    <id>http://arekyao.github.com/blog/2013/10/02/workflow-engine-in-python</id>
+    <id>http://arekyao.github.io/blog/2013/10/02/workflow-engine-in-python</id>
     <content type="html"><![CDATA[<h2 id="whats-workflow">1,What’s workflow</h2>
 
 <p>A <a href="http://en.wikipedia.org/wiki/Workflow">workflow</a> consists of a sequence of connected steps where each step follows without delay or gap and ends just before the subsequent step may begin.</p>
@@ -301,9 +301,9 @@ print
   
   <entry>
     <title type="html"><![CDATA[Database Overview]]></title>
-    <link href="http://arekyao.github.com/blog/2013/04/23/database-overview/"/>
+    <link href="http://arekyao.github.io/blog/2013/04/23/database-overview/"/>
     <updated>2013-04-23T22:46:00+08:00</updated>
-    <id>http://arekyao.github.com/blog/2013/04/23/database-overview</id>
+    <id>http://arekyao.github.io/blog/2013/04/23/database-overview</id>
     <content type="html"><![CDATA[<h2 id="preface">Preface</h2>
 
 <p>What’s the most important?
@@ -473,9 +473,9 @@ Such as, XML, Jason, YAML etc.</p>
   
   <entry>
     <title type="html"><![CDATA[Going to Python World Step by Step]]></title>
-    <link href="http://arekyao.github.com/blog/2013/02/17/going-to-python-world-step-by-step/"/>
+    <link href="http://arekyao.github.io/blog/2013/02/17/going-to-python-world-step-by-step/"/>
     <updated>2013-02-17T12:46:00+08:00</updated>
-    <id>http://arekyao.github.com/blog/2013/02/17/going-to-python-world-step-by-step</id>
+    <id>http://arekyao.github.io/blog/2013/02/17/going-to-python-world-step-by-step</id>
     <content type="html"><![CDATA[<p>First, let me introduce something about develop environment, such as Brew, easy_install,RVM, … etc. </p>
 
 <h1 id="mac-develop-environment">Mac Develop Environment</h1>

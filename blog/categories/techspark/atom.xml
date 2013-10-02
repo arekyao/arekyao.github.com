@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: TechSpark | YY Every Day]]></title>
-  <link href="http://arekyao.github.com/blog/categories/techspark/atom.xml" rel="self"/>
-  <link href="http://arekyao.github.com/"/>
-  <updated>2013-10-02T10:02:58+08:00</updated>
-  <id>http://arekyao.github.com/</id>
+  <link href="http://arekyao.github.io/blog/categories/techspark/atom.xml" rel="self"/>
+  <link href="http://arekyao.github.io/"/>
+  <updated>2013-10-02T10:16:46+08:00</updated>
+  <id>http://arekyao.github.io/</id>
   <author>
     <name><![CDATA[Arek.Yao]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[The Key Technologies in Simple XiangQi Engine MaxQi]]></title>
-    <link href="http://arekyao.github.com/blog/2013/07/02/the-key-technologies-in-simple-xiangqi-engine-maxqi/"/>
+    <link href="http://arekyao.github.io/blog/2013/07/02/the-key-technologies-in-simple-xiangqi-engine-maxqi/"/>
     <updated>2013-07-02T08:30:00+08:00</updated>
-    <id>http://arekyao.github.com/blog/2013/07/02/the-key-technologies-in-simple-xiangqi-engine-maxqi</id>
+    <id>http://arekyao.github.io/blog/2013/07/02/the-key-technologies-in-simple-xiangqi-engine-maxqi</id>
     <content type="html"><![CDATA[<h2 id="mini-max-algorithm">1,mini-max algorithm</h2>
 
 <p>minimize the opponent’s potential max profit.</p>
@@ -99,9 +99,9 @@ The other way the piece’s weight sum is used to estimate.</p>
   
   <entry>
     <title type="html"><![CDATA[Something about Chess series with AI]]></title>
-    <link href="http://arekyao.github.com/blog/2013/06/23/something-about-chess-series-with-ai/"/>
+    <link href="http://arekyao.github.io/blog/2013/06/23/something-about-chess-series-with-ai/"/>
     <updated>2013-06-23T20:48:00+08:00</updated>
-    <id>http://arekyao.github.com/blog/2013/06/23/something-about-chess-series-with-ai</id>
+    <id>http://arekyao.github.io/blog/2013/06/23/something-about-chess-series-with-ai</id>
     <content type="html"><![CDATA[<h2 id="preface">Preface</h2>
 <p>One day, I want to learn some knowledge about the Game AI topic.
 Chess series is supposed to a big collection in Game.
@@ -359,9 +359,9 @@ C:if(a-&gt;D&lt;99)                                  /* protect game history    
   
   <entry>
     <title type="html"><![CDATA[Something Interesting about AI]]></title>
-    <link href="http://arekyao.github.com/blog/2013/04/21/something-interesting-about-ai/"/>
+    <link href="http://arekyao.github.io/blog/2013/04/21/something-interesting-about-ai/"/>
     <updated>2013-04-21T19:53:00+08:00</updated>
-    <id>http://arekyao.github.com/blog/2013/04/21/something-interesting-about-ai</id>
+    <id>http://arekyao.github.io/blog/2013/04/21/something-interesting-about-ai</id>
     <content type="html"><![CDATA[<ul>
   <li>
     <h2 id="generate-music-algorithmicallyhttpwwwdatabozocom20130412generatingmusicalgorithmicallyhtml"><a href="http://www.databozo.com/2013/04/12/Generating_music_algorithmically.html">Generate Music Algorithmically</a></h2>

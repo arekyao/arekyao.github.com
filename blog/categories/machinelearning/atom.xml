@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: MachineLearning | YY Every Day]]></title>
-  <link href="http://arekyao.github.com/blog/categories/machinelearning/atom.xml" rel="self"/>
-  <link href="http://arekyao.github.com/"/>
-  <updated>2013-10-02T10:02:58+08:00</updated>
-  <id>http://arekyao.github.com/</id>
+  <link href="http://arekyao.github.io/blog/categories/machinelearning/atom.xml" rel="self"/>
+  <link href="http://arekyao.github.io/"/>
+  <updated>2013-10-02T10:16:46+08:00</updated>
+  <id>http://arekyao.github.io/</id>
   <author>
     <name><![CDATA[Arek.Yao]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[machine learning ep2]]></title>
-    <link href="http://arekyao.github.com/blog/2013/03/09/machine-learning-ep2/"/>
+    <link href="http://arekyao.github.io/blog/2013/03/09/machine-learning-ep2/"/>
     <updated>2013-03-09T22:56:00+08:00</updated>
-    <id>http://arekyao.github.com/blog/2013/03/09/machine-learning-ep2</id>
+    <id>http://arekyao.github.io/blog/2013/03/09/machine-learning-ep2</id>
     <content type="html"><![CDATA[<ul>
   <li>
     <h4 id="discriminative-learning-algorithm">Discriminative learning algorithm</h4>
@@ -67,9 +67,9 @@ P(y)</p>
   
   <entry>
     <title type="html"><![CDATA[Machine Learning ep1]]></title>
-    <link href="http://arekyao.github.com/blog/2013/02/16/machine-learning-ep1/"/>
+    <link href="http://arekyao.github.io/blog/2013/02/16/machine-learning-ep1/"/>
     <updated>2013-02-16T22:35:00+08:00</updated>
-    <id>http://arekyao.github.com/blog/2013/02/16/machine-learning-ep1</id>
+    <id>http://arekyao.github.io/blog/2013/02/16/machine-learning-ep1</id>
     <content type="html"><![CDATA[<ul>
   <li>
     <h2 id="the-general-steps-of-machine-learning">The general steps of Machine Learning</h2>
@@ -197,9 +197,9 @@ Softmax Regession can solve multi</p>
   
   <entry>
     <title type="html"><![CDATA[The Overview of Machine Learning]]></title>
-    <link href="http://arekyao.github.com/blog/2013/02/15/the-overview-of-machine-learning/"/>
+    <link href="http://arekyao.github.io/blog/2013/02/15/the-overview-of-machine-learning/"/>
     <updated>2013-02-15T21:19:00+08:00</updated>
-    <id>http://arekyao.github.com/blog/2013/02/15/the-overview-of-machine-learning</id>
+    <id>http://arekyao.github.io/blog/2013/02/15/the-overview-of-machine-learning</id>
     <content type="html"><![CDATA[<blockquote>
   <p>First of all, I have to say, the Machine learning series have a very deep water,:)
 I dont have enough time to afford a full explaination, in detail, about the machine learning.

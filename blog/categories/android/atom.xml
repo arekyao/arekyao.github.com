@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Android | YY Every Day]]></title>
-  <link href="http://arekyao.github.com/blog/categories/android/atom.xml" rel="self"/>
-  <link href="http://arekyao.github.com/"/>
-  <updated>2013-10-02T10:02:58+08:00</updated>
-  <id>http://arekyao.github.com/</id>
+  <link href="http://arekyao.github.io/blog/categories/android/atom.xml" rel="self"/>
+  <link href="http://arekyao.github.io/"/>
+  <updated>2013-10-02T10:16:46+08:00</updated>
+  <id>http://arekyao.github.io/</id>
   <author>
     <name><![CDATA[Arek.Yao]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Android Dev on OSX]]></title>
-    <link href="http://arekyao.github.com/blog/2013/04/20/android-dev-on-osx/"/>
+    <link href="http://arekyao.github.io/blog/2013/04/20/android-dev-on-osx/"/>
     <updated>2013-04-20T00:00:00+08:00</updated>
-    <id>http://arekyao.github.com/blog/2013/04/20/android-dev-on-osx</id>
+    <id>http://arekyao.github.io/blog/2013/04/20/android-dev-on-osx</id>
     <content type="html"><![CDATA[<h2 id="some-gossip">Some gossip</h2>
 
 <p>Today it prove the conclusion that Google is much better than baidu, esp in Tech Problem.</p>
