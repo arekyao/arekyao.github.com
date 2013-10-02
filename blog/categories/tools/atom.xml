@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Tools | YY Every Day]]></title>
   <link href="http://arekyao.github.com/blog/categories/tools/atom.xml" rel="self"/>
   <link href="http://arekyao.github.com/"/>
-  <updated>2013-07-06T20:37:08+08:00</updated>
+  <updated>2013-10-02T08:20:12+08:00</updated>
   <id>http://arekyao.github.com/</id>
   <author>
     <name><![CDATA[Arek.Yao]]></name>
@@ -186,10 +186,10 @@ Such as, XML, Jason, YAML etc.</p>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Something About Python]]></title>
-    <link href="http://arekyao.github.com/blog/2013/02/17/something-about-python/"/>
+    <title type="html"><![CDATA[Going to Python World Step by Step]]></title>
+    <link href="http://arekyao.github.com/blog/2013/02/17/going-to-python-world-step-by-step/"/>
     <updated>2013-02-17T12:46:00+08:00</updated>
-    <id>http://arekyao.github.com/blog/2013/02/17/something-about-python</id>
+    <id>http://arekyao.github.com/blog/2013/02/17/going-to-python-world-step-by-step</id>
     <content type="html"><![CDATA[<p>First, let me introduce something about develop environment, such as Brew, easy_install,RVM, … etc. </p>
 
 <h1 id="mac-develop-environment">Mac Develop Environment</h1>
@@ -246,7 +246,7 @@ Here is a good scipt for mac 10.8 user
 
 <p><a href="https://raw.github.com/fonnesbeck/ScipySuperpack/master/install_superpack.sh">the scipt code</a> :</p>
 
-<p>```
+<p>```sh
 #!/bin/sh
 PYTHON=’/usr/bin/python’
 GIT_FILENAME=’git-1.7.7.3-intel-universal-snow-leopard’
@@ -365,9 +365,9 @@ fi</p>
 
 <h2 id="reference">Reference</h2>
 
-<p><a href="">http://www.cnblogs.com/vamei/archive/2013/02/06/2892628.html</a>
-<a href="">http://www.python.org/about/apps/</a>
-<a href="">http://docs.python-guide.org/en/latest/</a></p>
+<p><a href="http://www.cnblogs.com/vamei/archive/2013/02/06/2892628.html">http://www.cnblogs.com/vamei/archive/2013/02/06/2892628.html</a><br />
+<a href="http://www.python.org/about/apps/">http://www.python.org/about/apps/</a><br />
+<a href="">http://docs.python-guide.org/en/latest/</a>  </p>
 ]]></content>
   </entry>
   

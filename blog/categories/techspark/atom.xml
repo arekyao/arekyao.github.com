@@ -4,7 +4,7 @@
   <title><![CDATA[Category: TechSpark | YY Every Day]]></title>
   <link href="http://arekyao.github.com/blog/categories/techspark/atom.xml" rel="self"/>
   <link href="http://arekyao.github.com/"/>
-  <updated>2013-07-06T20:37:08+08:00</updated>
+  <updated>2013-10-02T08:20:12+08:00</updated>
   <id>http://arekyao.github.com/</id>
   <author>
     <name><![CDATA[Arek.Yao]]></name>
@@ -14,10 +14,10 @@
 
   
   <entry>
-    <title type="html"><![CDATA[The Key Tech in Simple XiangQi Engine MaxQi]]></title>
-    <link href="http://arekyao.github.com/blog/2013/07/02/the-key-tech-in-simple-xiangqi-engine-maxqi/"/>
+    <title type="html"><![CDATA[The Key Technologies in Simple XiangQi Engine MaxQi]]></title>
+    <link href="http://arekyao.github.com/blog/2013/07/02/the-key-technologies-in-simple-xiangqi-engine-maxqi/"/>
     <updated>2013-07-02T08:30:00+08:00</updated>
-    <id>http://arekyao.github.com/blog/2013/07/02/the-key-tech-in-simple-xiangqi-engine-maxqi</id>
+    <id>http://arekyao.github.com/blog/2013/07/02/the-key-technologies-in-simple-xiangqi-engine-maxqi</id>
     <content type="html"><![CDATA[<h2 id="mini-max-algorithm">1,mini-max algorithm</h2>
 
 <p>minimize the opponent’s potential max profit.</p>
@@ -394,7 +394,7 @@ the next note’s length is decided by the previous’s.</p>
 
 <p>The key program “MarkovBuilder.py” for TransArray&amp;GenerateNote</p>
 
-<p>```</p>
+<p>```py</p>
 
 <p>’’’
 Created on May 14, 2009</p>

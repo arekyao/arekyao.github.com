@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Something about the Practice - YY Every Day</title>
+  <title>TV series the Practice - YY Every Day</title>
   <meta name="author" content="Arek.Yao">
 
   
-  <meta name="description" content="Something About the Practice Apr 10th, 2013 | Comments What’s the practice The Practice is an American TV series, legal drama. This show won the &hellip;">
+  <meta name="description" content="TV Series the Practice Apr 10th, 2013 | Comments What’s the practice The Practice is an American TV series, legal drama. This show won the Emmy in &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://arekyao.github.com/blog/2013/04/10/something-about-the-practice/">
+  <link rel="canonical" href="http://arekyao.github.com/blog/2013/04/10/tv-series-the-practice/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -71,7 +71,7 @@
   
   <header>
     
-      <h1 class="entry-title">Something About the Practice</h1>
+      <h1 class="entry-title">TV Series the Practice</h1>
     
     
       <p class="meta">
@@ -203,7 +203,7 @@ It’s too fast to follow it.</p>
 
 <p>the code is like this:</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
@@ -270,84 +270,78 @@ It’s too fast to follow it.</p>
 <span class="line-number">65</span>
 <span class="line-number">66</span>
 <span class="line-number">67</span>
-<span class="line-number">68</span>
-<span class="line-number">69</span>
-<span class="line-number">70</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">#! /usr/bin/env python
+</pre></td><td class="code"><pre><code class="py"><span class="line"><span class="c">#! /usr/bin/env python</span>
 </span><span class="line">
-</span><span class="line">import time
-</span><span class="line">import sys
-</span><span class="line">import exceptions
-</span><span class="line">import string
+</span><span class="line"><span class="kn">import</span> <span class="nn">time</span>
+</span><span class="line"><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class="line"><span class="kn">import</span> <span class="nn">exceptions</span>
+</span><span class="line"><span class="kn">import</span> <span class="nn">string</span>
 </span><span class="line">
 </span><span class="line">
-</span><span class="line">def main(argv=sys.argv):
-</span><span class="line">	englist_title_file = open(argv[1],"r")
-</span><span class="line">	chinese_title_file = open(argv[2],"r")
-</span><span class="line">	mixed_title_file = open(argv[3],"w")
-</span><span class="line">	sub_index = 1
-</span><span class="line">	sub_content = {}
-</span><span class="line">	while 1 :
-</span><span class="line">		### index line
-</span><span class="line">		line = englist_title_file.readline()
+</span><span class="line"><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">argv</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">):</span>
+</span><span class="line">	<span class="n">englist_title_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="s">&quot;r&quot;</span><span class="p">)</span>
+</span><span class="line">	<span class="n">chinese_title_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="s">&quot;r&quot;</span><span class="p">)</span>
+</span><span class="line">	<span class="n">mixed_title_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span><span class="s">&quot;w&quot;</span><span class="p">)</span>
+</span><span class="line">	<span class="n">sub_index</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class="line">	<span class="n">sub_content</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span class="line">	<span class="k">while</span> <span class="mi">1</span> <span class="p">:</span>
+</span><span class="line">		<span class="c">### index line</span>
+</span><span class="line">		<span class="n">line</span> <span class="o">=</span> <span class="n">englist_title_file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
 </span><span class="line">
-</span><span class="line">		if not line or line=="" or line=="\r" or line=="\r\n":
-</span><span class="line">			break
+</span><span class="line">		<span class="k">if</span> <span class="ow">not</span> <span class="n">line</span> <span class="ow">or</span> <span class="n">line</span><span class="o">==</span><span class="s">&quot;&quot;</span> <span class="ow">or</span> <span class="n">line</span><span class="o">==</span><span class="s">&quot;</span><span class="se">\r</span><span class="s">&quot;</span> <span class="ow">or</span> <span class="n">line</span><span class="o">==</span><span class="s">&quot;</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">:</span>
+</span><span class="line">			<span class="k">break</span>
 </span><span class="line">
-</span><span class="line">		if sub_index == string.atoi(line):
-</span><span class="line">			### sub time line
-</span><span class="line">			englist_title_file.readline()
-</span><span class="line">			### english subtitle line
-</span><span class="line">			sub_content[sub_index] = englist_title_file.readline()
-</span><span class="line">			### blank line
-</span><span class="line">			englist_title_file.readline()
+</span><span class="line">		<span class="k">if</span> <span class="n">sub_index</span> <span class="o">==</span> <span class="n">string</span><span class="o">.</span><span class="n">atoi</span><span class="p">(</span><span class="n">line</span><span class="p">):</span>
+</span><span class="line">			<span class="c">### sub time line</span>
+</span><span class="line">			<span class="n">englist_title_file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+</span><span class="line">			<span class="c">### english subtitle line</span>
+</span><span class="line">			<span class="n">sub_content</span><span class="p">[</span><span class="n">sub_index</span><span class="p">]</span> <span class="o">=</span> <span class="n">englist_title_file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+</span><span class="line">			<span class="c">### blank line</span>
+</span><span class="line">			<span class="n">englist_title_file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
 </span><span class="line">
-</span><span class="line">			sub_index += 1	
-</span><span class="line">	sub_index_max = sub_index		
-</span><span class="line">	sub_index = 1	
-</span><span class="line">	while 1 :
-</span><span class="line">		### index line
-</span><span class="line">		line = chinese_title_file.readline()
-</span><span class="line">		mixed_title_file.write(line)
+</span><span class="line">			<span class="n">sub_index</span> <span class="o">+=</span> <span class="mi">1</span>	
+</span><span class="line">	<span class="n">sub_index_max</span> <span class="o">=</span> <span class="n">sub_index</span>		
+</span><span class="line">	<span class="n">sub_index</span> <span class="o">=</span> <span class="mi">1</span>	
+</span><span class="line">	<span class="k">while</span> <span class="mi">1</span> <span class="p">:</span>
+</span><span class="line">		<span class="c">### index line</span>
+</span><span class="line">		<span class="n">line</span> <span class="o">=</span> <span class="n">chinese_title_file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+</span><span class="line">		<span class="n">mixed_title_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
 </span><span class="line">
-</span><span class="line">		print "xxxxx=    "+line
-</span><span class="line">		if not line or line=="" or line=="\r" or line=="\r\n":
-</span><span class="line">			break
+</span><span class="line">		<span class="k">print</span> <span class="s">&quot;xxxxx=    &quot;</span><span class="o">+</span><span class="n">line</span>
+</span><span class="line">		<span class="k">if</span> <span class="ow">not</span> <span class="n">line</span> <span class="ow">or</span> <span class="n">line</span><span class="o">==</span><span class="s">&quot;&quot;</span> <span class="ow">or</span> <span class="n">line</span><span class="o">==</span><span class="s">&quot;</span><span class="se">\r</span><span class="s">&quot;</span> <span class="ow">or</span> <span class="n">line</span><span class="o">==</span><span class="s">&quot;</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">:</span>
+</span><span class="line">			<span class="k">break</span>
 </span><span class="line">
-</span><span class="line">		if sub_index == string.atoi(line):
-</span><span class="line">			### sub time line
-</span><span class="line">			line = chinese_title_file.readline()
-</span><span class="line">			mixed_title_file.write(line)
-</span><span class="line">			### chinese subtitle line
-</span><span class="line">			line = chinese_title_file.readline()
-</span><span class="line">			mixed_title_file.write(line)
-</span><span class="line">			### english subtitle line
-</span><span class="line">			line = sub_content[sub_index]
-</span><span class="line">			mixed_title_file.write(line)
-</span><span class="line">			### blank line
-</span><span class="line">			line = chinese_title_file.readline()
-</span><span class="line">			mixed_title_file.write(line)
+</span><span class="line">		<span class="k">if</span> <span class="n">sub_index</span> <span class="o">==</span> <span class="n">string</span><span class="o">.</span><span class="n">atoi</span><span class="p">(</span><span class="n">line</span><span class="p">):</span>
+</span><span class="line">			<span class="c">### sub time line</span>
+</span><span class="line">			<span class="n">line</span> <span class="o">=</span> <span class="n">chinese_title_file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+</span><span class="line">			<span class="n">mixed_title_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</span><span class="line">			<span class="c">### chinese subtitle line</span>
+</span><span class="line">			<span class="n">line</span> <span class="o">=</span> <span class="n">chinese_title_file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+</span><span class="line">			<span class="n">mixed_title_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</span><span class="line">			<span class="c">### english subtitle line</span>
+</span><span class="line">			<span class="n">line</span> <span class="o">=</span> <span class="n">sub_content</span><span class="p">[</span><span class="n">sub_index</span><span class="p">]</span>
+</span><span class="line">			<span class="n">mixed_title_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</span><span class="line">			<span class="c">### blank line</span>
+</span><span class="line">			<span class="n">line</span> <span class="o">=</span> <span class="n">chinese_title_file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+</span><span class="line">			<span class="n">mixed_title_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
 </span><span class="line">
-</span><span class="line">			sub_index += 1
-</span><span class="line">		if sub_index &gt;= sub_index_max :
-</span><span class="line">			break
+</span><span class="line">			<span class="n">sub_index</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class="line">		<span class="k">if</span> <span class="n">sub_index</span> <span class="o">&gt;=</span> <span class="n">sub_index_max</span> <span class="p">:</span>
+</span><span class="line">			<span class="k">break</span>
 </span><span class="line">
-</span><span class="line">	englist_title_file.close()
-</span><span class="line">	chinese_title_file.close()
-</span><span class="line">	mixed_title_file.close()
+</span><span class="line">	<span class="n">englist_title_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span><span class="line">	<span class="n">chinese_title_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span><span class="line">	<span class="n">mixed_title_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </span><span class="line">
 </span><span class="line">
 </span><span class="line">
-</span><span class="line">if __name__ == "__main__":
-</span><span class="line">	sys.exit(main())
-</span><span class="line">
-</span><span class="line">
-</span><span class="line">
+</span><span class="line"><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
+</span><span class="line">	<span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>4, The mixed subtitle is done</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
@@ -361,22 +355,20 @@ It’s too fast to follow it.</p>
 <span class="line-number">12</span>
 <span class="line-number">13</span>
 <span class="line-number">14</span>
-<span class="line-number">15</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">
-</span><span class="line">1 
-</span><span class="line">00:00:00,312 - &gt; 00:00:01,833 
-</span><span class="line">以前的做法 
-</span><span class="line">Previously on The Practice
+</pre></td><td class="code"><pre><code class="py"><span class="line"><span class="mi">1</span>
+</span><span class="line"><span class="mo">00</span><span class="p">:</span><span class="mo">00</span><span class="p">:</span><span class="mo">00</span><span class="p">,</span><span class="mi">312</span> <span class="o">-</span> <span class="o">&gt;</span> <span class="mo">00</span><span class="p">:</span><span class="mo">00</span><span class="p">:</span><span class="mo">01</span><span class="p">,</span><span class="mi">833</span>
+</span><span class="line"><span class="err">以前的做法</span>
+</span><span class="line"><span class="n">Previously</span> <span class="n">on</span> <span class="n">The</span> <span class="n">Practice</span>
 </span><span class="line">
-</span><span class="line">2 
-</span><span class="line">00:00:01,959 - &gt; 00:00:03,488 
-</span><span class="line">有什么问题，Ellenor？ 
-</span><span class="line">Something wrong, Ellenor? 
+</span><span class="line"><span class="mi">2</span>
+</span><span class="line"><span class="mo">00</span><span class="p">:</span><span class="mo">00</span><span class="p">:</span><span class="mo">01</span><span class="p">,</span><span class="mi">959</span> <span class="o">-</span> <span class="o">&gt;</span> <span class="mo">00</span><span class="p">:</span><span class="mo">00</span><span class="p">:</span><span class="mo">03</span><span class="p">,</span><span class="mi">488</span>
+</span><span class="line"><span class="err">有什么问题，</span><span class="n">Ellenor</span><span class="err">？</span>
+</span><span class="line"><span class="n">Something</span> <span class="n">wrong</span><span class="p">,</span> <span class="n">Ellenor</span><span class="err">?</span>
 </span><span class="line">
-</span><span class="line">3 
-</span><span class="line">00:00:03,584 - &gt; 00:00:04,848 
-</span><span class="line">你来杀我吗？ 
-</span><span class="line">You came to kill me? 
+</span><span class="line"><span class="mi">3</span>
+</span><span class="line"><span class="mo">00</span><span class="p">:</span><span class="mo">00</span><span class="p">:</span><span class="mo">03</span><span class="p">,</span><span class="mi">584</span> <span class="o">-</span> <span class="o">&gt;</span> <span class="mo">00</span><span class="p">:</span><span class="mo">00</span><span class="p">:</span><span class="mo">04</span><span class="p">,</span><span class="mi">848</span>
+</span><span class="line"><span class="err">你来杀我吗？</span>
+</span><span class="line"><span class="n">You</span> <span class="n">came</span> <span class="n">to</span> <span class="n">kill</span> <span class="n">me</span><span class="err">?</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>Is that COOOOOOL?!
@@ -420,7 +412,7 @@ Tech Changes World</p>
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://arekyao.github.com/blog/2013/04/10/something-about-the-practice/" data-via="" data-counturl="http://arekyao.github.com/blog/2013/04/10/something-about-the-practice/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://arekyao.github.com/blog/2013/04/10/tv-series-the-practice/" data-via="" data-counturl="http://arekyao.github.com/blog/2013/04/10/tv-series-the-practice/" >Tweet</a>
   
   
   
@@ -429,7 +421,7 @@ Tech Changes World</p>
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2013/03/24/something-about-life-in-china/" title="Previous Post: Something About Life in China">&laquo; Something About Life in China</a>
+        <a class="basic-alignment left" href="/blog/2013/03/24/life-in-china/" title="Previous Post: Life in China">&laquo; Life in China</a>
       
       
         <a class="basic-alignment right" href="/blog/2013/04/20/android-dev-on-osx/" title="Next Post: Android Dev on OSX">Android Dev on OSX &raquo;</a>
@@ -455,7 +447,11 @@ Tech Changes World</p>
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2013/07/02/the-key-tech-in-simple-xiangqi-engine-maxqi/">The Key Tech in Simple XiangQi Engine MaxQi</a>
+        <a href="/blog/2013/10/02/workflow-engine-in-python/">Workflow Engine in Python</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/07/02/the-key-technologies-in-simple-xiangqi-engine-maxqi/">The Key Technologies in Simple XiangQi Engine MaxQi</a>
       </li>
     
       <li class="post">
@@ -468,10 +464,6 @@ Tech Changes World</p>
     
       <li class="post">
         <a href="/blog/2013/04/21/something-interesting-about-ai/">Something Interesting about AI</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/04/20/android-dev-on-osx/">Android Dev on OSX</a>
       </li>
     
   </ul>
@@ -524,8 +516,8 @@ Tech Changes World</p>
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://arekyao.github.com/blog/2013/04/10/something-about-the-practice/';
-        var disqus_url = 'http://arekyao.github.com/blog/2013/04/10/something-about-the-practice/';
+        var disqus_identifier = 'http://arekyao.github.com/blog/2013/04/10/tv-series-the-practice/';
+        var disqus_url = 'http://arekyao.github.com/blog/2013/04/10/tv-series-the-practice/';
         var disqus_script = 'embed.js';
       
     (function () {

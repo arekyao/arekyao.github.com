@@ -1,0 +1,789 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Workflow Engine in Python - YY Every Day</title>
+  <meta name="author" content="Arek.Yao">
+
+  
+  <meta name="description" content="Workflow Engine in Python Oct 2nd, 2013 | Comments 1,What’s workflow A workflow consists of a sequence of connected steps where each step follows &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://arekyao.github.com/blog/2013/10/02/workflow-engine-in-python/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="YY Every Day" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">YY Every Day</a></h1>
+  
+    <h2>Never say never, because limits like fears, are often just an illusion.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:arekyao.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/micromax/index.html">Micro-Max</a></li>
+  <li><a href="/about/index.html">About Me</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Workflow Engine in Python</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-02T07:49:00+08:00" pubdate data-updated="true">Oct 2<span>nd</span>, 2013</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h2 id="whats-workflow">1,What’s workflow</h2>
+
+<p>A <a href="http://en.wikipedia.org/wiki/Workflow">workflow</a> consists of a sequence of connected steps where each step follows without delay or gap and ends just before the subsequent step may begin.</p>
+
+<p>it’s just a complicated finite statemachine</p>
+
+<h2 id="spiff-workflowhttpsgithubcomknipknapspiffworkflow">2,<a href="https://github.com/knipknap/SpiffWorkflow">Spiff workflow</a></h2>
+
+<p>Spiff Workflow is a library implementing a framework for workflows.
+It is based on http://www.workflowpatterns.com and implemented in pure Python.</p>
+
+<p>In addition, Spiff Workflow provides a parser and workflow emulation
+layer that can be used to create executable Spiff Workflow specifications
+from Business Process Model and Notation (BPMN) documents.</p>
+
+<p>For documentation please refer to:</p>
+
+<p>https://github.com/knipknap/SpiffWorkflow/wiki</p>
+
+<h2 id="how-to-make-spiff-workflow-work">3,How to make spiff workflow work</h2>
+
+<p>There are many test cases in test directory, you would know how it works, at least know most parts.</p>
+
+<p>Generally, it can work like this:</p>
+
+<p>a, template ,which define the workflow based on <a href="http://www.workflowpatterns.com/">workflow pattern</a> <br />
+b, tools  which can transform the template to real object in spiff object
+c, engine, which is used to make spiff workflow object work like flow,lol</p>
+
+<p>However,there is some trap in it.
+you can make it work by function,complete_all() or complete_next()
+but you can not know how the flow works by getting ready task,
+the right way is by callback function</p>
+
+<p>ps: i was stuck by this for two or three days.</p>
+
+<h2 id="a-better-example-using-spiff-workflow">4, a better example using spiff workflow</h2>
+
+<p>the case code </p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+<span class="line-number">42</span>
+<span class="line-number">43</span>
+<span class="line-number">44</span>
+<span class="line-number">45</span>
+<span class="line-number">46</span>
+<span class="line-number">47</span>
+<span class="line-number">48</span>
+<span class="line-number">49</span>
+<span class="line-number">50</span>
+<span class="line-number">51</span>
+<span class="line-number">52</span>
+<span class="line-number">53</span>
+<span class="line-number">54</span>
+<span class="line-number">55</span>
+<span class="line-number">56</span>
+<span class="line-number">57</span>
+<span class="line-number">58</span>
+<span class="line-number">59</span>
+<span class="line-number">60</span>
+<span class="line-number">61</span>
+<span class="line-number">62</span>
+<span class="line-number">63</span>
+<span class="line-number">64</span>
+<span class="line-number">65</span>
+<span class="line-number">66</span>
+<span class="line-number">67</span>
+<span class="line-number">68</span>
+<span class="line-number">69</span>
+<span class="line-number">70</span>
+<span class="line-number">71</span>
+<span class="line-number">72</span>
+<span class="line-number">73</span>
+<span class="line-number">74</span>
+<span class="line-number">75</span>
+<span class="line-number">76</span>
+<span class="line-number">77</span>
+<span class="line-number">78</span>
+<span class="line-number">79</span>
+<span class="line-number">80</span>
+<span class="line-number">81</span>
+<span class="line-number">82</span>
+<span class="line-number">83</span>
+<span class="line-number">84</span>
+<span class="line-number">85</span>
+<span class="line-number">86</span>
+<span class="line-number">87</span>
+<span class="line-number">88</span>
+<span class="line-number">89</span>
+<span class="line-number">90</span>
+<span class="line-number">91</span>
+<span class="line-number">92</span>
+<span class="line-number">93</span>
+<span class="line-number">94</span>
+<span class="line-number">95</span>
+<span class="line-number">96</span>
+<span class="line-number">97</span>
+<span class="line-number">98</span>
+<span class="line-number">99</span>
+<span class="line-number">100</span>
+<span class="line-number">101</span>
+<span class="line-number">102</span>
+<span class="line-number">103</span>
+<span class="line-number">104</span>
+<span class="line-number">105</span>
+<span class="line-number">106</span>
+<span class="line-number">107</span>
+<span class="line-number">108</span>
+<span class="line-number">109</span>
+<span class="line-number">110</span>
+<span class="line-number">111</span>
+<span class="line-number">112</span>
+<span class="line-number">113</span>
+<span class="line-number">114</span>
+<span class="line-number">115</span>
+<span class="line-number">116</span>
+<span class="line-number">117</span>
+<span class="line-number">118</span>
+<span class="line-number">119</span>
+<span class="line-number">120</span>
+<span class="line-number">121</span>
+<span class="line-number">122</span>
+<span class="line-number">123</span>
+<span class="line-number">124</span>
+<span class="line-number">125</span>
+<span class="line-number">126</span>
+<span class="line-number">127</span>
+<span class="line-number">128</span>
+<span class="line-number">129</span>
+<span class="line-number">130</span>
+<span class="line-number">131</span>
+<span class="line-number">132</span>
+<span class="line-number">133</span>
+<span class="line-number">134</span>
+<span class="line-number">135</span>
+<span class="line-number">136</span>
+<span class="line-number">137</span>
+<span class="line-number">138</span>
+<span class="line-number">139</span>
+<span class="line-number">140</span>
+<span class="line-number">141</span>
+<span class="line-number">142</span>
+<span class="line-number">143</span>
+<span class="line-number">144</span>
+<span class="line-number">145</span>
+<span class="line-number">146</span>
+<span class="line-number">147</span>
+<span class="line-number">148</span>
+<span class="line-number">149</span>
+<span class="line-number">150</span>
+<span class="line-number">151</span>
+<span class="line-number">152</span>
+<span class="line-number">153</span>
+<span class="line-number">154</span>
+<span class="line-number">155</span>
+<span class="line-number">156</span>
+<span class="line-number">157</span>
+<span class="line-number">158</span>
+<span class="line-number">159</span>
+<span class="line-number">160</span>
+<span class="line-number">161</span>
+<span class="line-number">162</span>
+<span class="line-number">163</span>
+<span class="line-number">164</span>
+</pre></td><td class="code"><pre><code class="py"><span class="line"><span class="c"># -*- coding: utf-8</span>
+</span><span class="line">
+</span><span class="line">
+</span><span class="line"><span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span>
+</span><span class="line"><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">__file__</span><span class="p">),</span>  <span class="s">&#39;../../lib&#39;</span><span class="p">))</span>
+</span><span class="line">
+</span><span class="line"><span class="kn">from</span> <span class="nn">SpiffWorkflow.specs</span> <span class="kn">import</span> <span class="o">*</span>
+</span><span class="line"><span class="kn">from</span> <span class="nn">SpiffWorkflow</span> <span class="kn">import</span> <span class="n">Task</span><span class="p">,</span> <span class="n">Workflow</span>
+</span><span class="line"><span class="kn">from</span> <span class="nn">SpiffWorkflow.storage</span> <span class="kn">import</span> <span class="n">XmlSerializer</span>
+</span><span class="line">
+</span><span class="line">
+</span><span class="line"><span class="k">def</span> <span class="nf">on_entered_cb</span><span class="p">(</span><span class="n">workflow</span><span class="p">,</span> <span class="n">task</span><span class="p">,</span> <span class="n">taken_path</span><span class="p">):</span>
+</span><span class="line">    <span class="c">#print &quot;entered:&quot;,task.get_name()</span>
+</span><span class="line">    <span class="k">return</span> <span class="bp">True</span>
+</span><span class="line">
+</span><span class="line"><span class="k">def</span> <span class="nf">on_ready_cb</span><span class="p">(</span><span class="n">workflow</span><span class="p">,</span> <span class="n">task</span><span class="p">,</span> <span class="n">taken_path</span><span class="p">):</span>
+</span><span class="line">    <span class="c">#print &quot;ready:&quot;,task.get_name()</span>
+</span><span class="line">    <span class="k">return</span> <span class="bp">True</span>
+</span><span class="line">
+</span><span class="line">
+</span><span class="line"><span class="k">def</span> <span class="nf">on_reached_cb</span><span class="p">(</span><span class="n">workflow</span><span class="p">,</span> <span class="n">task</span><span class="p">,</span> <span class="n">taken_path</span><span class="p">):</span>
+</span><span class="line">    <span class="c">#print &quot;reached:&quot;,task.get_name()</span>
+</span><span class="line">    <span class="k">return</span> <span class="bp">True</span>
+</span><span class="line">
+</span><span class="line"><span class="k">def</span> <span class="nf">on_complete_cb</span><span class="p">(</span><span class="n">workflow</span><span class="p">,</span> <span class="n">task</span><span class="p">,</span> <span class="n">taken_path</span><span class="p">):</span>
+</span><span class="line">    <span class="c"># Record the path.</span>
+</span><span class="line">    <span class="k">print</span> <span class="s">&quot;complete:&quot;</span><span class="p">,</span><span class="n">task</span><span class="o">.</span><span class="n">get_name</span><span class="p">()</span>
+</span><span class="line">    <span class="c">#print task.get_description()</span>
+</span><span class="line">    <span class="n">indent</span> <span class="o">=</span> <span class="s">&#39;  &#39;</span> <span class="o">*</span> <span class="p">(</span><span class="n">task</span><span class="o">.</span><span class="n">_get_depth</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+</span><span class="line">    <span class="n">taken_path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">indent</span><span class="p">,</span> <span class="n">task</span><span class="o">.</span><span class="n">get_name</span><span class="p">()))</span>
+</span><span class="line">    <span class="k">return</span> <span class="bp">True</span>
+</span><span class="line">
+</span><span class="line">
+</span><span class="line">
+</span><span class="line"><span class="k">class</span> <span class="nc">QuestionError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+</span><span class="line">    <span class="sd">&#39;&#39;&#39;  &#39;&#39;&#39;</span>
+</span><span class="line">    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
+</span><span class="line">
+</span><span class="line">    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span class="line">        <span class="k">return</span> <span class="nb">repr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line">
+</span><span class="line">
+</span><span class="line">
+</span><span class="line"><span class="k">class</span> <span class="nc">QuestionWorkflow</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+</span><span class="line">    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">serializer</span> <span class="o">=</span> <span class="n">XmlSerializer</span><span class="p">()</span>
+</span><span class="line">
+</span><span class="line">    <span class="k">def</span> <span class="nf">set_up</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">filename</span><span class="p">):</span>
+</span><span class="line">        <span class="c"># Test patterns that are defined in XML format.</span>
+</span><span class="line">        <span class="n">xml</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">wf_spec</span> <span class="o">=</span> <span class="n">WorkflowSpec</span><span class="o">.</span><span class="n">deserialize</span><span class="p">(</span><span class="n">XmlSerializer</span><span class="p">(),</span> <span class="n">xml</span><span class="p">,</span> <span class="n">filename</span> <span class="o">=</span> <span class="n">filename</span><span class="p">)</span>
+</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">taken_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">track_workflow</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wf_spec</span><span class="p">)</span>
+</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">workflow</span>   <span class="o">=</span> <span class="n">Workflow</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wf_spec</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line">
+</span><span class="line">    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">UserSelection</span><span class="p">,</span> <span class="n">restart</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+</span><span class="line">
+</span><span class="line">        <span class="k">if</span> <span class="n">restart</span><span class="p">:</span>
+</span><span class="line">            <span class="bp">self</span><span class="o">.</span><span class="n">workflow</span> <span class="o">=</span> <span class="n">Workflow</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wf_spec</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line">        <span class="n">workflow</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">workflow</span>
+</span><span class="line">        <span class="n">condition_keys</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class="line">        <span class="k">if</span> <span class="n">UserSelection</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+</span><span class="line">            <span class="n">UserSelection</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span class="line">
+</span><span class="line">        <span class="n">task_data_dict</span> <span class="o">=</span> <span class="n">UserSelection</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</span><span class="line">
+</span><span class="line">        <span class="k">while</span> <span class="ow">not</span> <span class="n">workflow</span><span class="o">.</span><span class="n">is_completed</span><span class="p">():</span>
+</span><span class="line">            <span class="n">tasks</span> <span class="o">=</span> <span class="n">workflow</span><span class="o">.</span><span class="n">get_tasks</span><span class="p">(</span><span class="n">Task</span><span class="o">.</span><span class="n">READY</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line">            <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tasks</span><span class="p">:</span>
+</span><span class="line">                <span class="k">print</span> <span class="s">&quot;Ready:&quot;</span><span class="p">,</span> <span class="n">t</span><span class="o">.</span><span class="n">task_spec</span><span class="o">.</span><span class="n">name</span>
+</span><span class="line">                <span class="k">if</span>  <span class="nb">hasattr</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">task_spec</span><span class="p">,</span> <span class="s">&quot;cond_task_specs&quot;</span><span class="p">):</span>
+</span><span class="line">                    <span class="k">for</span> <span class="n">cond</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">t</span><span class="o">.</span><span class="n">task_spec</span><span class="o">.</span><span class="n">cond_task_specs</span><span class="p">:</span>
+</span><span class="line">                        <span class="k">for</span> <span class="n">cond_unit</span> <span class="ow">in</span> <span class="n">cond</span><span class="o">.</span><span class="n">args</span><span class="p">:</span>
+</span><span class="line">                            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">cond_unit</span><span class="p">,</span> <span class="s">&quot;name&quot;</span><span class="p">):</span>
+</span><span class="line">                                <span class="n">condition_keys</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cond_unit</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line">
+</span><span class="line">            <span class="n">flag_keys_in_user_select</span> <span class="o">=</span> <span class="bp">True</span>
+</span><span class="line">            <span class="k">for</span> <span class="n">cond_key</span> <span class="ow">in</span> <span class="n">condition_keys</span><span class="p">:</span>
+</span><span class="line">                <span class="k">if</span> <span class="ow">not</span> <span class="n">task_data_dict</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="n">cond_key</span><span class="p">):</span>
+</span><span class="line">                    <span class="k">print</span> <span class="n">cond_key</span>
+</span><span class="line">                    <span class="n">flag_keys_in_user_select</span> <span class="o">=</span> <span class="bp">False</span>
+</span><span class="line">                    <span class="k">break</span>
+</span><span class="line">
+</span><span class="line">            <span class="k">if</span> <span class="ow">not</span> <span class="n">flag_keys_in_user_select</span><span class="p">:</span>
+</span><span class="line">                <span class="c"># some tast&#39;s condition&#39;s key not in input userselect dict</span>
+</span><span class="line">                <span class="k">return</span>
+</span><span class="line">
+</span><span class="line">            <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tasks</span><span class="p">:</span>
+</span><span class="line">                <span class="n">t</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="o">**</span><span class="n">task_data_dict</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line">            <span class="n">workflow</span><span class="o">.</span><span class="n">complete_next</span><span class="p">()</span>
+</span><span class="line">
+</span><span class="line">        <span class="k">if</span> <span class="ow">not</span> <span class="n">workflow</span><span class="o">.</span><span class="n">is_completed</span><span class="p">():</span>
+</span><span class="line">            <span class="k">raise</span> <span class="n">QuestionError</span><span class="p">(</span><span class="s">&#39;invalid feature[</span><span class="si">%s</span><span class="s">]&#39;</span> <span class="o">%</span> <span class="n">filename</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line">    <span class="k">def</span> <span class="nf">print_trace</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span class="line">        <span class="n">path</span> <span class="o">=</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">taken_path</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span>
+</span><span class="line">        <span class="n">info</span> <span class="o">=</span> <span class="s">&quot;&quot;</span>
+</span><span class="line">        <span class="n">info</span> <span class="o">+=</span> <span class="s">&#39;the workflowrun path:</span><span class="se">\n</span><span class="s">&#39;</span>
+</span><span class="line">        <span class="n">info</span> <span class="o">+=</span> <span class="s">&#39;</span><span class="si">%s</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">path</span>
+</span><span class="line">        <span class="k">print</span> <span class="n">info</span>
+</span><span class="line">
+</span><span class="line">
+</span><span class="line">    <span class="k">def</span> <span class="nf">track_task</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">task_spec</span><span class="p">,</span> <span class="n">taken_path</span><span class="p">):</span>
+</span><span class="line">
+</span><span class="line">        <span class="c">#reached event call back</span>
+</span><span class="line">        <span class="k">if</span> <span class="n">task_spec</span><span class="o">.</span><span class="n">reached_event</span><span class="o">.</span><span class="n">is_connected</span><span class="p">(</span><span class="n">on_reached_cb</span><span class="p">):</span>
+</span><span class="line">            <span class="n">task_spec</span><span class="o">.</span><span class="n">reached_event</span><span class="o">.</span><span class="n">disconnect</span><span class="p">(</span><span class="n">on_reached_cb</span><span class="p">)</span>
+</span><span class="line">        <span class="n">task_spec</span><span class="o">.</span><span class="n">reached_event</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">on_reached_cb</span><span class="p">,</span> <span class="n">taken_path</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line">        <span class="c">#completed event call back</span>
+</span><span class="line">        <span class="k">if</span> <span class="n">task_spec</span><span class="o">.</span><span class="n">completed_event</span><span class="o">.</span><span class="n">is_connected</span><span class="p">(</span><span class="n">on_complete_cb</span><span class="p">):</span>
+</span><span class="line">            <span class="n">task_spec</span><span class="o">.</span><span class="n">completed_event</span><span class="o">.</span><span class="n">disconnect</span><span class="p">(</span><span class="n">on_complete_cb</span><span class="p">)</span>
+</span><span class="line">        <span class="n">task_spec</span><span class="o">.</span><span class="n">completed_event</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">on_complete_cb</span><span class="p">,</span> <span class="n">taken_path</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line">        <span class="c">#enter event call back</span>
+</span><span class="line">        <span class="k">if</span> <span class="n">task_spec</span><span class="o">.</span><span class="n">entered_event</span><span class="o">.</span><span class="n">is_connected</span><span class="p">(</span><span class="n">on_entered_cb</span><span class="p">):</span>
+</span><span class="line">            <span class="n">task_spec</span><span class="o">.</span><span class="n">entered_event</span><span class="o">.</span><span class="n">disconnect</span><span class="p">(</span><span class="n">on_entered_cb</span><span class="p">)</span>
+</span><span class="line">        <span class="n">task_spec</span><span class="o">.</span><span class="n">entered_event</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">on_entered_cb</span><span class="p">,</span> <span class="n">taken_path</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line">        <span class="c">#ready event call back</span>
+</span><span class="line">        <span class="k">if</span> <span class="n">task_spec</span><span class="o">.</span><span class="n">ready_event</span><span class="o">.</span><span class="n">is_connected</span><span class="p">(</span><span class="n">on_ready_cb</span><span class="p">):</span>
+</span><span class="line">            <span class="n">task_spec</span><span class="o">.</span><span class="n">ready_event</span><span class="o">.</span><span class="n">disconnect</span><span class="p">(</span><span class="n">on_ready_cb</span><span class="p">)</span>
+</span><span class="line">        <span class="n">task_spec</span><span class="o">.</span><span class="n">ready_event</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">on_ready_cb</span><span class="p">,</span> <span class="n">taken_path</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line">
+</span><span class="line">
+</span><span class="line">    <span class="k">def</span> <span class="nf">track_workflow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wf_spec</span><span class="p">,</span> <span class="n">taken_path</span> <span class="o">=</span> <span class="bp">None</span><span class="p">):</span>
+</span><span class="line">        <span class="k">if</span> <span class="n">taken_path</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+</span><span class="line">            <span class="n">taken_path</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class="line">        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">wf_spec</span><span class="o">.</span><span class="n">task_specs</span><span class="p">:</span>
+</span><span class="line">            <span class="c">#print &quot;track_workflow:&quot;,name</span>
+</span><span class="line">            <span class="bp">self</span><span class="o">.</span><span class="n">track_task</span><span class="p">(</span><span class="n">wf_spec</span><span class="o">.</span><span class="n">task_specs</span><span class="p">[</span><span class="n">name</span><span class="p">],</span> <span class="n">taken_path</span><span class="p">)</span>
+</span><span class="line">        <span class="k">return</span> <span class="n">taken_path</span>
+</span><span class="line">
+</span><span class="line"><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+</span><span class="line">    <span class="n">qw</span> <span class="o">=</span> <span class="n">QuestionWorkflow</span><span class="p">()</span>
+</span><span class="line">    <span class="n">qw</span><span class="o">.</span><span class="n">set_up</span><span class="p">(</span><span class="s">&quot;./case.xml&quot;</span><span class="p">)</span>
+</span><span class="line">    <span class="k">print</span> <span class="s">&quot;==========1st question==========&quot;</span>
+</span><span class="line">    <span class="n">user_selct</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;man&#39;</span><span class="p">:</span><span class="s">&#39;1&#39;</span><span class="p">}</span>
+</span><span class="line">    <span class="n">qw</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">user_selct</span><span class="p">)</span>
+</span><span class="line">    <span class="k">print</span> <span class="s">&quot;==========2nd question==========&quot;</span>
+</span><span class="line">    <span class="n">user_selct</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;man&#39;</span><span class="p">:</span><span class="s">&#39;1&#39;</span><span class="p">,</span> <span class="s">&#39;house&#39;</span><span class="p">:</span> <span class="s">&#39;2&#39;</span><span class="p">}</span>
+</span><span class="line">    <span class="n">qw</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">user_selct</span><span class="p">)</span>
+</span><span class="line">    <span class="k">print</span> <span class="s">&quot;==========3rd question==========&quot;</span>
+</span><span class="line">    <span class="n">user_selct</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;man&#39;</span><span class="p">:</span><span class="s">&#39;1&#39;</span><span class="p">,</span> <span class="s">&#39;house&#39;</span><span class="p">:</span> <span class="s">&#39;2&#39;</span><span class="p">,</span> <span class="s">&#39;why&#39;</span><span class="p">:</span> <span class="s">&#39;because you are a hero&#39;</span><span class="p">}</span>
+</span><span class="line">    <span class="n">qw</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">user_selct</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line">    <span class="sd">&#39;&#39;&#39;</span>
+</span><span class="line"><span class="sd">    print &quot;==========4th question=========&quot;</span>
+</span><span class="line"><span class="sd">    user_selct = {&#39;man&#39;:&#39;1&#39;, &#39;house&#39;: &#39;2&#39;, &#39;role&#39;:&#39;5&#39;}</span>
+</span><span class="line"><span class="sd">    qw.run(user_selct)</span>
+</span><span class="line"><span class="sd">    &#39;&#39;&#39;</span>
+</span><span class="line">
+</span><span class="line">    <span class="k">print</span> <span class="s">&quot;==========fix some question==========&quot;</span>
+</span><span class="line">    <span class="n">user_selct</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;man&#39;</span><span class="p">:</span><span class="s">&#39;1&#39;</span><span class="p">,</span> <span class="s">&#39;house&#39;</span><span class="p">:</span> <span class="s">&#39;1&#39;</span><span class="p">,</span> <span class="s">&#39;role&#39;</span><span class="p">:</span><span class="s">&#39;5&#39;</span><span class="p">}</span>
+</span><span class="line">    <span class="n">qw</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">user_selct</span><span class="p">,</span><span class="bp">True</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line">    <span class="k">print</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>the template case.xml file</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+<span class="line-number">42</span>
+<span class="line-number">43</span>
+<span class="line-number">44</span>
+<span class="line-number">45</span>
+<span class="line-number">46</span>
+<span class="line-number">47</span>
+<span class="line-number">48</span>
+<span class="line-number">49</span>
+<span class="line-number">50</span>
+<span class="line-number">51</span>
+<span class="line-number">52</span>
+<span class="line-number">53</span>
+<span class="line-number">54</span>
+<span class="line-number">55</span>
+<span class="line-number">56</span>
+<span class="line-number">57</span>
+<span class="line-number">58</span>
+<span class="line-number">59</span>
+<span class="line-number">60</span>
+<span class="line-number">61</span>
+<span class="line-number">62</span>
+<span class="line-number">63</span>
+<span class="line-number">64</span>
+<span class="line-number">65</span>
+<span class="line-number">66</span>
+<span class="line-number">67</span>
+</pre></td><td class="code"><pre><code class="xml"><span class="line"><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+</span><span class="line"><span class="nt">&lt;process-definition</span> <span class="na">name=</span><span class="s">&quot;Daixm Workflow&quot;</span> <span class="na">revision=</span><span class="s">&quot;1.6&quot;</span><span class="nt">&gt;</span>
+</span><span class="line">    <span class="nt">&lt;description&gt;</span>
+</span><span class="line">    A test workflow that contains all possible tasks.
+</span><span class="line">    <span class="nt">&lt;/description&gt;</span>
+</span><span class="line">
+</span><span class="line">    <span class="c">&lt;!-- Start with an implicit simple split. --&gt;</span>
+</span><span class="line">    <span class="nt">&lt;start-task&gt;</span>
+</span><span class="line">        <span class="nt">&lt;successor&gt;</span>house_choice<span class="nt">&lt;/successor&gt;</span>
+</span><span class="line">    <span class="nt">&lt;/start-task&gt;</span>
+</span><span class="line">
+</span><span class="line">    <span class="nt">&lt;exclusive-choice</span> <span class="na">name=</span><span class="s">&quot;house_choice&quot;</span><span class="nt">&gt;</span>
+</span><span class="line">        <span class="c">&lt;!-- No House --&gt;</span>
+</span><span class="line">        <span class="nt">&lt;default-successor&gt;</span>role_choice<span class="nt">&lt;/default-successor&gt;</span>
+</span><span class="line">
+</span><span class="line">        <span class="nt">&lt;conditional-successor&gt;</span>
+</span><span class="line">            <span class="nt">&lt;equals</span> <span class="na">left-field=</span><span class="s">&quot;house&quot;</span> <span class="na">right-value=</span><span class="s">&quot;1&quot;</span> <span class="nt">/&gt;</span>
+</span><span class="line">            <span class="nt">&lt;successor&gt;</span>build_house<span class="nt">&lt;/successor&gt;</span>
+</span><span class="line">        <span class="nt">&lt;/conditional-successor&gt;</span>
+</span><span class="line">
+</span><span class="line">        <span class="nt">&lt;conditional-successor&gt;</span>
+</span><span class="line">            <span class="nt">&lt;equals</span> <span class="na">left-field=</span><span class="s">&quot;house&quot;</span> <span class="na">right-value=</span><span class="s">&quot;2&quot;</span> <span class="nt">/&gt;</span>
+</span><span class="line">            <span class="nt">&lt;successor&gt;</span>buy_house<span class="nt">&lt;/successor&gt;</span>
+</span><span class="line">        <span class="nt">&lt;/conditional-successor&gt;</span>
+</span><span class="line">    <span class="nt">&lt;/exclusive-choice&gt;</span>
+</span><span class="line">
+</span><span class="line">    <span class="nt">&lt;task</span> <span class="na">name=</span><span class="s">&quot;buy_house&quot;</span><span class="nt">&gt;</span>
+</span><span class="line">        <span class="nt">&lt;description&gt;</span><span class="nt">&lt;/description&gt;</span>
+</span><span class="line">        <span class="nt">&lt;successor&gt;</span>house_location<span class="nt">&lt;/successor&gt;</span>
+</span><span class="line">    <span class="nt">&lt;/task&gt;</span>
+</span><span class="line">
+</span><span class="line">    <span class="nt">&lt;task</span> <span class="na">name=</span><span class="s">&quot;house_location&quot;</span><span class="nt">&gt;</span>
+</span><span class="line">        <span class="nt">&lt;successor&gt;</span>house_age<span class="nt">&lt;/successor&gt;</span>
+</span><span class="line">    <span class="nt">&lt;/task&gt;</span>
+</span><span class="line">
+</span><span class="line">    <span class="nt">&lt;task</span> <span class="na">name=</span><span class="s">&quot;house_age&quot;</span><span class="nt">&gt;</span>
+</span><span class="line">        <span class="nt">&lt;successor&gt;</span>role_choice<span class="nt">&lt;/successor&gt;</span>
+</span><span class="line">    <span class="nt">&lt;/task&gt;</span>
+</span><span class="line">
+</span><span class="line">    <span class="nt">&lt;task</span> <span class="na">name=</span><span class="s">&quot;build_house&quot;</span><span class="nt">&gt;</span>
+</span><span class="line">        <span class="nt">&lt;successor&gt;</span>role_choice<span class="nt">&lt;/successor&gt;</span>
+</span><span class="line">    <span class="nt">&lt;/task&gt;</span>
+</span><span class="line">
+</span><span class="line">
+</span><span class="line">    <span class="nt">&lt;exclusive-choice</span> <span class="na">name=</span><span class="s">&quot;role_choice&quot;</span><span class="nt">&gt;</span>
+</span><span class="line">        <span class="c">&lt;!-- No House --&gt;</span>
+</span><span class="line">        <span class="nt">&lt;default-successor&gt;</span>no_jobs<span class="nt">&lt;/default-successor&gt;</span>
+</span><span class="line">        <span class="nt">&lt;conditional-successor&gt;</span>
+</span><span class="line">            <span class="nt">&lt;equals</span> <span class="na">left-field=</span><span class="s">&quot;role&quot;</span> <span class="na">right-value=</span><span class="s">&quot;1&quot;</span> <span class="nt">/&gt;</span>
+</span><span class="line">            <span class="nt">&lt;successor&gt;</span>jobs_working<span class="nt">&lt;/successor&gt;</span>
+</span><span class="line">        <span class="nt">&lt;/conditional-successor&gt;</span>
+</span><span class="line">    <span class="nt">&lt;/exclusive-choice&gt;</span>
+</span><span class="line">
+</span><span class="line">
+</span><span class="line">    <span class="nt">&lt;task</span> <span class="na">name=</span><span class="s">&quot;no_jobs&quot;</span><span class="nt">&gt;</span>
+</span><span class="line">        <span class="nt">&lt;successor&gt;</span>last<span class="nt">&lt;/successor&gt;</span>
+</span><span class="line">    <span class="nt">&lt;/task&gt;</span>
+</span><span class="line">
+</span><span class="line">    <span class="nt">&lt;task</span> <span class="na">name=</span><span class="s">&quot;jobs_working&quot;</span><span class="nt">&gt;</span>
+</span><span class="line">        <span class="nt">&lt;successor&gt;</span>last<span class="nt">&lt;/successor&gt;</span>
+</span><span class="line">    <span class="nt">&lt;/task&gt;</span>
+</span><span class="line">
+</span><span class="line">    <span class="c">&lt;!-- A final task. --&gt;</span>
+</span><span class="line">    <span class="nt">&lt;task</span> <span class="na">name=</span><span class="s">&quot;last&quot;</span><span class="nt">&gt;</span>
+</span><span class="line">        <span class="nt">&lt;successor&gt;</span>end<span class="nt">&lt;/successor&gt;</span>
+</span><span class="line">    <span class="nt">&lt;/task&gt;</span>
+</span><span class="line"><span class="nt">&lt;/process-definition&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+</div>
+
+<br>
+<a href="#disqus_thread">Comments</a>
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Arek.Yao</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-02T07:49:00+08:00" pubdate data-updated="true">Oct 2<span>nd</span>, 2013</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://arekyao.github.com/blog/2013/10/02/workflow-engine-in-python/" data-via="" data-counturl="http://arekyao.github.com/blog/2013/10/02/workflow-engine-in-python/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/07/02/the-key-technologies-in-simple-xiangqi-engine-maxqi/" title="Previous Post: The Key Technologies in Simple XiangQi Engine MaxQi">&laquo; The Key Technologies in Simple XiangQi Engine MaxQi</a>
+      
+      
+    </p>
+  </footer>
+</article>
+<script type="text/javascript" id="wumiiRelatedItems"></script>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <iframe width="100%" height="320" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=320&fansRow=2&ptype=1&speed=0&skin=1&isTitle=0&noborder=0&isWeibo=1&isFans=1&uid=1771027825&verifier=f729d6d3&dpc=1"></iframe>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/10/02/workflow-engine-in-python/">Workflow Engine in Python</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/07/02/the-key-technologies-in-simple-xiangqi-engine-maxqi/">The Key Technologies in Simple XiangQi Engine MaxQi</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/23/something-about-chess-series-with-ai/">Something about Chess series with AI</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/04/23/database-overview/">Database Overview</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/04/21/something-interesting-about-ai/">Something Interesting about AI</a>
+      </li>
+    
+  </ul>
+</section>
+<section>
+  <h1>Tag Cloud</h1>
+    <span id="tag-cloud"><a href='/blog/categories/android' style='font-size: 120.0%'>Android(1)</a> <a href='/blog/categories/babylife' style='font-size: 160.0%'>BabyLife(3)</a> <a href='/blog/categories/github' style='font-size: 120.0%'>Github(1)</a> <a href='/blog/categories/machinelearning' style='font-size: 160.0%'>MachineLearning(3)</a> <a href='/blog/categories/techchangeworld' style='font-size: 160.0%'>TechChangeWorld(3)</a> <a href='/blog/categories/techspark' style='font-size: 160.0%'>TechSpark(3)</a> <a href='/blog/categories/tools' style='font-size: 140.0%'>Tools(2)</a> </span>
+</section>
+<section>
+  <h1>Categories</h1>
+  <input class="search" type="text" name="filter_tags" results="0" placeholder="Filter Tags ..."/>
+  <script type="text/javascript">
+    $('input[name=filter_tags]').keyup(function(e){
+      var val = $(this).val();
+      if (/^\s*$/.test(val) || e.keyCode == 27) { // 27 is 'esc'
+        $('#category-list li').show();
+        $(this).val('');
+        return;
+      }
+      var pattern = new RegExp(val, 'i');
+      $('#category-list li').each(function(){
+        $(this)[pattern.test($(this).find('a').text()) ? 'show' : 'hide']();
+      });
+    });
+  </script>
+    <ul id="category-list"><li><a href='/blog/categories/android'>Android (1)</a></li><li><a href='/blog/categories/babylife'>BabyLife (3)</a></li><li><a href='/blog/categories/github'>Github (1)</a></li><li><a href='/blog/categories/machinelearning'>MachineLearning (3)</a></li><li><a href='/blog/categories/techchangeworld'>TechChangeWorld (3)</a></li><li><a href='/blog/categories/techspark'>TechSpark (3)</a></li><li><a href='/blog/categories/tools'>Tools (2)</a></li></ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Arek.Yao -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'arekyao';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://arekyao.github.com/blog/2013/10/02/workflow-engine-in-python/';
+        var disqus_url = 'http://arekyao.github.com/blog/2013/10/02/workflow-engine-in-python/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+  <script type="text/javascript">
+    var wumiiPermaLink = ""; //
+    var wumiiTitle = ""; //
+    var wumiiTags = ""; //"1,2"
+    var wumiiSitePrefix = "http://arekyao.github.com/";
+    var wumiiParams = "&num=5&mode=3&pf=JAVASCRIPT";
+</script>
+<script type="text/javascript" src="http://widget.wumii.com/ext/relatedItemsWidget"></script>
+<a href="http://www.wumii.com/widget/relatedItems" style="border:0;">
+<img src="http://static.wumii.cn/images/pixel.png" alt="" style="border:0;padding:0;margin:0;" />
+</a>
+  <meta name="baidu-site-verification" content="QSLeJw3wwyA8dGHl" />
+  <script type="text/javascript">
+    var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F6b519082c0cda60aab2be100c6319f3e' type='text/javascript'%3E%3C/script%3E"));
+  </script>
+</body>
+</html>

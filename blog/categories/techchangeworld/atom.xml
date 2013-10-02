@@ -4,7 +4,7 @@
   <title><![CDATA[Category: TechChangeWorld | YY Every Day]]></title>
   <link href="http://arekyao.github.com/blog/categories/techchangeworld/atom.xml" rel="self"/>
   <link href="http://arekyao.github.com/"/>
-  <updated>2013-07-06T20:37:08+08:00</updated>
+  <updated>2013-10-02T08:20:12+08:00</updated>
   <id>http://arekyao.github.com/</id>
   <author>
     <name><![CDATA[Arek.Yao]]></name>
@@ -14,10 +14,10 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Something about the Practice]]></title>
-    <link href="http://arekyao.github.com/blog/2013/04/10/something-about-the-practice/"/>
+    <title type="html"><![CDATA[TV series the Practice]]></title>
+    <link href="http://arekyao.github.com/blog/2013/04/10/tv-series-the-practice/"/>
     <updated>2013-04-10T22:22:00+08:00</updated>
-    <id>http://arekyao.github.com/blog/2013/04/10/something-about-the-practice</id>
+    <id>http://arekyao.github.com/blog/2013/04/10/tv-series-the-practice</id>
     <content type="html"><![CDATA[<h2 id="whats-the-practice">What’s the practice</h2>
 
 <p>The Practice is an American TV series, legal drama. </p>
@@ -103,7 +103,7 @@ You came to kill me? </p>
 
 <p>the code is like this:</p>
 
-<p>```
+<p>```py
 #! /usr/bin/env python</p>
 
 <p>import time
@@ -307,7 +307,7 @@ at last the simple application, iphoto, works!
 <p>The PM give a MRD, that asks for the name should contain video’s taken time.
 Here is the script:</p>
 
-<p>``` 
+<p>``` sh
 #!/bin/bash</p>
 
 <p>for i in <code>ls *.MOV</code>;

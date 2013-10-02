@@ -126,7 +126,7 @@ at last the simple application, iphoto, works!
 <p>The PM give a MRD, that asks for the name should contain video’s taken time.
 Here is the script:</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
@@ -138,18 +138,19 @@ Here is the script:</p>
 <span class="line-number">10</span>
 <span class="line-number">11</span>
 <span class="line-number">12</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">#!/bin/bash
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="c">#!/bin/bash</span>
 </span><span class="line">
-</span><span class="line">for i in `ls *.MOV`;
-</span><span class="line">do
-</span><span class="line">    echo $i;
-</span><span class="line">    stat $i;
-</span><span class="line">    sec=`stat -t "%s" $i | awk  '{print $12}' | sed 's/"//g'`
-</span><span class="line">    name_2=`date -r "$sec" "+%Y%m%d_%H%M%S"`
-</span><span class="line">    name_1=`echo $i | sed 's/.MOV//'`
-</span><span class="line">    newname=`echo $name_1"_"$name_2".MOV"`
-</span><span class="line">    cp $i output/$newname
-</span><span class="line">done</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span><span class="line"><span class="k">for </span>i in <span class="sb">`</span>ls *.MOV<span class="sb">`</span>;
+</span><span class="line"><span class="k">do</span>
+</span><span class="line"><span class="k">    </span><span class="nb">echo</span> <span class="nv">$i</span>;
+</span><span class="line">    stat <span class="nv">$i</span>;
+</span><span class="line">    <span class="nv">sec</span><span class="o">=</span><span class="sb">`</span>stat -t <span class="s2">&quot;%s&quot;</span> <span class="nv">$i</span> | awk  <span class="s1">&#39;{print $12}&#39;</span> | sed <span class="s1">&#39;s/&quot;//g&#39;</span><span class="sb">`</span>
+</span><span class="line">    <span class="nv">name_2</span><span class="o">=</span><span class="sb">`</span>date -r <span class="s2">&quot;$sec&quot;</span> <span class="s2">&quot;+%Y%m%d_%H%M%S&quot;</span><span class="sb">`</span>
+</span><span class="line">    <span class="nv">name_1</span><span class="o">=</span><span class="sb">`</span><span class="nb">echo</span> <span class="nv">$i</span> | sed <span class="s1">&#39;s/.MOV//&#39;</span><span class="sb">`</span>
+</span><span class="line">    <span class="nv">newname</span><span class="o">=</span><span class="sb">`</span><span class="nb">echo</span> <span class="nv">$name_1</span><span class="s2">&quot;_&quot;</span><span class="nv">$name_2</span><span class="s2">&quot;.MOV&quot;</span><span class="sb">`</span>
+</span><span class="line">    cp <span class="nv">$i</span> output/<span class="nv">$newname</span>
+</span><span class="line"><span class="k">done</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h2 id="convert-and-compress">3, Convert and Compress</h2>
 
@@ -235,7 +236,11 @@ Change some args, like Bitrate,Frame Rate,Video codec, etc.
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2013/07/02/the-key-tech-in-simple-xiangqi-engine-maxqi/">The Key Tech in Simple XiangQi Engine MaxQi</a>
+        <a href="/blog/2013/10/02/workflow-engine-in-python/">Workflow Engine in Python</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/07/02/the-key-technologies-in-simple-xiangqi-engine-maxqi/">The Key Technologies in Simple XiangQi Engine MaxQi</a>
       </li>
     
       <li class="post">
@@ -248,10 +253,6 @@ Change some args, like Bitrate,Frame Rate,Video codec, etc.
     
       <li class="post">
         <a href="/blog/2013/04/21/something-interesting-about-ai/">Something Interesting about AI</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/04/20/android-dev-on-osx/">Android Dev on OSX</a>
       </li>
     
   </ul>

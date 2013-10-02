@@ -9,7 +9,7 @@
   <meta name="author" content="Arek.Yao">
 
   
-  <meta name="description" content="The Key Tech in Simple XiangQi Engine MaxQi Jul 2nd, 2013 | Comments 1,mini-max algorithm minimize the opponent’s potential max profit. easy to &hellip;">
+  <meta name="description" content="Workflow Engine in Python Oct 2nd, 2013 | Comments 1,What’s workflow A workflow consists of a sequence of connected steps where each step follows &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -105,7 +105,554 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2013/07/02/the-key-tech-in-simple-xiangqi-engine-maxqi/">The Key Tech in Simple XiangQi Engine MaxQi</a></h1>
+      <h1 class="entry-title"><a href="/blog/2013/10/02/workflow-engine-in-python/">Workflow Engine in Python</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-02T07:49:00+08:00" pubdate data-updated="true">Oct 2<span>nd</span>, 2013</time>
+        
+         | <a href="/blog/2013/10/02/workflow-engine-in-python/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2 id="whats-workflow">1,What’s workflow</h2>
+
+<p>A <a href="http://en.wikipedia.org/wiki/Workflow">workflow</a> consists of a sequence of connected steps where each step follows without delay or gap and ends just before the subsequent step may begin.</p>
+
+<p>it’s just a complicated finite statemachine</p>
+
+<h2 id="spiff-workflowhttpsgithubcomknipknapspiffworkflow">2,<a href="https://github.com/knipknap/SpiffWorkflow">Spiff workflow</a></h2>
+
+<p>Spiff Workflow is a library implementing a framework for workflows.
+It is based on http://www.workflowpatterns.com and implemented in pure Python.</p>
+
+<p>In addition, Spiff Workflow provides a parser and workflow emulation
+layer that can be used to create executable Spiff Workflow specifications
+from Business Process Model and Notation (BPMN) documents.</p>
+
+<p>For documentation please refer to:</p>
+
+<p>https://github.com/knipknap/SpiffWorkflow/wiki</p>
+
+<h2 id="how-to-make-spiff-workflow-work">3,How to make spiff workflow work</h2>
+
+<p>There are many test cases in test directory, you would know how it works, at least know most parts.</p>
+
+<p>Generally, it can work like this:</p>
+
+<p>a, template ,which define the workflow based on <a href="http://www.workflowpatterns.com/">workflow pattern</a> <br />
+b, tools  which can transform the template to real object in spiff object
+c, engine, which is used to make spiff workflow object work like flow,lol</p>
+
+<p>However,there is some trap in it.
+you can make it work by function,complete_all() or complete_next()
+but you can not know how the flow works by getting ready task,
+the right way is by callback function</p>
+
+<p>ps: i was stuck by this for two or three days.</p>
+
+<h2 id="a-better-example-using-spiff-workflow">4, a better example using spiff workflow</h2>
+
+<p>the case code </p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+<span class="line-number">42</span>
+<span class="line-number">43</span>
+<span class="line-number">44</span>
+<span class="line-number">45</span>
+<span class="line-number">46</span>
+<span class="line-number">47</span>
+<span class="line-number">48</span>
+<span class="line-number">49</span>
+<span class="line-number">50</span>
+<span class="line-number">51</span>
+<span class="line-number">52</span>
+<span class="line-number">53</span>
+<span class="line-number">54</span>
+<span class="line-number">55</span>
+<span class="line-number">56</span>
+<span class="line-number">57</span>
+<span class="line-number">58</span>
+<span class="line-number">59</span>
+<span class="line-number">60</span>
+<span class="line-number">61</span>
+<span class="line-number">62</span>
+<span class="line-number">63</span>
+<span class="line-number">64</span>
+<span class="line-number">65</span>
+<span class="line-number">66</span>
+<span class="line-number">67</span>
+<span class="line-number">68</span>
+<span class="line-number">69</span>
+<span class="line-number">70</span>
+<span class="line-number">71</span>
+<span class="line-number">72</span>
+<span class="line-number">73</span>
+<span class="line-number">74</span>
+<span class="line-number">75</span>
+<span class="line-number">76</span>
+<span class="line-number">77</span>
+<span class="line-number">78</span>
+<span class="line-number">79</span>
+<span class="line-number">80</span>
+<span class="line-number">81</span>
+<span class="line-number">82</span>
+<span class="line-number">83</span>
+<span class="line-number">84</span>
+<span class="line-number">85</span>
+<span class="line-number">86</span>
+<span class="line-number">87</span>
+<span class="line-number">88</span>
+<span class="line-number">89</span>
+<span class="line-number">90</span>
+<span class="line-number">91</span>
+<span class="line-number">92</span>
+<span class="line-number">93</span>
+<span class="line-number">94</span>
+<span class="line-number">95</span>
+<span class="line-number">96</span>
+<span class="line-number">97</span>
+<span class="line-number">98</span>
+<span class="line-number">99</span>
+<span class="line-number">100</span>
+<span class="line-number">101</span>
+<span class="line-number">102</span>
+<span class="line-number">103</span>
+<span class="line-number">104</span>
+<span class="line-number">105</span>
+<span class="line-number">106</span>
+<span class="line-number">107</span>
+<span class="line-number">108</span>
+<span class="line-number">109</span>
+<span class="line-number">110</span>
+<span class="line-number">111</span>
+<span class="line-number">112</span>
+<span class="line-number">113</span>
+<span class="line-number">114</span>
+<span class="line-number">115</span>
+<span class="line-number">116</span>
+<span class="line-number">117</span>
+<span class="line-number">118</span>
+<span class="line-number">119</span>
+<span class="line-number">120</span>
+<span class="line-number">121</span>
+<span class="line-number">122</span>
+<span class="line-number">123</span>
+<span class="line-number">124</span>
+<span class="line-number">125</span>
+<span class="line-number">126</span>
+<span class="line-number">127</span>
+<span class="line-number">128</span>
+<span class="line-number">129</span>
+<span class="line-number">130</span>
+<span class="line-number">131</span>
+<span class="line-number">132</span>
+<span class="line-number">133</span>
+<span class="line-number">134</span>
+<span class="line-number">135</span>
+<span class="line-number">136</span>
+<span class="line-number">137</span>
+<span class="line-number">138</span>
+<span class="line-number">139</span>
+<span class="line-number">140</span>
+<span class="line-number">141</span>
+<span class="line-number">142</span>
+<span class="line-number">143</span>
+<span class="line-number">144</span>
+<span class="line-number">145</span>
+<span class="line-number">146</span>
+<span class="line-number">147</span>
+<span class="line-number">148</span>
+<span class="line-number">149</span>
+<span class="line-number">150</span>
+<span class="line-number">151</span>
+<span class="line-number">152</span>
+<span class="line-number">153</span>
+<span class="line-number">154</span>
+<span class="line-number">155</span>
+<span class="line-number">156</span>
+<span class="line-number">157</span>
+<span class="line-number">158</span>
+<span class="line-number">159</span>
+<span class="line-number">160</span>
+<span class="line-number">161</span>
+<span class="line-number">162</span>
+<span class="line-number">163</span>
+<span class="line-number">164</span>
+</pre></td><td class="code"><pre><code class="py"><span class="line"><span class="c"># -*- coding: utf-8</span>
+</span><span class="line">
+</span><span class="line">
+</span><span class="line"><span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span>
+</span><span class="line"><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">__file__</span><span class="p">),</span>  <span class="s">&#39;../../lib&#39;</span><span class="p">))</span>
+</span><span class="line">
+</span><span class="line"><span class="kn">from</span> <span class="nn">SpiffWorkflow.specs</span> <span class="kn">import</span> <span class="o">*</span>
+</span><span class="line"><span class="kn">from</span> <span class="nn">SpiffWorkflow</span> <span class="kn">import</span> <span class="n">Task</span><span class="p">,</span> <span class="n">Workflow</span>
+</span><span class="line"><span class="kn">from</span> <span class="nn">SpiffWorkflow.storage</span> <span class="kn">import</span> <span class="n">XmlSerializer</span>
+</span><span class="line">
+</span><span class="line">
+</span><span class="line"><span class="k">def</span> <span class="nf">on_entered_cb</span><span class="p">(</span><span class="n">workflow</span><span class="p">,</span> <span class="n">task</span><span class="p">,</span> <span class="n">taken_path</span><span class="p">):</span>
+</span><span class="line">    <span class="c">#print &quot;entered:&quot;,task.get_name()</span>
+</span><span class="line">    <span class="k">return</span> <span class="bp">True</span>
+</span><span class="line">
+</span><span class="line"><span class="k">def</span> <span class="nf">on_ready_cb</span><span class="p">(</span><span class="n">workflow</span><span class="p">,</span> <span class="n">task</span><span class="p">,</span> <span class="n">taken_path</span><span class="p">):</span>
+</span><span class="line">    <span class="c">#print &quot;ready:&quot;,task.get_name()</span>
+</span><span class="line">    <span class="k">return</span> <span class="bp">True</span>
+</span><span class="line">
+</span><span class="line">
+</span><span class="line"><span class="k">def</span> <span class="nf">on_reached_cb</span><span class="p">(</span><span class="n">workflow</span><span class="p">,</span> <span class="n">task</span><span class="p">,</span> <span class="n">taken_path</span><span class="p">):</span>
+</span><span class="line">    <span class="c">#print &quot;reached:&quot;,task.get_name()</span>
+</span><span class="line">    <span class="k">return</span> <span class="bp">True</span>
+</span><span class="line">
+</span><span class="line"><span class="k">def</span> <span class="nf">on_complete_cb</span><span class="p">(</span><span class="n">workflow</span><span class="p">,</span> <span class="n">task</span><span class="p">,</span> <span class="n">taken_path</span><span class="p">):</span>
+</span><span class="line">    <span class="c"># Record the path.</span>
+</span><span class="line">    <span class="k">print</span> <span class="s">&quot;complete:&quot;</span><span class="p">,</span><span class="n">task</span><span class="o">.</span><span class="n">get_name</span><span class="p">()</span>
+</span><span class="line">    <span class="c">#print task.get_description()</span>
+</span><span class="line">    <span class="n">indent</span> <span class="o">=</span> <span class="s">&#39;  &#39;</span> <span class="o">*</span> <span class="p">(</span><span class="n">task</span><span class="o">.</span><span class="n">_get_depth</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+</span><span class="line">    <span class="n">taken_path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">indent</span><span class="p">,</span> <span class="n">task</span><span class="o">.</span><span class="n">get_name</span><span class="p">()))</span>
+</span><span class="line">    <span class="k">return</span> <span class="bp">True</span>
+</span><span class="line">
+</span><span class="line">
+</span><span class="line">
+</span><span class="line"><span class="k">class</span> <span class="nc">QuestionError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+</span><span class="line">    <span class="sd">&#39;&#39;&#39;  &#39;&#39;&#39;</span>
+</span><span class="line">    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
+</span><span class="line">
+</span><span class="line">    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span class="line">        <span class="k">return</span> <span class="nb">repr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line">
+</span><span class="line">
+</span><span class="line">
+</span><span class="line"><span class="k">class</span> <span class="nc">QuestionWorkflow</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+</span><span class="line">    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">serializer</span> <span class="o">=</span> <span class="n">XmlSerializer</span><span class="p">()</span>
+</span><span class="line">
+</span><span class="line">    <span class="k">def</span> <span class="nf">set_up</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">filename</span><span class="p">):</span>
+</span><span class="line">        <span class="c"># Test patterns that are defined in XML format.</span>
+</span><span class="line">        <span class="n">xml</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">wf_spec</span> <span class="o">=</span> <span class="n">WorkflowSpec</span><span class="o">.</span><span class="n">deserialize</span><span class="p">(</span><span class="n">XmlSerializer</span><span class="p">(),</span> <span class="n">xml</span><span class="p">,</span> <span class="n">filename</span> <span class="o">=</span> <span class="n">filename</span><span class="p">)</span>
+</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">taken_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">track_workflow</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wf_spec</span><span class="p">)</span>
+</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">workflow</span>   <span class="o">=</span> <span class="n">Workflow</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wf_spec</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line">
+</span><span class="line">    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">UserSelection</span><span class="p">,</span> <span class="n">restart</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+</span><span class="line">
+</span><span class="line">        <span class="k">if</span> <span class="n">restart</span><span class="p">:</span>
+</span><span class="line">            <span class="bp">self</span><span class="o">.</span><span class="n">workflow</span> <span class="o">=</span> <span class="n">Workflow</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wf_spec</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line">        <span class="n">workflow</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">workflow</span>
+</span><span class="line">        <span class="n">condition_keys</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class="line">        <span class="k">if</span> <span class="n">UserSelection</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+</span><span class="line">            <span class="n">UserSelection</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span class="line">
+</span><span class="line">        <span class="n">task_data_dict</span> <span class="o">=</span> <span class="n">UserSelection</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</span><span class="line">
+</span><span class="line">        <span class="k">while</span> <span class="ow">not</span> <span class="n">workflow</span><span class="o">.</span><span class="n">is_completed</span><span class="p">():</span>
+</span><span class="line">            <span class="n">tasks</span> <span class="o">=</span> <span class="n">workflow</span><span class="o">.</span><span class="n">get_tasks</span><span class="p">(</span><span class="n">Task</span><span class="o">.</span><span class="n">READY</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line">            <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tasks</span><span class="p">:</span>
+</span><span class="line">                <span class="k">print</span> <span class="s">&quot;Ready:&quot;</span><span class="p">,</span> <span class="n">t</span><span class="o">.</span><span class="n">task_spec</span><span class="o">.</span><span class="n">name</span>
+</span><span class="line">                <span class="k">if</span>  <span class="nb">hasattr</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">task_spec</span><span class="p">,</span> <span class="s">&quot;cond_task_specs&quot;</span><span class="p">):</span>
+</span><span class="line">                    <span class="k">for</span> <span class="n">cond</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">t</span><span class="o">.</span><span class="n">task_spec</span><span class="o">.</span><span class="n">cond_task_specs</span><span class="p">:</span>
+</span><span class="line">                        <span class="k">for</span> <span class="n">cond_unit</span> <span class="ow">in</span> <span class="n">cond</span><span class="o">.</span><span class="n">args</span><span class="p">:</span>
+</span><span class="line">                            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">cond_unit</span><span class="p">,</span> <span class="s">&quot;name&quot;</span><span class="p">):</span>
+</span><span class="line">                                <span class="n">condition_keys</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cond_unit</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line">
+</span><span class="line">            <span class="n">flag_keys_in_user_select</span> <span class="o">=</span> <span class="bp">True</span>
+</span><span class="line">            <span class="k">for</span> <span class="n">cond_key</span> <span class="ow">in</span> <span class="n">condition_keys</span><span class="p">:</span>
+</span><span class="line">                <span class="k">if</span> <span class="ow">not</span> <span class="n">task_data_dict</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="n">cond_key</span><span class="p">):</span>
+</span><span class="line">                    <span class="k">print</span> <span class="n">cond_key</span>
+</span><span class="line">                    <span class="n">flag_keys_in_user_select</span> <span class="o">=</span> <span class="bp">False</span>
+</span><span class="line">                    <span class="k">break</span>
+</span><span class="line">
+</span><span class="line">            <span class="k">if</span> <span class="ow">not</span> <span class="n">flag_keys_in_user_select</span><span class="p">:</span>
+</span><span class="line">                <span class="c"># some tast&#39;s condition&#39;s key not in input userselect dict</span>
+</span><span class="line">                <span class="k">return</span>
+</span><span class="line">
+</span><span class="line">            <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tasks</span><span class="p">:</span>
+</span><span class="line">                <span class="n">t</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="o">**</span><span class="n">task_data_dict</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line">            <span class="n">workflow</span><span class="o">.</span><span class="n">complete_next</span><span class="p">()</span>
+</span><span class="line">
+</span><span class="line">        <span class="k">if</span> <span class="ow">not</span> <span class="n">workflow</span><span class="o">.</span><span class="n">is_completed</span><span class="p">():</span>
+</span><span class="line">            <span class="k">raise</span> <span class="n">QuestionError</span><span class="p">(</span><span class="s">&#39;invalid feature[</span><span class="si">%s</span><span class="s">]&#39;</span> <span class="o">%</span> <span class="n">filename</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line">    <span class="k">def</span> <span class="nf">print_trace</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span class="line">        <span class="n">path</span> <span class="o">=</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">taken_path</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span>
+</span><span class="line">        <span class="n">info</span> <span class="o">=</span> <span class="s">&quot;&quot;</span>
+</span><span class="line">        <span class="n">info</span> <span class="o">+=</span> <span class="s">&#39;the workflowrun path:</span><span class="se">\n</span><span class="s">&#39;</span>
+</span><span class="line">        <span class="n">info</span> <span class="o">+=</span> <span class="s">&#39;</span><span class="si">%s</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">path</span>
+</span><span class="line">        <span class="k">print</span> <span class="n">info</span>
+</span><span class="line">
+</span><span class="line">
+</span><span class="line">    <span class="k">def</span> <span class="nf">track_task</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">task_spec</span><span class="p">,</span> <span class="n">taken_path</span><span class="p">):</span>
+</span><span class="line">
+</span><span class="line">        <span class="c">#reached event call back</span>
+</span><span class="line">        <span class="k">if</span> <span class="n">task_spec</span><span class="o">.</span><span class="n">reached_event</span><span class="o">.</span><span class="n">is_connected</span><span class="p">(</span><span class="n">on_reached_cb</span><span class="p">):</span>
+</span><span class="line">            <span class="n">task_spec</span><span class="o">.</span><span class="n">reached_event</span><span class="o">.</span><span class="n">disconnect</span><span class="p">(</span><span class="n">on_reached_cb</span><span class="p">)</span>
+</span><span class="line">        <span class="n">task_spec</span><span class="o">.</span><span class="n">reached_event</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">on_reached_cb</span><span class="p">,</span> <span class="n">taken_path</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line">        <span class="c">#completed event call back</span>
+</span><span class="line">        <span class="k">if</span> <span class="n">task_spec</span><span class="o">.</span><span class="n">completed_event</span><span class="o">.</span><span class="n">is_connected</span><span class="p">(</span><span class="n">on_complete_cb</span><span class="p">):</span>
+</span><span class="line">            <span class="n">task_spec</span><span class="o">.</span><span class="n">completed_event</span><span class="o">.</span><span class="n">disconnect</span><span class="p">(</span><span class="n">on_complete_cb</span><span class="p">)</span>
+</span><span class="line">        <span class="n">task_spec</span><span class="o">.</span><span class="n">completed_event</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">on_complete_cb</span><span class="p">,</span> <span class="n">taken_path</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line">        <span class="c">#enter event call back</span>
+</span><span class="line">        <span class="k">if</span> <span class="n">task_spec</span><span class="o">.</span><span class="n">entered_event</span><span class="o">.</span><span class="n">is_connected</span><span class="p">(</span><span class="n">on_entered_cb</span><span class="p">):</span>
+</span><span class="line">            <span class="n">task_spec</span><span class="o">.</span><span class="n">entered_event</span><span class="o">.</span><span class="n">disconnect</span><span class="p">(</span><span class="n">on_entered_cb</span><span class="p">)</span>
+</span><span class="line">        <span class="n">task_spec</span><span class="o">.</span><span class="n">entered_event</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">on_entered_cb</span><span class="p">,</span> <span class="n">taken_path</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line">        <span class="c">#ready event call back</span>
+</span><span class="line">        <span class="k">if</span> <span class="n">task_spec</span><span class="o">.</span><span class="n">ready_event</span><span class="o">.</span><span class="n">is_connected</span><span class="p">(</span><span class="n">on_ready_cb</span><span class="p">):</span>
+</span><span class="line">            <span class="n">task_spec</span><span class="o">.</span><span class="n">ready_event</span><span class="o">.</span><span class="n">disconnect</span><span class="p">(</span><span class="n">on_ready_cb</span><span class="p">)</span>
+</span><span class="line">        <span class="n">task_spec</span><span class="o">.</span><span class="n">ready_event</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">on_ready_cb</span><span class="p">,</span> <span class="n">taken_path</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line">
+</span><span class="line">
+</span><span class="line">    <span class="k">def</span> <span class="nf">track_workflow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wf_spec</span><span class="p">,</span> <span class="n">taken_path</span> <span class="o">=</span> <span class="bp">None</span><span class="p">):</span>
+</span><span class="line">        <span class="k">if</span> <span class="n">taken_path</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+</span><span class="line">            <span class="n">taken_path</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class="line">        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">wf_spec</span><span class="o">.</span><span class="n">task_specs</span><span class="p">:</span>
+</span><span class="line">            <span class="c">#print &quot;track_workflow:&quot;,name</span>
+</span><span class="line">            <span class="bp">self</span><span class="o">.</span><span class="n">track_task</span><span class="p">(</span><span class="n">wf_spec</span><span class="o">.</span><span class="n">task_specs</span><span class="p">[</span><span class="n">name</span><span class="p">],</span> <span class="n">taken_path</span><span class="p">)</span>
+</span><span class="line">        <span class="k">return</span> <span class="n">taken_path</span>
+</span><span class="line">
+</span><span class="line"><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+</span><span class="line">    <span class="n">qw</span> <span class="o">=</span> <span class="n">QuestionWorkflow</span><span class="p">()</span>
+</span><span class="line">    <span class="n">qw</span><span class="o">.</span><span class="n">set_up</span><span class="p">(</span><span class="s">&quot;./case.xml&quot;</span><span class="p">)</span>
+</span><span class="line">    <span class="k">print</span> <span class="s">&quot;==========1st question==========&quot;</span>
+</span><span class="line">    <span class="n">user_selct</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;man&#39;</span><span class="p">:</span><span class="s">&#39;1&#39;</span><span class="p">}</span>
+</span><span class="line">    <span class="n">qw</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">user_selct</span><span class="p">)</span>
+</span><span class="line">    <span class="k">print</span> <span class="s">&quot;==========2nd question==========&quot;</span>
+</span><span class="line">    <span class="n">user_selct</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;man&#39;</span><span class="p">:</span><span class="s">&#39;1&#39;</span><span class="p">,</span> <span class="s">&#39;house&#39;</span><span class="p">:</span> <span class="s">&#39;2&#39;</span><span class="p">}</span>
+</span><span class="line">    <span class="n">qw</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">user_selct</span><span class="p">)</span>
+</span><span class="line">    <span class="k">print</span> <span class="s">&quot;==========3rd question==========&quot;</span>
+</span><span class="line">    <span class="n">user_selct</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;man&#39;</span><span class="p">:</span><span class="s">&#39;1&#39;</span><span class="p">,</span> <span class="s">&#39;house&#39;</span><span class="p">:</span> <span class="s">&#39;2&#39;</span><span class="p">,</span> <span class="s">&#39;why&#39;</span><span class="p">:</span> <span class="s">&#39;because you are a hero&#39;</span><span class="p">}</span>
+</span><span class="line">    <span class="n">qw</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">user_selct</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line">    <span class="sd">&#39;&#39;&#39;</span>
+</span><span class="line"><span class="sd">    print &quot;==========4th question=========&quot;</span>
+</span><span class="line"><span class="sd">    user_selct = {&#39;man&#39;:&#39;1&#39;, &#39;house&#39;: &#39;2&#39;, &#39;role&#39;:&#39;5&#39;}</span>
+</span><span class="line"><span class="sd">    qw.run(user_selct)</span>
+</span><span class="line"><span class="sd">    &#39;&#39;&#39;</span>
+</span><span class="line">
+</span><span class="line">    <span class="k">print</span> <span class="s">&quot;==========fix some question==========&quot;</span>
+</span><span class="line">    <span class="n">user_selct</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;man&#39;</span><span class="p">:</span><span class="s">&#39;1&#39;</span><span class="p">,</span> <span class="s">&#39;house&#39;</span><span class="p">:</span> <span class="s">&#39;1&#39;</span><span class="p">,</span> <span class="s">&#39;role&#39;</span><span class="p">:</span><span class="s">&#39;5&#39;</span><span class="p">}</span>
+</span><span class="line">    <span class="n">qw</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">user_selct</span><span class="p">,</span><span class="bp">True</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line">    <span class="k">print</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>the template case.xml file</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+<span class="line-number">42</span>
+<span class="line-number">43</span>
+<span class="line-number">44</span>
+<span class="line-number">45</span>
+<span class="line-number">46</span>
+<span class="line-number">47</span>
+<span class="line-number">48</span>
+<span class="line-number">49</span>
+<span class="line-number">50</span>
+<span class="line-number">51</span>
+<span class="line-number">52</span>
+<span class="line-number">53</span>
+<span class="line-number">54</span>
+<span class="line-number">55</span>
+<span class="line-number">56</span>
+<span class="line-number">57</span>
+<span class="line-number">58</span>
+<span class="line-number">59</span>
+<span class="line-number">60</span>
+<span class="line-number">61</span>
+<span class="line-number">62</span>
+<span class="line-number">63</span>
+<span class="line-number">64</span>
+<span class="line-number">65</span>
+<span class="line-number">66</span>
+<span class="line-number">67</span>
+</pre></td><td class="code"><pre><code class="xml"><span class="line"><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+</span><span class="line"><span class="nt">&lt;process-definition</span> <span class="na">name=</span><span class="s">&quot;Daixm Workflow&quot;</span> <span class="na">revision=</span><span class="s">&quot;1.6&quot;</span><span class="nt">&gt;</span>
+</span><span class="line">    <span class="nt">&lt;description&gt;</span>
+</span><span class="line">    A test workflow that contains all possible tasks.
+</span><span class="line">    <span class="nt">&lt;/description&gt;</span>
+</span><span class="line">
+</span><span class="line">    <span class="c">&lt;!-- Start with an implicit simple split. --&gt;</span>
+</span><span class="line">    <span class="nt">&lt;start-task&gt;</span>
+</span><span class="line">        <span class="nt">&lt;successor&gt;</span>house_choice<span class="nt">&lt;/successor&gt;</span>
+</span><span class="line">    <span class="nt">&lt;/start-task&gt;</span>
+</span><span class="line">
+</span><span class="line">    <span class="nt">&lt;exclusive-choice</span> <span class="na">name=</span><span class="s">&quot;house_choice&quot;</span><span class="nt">&gt;</span>
+</span><span class="line">        <span class="c">&lt;!-- No House --&gt;</span>
+</span><span class="line">        <span class="nt">&lt;default-successor&gt;</span>role_choice<span class="nt">&lt;/default-successor&gt;</span>
+</span><span class="line">
+</span><span class="line">        <span class="nt">&lt;conditional-successor&gt;</span>
+</span><span class="line">            <span class="nt">&lt;equals</span> <span class="na">left-field=</span><span class="s">&quot;house&quot;</span> <span class="na">right-value=</span><span class="s">&quot;1&quot;</span> <span class="nt">/&gt;</span>
+</span><span class="line">            <span class="nt">&lt;successor&gt;</span>build_house<span class="nt">&lt;/successor&gt;</span>
+</span><span class="line">        <span class="nt">&lt;/conditional-successor&gt;</span>
+</span><span class="line">
+</span><span class="line">        <span class="nt">&lt;conditional-successor&gt;</span>
+</span><span class="line">            <span class="nt">&lt;equals</span> <span class="na">left-field=</span><span class="s">&quot;house&quot;</span> <span class="na">right-value=</span><span class="s">&quot;2&quot;</span> <span class="nt">/&gt;</span>
+</span><span class="line">            <span class="nt">&lt;successor&gt;</span>buy_house<span class="nt">&lt;/successor&gt;</span>
+</span><span class="line">        <span class="nt">&lt;/conditional-successor&gt;</span>
+</span><span class="line">    <span class="nt">&lt;/exclusive-choice&gt;</span>
+</span><span class="line">
+</span><span class="line">    <span class="nt">&lt;task</span> <span class="na">name=</span><span class="s">&quot;buy_house&quot;</span><span class="nt">&gt;</span>
+</span><span class="line">        <span class="nt">&lt;description&gt;</span><span class="nt">&lt;/description&gt;</span>
+</span><span class="line">        <span class="nt">&lt;successor&gt;</span>house_location<span class="nt">&lt;/successor&gt;</span>
+</span><span class="line">    <span class="nt">&lt;/task&gt;</span>
+</span><span class="line">
+</span><span class="line">    <span class="nt">&lt;task</span> <span class="na">name=</span><span class="s">&quot;house_location&quot;</span><span class="nt">&gt;</span>
+</span><span class="line">        <span class="nt">&lt;successor&gt;</span>house_age<span class="nt">&lt;/successor&gt;</span>
+</span><span class="line">    <span class="nt">&lt;/task&gt;</span>
+</span><span class="line">
+</span><span class="line">    <span class="nt">&lt;task</span> <span class="na">name=</span><span class="s">&quot;house_age&quot;</span><span class="nt">&gt;</span>
+</span><span class="line">        <span class="nt">&lt;successor&gt;</span>role_choice<span class="nt">&lt;/successor&gt;</span>
+</span><span class="line">    <span class="nt">&lt;/task&gt;</span>
+</span><span class="line">
+</span><span class="line">    <span class="nt">&lt;task</span> <span class="na">name=</span><span class="s">&quot;build_house&quot;</span><span class="nt">&gt;</span>
+</span><span class="line">        <span class="nt">&lt;successor&gt;</span>role_choice<span class="nt">&lt;/successor&gt;</span>
+</span><span class="line">    <span class="nt">&lt;/task&gt;</span>
+</span><span class="line">
+</span><span class="line">
+</span><span class="line">    <span class="nt">&lt;exclusive-choice</span> <span class="na">name=</span><span class="s">&quot;role_choice&quot;</span><span class="nt">&gt;</span>
+</span><span class="line">        <span class="c">&lt;!-- No House --&gt;</span>
+</span><span class="line">        <span class="nt">&lt;default-successor&gt;</span>no_jobs<span class="nt">&lt;/default-successor&gt;</span>
+</span><span class="line">        <span class="nt">&lt;conditional-successor&gt;</span>
+</span><span class="line">            <span class="nt">&lt;equals</span> <span class="na">left-field=</span><span class="s">&quot;role&quot;</span> <span class="na">right-value=</span><span class="s">&quot;1&quot;</span> <span class="nt">/&gt;</span>
+</span><span class="line">            <span class="nt">&lt;successor&gt;</span>jobs_working<span class="nt">&lt;/successor&gt;</span>
+</span><span class="line">        <span class="nt">&lt;/conditional-successor&gt;</span>
+</span><span class="line">    <span class="nt">&lt;/exclusive-choice&gt;</span>
+</span><span class="line">
+</span><span class="line">
+</span><span class="line">    <span class="nt">&lt;task</span> <span class="na">name=</span><span class="s">&quot;no_jobs&quot;</span><span class="nt">&gt;</span>
+</span><span class="line">        <span class="nt">&lt;successor&gt;</span>last<span class="nt">&lt;/successor&gt;</span>
+</span><span class="line">    <span class="nt">&lt;/task&gt;</span>
+</span><span class="line">
+</span><span class="line">    <span class="nt">&lt;task</span> <span class="na">name=</span><span class="s">&quot;jobs_working&quot;</span><span class="nt">&gt;</span>
+</span><span class="line">        <span class="nt">&lt;successor&gt;</span>last<span class="nt">&lt;/successor&gt;</span>
+</span><span class="line">    <span class="nt">&lt;/task&gt;</span>
+</span><span class="line">
+</span><span class="line">    <span class="c">&lt;!-- A final task. --&gt;</span>
+</span><span class="line">    <span class="nt">&lt;task</span> <span class="na">name=</span><span class="s">&quot;last&quot;</span><span class="nt">&gt;</span>
+</span><span class="line">        <span class="nt">&lt;successor&gt;</span>end<span class="nt">&lt;/successor&gt;</span>
+</span><span class="line">    <span class="nt">&lt;/task&gt;</span>
+</span><span class="line"><span class="nt">&lt;/process-definition&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+</div>
+  
+  
+
+<br>
+<a href="/blog/2013/10/02/workflow-engine-in-python/#disqus_thread">Comments</a>
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/07/02/the-key-technologies-in-simple-xiangqi-engine-maxqi/">The Key Technologies in Simple XiangQi Engine MaxQi</a></h1>
     
     
       <p class="meta">
@@ -123,7 +670,7 @@
 
 <time datetime="2013-07-02T08:30:00+08:00" pubdate data-updated="true">Jul 2<span>nd</span>, 2013</time>
         
-         | <a href="/blog/2013/07/02/the-key-tech-in-simple-xiangqi-engine-maxqi/#disqus_thread">Comments</a>
+         | <a href="/blog/2013/07/02/the-key-technologies-in-simple-xiangqi-engine-maxqi/#disqus_thread">Comments</a>
         
       </p>
     
@@ -226,7 +773,7 @@ The other way the piece’s weight sum is used to estimate.</p>
   
 
 <br>
-<a href="/blog/2013/07/02/the-key-tech-in-simple-xiangqi-engine-maxqi/#disqus_thread">Comments</a>
+<a href="/blog/2013/07/02/the-key-technologies-in-simple-xiangqi-engine-maxqi/#disqus_thread">Comments</a>
 
     </article>
   
@@ -878,7 +1425,7 @@ the next note’s length is decided by the previous’s.</p>
 
 <p>The key program “MarkovBuilder.py” for TransArray&amp;GenerateNote</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
@@ -921,58 +1468,54 @@ the next note’s length is decided by the previous’s.</p>
 <span class="line-number">41</span>
 <span class="line-number">42</span>
 <span class="line-number">43</span>
-<span class="line-number">44</span>
-<span class="line-number">45</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">
-</span><span class="line">'''
-</span><span class="line">Created on May 14, 2009
+</pre></td><td class="code"><pre><code class="py"><span class="line"><span class="sd">&#39;&#39;&#39;</span>
+</span><span class="line"><span class="sd">Created on May 14, 2009</span>
 </span><span class="line">
-</span><span class="line">@author: darkxanthos
-</span><span class="line">'''
-</span><span class="line">import random
+</span><span class="line"><span class="sd">@author: darkxanthos</span>
+</span><span class="line"><span class="sd">&#39;&#39;&#39;</span>
+</span><span class="line"><span class="kn">import</span> <span class="nn">random</span>
 </span><span class="line">
-</span><span class="line">class MarkovBuilder:
-</span><span class="line">    def __init__(self, value_list):
-</span><span class="line">        self._values_added = 0
-</span><span class="line">        self._reverse_value_lookup = value_list
-</span><span class="line">        self._value_lookup = {}
-</span><span class="line">        for i in range(0, len(value_list)):
-</span><span class="line">            self._value_lookup[value_list[i]] = i
-</span><span class="line">        #Initialize our adjacency matrix with the initial
-</span><span class="line">        #probabilities for note transitions.
-</span><span class="line">        self._matrix=[[0 for x in range(0,len(value_list))] for i in range(0,len(value_list))]
+</span><span class="line"><span class="k">class</span> <span class="nc">MarkovBuilder</span><span class="p">:</span>
+</span><span class="line">    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value_list</span><span class="p">):</span>
+</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">_values_added</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">_reverse_value_lookup</span> <span class="o">=</span> <span class="n">value_list</span>
+</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">_value_lookup</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span class="line">        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">value_list</span><span class="p">)):</span>
+</span><span class="line">            <span class="bp">self</span><span class="o">.</span><span class="n">_value_lookup</span><span class="p">[</span><span class="n">value_list</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="n">i</span>
+</span><span class="line">        <span class="c">#Initialize our adjacency matrix with the initial</span>
+</span><span class="line">        <span class="c">#probabilities for note transitions.</span>
+</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">_matrix</span><span class="o">=</span><span class="p">[[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">value_list</span><span class="p">))]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">value_list</span><span class="p">))]</span>
 </span><span class="line">
-</span><span class="line">    def add(self, from_value, to_value):
-</span><span class="line">        """Add a path from a note to another note. Re-adding a path between notes will increase the associated weight."""
-</span><span class="line">        value = self._value_lookup
-</span><span class="line">        self._matrix[value[from_value]][value[to_value]] += 1
-</span><span class="line">        self._values_added = self._values_added + 1
-</span><span class="line">        
-</span><span class="line">    def next_value(self, from_value):
-</span><span class="line">        value = self._value_lookup[from_value]
-</span><span class="line">        value_counts = self._matrix[value]
-</span><span class="line">        value_index = self.randomly_choose(value_counts)
-</span><span class="line">        if(value_index &lt; 0):
-</span><span class="line">            raise RuntimeError, "Non-existent value selected."
-</span><span class="line">        else:
-</span><span class="line">            return self._reverse_value_lookup[value_index]
-</span><span class="line">            
-</span><span class="line">    def randomly_choose(self, choice_counts):
-</span><span class="line">        """Given an array of counts, returns the index that was randomly chosen"""
-</span><span class="line">        counted_sum = 0
-</span><span class="line">        count_sum = sum(choice_counts)
-</span><span class="line">        selected_count = random.randrange(1, count_sum + 1)
-</span><span class="line">        for index in range(0, len(choice_counts)):
-</span><span class="line">            counted_sum += choice_counts[index]
-</span><span class="line">            if(counted_sum &gt;= selected_count):
-</span><span class="line">                return index
-</span><span class="line">        raise RuntimeError, "Impossible value selection made. BAD!"
+</span><span class="line">    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">from_value</span><span class="p">,</span> <span class="n">to_value</span><span class="p">):</span>
+</span><span class="line">        <span class="sd">&quot;&quot;&quot;Add a path from a note to another note. Re-adding a path between notes will increase the associated weight.&quot;&quot;&quot;</span>
+</span><span class="line">        <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_value_lookup</span>
+</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">_matrix</span><span class="p">[</span><span class="n">value</span><span class="p">[</span><span class="n">from_value</span><span class="p">]][</span><span class="n">value</span><span class="p">[</span><span class="n">to_value</span><span class="p">]]</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">_values_added</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_values_added</span> <span class="o">+</span> <span class="mi">1</span>
 </span><span class="line">
+</span><span class="line">    <span class="k">def</span> <span class="nf">next_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">from_value</span><span class="p">):</span>
+</span><span class="line">        <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_value_lookup</span><span class="p">[</span><span class="n">from_value</span><span class="p">]</span>
+</span><span class="line">        <span class="n">value_counts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_matrix</span><span class="p">[</span><span class="n">value</span><span class="p">]</span>
+</span><span class="line">        <span class="n">value_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">randomly_choose</span><span class="p">(</span><span class="n">value_counts</span><span class="p">)</span>
+</span><span class="line">        <span class="k">if</span><span class="p">(</span><span class="n">value_index</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">):</span>
+</span><span class="line">            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">,</span> <span class="s">&quot;Non-existent value selected.&quot;</span>
+</span><span class="line">        <span class="k">else</span><span class="p">:</span>
+</span><span class="line">            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reverse_value_lookup</span><span class="p">[</span><span class="n">value_index</span><span class="p">]</span>
+</span><span class="line">
+</span><span class="line">    <span class="k">def</span> <span class="nf">randomly_choose</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">choice_counts</span><span class="p">):</span>
+</span><span class="line">        <span class="sd">&quot;&quot;&quot;Given an array of counts, returns the index that was randomly chosen&quot;&quot;&quot;</span>
+</span><span class="line">        <span class="n">counted_sum</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class="line">        <span class="n">count_sum</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">choice_counts</span><span class="p">)</span>
+</span><span class="line">        <span class="n">selected_count</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">count_sum</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+</span><span class="line">        <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">choice_counts</span><span class="p">)):</span>
+</span><span class="line">            <span class="n">counted_sum</span> <span class="o">+=</span> <span class="n">choice_counts</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+</span><span class="line">            <span class="k">if</span><span class="p">(</span><span class="n">counted_sum</span> <span class="o">&gt;=</span> <span class="n">selected_count</span><span class="p">):</span>
+</span><span class="line">                <span class="k">return</span> <span class="n">index</span>
+</span><span class="line">        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">,</span> <span class="s">&quot;Impossible value selection made. BAD!&quot;</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>Main Program “MarkovMusic.py”</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
@@ -1049,85 +1592,83 @@ the next note’s length is decided by the previous’s.</p>
 <span class="line-number">75</span>
 <span class="line-number">76</span>
 <span class="line-number">77</span>
-<span class="line-number">78</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">
-</span><span class="line">'''
-</span><span class="line">Created on May 12, 2009
+</pre></td><td class="code"><pre><code class="py"><span class="line"><span class="sd">&#39;&#39;&#39;</span>
+</span><span class="line"><span class="sd">Created on May 12, 2009</span>
 </span><span class="line">
-</span><span class="line">@author: Justin Bozonier
-</span><span class="line">'''
-</span><span class="line">import pysynth
-</span><span class="line">from MarkovBuilder import MarkovBuilder
+</span><span class="line"><span class="sd">@author: Justin Bozonier</span>
+</span><span class="line"><span class="sd">&#39;&#39;&#39;</span>
+</span><span class="line"><span class="kn">import</span> <span class="nn">pysynth</span>
+</span><span class="line"><span class="kn">from</span> <span class="nn">MarkovBuilder</span> <span class="kn">import</span> <span class="n">MarkovBuilder</span>
 </span><span class="line">
-</span><span class="line">class MusicMatrix:
-</span><span class="line">    def __init__(self):
-</span><span class="line">        self._previous_note = None
-</span><span class="line">        self._markov = MarkovBuilder(["a", "a#", "b", "c", "c#", "d", "d#", "e", "f", "f#", "g", "g#"])
-</span><span class="line">        self._timings = MarkovBuilder([1, 2, 4, 8, 16])
+</span><span class="line"><span class="k">class</span> <span class="nc">MusicMatrix</span><span class="p">:</span>
+</span><span class="line">    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">_previous_note</span> <span class="o">=</span> <span class="bp">None</span>
+</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">_markov</span> <span class="o">=</span> <span class="n">MarkovBuilder</span><span class="p">([</span><span class="s">&quot;a&quot;</span><span class="p">,</span> <span class="s">&quot;a#&quot;</span><span class="p">,</span> <span class="s">&quot;b&quot;</span><span class="p">,</span> <span class="s">&quot;c&quot;</span><span class="p">,</span> <span class="s">&quot;c#&quot;</span><span class="p">,</span> <span class="s">&quot;d&quot;</span><span class="p">,</span> <span class="s">&quot;d#&quot;</span><span class="p">,</span> <span class="s">&quot;e&quot;</span><span class="p">,</span> <span class="s">&quot;f&quot;</span><span class="p">,</span> <span class="s">&quot;f#&quot;</span><span class="p">,</span> <span class="s">&quot;g&quot;</span><span class="p">,</span> <span class="s">&quot;g#&quot;</span><span class="p">])</span>
+</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">_timings</span> <span class="o">=</span> <span class="n">MarkovBuilder</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">16</span><span class="p">])</span>
 </span><span class="line">
-</span><span class="line">    def add(self, to_note):
-</span><span class="line">        """Add a path from a note to another note. Re-adding a path between notes will increase the associated weight."""
-</span><span class="line">        if(self._previous_note is None):
-</span><span class="line">            self._previous_note = to_note
-</span><span class="line">            return
-</span><span class="line">        from_note = self._previous_note
-</span><span class="line">        self._markov.add(from_note[0], to_note[0])
-</span><span class="line">        self._timings.add(from_note[1], to_note[1])
-</span><span class="line">        self._previous_note = to_note
-</span><span class="line">        
-</span><span class="line">    def next_note(self, from_note):
-</span><span class="line">        return [self._markov.next_value(from_note[0]), self._timings.next_value(from_note[1])]
+</span><span class="line">    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">to_note</span><span class="p">):</span>
+</span><span class="line">        <span class="sd">&quot;&quot;&quot;Add a path from a note to another note. Re-adding a path between notes will increase the associated weight.&quot;&quot;&quot;</span>
+</span><span class="line">        <span class="k">if</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_previous_note</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">):</span>
+</span><span class="line">            <span class="bp">self</span><span class="o">.</span><span class="n">_previous_note</span> <span class="o">=</span> <span class="n">to_note</span>
+</span><span class="line">            <span class="k">return</span>
+</span><span class="line">        <span class="n">from_note</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_previous_note</span>
+</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">_markov</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">from_note</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">to_note</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">_timings</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">from_note</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">to_note</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">_previous_note</span> <span class="o">=</span> <span class="n">to_note</span>
 </span><span class="line">
-</span><span class="line"># Playing it comes next :)
-</span><span class="line">#test = [['c',4], ['e',4], ['g',4], ['c5',1]]
-</span><span class="line">#pysynth.make_wav(test, fn = "test.wav")
+</span><span class="line">    <span class="k">def</span> <span class="nf">next_note</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">from_note</span><span class="p">):</span>
+</span><span class="line">        <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_markov</span><span class="o">.</span><span class="n">next_value</span><span class="p">(</span><span class="n">from_note</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="bp">self</span><span class="o">.</span><span class="n">_timings</span><span class="o">.</span><span class="n">next_value</span><span class="p">(</span><span class="n">from_note</span><span class="p">[</span><span class="mi">1</span><span class="p">])]</span>
 </span><span class="line">
-</span><span class="line">musicLearner = MusicMatrix()
+</span><span class="line"><span class="c"># Playing it comes next :)</span>
+</span><span class="line"><span class="c">#test = [[&#39;c&#39;,4], [&#39;e&#39;,4], [&#39;g&#39;,4], [&#39;c5&#39;,1]]</span>
+</span><span class="line"><span class="c">#pysynth.make_wav(test, fn = &quot;test.wav&quot;)</span>
 </span><span class="line">
-</span><span class="line"># Input the melody of Row, Row, Row Your Boat
-</span><span class="line"># The MusicMatrix will automatically use this to 
-</span><span class="line"># model our own song after it.
-</span><span class="line">musicLearner.add(["c", 4])
-</span><span class="line">musicLearner.add(["c", 4])
-</span><span class="line">musicLearner.add(["c", 4])
-</span><span class="line">musicLearner.add(["d", 8])
-</span><span class="line">musicLearner.add(["e", 4])
-</span><span class="line">musicLearner.add(["e", 4])
-</span><span class="line">musicLearner.add(["d", 8])
-</span><span class="line">musicLearner.add(["e", 4])
-</span><span class="line">musicLearner.add(["f", 8])
-</span><span class="line">musicLearner.add(["g", 2])
+</span><span class="line"><span class="n">musicLearner</span> <span class="o">=</span> <span class="n">MusicMatrix</span><span class="p">()</span>
 </span><span class="line">
-</span><span class="line">musicLearner.add(["c", 8])
-</span><span class="line">musicLearner.add(["c", 8])
-</span><span class="line">musicLearner.add(["c", 8])
+</span><span class="line"><span class="c"># Input the melody of Row, Row, Row Your Boat</span>
+</span><span class="line"><span class="c"># The MusicMatrix will automatically use this to </span>
+</span><span class="line"><span class="c"># model our own song after it.</span>
+</span><span class="line"><span class="n">musicLearner</span><span class="o">.</span><span class="n">add</span><span class="p">([</span><span class="s">&quot;c&quot;</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+</span><span class="line"><span class="n">musicLearner</span><span class="o">.</span><span class="n">add</span><span class="p">([</span><span class="s">&quot;c&quot;</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+</span><span class="line"><span class="n">musicLearner</span><span class="o">.</span><span class="n">add</span><span class="p">([</span><span class="s">&quot;c&quot;</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+</span><span class="line"><span class="n">musicLearner</span><span class="o">.</span><span class="n">add</span><span class="p">([</span><span class="s">&quot;d&quot;</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span>
+</span><span class="line"><span class="n">musicLearner</span><span class="o">.</span><span class="n">add</span><span class="p">([</span><span class="s">&quot;e&quot;</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+</span><span class="line"><span class="n">musicLearner</span><span class="o">.</span><span class="n">add</span><span class="p">([</span><span class="s">&quot;e&quot;</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+</span><span class="line"><span class="n">musicLearner</span><span class="o">.</span><span class="n">add</span><span class="p">([</span><span class="s">&quot;d&quot;</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span>
+</span><span class="line"><span class="n">musicLearner</span><span class="o">.</span><span class="n">add</span><span class="p">([</span><span class="s">&quot;e&quot;</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+</span><span class="line"><span class="n">musicLearner</span><span class="o">.</span><span class="n">add</span><span class="p">([</span><span class="s">&quot;f&quot;</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span>
+</span><span class="line"><span class="n">musicLearner</span><span class="o">.</span><span class="n">add</span><span class="p">([</span><span class="s">&quot;g&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
 </span><span class="line">
-</span><span class="line">musicLearner.add(["g", 8])
-</span><span class="line">musicLearner.add(["g", 8])
-</span><span class="line">musicLearner.add(["g", 8])
+</span><span class="line"><span class="n">musicLearner</span><span class="o">.</span><span class="n">add</span><span class="p">([</span><span class="s">&quot;c&quot;</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span>
+</span><span class="line"><span class="n">musicLearner</span><span class="o">.</span><span class="n">add</span><span class="p">([</span><span class="s">&quot;c&quot;</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span>
+</span><span class="line"><span class="n">musicLearner</span><span class="o">.</span><span class="n">add</span><span class="p">([</span><span class="s">&quot;c&quot;</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span>
 </span><span class="line">
-</span><span class="line">musicLearner.add(["e", 8])
-</span><span class="line">musicLearner.add(["e", 8])
-</span><span class="line">musicLearner.add(["e", 8])
+</span><span class="line"><span class="n">musicLearner</span><span class="o">.</span><span class="n">add</span><span class="p">([</span><span class="s">&quot;g&quot;</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span>
+</span><span class="line"><span class="n">musicLearner</span><span class="o">.</span><span class="n">add</span><span class="p">([</span><span class="s">&quot;g&quot;</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span>
+</span><span class="line"><span class="n">musicLearner</span><span class="o">.</span><span class="n">add</span><span class="p">([</span><span class="s">&quot;g&quot;</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span>
 </span><span class="line">
-</span><span class="line">musicLearner.add(["c", 8])
-</span><span class="line">musicLearner.add(["c", 8])
-</span><span class="line">musicLearner.add(["c", 8])
+</span><span class="line"><span class="n">musicLearner</span><span class="o">.</span><span class="n">add</span><span class="p">([</span><span class="s">&quot;e&quot;</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span>
+</span><span class="line"><span class="n">musicLearner</span><span class="o">.</span><span class="n">add</span><span class="p">([</span><span class="s">&quot;e&quot;</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span>
+</span><span class="line"><span class="n">musicLearner</span><span class="o">.</span><span class="n">add</span><span class="p">([</span><span class="s">&quot;e&quot;</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span>
 </span><span class="line">
-</span><span class="line">musicLearner.add(["g", 4])
-</span><span class="line">musicLearner.add(["f", 8])
-</span><span class="line">musicLearner.add(["e", 4])
-</span><span class="line">musicLearner.add(["d", 8])
-</span><span class="line">musicLearner.add(["c", 2])
+</span><span class="line"><span class="n">musicLearner</span><span class="o">.</span><span class="n">add</span><span class="p">([</span><span class="s">&quot;c&quot;</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span>
+</span><span class="line"><span class="n">musicLearner</span><span class="o">.</span><span class="n">add</span><span class="p">([</span><span class="s">&quot;c&quot;</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span>
+</span><span class="line"><span class="n">musicLearner</span><span class="o">.</span><span class="n">add</span><span class="p">([</span><span class="s">&quot;c&quot;</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span>
 </span><span class="line">
-</span><span class="line">random_score = []
-</span><span class="line">current_note = ["c", 4]
-</span><span class="line">for i in range(0,100):
-</span><span class="line">    print current_note[0] + ", " + str(current_note[1])
-</span><span class="line">    current_note = musicLearner.next_note(current_note)
-</span><span class="line">    random_score.append(current_note)
+</span><span class="line"><span class="n">musicLearner</span><span class="o">.</span><span class="n">add</span><span class="p">([</span><span class="s">&quot;g&quot;</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+</span><span class="line"><span class="n">musicLearner</span><span class="o">.</span><span class="n">add</span><span class="p">([</span><span class="s">&quot;f&quot;</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span>
+</span><span class="line"><span class="n">musicLearner</span><span class="o">.</span><span class="n">add</span><span class="p">([</span><span class="s">&quot;e&quot;</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+</span><span class="line"><span class="n">musicLearner</span><span class="o">.</span><span class="n">add</span><span class="p">([</span><span class="s">&quot;d&quot;</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span>
+</span><span class="line"><span class="n">musicLearner</span><span class="o">.</span><span class="n">add</span><span class="p">([</span><span class="s">&quot;c&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
 </span><span class="line">
-</span><span class="line">pysynth.make_wav(random_score, fn = "first_score.wav")
+</span><span class="line"><span class="n">random_score</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class="line"><span class="n">current_note</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;c&quot;</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+</span><span class="line"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">):</span>
+</span><span class="line">    <span class="k">print</span> <span class="n">current_note</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s">&quot;, &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">current_note</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</span><span class="line">    <span class="n">current_note</span> <span class="o">=</span> <span class="n">musicLearner</span><span class="o">.</span><span class="n">next_note</span><span class="p">(</span><span class="n">current_note</span><span class="p">)</span>
+</span><span class="line">    <span class="n">random_score</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current_note</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line"><span class="n">pysynth</span><span class="o">.</span><span class="n">make_wav</span><span class="p">(</span><span class="n">random_score</span><span class="p">,</span> <span class="n">fn</span> <span class="o">=</span> <span class="s">&quot;first_score.wav&quot;</span><span class="p">)</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>code src: <br />
@@ -1258,7 +1799,7 @@ Onion alpha increase/decrease = KEYPAD_MULTIPLY(*) / KEYPAD_DIVIDE(/)</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2013/04/10/something-about-the-practice/">Something About the Practice</a></h1>
+      <h1 class="entry-title"><a href="/blog/2013/04/10/tv-series-the-practice/">TV Series the Practice</a></h1>
     
     
       <p class="meta">
@@ -1276,7 +1817,7 @@ Onion alpha increase/decrease = KEYPAD_MULTIPLY(*) / KEYPAD_DIVIDE(/)</p>
 
 <time datetime="2013-04-10T22:22:00+08:00" pubdate data-updated="true">Apr 10<span>th</span>, 2013</time>
         
-         | <a href="/blog/2013/04/10/something-about-the-practice/#disqus_thread">Comments</a>
+         | <a href="/blog/2013/04/10/tv-series-the-practice/#disqus_thread">Comments</a>
         
       </p>
     
@@ -1390,7 +1931,7 @@ It’s too fast to follow it.</p>
 
 <p>the code is like this:</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
@@ -1457,84 +1998,78 @@ It’s too fast to follow it.</p>
 <span class="line-number">65</span>
 <span class="line-number">66</span>
 <span class="line-number">67</span>
-<span class="line-number">68</span>
-<span class="line-number">69</span>
-<span class="line-number">70</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">#! /usr/bin/env python
+</pre></td><td class="code"><pre><code class="py"><span class="line"><span class="c">#! /usr/bin/env python</span>
 </span><span class="line">
-</span><span class="line">import time
-</span><span class="line">import sys
-</span><span class="line">import exceptions
-</span><span class="line">import string
+</span><span class="line"><span class="kn">import</span> <span class="nn">time</span>
+</span><span class="line"><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class="line"><span class="kn">import</span> <span class="nn">exceptions</span>
+</span><span class="line"><span class="kn">import</span> <span class="nn">string</span>
 </span><span class="line">
 </span><span class="line">
-</span><span class="line">def main(argv=sys.argv):
-</span><span class="line">	englist_title_file = open(argv[1],"r")
-</span><span class="line">	chinese_title_file = open(argv[2],"r")
-</span><span class="line">	mixed_title_file = open(argv[3],"w")
-</span><span class="line">	sub_index = 1
-</span><span class="line">	sub_content = {}
-</span><span class="line">	while 1 :
-</span><span class="line">		### index line
-</span><span class="line">		line = englist_title_file.readline()
+</span><span class="line"><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">argv</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">):</span>
+</span><span class="line">	<span class="n">englist_title_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="s">&quot;r&quot;</span><span class="p">)</span>
+</span><span class="line">	<span class="n">chinese_title_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="s">&quot;r&quot;</span><span class="p">)</span>
+</span><span class="line">	<span class="n">mixed_title_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span><span class="s">&quot;w&quot;</span><span class="p">)</span>
+</span><span class="line">	<span class="n">sub_index</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class="line">	<span class="n">sub_content</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span class="line">	<span class="k">while</span> <span class="mi">1</span> <span class="p">:</span>
+</span><span class="line">		<span class="c">### index line</span>
+</span><span class="line">		<span class="n">line</span> <span class="o">=</span> <span class="n">englist_title_file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
 </span><span class="line">
-</span><span class="line">		if not line or line=="" or line=="\r" or line=="\r\n":
-</span><span class="line">			break
+</span><span class="line">		<span class="k">if</span> <span class="ow">not</span> <span class="n">line</span> <span class="ow">or</span> <span class="n">line</span><span class="o">==</span><span class="s">&quot;&quot;</span> <span class="ow">or</span> <span class="n">line</span><span class="o">==</span><span class="s">&quot;</span><span class="se">\r</span><span class="s">&quot;</span> <span class="ow">or</span> <span class="n">line</span><span class="o">==</span><span class="s">&quot;</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">:</span>
+</span><span class="line">			<span class="k">break</span>
 </span><span class="line">
-</span><span class="line">		if sub_index == string.atoi(line):
-</span><span class="line">			### sub time line
-</span><span class="line">			englist_title_file.readline()
-</span><span class="line">			### english subtitle line
-</span><span class="line">			sub_content[sub_index] = englist_title_file.readline()
-</span><span class="line">			### blank line
-</span><span class="line">			englist_title_file.readline()
+</span><span class="line">		<span class="k">if</span> <span class="n">sub_index</span> <span class="o">==</span> <span class="n">string</span><span class="o">.</span><span class="n">atoi</span><span class="p">(</span><span class="n">line</span><span class="p">):</span>
+</span><span class="line">			<span class="c">### sub time line</span>
+</span><span class="line">			<span class="n">englist_title_file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+</span><span class="line">			<span class="c">### english subtitle line</span>
+</span><span class="line">			<span class="n">sub_content</span><span class="p">[</span><span class="n">sub_index</span><span class="p">]</span> <span class="o">=</span> <span class="n">englist_title_file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+</span><span class="line">			<span class="c">### blank line</span>
+</span><span class="line">			<span class="n">englist_title_file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
 </span><span class="line">
-</span><span class="line">			sub_index += 1	
-</span><span class="line">	sub_index_max = sub_index		
-</span><span class="line">	sub_index = 1	
-</span><span class="line">	while 1 :
-</span><span class="line">		### index line
-</span><span class="line">		line = chinese_title_file.readline()
-</span><span class="line">		mixed_title_file.write(line)
+</span><span class="line">			<span class="n">sub_index</span> <span class="o">+=</span> <span class="mi">1</span>	
+</span><span class="line">	<span class="n">sub_index_max</span> <span class="o">=</span> <span class="n">sub_index</span>		
+</span><span class="line">	<span class="n">sub_index</span> <span class="o">=</span> <span class="mi">1</span>	
+</span><span class="line">	<span class="k">while</span> <span class="mi">1</span> <span class="p">:</span>
+</span><span class="line">		<span class="c">### index line</span>
+</span><span class="line">		<span class="n">line</span> <span class="o">=</span> <span class="n">chinese_title_file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+</span><span class="line">		<span class="n">mixed_title_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
 </span><span class="line">
-</span><span class="line">		print "xxxxx=    "+line
-</span><span class="line">		if not line or line=="" or line=="\r" or line=="\r\n":
-</span><span class="line">			break
+</span><span class="line">		<span class="k">print</span> <span class="s">&quot;xxxxx=    &quot;</span><span class="o">+</span><span class="n">line</span>
+</span><span class="line">		<span class="k">if</span> <span class="ow">not</span> <span class="n">line</span> <span class="ow">or</span> <span class="n">line</span><span class="o">==</span><span class="s">&quot;&quot;</span> <span class="ow">or</span> <span class="n">line</span><span class="o">==</span><span class="s">&quot;</span><span class="se">\r</span><span class="s">&quot;</span> <span class="ow">or</span> <span class="n">line</span><span class="o">==</span><span class="s">&quot;</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">:</span>
+</span><span class="line">			<span class="k">break</span>
 </span><span class="line">
-</span><span class="line">		if sub_index == string.atoi(line):
-</span><span class="line">			### sub time line
-</span><span class="line">			line = chinese_title_file.readline()
-</span><span class="line">			mixed_title_file.write(line)
-</span><span class="line">			### chinese subtitle line
-</span><span class="line">			line = chinese_title_file.readline()
-</span><span class="line">			mixed_title_file.write(line)
-</span><span class="line">			### english subtitle line
-</span><span class="line">			line = sub_content[sub_index]
-</span><span class="line">			mixed_title_file.write(line)
-</span><span class="line">			### blank line
-</span><span class="line">			line = chinese_title_file.readline()
-</span><span class="line">			mixed_title_file.write(line)
+</span><span class="line">		<span class="k">if</span> <span class="n">sub_index</span> <span class="o">==</span> <span class="n">string</span><span class="o">.</span><span class="n">atoi</span><span class="p">(</span><span class="n">line</span><span class="p">):</span>
+</span><span class="line">			<span class="c">### sub time line</span>
+</span><span class="line">			<span class="n">line</span> <span class="o">=</span> <span class="n">chinese_title_file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+</span><span class="line">			<span class="n">mixed_title_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</span><span class="line">			<span class="c">### chinese subtitle line</span>
+</span><span class="line">			<span class="n">line</span> <span class="o">=</span> <span class="n">chinese_title_file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+</span><span class="line">			<span class="n">mixed_title_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</span><span class="line">			<span class="c">### english subtitle line</span>
+</span><span class="line">			<span class="n">line</span> <span class="o">=</span> <span class="n">sub_content</span><span class="p">[</span><span class="n">sub_index</span><span class="p">]</span>
+</span><span class="line">			<span class="n">mixed_title_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</span><span class="line">			<span class="c">### blank line</span>
+</span><span class="line">			<span class="n">line</span> <span class="o">=</span> <span class="n">chinese_title_file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+</span><span class="line">			<span class="n">mixed_title_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
 </span><span class="line">
-</span><span class="line">			sub_index += 1
-</span><span class="line">		if sub_index &gt;= sub_index_max :
-</span><span class="line">			break
+</span><span class="line">			<span class="n">sub_index</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class="line">		<span class="k">if</span> <span class="n">sub_index</span> <span class="o">&gt;=</span> <span class="n">sub_index_max</span> <span class="p">:</span>
+</span><span class="line">			<span class="k">break</span>
 </span><span class="line">
-</span><span class="line">	englist_title_file.close()
-</span><span class="line">	chinese_title_file.close()
-</span><span class="line">	mixed_title_file.close()
+</span><span class="line">	<span class="n">englist_title_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span><span class="line">	<span class="n">chinese_title_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span><span class="line">	<span class="n">mixed_title_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </span><span class="line">
 </span><span class="line">
 </span><span class="line">
-</span><span class="line">if __name__ == "__main__":
-</span><span class="line">	sys.exit(main())
-</span><span class="line">
-</span><span class="line">
-</span><span class="line">
+</span><span class="line"><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
+</span><span class="line">	<span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>4, The mixed subtitle is done</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
@@ -1548,22 +2083,20 @@ It’s too fast to follow it.</p>
 <span class="line-number">12</span>
 <span class="line-number">13</span>
 <span class="line-number">14</span>
-<span class="line-number">15</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">
-</span><span class="line">1 
-</span><span class="line">00:00:00,312 - &gt; 00:00:01,833 
-</span><span class="line">以前的做法 
-</span><span class="line">Previously on The Practice
+</pre></td><td class="code"><pre><code class="py"><span class="line"><span class="mi">1</span>
+</span><span class="line"><span class="mo">00</span><span class="p">:</span><span class="mo">00</span><span class="p">:</span><span class="mo">00</span><span class="p">,</span><span class="mi">312</span> <span class="o">-</span> <span class="o">&gt;</span> <span class="mo">00</span><span class="p">:</span><span class="mo">00</span><span class="p">:</span><span class="mo">01</span><span class="p">,</span><span class="mi">833</span>
+</span><span class="line"><span class="err">以前的做法</span>
+</span><span class="line"><span class="n">Previously</span> <span class="n">on</span> <span class="n">The</span> <span class="n">Practice</span>
 </span><span class="line">
-</span><span class="line">2 
-</span><span class="line">00:00:01,959 - &gt; 00:00:03,488 
-</span><span class="line">有什么问题，Ellenor？ 
-</span><span class="line">Something wrong, Ellenor? 
+</span><span class="line"><span class="mi">2</span>
+</span><span class="line"><span class="mo">00</span><span class="p">:</span><span class="mo">00</span><span class="p">:</span><span class="mo">01</span><span class="p">,</span><span class="mi">959</span> <span class="o">-</span> <span class="o">&gt;</span> <span class="mo">00</span><span class="p">:</span><span class="mo">00</span><span class="p">:</span><span class="mo">03</span><span class="p">,</span><span class="mi">488</span>
+</span><span class="line"><span class="err">有什么问题，</span><span class="n">Ellenor</span><span class="err">？</span>
+</span><span class="line"><span class="n">Something</span> <span class="n">wrong</span><span class="p">,</span> <span class="n">Ellenor</span><span class="err">?</span>
 </span><span class="line">
-</span><span class="line">3 
-</span><span class="line">00:00:03,584 - &gt; 00:00:04,848 
-</span><span class="line">你来杀我吗？ 
-</span><span class="line">You came to kill me? 
+</span><span class="line"><span class="mi">3</span>
+</span><span class="line"><span class="mo">00</span><span class="p">:</span><span class="mo">00</span><span class="p">:</span><span class="mo">03</span><span class="p">,</span><span class="mi">584</span> <span class="o">-</span> <span class="o">&gt;</span> <span class="mo">00</span><span class="p">:</span><span class="mo">00</span><span class="p">:</span><span class="mo">04</span><span class="p">,</span><span class="mi">848</span>
+</span><span class="line"><span class="err">你来杀我吗？</span>
+</span><span class="line"><span class="n">You</span> <span class="n">came</span> <span class="n">to</span> <span class="n">kill</span> <span class="n">me</span><span class="err">?</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>Is that COOOOOOL?!
@@ -1574,7 +2107,7 @@ Tech Changes World</p>
   
 
 <br>
-<a href="/blog/2013/04/10/something-about-the-practice/#disqus_thread">Comments</a>
+<a href="/blog/2013/04/10/tv-series-the-practice/#disqus_thread">Comments</a>
 
     </article>
   
@@ -1583,7 +2116,7 @@ Tech Changes World</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2013/03/24/something-about-life-in-china/">Something About Life in China</a></h1>
+      <h1 class="entry-title"><a href="/blog/2013/03/24/life-in-china/">Life in China</a></h1>
     
     
       <p class="meta">
@@ -1601,7 +2134,7 @@ Tech Changes World</p>
 
 <time datetime="2013-03-24T15:54:00+08:00" pubdate data-updated="true">Mar 24<span>th</span>, 2013</time>
         
-         | <a href="/blog/2013/03/24/something-about-life-in-china/#disqus_thread">Comments</a>
+         | <a href="/blog/2013/03/24/life-in-china/#disqus_thread">Comments</a>
         
       </p>
     
@@ -1672,7 +2205,7 @@ The topics, which makes me unhappy, are lifestyle and the dealing skill…</p>
   
 
 <br>
-<a href="/blog/2013/03/24/something-about-life-in-china/#disqus_thread">Comments</a>
+<a href="/blog/2013/03/24/life-in-china/#disqus_thread">Comments</a>
 
     </article>
   
@@ -1826,305 +2359,6 @@ P(y)</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/02/17/something-about-python/">Something About Python</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-02-17T12:46:00+08:00" pubdate data-updated="true">Feb 17<span>th</span>, 2013</time>
-        
-         | <a href="/blog/2013/02/17/something-about-python/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>First, let me introduce something about develop environment, such as Brew, easy_install,RVM, … etc. </p>
-
-<h1 id="mac-develop-environment">Mac Develop Environment</h1>
-
-<h2 id="homebrew-the-missing-package-manager-for-os-xhttpmxclgithubcomhomebrew"><a href="http://mxcl.github.com/homebrew/">Homebrew: The missing package manager for OS X</a></h2>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">$ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>with brew, you can install anything in command. eg:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">$brew install lighttpd</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h2 id="easyinstallhttppypipythonorgpypisetuptools"><a href="http://pypi.python.org/pypi/setuptools/">Easy_install</a></h2>
-<blockquote>
-  <p>Download the appropriate egg for your version of Python (e.g. setuptools-0.6c9-py2.4.egg). Do NOT rename it.
-Run it as if it were a shell script, e.g. sh setuptools-0.6c9-py2.4.egg. 
-Setuptools will install itself using the matching version of Python (e.g. python2.4), and will place the easy_install executable in the default location for installing Python scripts (as determined by the standard distutils configuration files, or by the Python installation).</p>
-
-</blockquote>
-
-<p>with this, you can install anything abou python package in command. eg:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">easy_install xxx</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>BTW: 
-You can check package info in “/Library/Python/2.7/site-packages”</p>
-
-<h2 id="rvm-ruby-version-managerhttpsrvmio"><a href="https://rvm.io/">RVM: Ruby Version Manager</a></h2>
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">$ \curl -L https://get.rvm.io | bash -s stable --ruby</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<hr />
-
-<h1 id="common-python-library">Common Python Library</h1>
-
-<h2 id="nlp">1, NLP:</h2>
-<p>nltk:  <a href="http://nltk.org/">http://nltk.org/</a></p>
-
-<p>chinese word segment <a href="https://github.com/fxsjy/jieba">https://github.com/fxsjy/jieba</a></p>
-
-<h2 id="machine-learning">2, Machine Learning</h2>
-<p>scikit_learn: <a href="https://pypi.python.org/pypi/scikit-learn/">https://pypi.python.org/pypi/scikit-learn/</a></p>
-
-<p>However,ML’s scikit-learn lib have to depend on lots of other package(scipy….)
-Here is a good scipt for mac 10.8 user
-<a href="http://fonnesbeck.github.com/ScipySuperpack/">http://fonnesbeck.github.com/ScipySuperpack/</a></p>
-
-<p><a href="https://raw.github.com/fonnesbeck/ScipySuperpack/master/install_superpack.sh">the scipt code</a> :</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-<span class="line-number">20</span>
-<span class="line-number">21</span>
-<span class="line-number">22</span>
-<span class="line-number">23</span>
-<span class="line-number">24</span>
-<span class="line-number">25</span>
-<span class="line-number">26</span>
-<span class="line-number">27</span>
-<span class="line-number">28</span>
-<span class="line-number">29</span>
-<span class="line-number">30</span>
-<span class="line-number">31</span>
-<span class="line-number">32</span>
-<span class="line-number">33</span>
-<span class="line-number">34</span>
-<span class="line-number">35</span>
-<span class="line-number">36</span>
-<span class="line-number">37</span>
-<span class="line-number">38</span>
-<span class="line-number">39</span>
-<span class="line-number">40</span>
-<span class="line-number">41</span>
-<span class="line-number">42</span>
-<span class="line-number">43</span>
-<span class="line-number">44</span>
-<span class="line-number">45</span>
-<span class="line-number">46</span>
-<span class="line-number">47</span>
-<span class="line-number">48</span>
-<span class="line-number">49</span>
-<span class="line-number">50</span>
-<span class="line-number">51</span>
-<span class="line-number">52</span>
-<span class="line-number">53</span>
-<span class="line-number">54</span>
-<span class="line-number">55</span>
-<span class="line-number">56</span>
-<span class="line-number">57</span>
-<span class="line-number">58</span>
-<span class="line-number">59</span>
-<span class="line-number">60</span>
-<span class="line-number">61</span>
-<span class="line-number">62</span>
-<span class="line-number">63</span>
-<span class="line-number">64</span>
-<span class="line-number">65</span>
-<span class="line-number">66</span>
-<span class="line-number">67</span>
-<span class="line-number">68</span>
-<span class="line-number">69</span>
-<span class="line-number">70</span>
-<span class="line-number">71</span>
-<span class="line-number">72</span>
-<span class="line-number">73</span>
-<span class="line-number">74</span>
-<span class="line-number">75</span>
-<span class="line-number">76</span>
-<span class="line-number">77</span>
-<span class="line-number">78</span>
-<span class="line-number">79</span>
-<span class="line-number">80</span>
-<span class="line-number">81</span>
-<span class="line-number">82</span>
-<span class="line-number">83</span>
-<span class="line-number">84</span>
-<span class="line-number">85</span>
-<span class="line-number">86</span>
-<span class="line-number">87</span>
-<span class="line-number">88</span>
-<span class="line-number">89</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">#!/bin/sh
-</span><span class="line">PYTHON='/usr/bin/python'
-</span><span class="line">GIT_FILENAME='git-1.7.7.3-intel-universal-snow-leopard'
-</span><span class="line">GIT_VOLUME='/Volumes/Git 1.7.7.3 Snow Leopard Intel Universal/'
-</span><span class="line">GFORTRAN='gcc-42-5666.3-darwin11.pkg'
-</span><span class="line">SUDO='sudo'
-</span><span class="line">
-</span><span class="line">if [ -z "$VIRTUAL_ENV" ]; then
-</span><span class="line">    # Standard Python env
-</span><span class="line">    PYTHON=/usr/bin/python
-</span><span class="line">    SUDO=${SUDO}
-</span><span class="line">else
-</span><span class="line">    # Virtualenv
-</span><span class="line">    PYTHON=python
-</span><span class="line">    SUDO="" #${SUDO} is not required in a virtualenv
-</span><span class="line">fi
-</span><span class="line">
-</span><span class="line">if  [ -d ".git" ]; then
-</span><span class="line">    
-</span><span class="line">    SUPERPACK_PATH='.'
-</span><span class="line">    
-</span><span class="line">else
-</span><span class="line">    
-</span><span class="line">    SUPERPACK_PATH='ScipySuperpack'
-</span><span class="line">    
-</span><span class="line">    hash git &amp;&gt; /dev/null
-</span><span class="line">    if [ $? -eq 1 ]; then
-</span><span class="line">        echo 'Downloading Git for OS X ...'
-</span><span class="line">        curl -o ${GIT_FILENAME}.dmg http://git-osx-installer.googlecode.com/files/${GIT_FILENAME}.dmg
-</span><span class="line">        echo 'Installing Git ...'
-</span><span class="line">        hdiutil mount ${GIT_FILENAME}.dmg
-</span><span class="line">        ${SUDO} installer -pkg "${GIT_VOLUME}${GIT_FILENAME}.pkg" -target '/'
-</span><span class="line">        hdiutil unmount "${GIT_VOLUME}"
-</span><span class="line">        echo 'Cleaning up'
-</span><span class="line">        rm ${GIT_FILENAME}.dmg
-</span><span class="line">        echo 'Cloning Scipy Superpack'
-</span><span class="line">        /usr/local/git/bin/git clone --depth=1 git://github.com/fonnesbeck/ScipySuperpack.git
-</span><span class="line">    else
-</span><span class="line">        echo 'Cloning Scipy Superpack'
-</span><span class="line">        git clone --depth=1 git://github.com/fonnesbeck/ScipySuperpack.git
-</span><span class="line">    fi
-</span><span class="line">fi
-</span><span class="line">
-</span><span class="line"># hash gfortran &amp;&gt; /dev/null
-</span><span class="line"># if [ $? -eq 1 ]; then
-</span><span class="line">echo 'Downloading gFortran ...'
-</span><span class="line">curl -o ${GFORTRAN} http://r.research.att.com/tools/${GFORTRAN}
-</span><span class="line">echo 'Installing gFortran ...'
-</span><span class="line">${SUDO} installer -pkg ${GFORTRAN} -target '/'
-</span><span class="line"># fi
-</span><span class="line">
-</span><span class="line">hash easy_install &amp;&gt; /dev/null
-</span><span class="line">if [ $? -eq 1 ]; then
-</span><span class="line">    echo 'Downloading ez_setup ...'
-</span><span class="line">    curl -o ez_setup.py http://peak.telecommunity.com/dist/ez_setup.py
-</span><span class="line">    echo 'Installing ez_setup ...'
-</span><span class="line">    ${SUDO} "${PYTHON}" ez_setup.py
-</span><span class="line">    rm ez_setup.py
-</span><span class="line">fi
-</span><span class="line">
-</span><span class="line">echo 'Installing Scipy Superpack ...'
-</span><span class="line">${SUDO} "${PYTHON}" -m easy_install -N -Z ${SUPERPACK_PATH}/*.egg
-</span><span class="line">
-</span><span class="line">echo 'Installing readline ...'
-</span><span class="line">${SUDO} "${PYTHON}" -m easy_install -N -Z readline
-</span><span class="line">echo 'Installing nose ...'
-</span><span class="line">${SUDO} "${PYTHON}" -m easy_install -N -Z nose
-</span><span class="line">echo 'Installing six'
-</span><span class="line">${SUDO} "${PYTHON}" -m easy_install -N -Z six
-</span><span class="line">echo 'Installing python-dateutil'
-</span><span class="line">${SUDO} "${PYTHON}" -m easy_install -N -Z python-dateutil
-</span><span class="line">echo 'Installing pytz'
-</span><span class="line">${SUDO} "${PYTHON}" -m easy_install -N -Z pytz
-</span><span class="line">echo 'Installing Tornado'
-</span><span class="line">${SUDO} "${PYTHON}" -m easy_install -N -Z tornado
-</span><span class="line">echo 'Installing pyzmq'
-</span><span class="line">${SUDO} "${PYTHON}" -m easy_install -N -Z pyzmq
-</span><span class="line">echo 'Installing pika'
-</span><span class="line">${SUDO} "${PYTHON}" -m easy_install -N -Z pika
-</span><span class="line">echo 'Installing jinja2'
-</span><span class="line">${SUDO} "${PYTHON}" -m easy_install -N -Z jinja2
-</span><span class="line">echo 'Installing patsy'
-</span><span class="line">${SUDO} "${PYTHON}" -m easy_install -N -Z patsy
-</span><span class="line">if  [ ! -d ".git" ]; then
-</span><span class="line">    echo 'Cleaning up'  
-</span><span class="line">    rm -rf ${SUPERPACK_PATH}
-</span><span class="line">fi
-</span><span class="line">
-</span><span class="line">echo 'Done'
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h2 id="scrapyhttpscrapyorgdownload">3, <a href="http://scrapy.org/download/">Scrapy</a></h2>
-
-<p>A Spider Structure based on Python</p>
-
-<h2 id="ipythonhttpipythonorginstallhtml">4, <a href="http://ipython.org/install.html">IPython</a></h2>
-<p>a good Python IDE</p>
-
-<h2 id="web-frameworkhttpwikipythonorgmoinwebframeworks">5, <a href="http://wiki.python.org/moin/WebFrameworks">Web Framework</a></h2>
-
-<p><a href="http://www.douban.com/group/web.py/">Web.py</a></p>
-
-<p><a href="http://www.douban.com/group/django/">Django</a></p>
-
-<p>http://www.douban.com/group/django/</p>
-
-<h2 id="python-study">6, Python study</h2>
-
-<p><a href="">http://gnosis.cx/TPiP/</a></p>
-
-<p><a href="">http://docs.python-guide.org/en/latest/</a></p>
-
-<h2 id="morehttpwwwpythonorgaboutapps"><a href="http://www.python.org/about/apps/">More…</a></h2>
-
-<h2 id="reference">Reference</h2>
-
-<p><a href="">http://www.cnblogs.com/vamei/archive/2013/02/06/2892628.html</a>
-<a href="">http://www.python.org/about/apps/</a>
-<a href="">http://docs.python-guide.org/en/latest/</a></p>
-</div>
-  
-  
-
-<br>
-<a href="/blog/2013/02/17/something-about-python/#disqus_thread">Comments</a>
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -2141,7 +2375,11 @@ Here is a good scipt for mac 10.8 user
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2013/07/02/the-key-tech-in-simple-xiangqi-engine-maxqi/">The Key Tech in Simple XiangQi Engine MaxQi</a>
+        <a href="/blog/2013/10/02/workflow-engine-in-python/">Workflow Engine in Python</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/07/02/the-key-technologies-in-simple-xiangqi-engine-maxqi/">The Key Technologies in Simple XiangQi Engine MaxQi</a>
       </li>
     
       <li class="post">
@@ -2154,10 +2392,6 @@ Here is a good scipt for mac 10.8 user
     
       <li class="post">
         <a href="/blog/2013/04/21/something-interesting-about-ai/">Something Interesting about AI</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/04/20/android-dev-on-osx/">Android Dev on OSX</a>
       </li>
     
   </ul>

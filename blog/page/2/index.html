@@ -9,7 +9,7 @@
   <meta name="author" content="Arek.Yao">
 
   
-  <meta name="description" content="Machine Learning Ep1 Feb 16th, 2013 | Comments The general steps of Machine Learning 1, Traning Data &amp; Test Data This step is the most important &hellip;">
+  <meta name="description" content="Going to Python World Step by Step Feb 17th, 2013 | Comments First, let me introduce something about develop environment, such as Brew, easy_install &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -99,6 +99,305 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/02/17/going-to-python-world-step-by-step/">Going to Python World Step by Step</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-17T12:46:00+08:00" pubdate data-updated="true">Feb 17<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/02/17/going-to-python-world-step-by-step/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>First, let me introduce something about develop environment, such as Brew, easy_install,RVM, … etc. </p>
+
+<h1 id="mac-develop-environment">Mac Develop Environment</h1>
+
+<h2 id="homebrew-the-missing-package-manager-for-os-xhttpmxclgithubcomhomebrew"><a href="http://mxcl.github.com/homebrew/">Homebrew: The missing package manager for OS X</a></h2>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">$ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>with brew, you can install anything in command. eg:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">$brew install lighttpd</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="easyinstallhttppypipythonorgpypisetuptools"><a href="http://pypi.python.org/pypi/setuptools/">Easy_install</a></h2>
+<blockquote>
+  <p>Download the appropriate egg for your version of Python (e.g. setuptools-0.6c9-py2.4.egg). Do NOT rename it.
+Run it as if it were a shell script, e.g. sh setuptools-0.6c9-py2.4.egg. 
+Setuptools will install itself using the matching version of Python (e.g. python2.4), and will place the easy_install executable in the default location for installing Python scripts (as determined by the standard distutils configuration files, or by the Python installation).</p>
+
+</blockquote>
+
+<p>with this, you can install anything abou python package in command. eg:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">easy_install xxx</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>BTW: 
+You can check package info in “/Library/Python/2.7/site-packages”</p>
+
+<h2 id="rvm-ruby-version-managerhttpsrvmio"><a href="https://rvm.io/">RVM: Ruby Version Manager</a></h2>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">$ \curl -L https://get.rvm.io | bash -s stable --ruby</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<hr />
+
+<h1 id="common-python-library">Common Python Library</h1>
+
+<h2 id="nlp">1, NLP:</h2>
+<p>nltk:  <a href="http://nltk.org/">http://nltk.org/</a></p>
+
+<p>chinese word segment <a href="https://github.com/fxsjy/jieba">https://github.com/fxsjy/jieba</a></p>
+
+<h2 id="machine-learning">2, Machine Learning</h2>
+<p>scikit_learn: <a href="https://pypi.python.org/pypi/scikit-learn/">https://pypi.python.org/pypi/scikit-learn/</a></p>
+
+<p>However,ML’s scikit-learn lib have to depend on lots of other package(scipy….)
+Here is a good scipt for mac 10.8 user
+<a href="http://fonnesbeck.github.com/ScipySuperpack/">http://fonnesbeck.github.com/ScipySuperpack/</a></p>
+
+<p><a href="https://raw.github.com/fonnesbeck/ScipySuperpack/master/install_superpack.sh">the scipt code</a> :</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+<span class="line-number">42</span>
+<span class="line-number">43</span>
+<span class="line-number">44</span>
+<span class="line-number">45</span>
+<span class="line-number">46</span>
+<span class="line-number">47</span>
+<span class="line-number">48</span>
+<span class="line-number">49</span>
+<span class="line-number">50</span>
+<span class="line-number">51</span>
+<span class="line-number">52</span>
+<span class="line-number">53</span>
+<span class="line-number">54</span>
+<span class="line-number">55</span>
+<span class="line-number">56</span>
+<span class="line-number">57</span>
+<span class="line-number">58</span>
+<span class="line-number">59</span>
+<span class="line-number">60</span>
+<span class="line-number">61</span>
+<span class="line-number">62</span>
+<span class="line-number">63</span>
+<span class="line-number">64</span>
+<span class="line-number">65</span>
+<span class="line-number">66</span>
+<span class="line-number">67</span>
+<span class="line-number">68</span>
+<span class="line-number">69</span>
+<span class="line-number">70</span>
+<span class="line-number">71</span>
+<span class="line-number">72</span>
+<span class="line-number">73</span>
+<span class="line-number">74</span>
+<span class="line-number">75</span>
+<span class="line-number">76</span>
+<span class="line-number">77</span>
+<span class="line-number">78</span>
+<span class="line-number">79</span>
+<span class="line-number">80</span>
+<span class="line-number">81</span>
+<span class="line-number">82</span>
+<span class="line-number">83</span>
+<span class="line-number">84</span>
+<span class="line-number">85</span>
+<span class="line-number">86</span>
+<span class="line-number">87</span>
+<span class="line-number">88</span>
+<span class="line-number">89</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="c">#!/bin/sh</span>
+</span><span class="line"><span class="nv">PYTHON</span><span class="o">=</span><span class="s1">&#39;/usr/bin/python&#39;</span>
+</span><span class="line"><span class="nv">GIT_FILENAME</span><span class="o">=</span><span class="s1">&#39;git-1.7.7.3-intel-universal-snow-leopard&#39;</span>
+</span><span class="line"><span class="nv">GIT_VOLUME</span><span class="o">=</span><span class="s1">&#39;/Volumes/Git 1.7.7.3 Snow Leopard Intel Universal/&#39;</span>
+</span><span class="line"><span class="nv">GFORTRAN</span><span class="o">=</span><span class="s1">&#39;gcc-42-5666.3-darwin11.pkg&#39;</span>
+</span><span class="line"><span class="nv">SUDO</span><span class="o">=</span><span class="s1">&#39;sudo&#39;</span>
+</span><span class="line">
+</span><span class="line"><span class="k">if</span> <span class="o">[</span> -z <span class="s2">&quot;$VIRTUAL_ENV&quot;</span> <span class="o">]</span>; <span class="k">then</span>
+</span><span class="line">    <span class="c"># Standard Python env</span>
+</span><span class="line">    <span class="nv">PYTHON</span><span class="o">=</span>/usr/bin/python
+</span><span class="line">    <span class="nv">SUDO</span><span class="o">=</span><span class="k">${</span><span class="nv">SUDO</span><span class="k">}</span>
+</span><span class="line"><span class="k">else</span>
+</span><span class="line">    <span class="c"># Virtualenv</span>
+</span><span class="line">    <span class="nv">PYTHON</span><span class="o">=</span>python
+</span><span class="line">    <span class="nv">SUDO</span><span class="o">=</span><span class="s2">&quot;&quot;</span> <span class="c">#${SUDO} is not required in a virtualenv</span>
+</span><span class="line"><span class="k">fi</span>
+</span><span class="line">
+</span><span class="line"><span class="k">if</span>  <span class="o">[</span> -d <span class="s2">&quot;.git&quot;</span> <span class="o">]</span>; <span class="k">then</span>
+</span><span class="line"><span class="k">    </span>
+</span><span class="line"><span class="k">    </span><span class="nv">SUPERPACK_PATH</span><span class="o">=</span><span class="s1">&#39;.&#39;</span>
+</span><span class="line">
+</span><span class="line"><span class="k">else</span>
+</span><span class="line"><span class="k">    </span>
+</span><span class="line"><span class="k">    </span><span class="nv">SUPERPACK_PATH</span><span class="o">=</span><span class="s1">&#39;ScipySuperpack&#39;</span>
+</span><span class="line">
+</span><span class="line">    <span class="nb">hash </span>git &amp;&gt; /dev/null
+</span><span class="line">    <span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> -eq 1 <span class="o">]</span>; <span class="k">then</span>
+</span><span class="line"><span class="k">        </span><span class="nb">echo</span> <span class="s1">&#39;Downloading Git for OS X ...&#39;</span>
+</span><span class="line">        curl -o <span class="k">${</span><span class="nv">GIT_FILENAME</span><span class="k">}</span>.dmg http://git-osx-installer.googlecode.com/files/<span class="k">${</span><span class="nv">GIT_FILENAME</span><span class="k">}</span>.dmg
+</span><span class="line">        <span class="nb">echo</span> <span class="s1">&#39;Installing Git ...&#39;</span>
+</span><span class="line">        hdiutil mount <span class="k">${</span><span class="nv">GIT_FILENAME</span><span class="k">}</span>.dmg
+</span><span class="line">        <span class="k">${</span><span class="nv">SUDO</span><span class="k">}</span> installer -pkg <span class="s2">&quot;${GIT_VOLUME}${GIT_FILENAME}.pkg&quot;</span> -target <span class="s1">&#39;/&#39;</span>
+</span><span class="line">        hdiutil unmount <span class="s2">&quot;${GIT_VOLUME}&quot;</span>
+</span><span class="line">        <span class="nb">echo</span> <span class="s1">&#39;Cleaning up&#39;</span>
+</span><span class="line">        rm <span class="k">${</span><span class="nv">GIT_FILENAME</span><span class="k">}</span>.dmg
+</span><span class="line">        <span class="nb">echo</span> <span class="s1">&#39;Cloning Scipy Superpack&#39;</span>
+</span><span class="line">        /usr/local/git/bin/git clone --depth<span class="o">=</span>1 git://github.com/fonnesbeck/ScipySuperpack.git
+</span><span class="line">    <span class="k">else</span>
+</span><span class="line"><span class="k">        </span><span class="nb">echo</span> <span class="s1">&#39;Cloning Scipy Superpack&#39;</span>
+</span><span class="line">        git clone --depth<span class="o">=</span>1 git://github.com/fonnesbeck/ScipySuperpack.git
+</span><span class="line">    <span class="k">fi</span>
+</span><span class="line"><span class="k">fi</span>
+</span><span class="line">
+</span><span class="line"><span class="c"># hash gfortran &amp;&gt; /dev/null</span>
+</span><span class="line"><span class="c"># if [ $? -eq 1 ]; then</span>
+</span><span class="line"><span class="nb">echo</span> <span class="s1">&#39;Downloading gFortran ...&#39;</span>
+</span><span class="line">curl -o <span class="k">${</span><span class="nv">GFORTRAN</span><span class="k">}</span> http://r.research.att.com/tools/<span class="k">${</span><span class="nv">GFORTRAN</span><span class="k">}</span>
+</span><span class="line"><span class="nb">echo</span> <span class="s1">&#39;Installing gFortran ...&#39;</span>
+</span><span class="line"><span class="k">${</span><span class="nv">SUDO</span><span class="k">}</span> installer -pkg <span class="k">${</span><span class="nv">GFORTRAN</span><span class="k">}</span> -target <span class="s1">&#39;/&#39;</span>
+</span><span class="line"><span class="c"># fi</span>
+</span><span class="line">
+</span><span class="line"><span class="nb">hash </span>easy_install &amp;&gt; /dev/null
+</span><span class="line"><span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> -eq 1 <span class="o">]</span>; <span class="k">then</span>
+</span><span class="line"><span class="k">    </span><span class="nb">echo</span> <span class="s1">&#39;Downloading ez_setup ...&#39;</span>
+</span><span class="line">    curl -o ez_setup.py http://peak.telecommunity.com/dist/ez_setup.py
+</span><span class="line">    <span class="nb">echo</span> <span class="s1">&#39;Installing ez_setup ...&#39;</span>
+</span><span class="line">    <span class="k">${</span><span class="nv">SUDO</span><span class="k">}</span> <span class="s2">&quot;${PYTHON}&quot;</span> ez_setup.py
+</span><span class="line">    rm ez_setup.py
+</span><span class="line"><span class="k">fi</span>
+</span><span class="line">
+</span><span class="line"><span class="nb">echo</span> <span class="s1">&#39;Installing Scipy Superpack ...&#39;</span>
+</span><span class="line"><span class="k">${</span><span class="nv">SUDO</span><span class="k">}</span> <span class="s2">&quot;${PYTHON}&quot;</span> -m easy_install -N -Z <span class="k">${</span><span class="nv">SUPERPACK_PATH</span><span class="k">}</span>/*.egg
+</span><span class="line">
+</span><span class="line"><span class="nb">echo</span> <span class="s1">&#39;Installing readline ...&#39;</span>
+</span><span class="line"><span class="k">${</span><span class="nv">SUDO</span><span class="k">}</span> <span class="s2">&quot;${PYTHON}&quot;</span> -m easy_install -N -Z readline
+</span><span class="line"><span class="nb">echo</span> <span class="s1">&#39;Installing nose ...&#39;</span>
+</span><span class="line"><span class="k">${</span><span class="nv">SUDO</span><span class="k">}</span> <span class="s2">&quot;${PYTHON}&quot;</span> -m easy_install -N -Z nose
+</span><span class="line"><span class="nb">echo</span> <span class="s1">&#39;Installing six&#39;</span>
+</span><span class="line"><span class="k">${</span><span class="nv">SUDO</span><span class="k">}</span> <span class="s2">&quot;${PYTHON}&quot;</span> -m easy_install -N -Z six
+</span><span class="line"><span class="nb">echo</span> <span class="s1">&#39;Installing python-dateutil&#39;</span>
+</span><span class="line"><span class="k">${</span><span class="nv">SUDO</span><span class="k">}</span> <span class="s2">&quot;${PYTHON}&quot;</span> -m easy_install -N -Z python-dateutil
+</span><span class="line"><span class="nb">echo</span> <span class="s1">&#39;Installing pytz&#39;</span>
+</span><span class="line"><span class="k">${</span><span class="nv">SUDO</span><span class="k">}</span> <span class="s2">&quot;${PYTHON}&quot;</span> -m easy_install -N -Z pytz
+</span><span class="line"><span class="nb">echo</span> <span class="s1">&#39;Installing Tornado&#39;</span>
+</span><span class="line"><span class="k">${</span><span class="nv">SUDO</span><span class="k">}</span> <span class="s2">&quot;${PYTHON}&quot;</span> -m easy_install -N -Z tornado
+</span><span class="line"><span class="nb">echo</span> <span class="s1">&#39;Installing pyzmq&#39;</span>
+</span><span class="line"><span class="k">${</span><span class="nv">SUDO</span><span class="k">}</span> <span class="s2">&quot;${PYTHON}&quot;</span> -m easy_install -N -Z pyzmq
+</span><span class="line"><span class="nb">echo</span> <span class="s1">&#39;Installing pika&#39;</span>
+</span><span class="line"><span class="k">${</span><span class="nv">SUDO</span><span class="k">}</span> <span class="s2">&quot;${PYTHON}&quot;</span> -m easy_install -N -Z pika
+</span><span class="line"><span class="nb">echo</span> <span class="s1">&#39;Installing jinja2&#39;</span>
+</span><span class="line"><span class="k">${</span><span class="nv">SUDO</span><span class="k">}</span> <span class="s2">&quot;${PYTHON}&quot;</span> -m easy_install -N -Z jinja2
+</span><span class="line"><span class="nb">echo</span> <span class="s1">&#39;Installing patsy&#39;</span>
+</span><span class="line"><span class="k">${</span><span class="nv">SUDO</span><span class="k">}</span> <span class="s2">&quot;${PYTHON}&quot;</span> -m easy_install -N -Z patsy
+</span><span class="line"><span class="k">if</span>  <span class="o">[</span> ! -d <span class="s2">&quot;.git&quot;</span> <span class="o">]</span>; <span class="k">then</span>
+</span><span class="line"><span class="k">    </span><span class="nb">echo</span> <span class="s1">&#39;Cleaning up&#39;</span>
+</span><span class="line">    rm -rf <span class="k">${</span><span class="nv">SUPERPACK_PATH</span><span class="k">}</span>
+</span><span class="line"><span class="k">fi</span>
+</span><span class="line">
+</span><span class="line"><span class="nb">echo</span> <span class="s1">&#39;Done&#39;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="scrapyhttpscrapyorgdownload">3, <a href="http://scrapy.org/download/">Scrapy</a></h2>
+
+<p>A Spider Structure based on Python</p>
+
+<h2 id="ipythonhttpipythonorginstallhtml">4, <a href="http://ipython.org/install.html">IPython</a></h2>
+<p>a good Python IDE</p>
+
+<h2 id="web-frameworkhttpwikipythonorgmoinwebframeworks">5, <a href="http://wiki.python.org/moin/WebFrameworks">Web Framework</a></h2>
+
+<p><a href="http://www.douban.com/group/web.py/">Web.py</a></p>
+
+<p><a href="http://www.douban.com/group/django/">Django</a></p>
+
+<p>http://www.douban.com/group/django/</p>
+
+<h2 id="python-study">6, Python study</h2>
+
+<p><a href="">http://gnosis.cx/TPiP/</a></p>
+
+<p><a href="">http://docs.python-guide.org/en/latest/</a></p>
+
+<h2 id="morehttpwwwpythonorgaboutapps"><a href="http://www.python.org/about/apps/">More…</a></h2>
+
+<h2 id="reference">Reference</h2>
+
+<p><a href="http://www.cnblogs.com/vamei/archive/2013/02/06/2892628.html">http://www.cnblogs.com/vamei/archive/2013/02/06/2892628.html</a><br />
+<a href="http://www.python.org/about/apps/">http://www.python.org/about/apps/</a><br />
+<a href="">http://docs.python-guide.org/en/latest/</a>  </p>
+</div>
+  
+  
+
+<br>
+<a href="/blog/2013/02/17/going-to-python-world-step-by-step/#disqus_thread">Comments</a>
+
+    </article>
   
   
     <article>
@@ -681,7 +980,7 @@ at last the simple application, iphoto, works!
 <p>The PM give a MRD, that asks for the name should contain video’s taken time.
 Here is the script:</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
@@ -693,18 +992,19 @@ Here is the script:</p>
 <span class="line-number">10</span>
 <span class="line-number">11</span>
 <span class="line-number">12</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">#!/bin/bash
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="c">#!/bin/bash</span>
 </span><span class="line">
-</span><span class="line">for i in `ls *.MOV`;
-</span><span class="line">do
-</span><span class="line">    echo $i;
-</span><span class="line">    stat $i;
-</span><span class="line">    sec=`stat -t "%s" $i | awk  '{print $12}' | sed 's/"//g'`
-</span><span class="line">    name_2=`date -r "$sec" "+%Y%m%d_%H%M%S"`
-</span><span class="line">    name_1=`echo $i | sed 's/.MOV//'`
-</span><span class="line">    newname=`echo $name_1"_"$name_2".MOV"`
-</span><span class="line">    cp $i output/$newname
-</span><span class="line">done</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span><span class="line"><span class="k">for </span>i in <span class="sb">`</span>ls *.MOV<span class="sb">`</span>;
+</span><span class="line"><span class="k">do</span>
+</span><span class="line"><span class="k">    </span><span class="nb">echo</span> <span class="nv">$i</span>;
+</span><span class="line">    stat <span class="nv">$i</span>;
+</span><span class="line">    <span class="nv">sec</span><span class="o">=</span><span class="sb">`</span>stat -t <span class="s2">&quot;%s&quot;</span> <span class="nv">$i</span> | awk  <span class="s1">&#39;{print $12}&#39;</span> | sed <span class="s1">&#39;s/&quot;//g&#39;</span><span class="sb">`</span>
+</span><span class="line">    <span class="nv">name_2</span><span class="o">=</span><span class="sb">`</span>date -r <span class="s2">&quot;$sec&quot;</span> <span class="s2">&quot;+%Y%m%d_%H%M%S&quot;</span><span class="sb">`</span>
+</span><span class="line">    <span class="nv">name_1</span><span class="o">=</span><span class="sb">`</span><span class="nb">echo</span> <span class="nv">$i</span> | sed <span class="s1">&#39;s/.MOV//&#39;</span><span class="sb">`</span>
+</span><span class="line">    <span class="nv">newname</span><span class="o">=</span><span class="sb">`</span><span class="nb">echo</span> <span class="nv">$name_1</span><span class="s2">&quot;_&quot;</span><span class="nv">$name_2</span><span class="s2">&quot;.MOV&quot;</span><span class="sb">`</span>
+</span><span class="line">    cp <span class="nv">$i</span> output/<span class="nv">$newname</span>
+</span><span class="line"><span class="k">done</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h2 id="convert-and-compress">3, Convert and Compress</h2>
 
@@ -939,7 +1239,11 @@ http://docs.mathjax.org/en/latest/installation.html
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2013/07/02/the-key-tech-in-simple-xiangqi-engine-maxqi/">The Key Tech in Simple XiangQi Engine MaxQi</a>
+        <a href="/blog/2013/10/02/workflow-engine-in-python/">Workflow Engine in Python</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/07/02/the-key-technologies-in-simple-xiangqi-engine-maxqi/">The Key Technologies in Simple XiangQi Engine MaxQi</a>
       </li>
     
       <li class="post">
@@ -952,10 +1256,6 @@ http://docs.mathjax.org/en/latest/installation.html
     
       <li class="post">
         <a href="/blog/2013/04/21/something-interesting-about-ai/">Something Interesting about AI</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/04/20/android-dev-on-osx/">Android Dev on OSX</a>
       </li>
     
   </ul>
