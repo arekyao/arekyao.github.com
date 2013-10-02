@@ -1,0 +1,802 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Micro-Max, 一个短小精干的棋类引擎（仅133行 ） - YY Every Day</title>
+  <meta name="author" content="Arek.Yao">
+
+  
+  <meta name="description" content="Micro-Max, 一个短小精干的棋类引擎（仅133行 ） http://home.hccnet.nl/h.g.muller/maximax.txt 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://arekyao.github.io/micromax/maximax.html">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="YY Every Day" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">YY Every Day</a></h1>
+  
+    <h2>Never say never, because limits like fears, are often just an illusion.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:arekyao.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/micromax/index.html">Micro-Max</a></li>
+  <li><a href="/about/index.html">About Me</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article role="article">
+  
+  <header>
+    <h1 class="entry-title">Micro-Max, 一个短小精干的棋类引擎（仅133行 ）</h1>
+    
+  </header>
+  
+  <p>http://home.hccnet.nl/h.g.muller/maximax.txt</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+<span class="line-number">42</span>
+<span class="line-number">43</span>
+<span class="line-number">44</span>
+<span class="line-number">45</span>
+<span class="line-number">46</span>
+<span class="line-number">47</span>
+<span class="line-number">48</span>
+<span class="line-number">49</span>
+<span class="line-number">50</span>
+<span class="line-number">51</span>
+<span class="line-number">52</span>
+<span class="line-number">53</span>
+<span class="line-number">54</span>
+<span class="line-number">55</span>
+<span class="line-number">56</span>
+<span class="line-number">57</span>
+<span class="line-number">58</span>
+<span class="line-number">59</span>
+<span class="line-number">60</span>
+<span class="line-number">61</span>
+<span class="line-number">62</span>
+<span class="line-number">63</span>
+<span class="line-number">64</span>
+<span class="line-number">65</span>
+<span class="line-number">66</span>
+<span class="line-number">67</span>
+<span class="line-number">68</span>
+<span class="line-number">69</span>
+<span class="line-number">70</span>
+<span class="line-number">71</span>
+<span class="line-number">72</span>
+<span class="line-number">73</span>
+<span class="line-number">74</span>
+<span class="line-number">75</span>
+<span class="line-number">76</span>
+<span class="line-number">77</span>
+<span class="line-number">78</span>
+<span class="line-number">79</span>
+<span class="line-number">80</span>
+<span class="line-number">81</span>
+<span class="line-number">82</span>
+<span class="line-number">83</span>
+<span class="line-number">84</span>
+<span class="line-number">85</span>
+<span class="line-number">86</span>
+<span class="line-number">87</span>
+<span class="line-number">88</span>
+<span class="line-number">89</span>
+<span class="line-number">90</span>
+<span class="line-number">91</span>
+<span class="line-number">92</span>
+<span class="line-number">93</span>
+<span class="line-number">94</span>
+<span class="line-number">95</span>
+<span class="line-number">96</span>
+<span class="line-number">97</span>
+<span class="line-number">98</span>
+<span class="line-number">99</span>
+<span class="line-number">100</span>
+<span class="line-number">101</span>
+<span class="line-number">102</span>
+<span class="line-number">103</span>
+<span class="line-number">104</span>
+<span class="line-number">105</span>
+<span class="line-number">106</span>
+<span class="line-number">107</span>
+<span class="line-number">108</span>
+<span class="line-number">109</span>
+<span class="line-number">110</span>
+<span class="line-number">111</span>
+<span class="line-number">112</span>
+<span class="line-number">113</span>
+<span class="line-number">114</span>
+<span class="line-number">115</span>
+<span class="line-number">116</span>
+<span class="line-number">117</span>
+<span class="line-number">118</span>
+<span class="line-number">119</span>
+<span class="line-number">120</span>
+<span class="line-number">121</span>
+<span class="line-number">122</span>
+<span class="line-number">123</span>
+<span class="line-number">124</span>
+<span class="line-number">125</span>
+<span class="line-number">126</span>
+<span class="line-number">127</span>
+<span class="line-number">128</span>
+<span class="line-number">129</span>
+<span class="line-number">130</span>
+<span class="line-number">131</span>
+<span class="line-number">132</span>
+<span class="line-number">133</span>
+<span class="line-number">134</span>
+<span class="line-number">135</span>
+<span class="line-number">136</span>
+<span class="line-number">137</span>
+<span class="line-number">138</span>
+<span class="line-number">139</span>
+<span class="line-number">140</span>
+<span class="line-number">141</span>
+<span class="line-number">142</span>
+<span class="line-number">143</span>
+<span class="line-number">144</span>
+<span class="line-number">145</span>
+<span class="line-number">146</span>
+<span class="line-number">147</span>
+<span class="line-number">148</span>
+<span class="line-number">149</span>
+<span class="line-number">150</span>
+<span class="line-number">151</span>
+<span class="line-number">152</span>
+<span class="line-number">153</span>
+<span class="line-number">154</span>
+<span class="line-number">155</span>
+<span class="line-number">156</span>
+<span class="line-number">157</span>
+<span class="line-number">158</span>
+<span class="line-number">159</span>
+<span class="line-number">160</span>
+<span class="line-number">161</span>
+<span class="line-number">162</span>
+<span class="line-number">163</span>
+<span class="line-number">164</span>
+<span class="line-number">165</span>
+<span class="line-number">166</span>
+<span class="line-number">167</span>
+<span class="line-number">168</span>
+<span class="line-number">169</span>
+<span class="line-number">170</span>
+<span class="line-number">171</span>
+<span class="line-number">172</span>
+<span class="line-number">173</span>
+<span class="line-number">174</span>
+<span class="line-number">175</span>
+<span class="line-number">176</span>
+<span class="line-number">177</span>
+<span class="line-number">178</span>
+<span class="line-number">179</span>
+<span class="line-number">180</span>
+<span class="line-number">181</span>
+<span class="line-number">182</span>
+<span class="line-number">183</span>
+<span class="line-number">184</span>
+<span class="line-number">185</span>
+<span class="line-number">186</span>
+<span class="line-number">187</span>
+<span class="line-number">188</span>
+<span class="line-number">189</span>
+<span class="line-number">190</span>
+<span class="line-number">191</span>
+<span class="line-number">192</span>
+<span class="line-number">193</span>
+<span class="line-number">194</span>
+<span class="line-number">195</span>
+<span class="line-number">196</span>
+<span class="line-number">197</span>
+<span class="line-number">198</span>
+<span class="line-number">199</span>
+<span class="line-number">200</span>
+<span class="line-number">201</span>
+<span class="line-number">202</span>
+<span class="line-number">203</span>
+<span class="line-number">204</span>
+<span class="line-number">205</span>
+<span class="line-number">206</span>
+<span class="line-number">207</span>
+<span class="line-number">208</span>
+<span class="line-number">209</span>
+<span class="line-number">210</span>
+<span class="line-number">211</span>
+<span class="line-number">212</span>
+<span class="line-number">213</span>
+<span class="line-number">214</span>
+<span class="line-number">215</span>
+<span class="line-number">216</span>
+<span class="line-number">217</span>
+<span class="line-number">218</span>
+<span class="line-number">219</span>
+<span class="line-number">220</span>
+<span class="line-number">221</span>
+<span class="line-number">222</span>
+<span class="line-number">223</span>
+<span class="line-number">224</span>
+<span class="line-number">225</span>
+<span class="line-number">226</span>
+<span class="line-number">227</span>
+<span class="line-number">228</span>
+<span class="line-number">229</span>
+<span class="line-number">230</span>
+<span class="line-number">231</span>
+<span class="line-number">232</span>
+<span class="line-number">233</span>
+<span class="line-number">234</span>
+<span class="line-number">235</span>
+<span class="line-number">236</span>
+<span class="line-number">237</span>
+<span class="line-number">238</span>
+<span class="line-number">239</span>
+<span class="line-number">240</span>
+<span class="line-number">241</span>
+<span class="line-number">242</span>
+<span class="line-number">243</span>
+<span class="line-number">244</span>
+<span class="line-number">245</span>
+<span class="line-number">246</span>
+<span class="line-number">247</span>
+<span class="line-number">248</span>
+<span class="line-number">249</span>
+<span class="line-number">250</span>
+<span class="line-number">251</span>
+<span class="line-number">252</span>
+<span class="line-number">253</span>
+<span class="line-number">254</span>
+<span class="line-number">255</span>
+<span class="line-number">256</span>
+<span class="line-number">257</span>
+<span class="line-number">258</span>
+<span class="line-number">259</span>
+<span class="line-number">260</span>
+<span class="line-number">261</span>
+<span class="line-number">262</span>
+<span class="line-number">263</span>
+<span class="line-number">264</span>
+<span class="line-number">265</span>
+<span class="line-number">266</span>
+<span class="line-number">267</span>
+<span class="line-number">268</span>
+<span class="line-number">269</span>
+<span class="line-number">270</span>
+<span class="line-number">271</span>
+<span class="line-number">272</span>
+<span class="line-number">273</span>
+<span class="line-number">274</span>
+<span class="line-number">275</span>
+<span class="line-number">276</span>
+<span class="line-number">277</span>
+<span class="line-number">278</span>
+<span class="line-number">279</span>
+<span class="line-number">280</span>
+<span class="line-number">281</span>
+<span class="line-number">282</span>
+<span class="line-number">283</span>
+<span class="line-number">284</span>
+</pre></td><td class="code"><pre><code class="c"><span class="line"><span class="cm">/***************************************************************************/</span>
+</span><span class="line"><span class="cm">/*                               micro-Max,                                */</span>
+</span><span class="line"><span class="cm">/* A chess program smaller than 2KB (of non-blank source), by H.G. Muller  */</span>
+</span><span class="line"><span class="cm">/***************************************************************************/</span>
+</span><span class="line"><span class="cm">/* version 3.2 (2000 characters) features:                                 */</span>
+</span><span class="line"><span class="cm">/* - recursive negamax search                                              */</span>
+</span><span class="line"><span class="cm">/* - quiescence search with recaptures                                     */</span>
+</span><span class="line"><span class="cm">/* - recapture extensions                                                  */</span>
+</span><span class="line"><span class="cm">/* - (internal) iterative deepening                                        */</span>
+</span><span class="line"><span class="cm">/* - best-move-first &#39;sorting&#39;                                             */</span>
+</span><span class="line"><span class="cm">/* - a hash table storing score and best move                              */</span>
+</span><span class="line"><span class="cm">/* - full FIDE rules (expt under-promotion) and move-legality checking     */</span>
+</span><span class="line">
+</span><span class="line"><span class="cm">/* This version is for reference only, with all variable names changed to  */</span>
+</span><span class="line"><span class="cm">/* be more indicative of their meaning, and better layout &amp; more comments. */</span>
+</span><span class="line"><span class="cm">/* There is no guarantee, though, that it still compiles or runs.          */</span>
+</span><span class="line">
+</span><span class="line"><span class="cp">#include &lt;stdio.h&gt;</span>
+</span><span class="line"><span class="cp">#include &lt;math.h&gt;</span>
+</span><span class="line">
+</span><span class="line"><span class="cp">#define F(I,S,N) for(I=S;I&lt;N;I++)</span>
+</span><span class="line"><span class="cp">#define W(A) while(A)</span>
+</span><span class="line"><span class="cp">#define K(A,B) *(int*)(Zobrist+A+(B&amp;8)+S*(B&amp;7))</span>
+</span><span class="line"><span class="cp">#define J(A) K(ToSqr+A,Board[ToSqr])-K(FromSqr+A,Piece)-K(CaptSqr+A,Victim)</span>
+</span><span class="line">
+</span><span class="line"><span class="cp">#define HASHSIZE 16777224</span>
+</span><span class="line"><span class="k">struct</span> <span class="n">_</span>
+</span><span class="line"><span class="p">{</span> <span class="kt">int</span>  <span class="n">Key</span><span class="p">,</span> <span class="n">Score</span><span class="p">;</span>
+</span><span class="line">  <span class="kt">char</span> <span class="n">From</span><span class="p">,</span> <span class="n">To</span><span class="p">,</span> <span class="n">Draft</span><span class="p">;</span>
+</span><span class="line"><span class="p">}</span> <span class="n">HashTab</span><span class="p">[</span><span class="n">HASHSIZE</span><span class="p">];</span>                                   <span class="cm">/* hash table, 16M+8 entries*/</span>
+</span><span class="line">
+</span><span class="line"><span class="kt">int</span> <span class="n">V</span><span class="o">=</span><span class="mi">112</span><span class="p">,</span> <span class="n">M</span><span class="o">=</span><span class="mi">136</span><span class="p">,</span> <span class="n">S</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">INF</span><span class="o">=</span><span class="mf">8e3</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mi">799</span><span class="p">,</span>               <span class="cm">/* V=0x70=rank mask, M=0x88 */</span>
+</span><span class="line">    <span class="n">Rootep</span><span class="p">,</span> <span class="n">Nodes</span><span class="p">,</span> <span class="n">i</span><span class="p">;</span>
+</span><span class="line">
+</span><span class="line"><span class="kt">char</span> <span class="n">RootEval</span><span class="p">,</span> <span class="n">InputFrom</span><span class="p">,</span> <span class="n">InputTo</span><span class="p">,</span>
+</span><span class="line"><span class="n">PieceVal</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">9</span><span class="p">},</span>                       <span class="cm">/* relative piece values    */</span>
+</span><span class="line"><span class="n">StepVecs</span><span class="p">[]</span> <span class="o">=</span>                                           <span class="cm">/* step-vector lists        */</span>
+</span><span class="line">         <span class="p">{</span><span class="o">-</span><span class="mi">16</span><span class="p">,</span><span class="o">-</span><span class="mi">15</span><span class="p">,</span><span class="o">-</span><span class="mi">17</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span>                               <span class="cm">/* white Pawn               */</span>
+</span><span class="line">           <span class="mi">1</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span>                                     <span class="cm">/* Rook                     */</span>
+</span><span class="line">           <span class="mi">1</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">17</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span>                               <span class="cm">/* Q,K, also used for B, bP */</span>
+</span><span class="line">          <span class="mi">14</span><span class="p">,</span><span class="mi">18</span><span class="p">,</span><span class="mi">31</span><span class="p">,</span><span class="mi">33</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span>                               <span class="cm">/* Knight                   */</span>
+</span><span class="line">          <span class="mi">7</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span>                             <span class="cm">/* first direction per piece*/</span>
+</span><span class="line">          <span class="mi">6</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">},</span>                            <span class="cm">/* initial piece setup      */</span>
+</span><span class="line"><span class="n">Board</span><span class="p">[</span><span class="mi">129</span><span class="p">],</span>                                            <span class="cm">/* board: half of 16x8+dummy*/</span>
+</span><span class="line"><span class="n">Zobrist</span><span class="p">[</span><span class="mi">1035</span><span class="p">],</span>                                         <span class="cm">/* hash translation table   */</span>
+</span><span class="line">
+</span><span class="line"><span class="n">Sym</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&quot;.?+nkbrq?*?NKBRQ&quot;</span><span class="p">;</span>                            <span class="cm">/* piece symbols on printout*/</span>
+</span><span class="line">
+</span><span class="line"><span class="kt">int</span> <span class="nf">Search</span><span class="p">(</span><span class="kt">int</span> <span class="n">Side</span><span class="p">,</span> <span class="kt">int</span> <span class="n">Alpha</span><span class="p">,</span> <span class="kt">int</span> <span class="n">Beta</span><span class="p">,</span> <span class="kt">int</span> <span class="n">Eval</span><span class="p">,</span> <span class="kt">int</span> <span class="n">HashKeyLo</span><span class="p">,</span> <span class="kt">int</span> <span class="n">HashKeyHi</span><span class="p">,</span>
+</span><span class="line">                                                    <span class="kt">int</span> <span class="n">epSqr</span><span class="p">,</span> <span class="kt">int</span> <span class="n">LastTo</span><span class="p">,</span> <span class="kt">int</span> <span class="n">Depth</span><span class="p">)</span>
+</span><span class="line"><span class="p">{</span>
+</span><span class="line">  <span class="kt">int</span> <span class="n">j</span><span class="p">,</span> <span class="n">StepVec</span><span class="p">,</span> <span class="n">BestScore</span><span class="p">,</span> <span class="n">Score</span><span class="p">,</span> <span class="n">IterDepth</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">SkipSqr</span><span class="p">,</span> <span class="n">RookSqr</span><span class="p">;</span>
+</span><span class="line">  <span class="kt">char</span> <span class="n">Victim</span><span class="p">,</span> <span class="n">PieceType</span><span class="p">,</span> <span class="n">Piece</span><span class="p">,</span> <span class="n">FromSqr</span><span class="p">,</span> <span class="n">ToSqr</span><span class="p">,</span> <span class="n">BestFrom</span><span class="p">,</span> <span class="n">BestTo</span><span class="p">,</span> <span class="n">CaptSqr</span><span class="p">,</span> <span class="n">StartSqr</span><span class="p">;</span>
+</span><span class="line">  <span class="k">struct</span> <span class="n">_</span><span class="o">*</span><span class="n">Hash</span> <span class="o">=</span> <span class="n">HashTab</span><span class="p">;</span>
+</span><span class="line">
+</span><span class="line">  <span class="cm">/* Hash probe. On miss (Internal) Iterative Deepening starts at IterDepth=0,     */</span>
+</span><span class="line">  <span class="cm">/* without move hint. On a hit we start IID from the hashed values, except       */</span>
+</span><span class="line">  <span class="cm">/* when the depth is already sufficient. In this case, if the bound type OK,     */</span>
+</span><span class="line">  <span class="cm">/* we use the hashed score immediately, and otherwise we just do the last        */</span>
+</span><span class="line">  <span class="cm">/* iteration starting with the hash move.                                        */</span>
+</span><span class="line">                                                       <span class="cm">/* lookup pos. in hash table*/</span>
+</span><span class="line">  <span class="n">j</span> <span class="o">=</span> <span class="p">(</span><span class="n">Side</span><span class="o">*</span><span class="n">epSqr</span><span class="o">^</span><span class="n">HashKeyLo</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">HASHSIZE</span><span class="o">-</span><span class="mi">9</span><span class="p">;</span>             <span class="cm">/* try 8 consec. locations  */</span>
+</span><span class="line">  <span class="k">while</span><span class="p">((</span><span class="n">h</span><span class="o">=</span><span class="n">HashTab</span><span class="p">[</span><span class="o">++</span><span class="n">j</span><span class="p">].</span><span class="n">Key</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">h</span><span class="o">-</span><span class="n">HashKeyHi</span> <span class="o">&amp;&amp;</span> <span class="o">--</span><span class="n">i</span><span class="p">);</span>   <span class="cm">/* first empty or match     */</span>
+</span><span class="line">  <span class="n">Hash</span> <span class="o">+=</span> <span class="n">i</span> <span class="o">?</span> <span class="n">j</span> <span class="o">:</span> <span class="mi">0</span><span class="p">;</span>                                   <span class="cm">/* dummy A[0] if miss &amp; full*/</span>
+</span><span class="line">  <span class="k">if</span><span class="p">(</span><span class="n">Hash</span><span class="o">-&gt;</span><span class="n">Key</span><span class="p">)</span>                                        <span class="cm">/* hit: pos. is in hash tab */</span>
+</span><span class="line">  <span class="p">{</span> <span class="n">IterDepth</span> <span class="o">=</span> <span class="n">Hash</span><span class="o">-&gt;</span><span class="n">Draft</span><span class="p">;</span>
+</span><span class="line">    <span class="n">Score</span>     <span class="o">=</span> <span class="n">Hash</span><span class="o">-&gt;</span><span class="n">Score</span><span class="p">;</span>
+</span><span class="line">    <span class="n">BestFrom</span>  <span class="o">=</span> <span class="n">Hash</span><span class="o">-&gt;</span><span class="n">From</span><span class="p">;</span>                            <span class="cm">/* examine stored data      */</span>
+</span><span class="line">    <span class="k">if</span><span class="p">(</span><span class="n">IterDepth</span> <span class="o">&gt;=</span> <span class="n">Depth</span><span class="p">)</span>                             <span class="cm">/* if depth sufficient:     */</span>
+</span><span class="line">    <span class="p">{</span> <span class="k">if</span><span class="p">(</span><span class="n">Score</span> <span class="o">&gt;=</span>  <span class="n">Beta</span><span class="o">|</span><span class="n">BestFrom</span><span class="o">&amp;</span><span class="n">S</span> <span class="o">&amp;&amp;</span>
+</span><span class="line">         <span class="n">Score</span> <span class="o">&lt;=</span> <span class="n">Alpha</span><span class="o">|</span><span class="n">BestFrom</span><span class="o">&amp;</span><span class="mi">8</span>
+</span><span class="line">        <span class="p">)</span> <span class="k">return</span> <span class="n">Score</span><span class="p">;</span>                                <span class="cm">/* use if window compatible */</span>
+</span><span class="line">      <span class="n">IterDepth</span> <span class="o">=</span> <span class="n">Depth</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>                             <span class="cm">/* or use as iter. start    */</span>
+</span><span class="line">    <span class="p">}</span>
+</span><span class="line">    <span class="n">BestFrom</span> <span class="o">&amp;=</span> <span class="o">~</span><span class="mh">0x88</span><span class="p">;</span>
+</span><span class="line">    <span class="n">BestTo</span>    <span class="o">=</span> <span class="n">Hash</span><span class="o">-&gt;</span><span class="n">To</span><span class="p">;</span>                              <span class="cm">/*      with best-move hint */</span>
+</span><span class="line">    <span class="n">BestTo</span>    <span class="o">=</span> <span class="n">IterDepth</span> <span class="o">?</span> <span class="n">BestTo</span> <span class="o">:</span> <span class="mi">0</span><span class="p">;</span>                <span class="cm">/* don&#39;t try best at d=0    */</span>
+</span><span class="line">  <span class="p">}</span> <span class="k">else</span> <span class="n">IterDepth</span> <span class="o">=</span> <span class="n">BestFrom</span> <span class="o">=</span> <span class="n">BestTo</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>            <span class="cm">/* start iter., no best yet */</span>
+</span><span class="line">
+</span><span class="line">  <span class="n">Nodes</span><span class="o">++</span><span class="p">;</span>                                             <span class="cm">/* node count (for timing)  */</span>
+</span><span class="line">
+</span><span class="line">  <span class="cm">/* We have to search the current node; deepen the search in steps of one         */</span>
+</span><span class="line">  <span class="cm">/* starting from the hashed data as if it were the previous iteration.           */</span>
+</span><span class="line">  <span class="cm">/* In the root (LastTo==8) we deepen until node count or max. depth reached.     */</span>
+</span><span class="line">
+</span><span class="line">  <span class="k">while</span><span class="p">(</span><span class="n">IterDepth</span><span class="o">++</span> <span class="o">&lt;</span> <span class="n">Depth</span> <span class="o">|</span>                          <span class="cm">/* iterative deepening loop */</span>
+</span><span class="line">       <span class="n">LastTo</span><span class="o">==</span><span class="mi">8</span> <span class="o">&amp;</span> <span class="n">Nodes</span><span class="o">&lt;</span><span class="mf">1e7</span> <span class="o">&amp;</span> <span class="n">IterDepth</span><span class="o">&lt;</span><span class="mi">98</span><span class="p">)</span>           <span class="cm">/* at root until node limit */</span>
+</span><span class="line">  <span class="p">{</span> <span class="cm">/* Each iteration consist of a move-generation run, immediately searching      */</span>
+</span><span class="line">    <span class="cm">/* all moves as they are generated. The best move from the previous iter-      */</span>
+</span><span class="line">    <span class="cm">/* ation (still contained in BestFrom, BestTo) is slipped in front, though.    */</span>
+</span><span class="line">    <span class="cm">/* To make this easier, move generation starts at StartSqr = BestFrom.         */</span>
+</span><span class="line">    <span class="cm">/* The S-bit of BestTo indicates if there is a valid best move to try.         */</span>
+</span><span class="line">    <span class="n">FromSqr</span> <span class="o">=</span> <span class="n">StartSqr</span> <span class="o">=</span> <span class="n">BestFrom</span><span class="p">;</span>                    <span class="cm">/* start scan at prev. best  */</span>
+</span><span class="line">    <span class="n">ToSqr</span>  <span class="o">|=</span> <span class="mi">8</span> <span class="o">&amp;</span> <span class="n">ToSqr</span><span class="o">&gt;&gt;</span><span class="mi">4</span><span class="p">;</span>                            <span class="cm">/* request try noncastl. 1st*/</span>
+</span><span class="line">    <span class="n">BestScore</span> <span class="o">=</span> <span class="n">IterDepth</span><span class="o">&gt;</span><span class="mi">1</span> <span class="o">?</span> <span class="o">-</span><span class="n">INF</span> <span class="o">:</span> <span class="n">Eval</span><span class="p">;</span>             <span class="cm">/* unconsidered:static eval */</span>
+</span><span class="line">    <span class="k">do</span>
+</span><span class="line">    <span class="p">{</span> <span class="n">Piece</span> <span class="o">=</span> <span class="n">Board</span><span class="p">[</span><span class="n">FromSqr</span><span class="p">];</span>                          <span class="cm">/* scan board looking for   */</span>
+</span><span class="line">      <span class="k">if</span><span class="p">(</span><span class="n">Piece</span> <span class="o">&amp;</span> <span class="n">Side</span><span class="p">)</span>                                 <span class="cm">/*  own piece (inefficient!)*/</span>
+</span><span class="line">      <span class="p">{</span> <span class="n">StepVec</span> <span class="o">=</span> <span class="n">PieceType</span> <span class="o">=</span> <span class="n">Piece</span><span class="o">&amp;</span><span class="mi">7</span><span class="p">;</span>                 <span class="cm">/* set StepVec &gt; 0          */</span>
+</span><span class="line">        <span class="n">j</span> <span class="o">=</span> <span class="n">StepVecs</span><span class="p">[</span><span class="n">PieceType</span><span class="o">+</span><span class="mi">16</span><span class="p">];</span>                    <span class="cm">/* first step vector Piece  */</span>
+</span><span class="line">        <span class="k">while</span><span class="p">(</span><span class="n">StepVec</span> <span class="o">=</span> <span class="n">PieceType</span><span class="o">&gt;</span><span class="mi">2</span><span class="o">&amp;</span><span class="n">StepVec</span><span class="o">&lt;</span><span class="mi">0</span> <span class="o">?</span> <span class="o">-</span><span class="n">StepVec</span> <span class="o">:</span> <span class="o">-</span><span class="n">StepVecs</span><span class="p">[</span><span class="o">++</span><span class="n">j</span><span class="p">])</span>
+</span><span class="line">                                                       <span class="cm">/* loop over directions o[] */</span>
+</span><span class="line">        <span class="p">{</span><span class="n">replay</span><span class="o">:</span>                                       <span class="cm">/* resume normal after best */</span>
+</span><span class="line">          <span class="cm">/* For each direction we scan ToSqr along the ray startig at FromSqr.    */</span>
+</span><span class="line">          <span class="n">ToSqr</span>   <span class="o">=</span> <span class="n">FromSqr</span><span class="p">;</span>
+</span><span class="line">          <span class="n">SkipSqr</span> <span class="o">=</span> <span class="n">RookSqr</span> <span class="o">=</span> <span class="n">S</span><span class="p">;</span>                       <span class="cm">/* S = 0x80 = dummy square  */</span>
+</span><span class="line">          <span class="k">do</span>
+</span><span class="line">          <span class="p">{</span> <span class="n">CaptSqr</span> <span class="o">=</span> <span class="n">ToSqr</span> <span class="o">+=</span> <span class="n">StepVec</span><span class="p">;</span>                <span class="cm">/* ToSqr traverses ray      */</span>
+</span><span class="line">
+</span><span class="line">            <span class="cm">/* FromSqr, ToSqr here scan through all tentative moves. If there      */</span>
+</span><span class="line">            <span class="cm">/* is an old best move to try first, this is indicated in the 8-bit    */</span>
+</span><span class="line">            <span class="cm">/* of BestTo (which was copied from the S-bit), and we overrule the    */</span>
+</span><span class="line">            <span class="cm">/* generated ToSqr (which might ly at other distance or in direction)  */</span>
+</span><span class="line">            <span class="cm">/* We then test if ToSqr is on the board, if we have an e.p. capture,  */</span>
+</span><span class="line">            <span class="cm">/* are blocked by an own piece, and if Pawn moves are valid.           */</span>
+</span><span class="line">            <span class="k">if</span><span class="p">(</span><span class="n">BestTo</span> <span class="o">&amp;</span> <span class="mi">8</span><span class="p">)</span>
+</span><span class="line">              <span class="n">CaptSqr</span> <span class="o">=</span> <span class="n">ToSqr</span> <span class="o">=</span> <span class="n">BestTo</span><span class="o">&amp;~</span><span class="mh">0x88</span><span class="p">;</span>          <span class="cm">/* sneak-in prev. best move */</span>
+</span><span class="line">            <span class="k">if</span><span class="p">(</span><span class="n">ToSqr</span> <span class="o">&amp;</span> <span class="mh">0x88</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>                    <span class="cm">/* board edge hit (M=0x88)  */</span>
+</span><span class="line">            <span class="k">if</span><span class="p">(</span><span class="n">PieceType</span><span class="o">&lt;</span><span class="mi">3</span> <span class="o">&amp;</span> <span class="n">ToSqr</span><span class="o">==</span><span class="n">epSqr</span><span class="p">)</span>
+</span><span class="line">              <span class="n">CaptSqr</span> <span class="o">=</span> <span class="n">ToSqr</span><span class="o">^</span><span class="mi">16</span><span class="p">;</span>                      <span class="cm">/* shift CaptSqr if e.p.    */</span>
+</span><span class="line">            <span class="n">Victim</span> <span class="o">=</span> <span class="n">Board</span><span class="p">[</span><span class="n">CaptSqr</span><span class="p">];</span>
+</span><span class="line">            <span class="k">if</span><span class="p">(</span><span class="n">Victim</span> <span class="o">&amp;</span> <span class="n">Side</span> <span class="o">|</span>                         <span class="cm">/* capture own              */</span>
+</span><span class="line">               <span class="n">PieceType</span><span class="o">&lt;</span><span class="mi">3</span> <span class="o">&amp;</span> <span class="o">!</span><span class="p">(</span><span class="n">StepVec</span><span class="o">&amp;</span><span class="mi">7</span><span class="p">)</span> <span class="o">!=</span> <span class="o">!</span><span class="n">Victim</span>   <span class="cm">/*            bad pawn mode */</span>
+</span><span class="line">              <span class="p">)</span> <span class="k">break</span><span class="p">;</span>
+</span><span class="line">
+</span><span class="line">            <span class="cm">/* If we get here, we have a pseudo-legal move in (FromSqr, ToSqr).    */</span>
+</span><span class="line">            <span class="cm">/* We check it for King capture (or Rook capture after castling).      */</span>
+</span><span class="line">            <span class="cm">/* This can give a beta cutoff, as can the stand-pat score in QS.      */</span>
+</span><span class="line">            <span class="n">i</span> <span class="o">=</span> <span class="mi">99</span><span class="o">*</span><span class="n">PieceVal</span><span class="p">[</span><span class="n">Victim</span><span class="o">&amp;</span><span class="mi">7</span><span class="p">];</span>                 <span class="cm">/* value of victim piece    */</span>
+</span><span class="line">            <span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">0</span> <span class="o">||</span>                                  <span class="cm">/* K capt. or               */</span>
+</span><span class="line">                      <span class="n">epSqr</span><span class="o">-</span><span class="n">S</span> <span class="o">&amp;&amp;</span> <span class="n">Board</span><span class="p">[</span><span class="n">epSqr</span><span class="p">]</span> <span class="o">&amp;&amp;</span>       <span class="cm">/* non-empty epSqr:castling */</span>
+</span><span class="line">                      <span class="n">ToSqr</span><span class="o">-</span><span class="n">epSqr</span><span class="o">&lt;</span><span class="mi">2</span> <span class="o">&amp;</span> <span class="n">epSqr</span><span class="o">-</span><span class="n">ToSqr</span><span class="o">&lt;</span><span class="mi">2</span>    <span class="cm">/*             bad castling */</span>
+</span><span class="line">              <span class="p">)</span> <span class="n">BestScore</span> <span class="o">=</span> <span class="n">INF</span><span class="p">;</span>
+</span><span class="line">            <span class="k">if</span><span class="p">(</span><span class="n">BestScore</span> <span class="o">&gt;=</span> <span class="n">Beta</span><span class="p">)</span> <span class="k">goto</span> <span class="n">cutoff</span><span class="p">;</span>         <span class="cm">/* abort on fail high       */</span>
+</span><span class="line">
+</span><span class="line">            <span class="cm">/* We now have a move to search. If there is depth left, we different- */</span>
+</span><span class="line">            <span class="cm">/* ially update the evaluation, Make the move, Search it recursively   */</span>
+</span><span class="line">            <span class="cm">/* UnMake it, and update the best score &amp; move. If not, we ignore it.  */</span>
+</span><span class="line">            <span class="k">if</span><span class="p">(</span><span class="n">h</span> <span class="o">=</span> <span class="n">IterDepth</span> <span class="o">-</span> <span class="p">(</span><span class="n">ToSqr</span><span class="o">!=</span><span class="n">LastTo</span><span class="p">))</span>        <span class="cm">/* remaining depth(-recapt.)*/</span>
+</span><span class="line">            <span class="p">{</span> <span class="n">Score</span> <span class="o">=</span> <span class="n">PieceType</span><span class="o">&lt;</span><span class="mi">6</span> <span class="o">?</span> <span class="n">Board</span><span class="p">[</span><span class="n">FromSqr</span><span class="o">+</span><span class="mi">8</span><span class="p">]</span><span class="o">-</span><span class="n">Board</span><span class="p">[</span><span class="n">ToSqr</span><span class="o">+</span><span class="mi">8</span><span class="p">]</span> <span class="o">:</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class="line">                                                       <span class="cm">/* center positional pts.   */</span>
+</span><span class="line">
+</span><span class="line">              <span class="cm">/* Make move &amp; evaluate                                              */</span>
+</span><span class="line">              <span class="n">Board</span><span class="p">[</span><span class="n">RookSqr</span><span class="p">]</span> <span class="o">=</span> <span class="n">Board</span><span class="p">[</span><span class="n">CaptSqr</span><span class="p">]</span> <span class="o">=</span> <span class="n">Board</span><span class="p">[</span><span class="n">FromSqr</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class="line">              <span class="n">Board</span><span class="p">[</span><span class="n">ToSqr</span><span class="p">]</span>   <span class="o">=</span> <span class="n">Piece</span><span class="o">&amp;</span><span class="mi">31</span><span class="p">;</span>               <span class="cm">/* do move, strip virgin-bit*/</span>
+</span><span class="line">              <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">RookSqr</span><span class="o">&amp;</span><span class="mh">0x88</span><span class="p">))</span>
+</span><span class="line">              <span class="p">{</span> <span class="n">Board</span><span class="p">[</span><span class="n">SkipSqr</span><span class="p">]</span> <span class="o">=</span> <span class="n">Side</span><span class="o">+</span><span class="mi">6</span><span class="p">;</span>               <span class="cm">/* castling: put Rook       */</span>
+</span><span class="line">                <span class="n">Score</span> <span class="o">+=</span> <span class="mi">30</span><span class="p">;</span>                           <span class="cm">/*                 &amp; score  */</span>
+</span><span class="line">              <span class="p">}</span>
+</span><span class="line">
+</span><span class="line">              <span class="k">if</span><span class="p">(</span><span class="n">PieceType</span><span class="o">&lt;</span><span class="mi">3</span><span class="p">)</span>                          <span class="cm">/* pawns:                   */</span>
+</span><span class="line">              <span class="p">{</span> <span class="n">Score</span> <span class="o">-=</span>                               <span class="cm">/* structure, undefended    */</span>
+</span><span class="line">                <span class="mi">9</span><span class="o">*</span><span class="p">(((</span><span class="n">FromSqr</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="o">&amp;</span><span class="n">M</span><span class="o">||</span><span class="n">Board</span><span class="p">[</span><span class="n">FromSqr</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="o">!=</span><span class="n">Piece</span><span class="p">)</span> <span class="o">+</span> <span class="cm">/* squares plus bias */</span>
+</span><span class="line">                   <span class="p">((</span><span class="n">FromSqr</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span><span class="o">&amp;</span><span class="n">M</span><span class="o">||</span><span class="n">Board</span><span class="p">[</span><span class="n">FromSqr</span><span class="o">+</span><span class="mi">2</span><span class="p">]</span><span class="o">!=</span><span class="n">Piece</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+</span><span class="line">                <span class="k">if</span><span class="p">(</span><span class="n">ToSqr</span><span class="o">+</span><span class="n">StepVec</span><span class="o">+</span><span class="mi">1</span><span class="o">&amp;</span><span class="n">S</span><span class="p">)</span>
+</span><span class="line">                <span class="p">{</span> <span class="n">Board</span><span class="p">[</span><span class="n">ToSqr</span><span class="p">]</span> <span class="o">|=</span> <span class="mi">7</span><span class="p">;</span>                   <span class="cm">/* promote Pawn to Queen,   */</span>
+</span><span class="line">                  <span class="n">i</span> <span class="o">+=</span> <span class="n">C</span><span class="p">;</span>                              <span class="cm">/*                add score */</span>
+</span><span class="line">              <span class="p">}</span> <span class="p">}</span>
+</span><span class="line">
+</span><span class="line">              <span class="n">Score</span> <span class="o">=</span> <span class="o">-</span><span class="n">Search</span><span class="p">(</span>                         <span class="cm">/* recursive eval. of reply */</span>
+</span><span class="line">                              <span class="mi">24</span><span class="o">-</span><span class="n">Side</span><span class="p">,</span>                 <span class="cm">/* opponent color           */</span>
+</span><span class="line">                             <span class="o">-</span><span class="n">Beta</span><span class="o">-</span><span class="p">(</span><span class="n">Beta</span><span class="o">&gt;</span><span class="n">Eval</span><span class="p">),</span>        <span class="cm">/* new Alpha (delayed gain!)*/</span>
+</span><span class="line">                              <span class="n">BestScore</span><span class="o">&gt;</span><span class="n">Alpha</span> <span class="o">?</span> <span class="o">-</span><span class="n">BestScore</span> <span class="o">:</span> <span class="o">-</span><span class="n">Alpha</span><span class="p">,</span>  <span class="cm">/* New Beta  */</span>
+</span><span class="line">                             <span class="o">-</span><span class="n">Eval</span><span class="o">-</span><span class="n">Score</span><span class="o">-</span><span class="n">i</span><span class="p">,</span>            <span class="cm">/* New Eval                 */</span>
+</span><span class="line">                              <span class="n">HashKeyLo</span><span class="o">+</span><span class="n">J</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>          <span class="cm">/* New HashKeys             */</span>
+</span><span class="line">                              <span class="n">HashKeyHi</span><span class="o">+</span><span class="n">J</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span><span class="o">+</span><span class="n">SkipSqr</span><span class="o">-</span><span class="n">S</span><span class="p">,</span><span class="cm">/* SkipSqr-S!=0 on castling */</span>
+</span><span class="line">                              <span class="n">SkipSqr</span><span class="p">,</span> <span class="n">ToSqr</span><span class="p">,</span> <span class="n">h</span><span class="p">);</span>      <span class="cm">/* New epSqr, LastTo, Depth */</span>
+</span><span class="line">
+</span><span class="line">              <span class="n">Score</span> <span class="o">-=</span> <span class="n">Score</span><span class="o">&gt;</span><span class="n">Eval</span><span class="p">;</span>                     <span class="cm">/* delayed-gain penalty     */</span>
+</span><span class="line">
+</span><span class="line">              <span class="cm">/* If the Search routine was called as move-legality checker, we     */</span>
+</span><span class="line">              <span class="cm">/* now return before unmaking the move if it was the input move.     */</span>
+</span><span class="line">              <span class="k">if</span><span class="p">(</span><span class="n">LastTo</span><span class="o">==</span><span class="mi">9</span><span class="p">)</span>                            <span class="cm">/* called as move-legality  */</span>
+</span><span class="line">                                                       <span class="cm">/*   checker                */</span>
+</span><span class="line">              <span class="p">{</span> <span class="k">if</span><span class="p">(</span><span class="n">Score</span><span class="o">!=-</span><span class="n">INF</span> <span class="o">&amp;</span> <span class="n">FromSqr</span><span class="o">==</span><span class="n">InputFrom</span> <span class="o">&amp;</span> <span class="n">ToSqr</span><span class="o">==</span><span class="n">InputTo</span><span class="p">)</span><span class="cm">/* move found */</span>
+</span><span class="line">                <span class="p">{</span> <span class="n">RootEval</span> <span class="o">=</span> <span class="o">-</span><span class="n">Eval</span><span class="o">-</span><span class="n">i</span><span class="p">;</span>                  <span class="cm">/* update eval, material    */</span>
+</span><span class="line">                  <span class="n">Rootep</span>   <span class="o">=</span> <span class="n">SkipSqr</span><span class="p">;</span>
+</span><span class="line">                  <span class="k">return</span> <span class="n">Beta</span><span class="p">;</span>                         <span class="cm">/*   &amp; not in check, signal */</span>
+</span><span class="line">                <span class="p">}</span>
+</span><span class="line">                <span class="n">Score</span> <span class="o">=</span> <span class="n">BestScore</span><span class="p">;</span>                     <span class="cm">/* (prevent fail-lows on    */</span>
+</span><span class="line">              <span class="p">}</span>                                        <span class="cm">/*   K-capt. replies)       */</span>
+</span><span class="line">
+</span><span class="line">              <span class="cm">/* UnMake move                                                       */</span>
+</span><span class="line">              <span class="n">Board</span><span class="p">[</span><span class="n">RookSqr</span><span class="p">]</span> <span class="o">=</span> <span class="n">Side</span><span class="o">+</span><span class="mi">38</span><span class="p">;</span>                <span class="cm">/* undo move,RookSqr can be */</span>
+</span><span class="line">              <span class="n">Board</span><span class="p">[</span><span class="n">SkipSqr</span><span class="p">]</span> <span class="o">=</span> <span class="n">Board</span><span class="p">[</span><span class="n">ToSqr</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>       <span class="cm">/*                    dummy */</span>
+</span><span class="line">              <span class="n">Board</span><span class="p">[</span><span class="n">FromSqr</span><span class="p">]</span> <span class="o">=</span> <span class="n">Piece</span><span class="p">;</span>
+</span><span class="line">              <span class="n">Board</span><span class="p">[</span><span class="n">CaptSqr</span><span class="p">]</span> <span class="o">=</span> <span class="n">Victim</span><span class="p">;</span>
+</span><span class="line">
+</span><span class="line">              <span class="cm">/* Process score. If the move just searched was a previous best      */</span>
+</span><span class="line">              <span class="cm">/* move that was tried first, we take its Score and redo the first   */</span>
+</span><span class="line">              <span class="cm">/* ray of this piece. Otherwise update best score and move.          */</span>
+</span><span class="line">              <span class="k">if</span><span class="p">(</span><span class="n">BestTo</span><span class="o">&amp;</span><span class="mi">8</span><span class="p">)</span>                            <span class="cm">/* Move just done was in-    */</span>
+</span><span class="line">              <span class="p">{</span> <span class="n">BestScore</span> <span class="o">=</span> <span class="n">Score</span><span class="p">;</span>                    <span class="cm">/*     serted previous best  */</span>
+</span><span class="line">                <span class="n">BestTo</span>   <span class="o">&amp;=</span> <span class="o">~</span><span class="mi">8</span><span class="p">;</span>
+</span><span class="line">                <span class="k">goto</span> <span class="n">replay</span><span class="p">;</span>
+</span><span class="line">              <span class="p">}</span>                                       <span class="cm">/* redo original first move  */</span>
+</span><span class="line">
+</span><span class="line">              <span class="k">if</span><span class="p">(</span><span class="n">Score</span><span class="o">&gt;</span><span class="n">BestScore</span><span class="p">)</span>
+</span><span class="line">              <span class="p">{</span> <span class="n">BestScore</span> <span class="o">=</span> <span class="n">Score</span><span class="p">;</span>                    <span class="cm">/* update max,               */</span>
+</span><span class="line">                <span class="n">BestFrom</span>  <span class="o">=</span> <span class="n">FromSqr</span><span class="p">;</span>                  <span class="cm">/* best move,                */</span>
+</span><span class="line">                <span class="n">BestTo</span>    <span class="o">=</span> <span class="n">ToSqr</span> <span class="o">|</span> <span class="n">S</span><span class="o">&amp;</span><span class="n">RookSqr</span><span class="p">;</span>        <span class="cm">/* mark non-castling with S  */</span>
+</span><span class="line">            <span class="p">}</span> <span class="p">}</span>
+</span><span class="line">
+</span><span class="line">            <span class="cm">/* Determine if we have to continue scanning this ray. We must stop    */</span>
+</span><span class="line">            <span class="cm">/* on a capture, or if the piece is a non-slider, with the exceptions  */</span>
+</span><span class="line">            <span class="cm">/* of double moves for Pawns and King (castlings!). Such double moves  */</span>
+</span><span class="line">            <span class="cm">/* cause setting of the SkipSqr, that otherwise is equal to the dummy S*/</span>
+</span><span class="line">            <span class="n">Victim</span> <span class="o">+=</span> <span class="n">PieceType</span><span class="o">&lt;</span><span class="mi">5</span><span class="p">;</span>                    <span class="cm">/* fake capt. for nonsliding */</span>
+</span><span class="line">            <span class="k">if</span><span class="p">(</span><span class="n">PieceType</span><span class="o">&lt;</span><span class="mi">3</span><span class="o">&amp;</span><span class="mi">6</span><span class="o">*</span><span class="n">Side</span><span class="o">+</span><span class="p">(</span><span class="n">ToSqr</span><span class="o">&amp;</span><span class="mh">0x70</span><span class="p">)</span><span class="o">==</span><span class="n">S</span>     <span class="cm">/* pawn on 3rd/6th, or       */</span>
+</span><span class="line">                <span class="o">||</span><span class="p">(</span><span class="n">Piece</span><span class="o">&amp;~</span><span class="mi">24</span><span class="p">)</span><span class="o">==</span><span class="mi">36</span> <span class="o">&amp;</span>                   <span class="cm">/* virgin K,                 */</span>
+</span><span class="line">                   <span class="n">j</span><span class="o">==</span><span class="mi">7</span> <span class="o">&amp;&amp;</span>                            <span class="cm">/* moving sideways,          */</span>
+</span><span class="line">                   <span class="n">RookSqr</span><span class="o">&amp;</span><span class="mh">0x88</span> <span class="o">&amp;&amp;</span>                    <span class="cm">/* RookSqr not yet set       */</span>
+</span><span class="line">                   <span class="n">Board</span><span class="p">[</span><span class="n">RookSqr</span><span class="o">=</span><span class="p">(</span><span class="n">FromSqr</span><span class="o">|</span><span class="mi">7</span><span class="p">)</span><span class="o">-</span><span class="p">(</span><span class="n">StepVec</span><span class="o">&gt;&gt;</span><span class="mi">1</span><span class="o">&amp;</span><span class="mi">7</span><span class="p">)]</span><span class="o">&amp;</span><span class="mi">32</span> <span class="o">&amp;&amp;</span>
+</span><span class="line">                                                      <span class="cm">/* virgin Rook in corner     */</span>
+</span><span class="line">                   <span class="o">!</span><span class="p">(</span><span class="n">Board</span><span class="p">[</span><span class="n">RookSqr</span><span class="o">^</span><span class="mi">1</span><span class="p">]</span><span class="o">|</span><span class="n">Board</span><span class="p">[</span><span class="n">RookSqr</span><span class="o">^</span><span class="mi">2</span><span class="p">])</span> <span class="cm">/* 2 empty sqrs. next to R */</span>
+</span><span class="line">              <span class="p">)</span> <span class="p">{</span> <span class="n">SkipSqr</span> <span class="o">=</span> <span class="n">ToSqr</span><span class="p">;</span> <span class="n">Victim</span><span class="o">--</span><span class="p">;</span> <span class="p">}</span>        <span class="cm">/* unfake capt., enable e.p. */</span>
+</span><span class="line">
+</span><span class="line">            <span class="cm">/* continue ray scan if move was non-capture                           */</span>
+</span><span class="line">          <span class="p">}</span> <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">Victim</span><span class="p">);</span>                           <span class="cm">/* if not capt. continue ray */</span>
+</span><span class="line">
+</span><span class="line">    <span class="p">}</span> <span class="p">}</span> <span class="p">}</span> <span class="k">while</span><span class="p">((</span><span class="n">FromSqr</span><span class="o">=</span><span class="n">FromSqr</span><span class="o">+</span><span class="mi">9</span><span class="o">&amp;~</span><span class="mh">0x88</span><span class="p">)</span><span class="o">-</span><span class="n">StartSqr</span><span class="p">);</span>  <span class="cm">/* next sqr. of board, wrap  */</span>
+</span><span class="line">
+</span><span class="line">    <span class="cm">/* All moves have been searched; wrap up iteration by testing for check- or    */</span>
+</span><span class="line">    <span class="cm">/* stalemate, which leave Score at -INF. Call Search with Depth=1 after null   */</span>
+</span><span class="line">    <span class="cm">/* move to determine if we are in check. Finally store result in hash.         */</span>
+</span><span class="line"><span class="nl">cutoff:</span>
+</span><span class="line">    <span class="k">if</span><span class="p">(</span><span class="n">BestScore</span><span class="o">&gt;</span><span class="n">INF</span><span class="o">/</span><span class="mi">4</span> <span class="o">|</span> <span class="n">BestScore</span><span class="o">&lt;-</span><span class="n">INF</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span>
+</span><span class="line">      <span class="n">IterDepth</span><span class="o">=</span><span class="mi">99</span><span class="p">;</span>                                   <span class="cm">/* mate is indep. of depth   */</span>
+</span><span class="line">    <span class="n">BestScore</span> <span class="o">=</span> <span class="n">BestScore</span><span class="o">+</span><span class="n">INF</span> <span class="o">?</span> <span class="n">BestScore</span> <span class="o">:</span>           <span class="cm">/* best loses K: (stale)mate */</span>
+</span><span class="line">               <span class="o">-</span><span class="n">Search</span><span class="p">(</span><span class="mi">24</span><span class="o">-</span><span class="n">Side</span><span class="p">,</span> <span class="o">-</span><span class="n">INF</span><span class="p">,</span> <span class="n">INF</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">HashKeyLo</span><span class="p">,</span> <span class="n">HashKeyHi</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">LastTo</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+</span><span class="line">
+</span><span class="line">    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">Hash</span><span class="o">-&gt;</span><span class="n">Key</span> <span class="o">|</span> <span class="p">(</span><span class="n">Hash</span><span class="o">-&gt;</span><span class="n">From</span><span class="o">&amp;</span><span class="n">M</span><span class="p">)</span><span class="o">!=</span><span class="n">M</span> <span class="o">|</span> <span class="n">Hash</span><span class="o">-&gt;</span><span class="n">Draft</span><span class="o">&lt;=</span><span class="n">IterDepth</span><span class="p">)</span>
+</span><span class="line">                                                      <span class="cm">/* if new/better type/depth: */</span>
+</span><span class="line">    <span class="p">{</span> <span class="n">Hash</span><span class="o">-&gt;</span><span class="n">Key</span>    <span class="o">=</span> <span class="n">HashKeyHi</span><span class="p">;</span>                       <span class="cm">/* store in hash,            */</span>
+</span><span class="line">      <span class="n">Hash</span><span class="o">-&gt;</span><span class="n">Score</span>  <span class="o">=</span> <span class="n">BestScore</span><span class="p">;</span>
+</span><span class="line">      <span class="n">Hash</span><span class="o">-&gt;</span><span class="n">Draft</span>  <span class="o">=</span> <span class="n">IterDepth</span><span class="p">;</span>
+</span><span class="line">      <span class="n">HashTab</span><span class="o">-&gt;</span><span class="n">Key</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>                               <span class="cm">/* dummy stays empty         */</span>
+</span><span class="line">      <span class="n">Hash</span><span class="o">-&gt;</span><span class="n">From</span>   <span class="o">=</span> <span class="n">BestFrom</span> <span class="o">|</span>                       <span class="cm">/* From &amp; bound type         */</span>
+</span><span class="line">                     <span class="mi">8</span><span class="o">*</span><span class="p">(</span><span class="n">BestScore</span><span class="o">&gt;</span><span class="n">Alpha</span><span class="p">)</span> <span class="o">|</span>            <span class="cm">/*    encoded in X S,8 bits  */</span>
+</span><span class="line">                     <span class="n">S</span><span class="o">*</span><span class="p">(</span><span class="n">BestScore</span><span class="o">&lt;</span><span class="n">Beta</span><span class="p">);</span>              <span class="cm">/* (8=lower, S=upper bound)  */</span>
+</span><span class="line">      <span class="n">Hash</span><span class="o">-&gt;</span><span class="n">To</span>     <span class="o">=</span> <span class="n">BestTo</span><span class="p">;</span>
+</span><span class="line">    <span class="p">}</span>
+</span><span class="line">
+</span><span class="line">    <span class="cm">/* End of iteration. Start new one if more depth was requested                 */</span>
+</span><span class="line">    <span class="cm">/*  if(LastTo==8)printf(&quot;%2d ply, %9d searched, %6d by (%2x,%2x)\n&quot;,</span>
+</span><span class="line"><span class="cm">                                IterDepth-1,Nodes,BestScore,BestFrom,BestTo&amp;0x77); */</span>
+</span><span class="line">  <span class="p">}</span>
+</span><span class="line">
+</span><span class="line">  <span class="cm">/* return best score (and in root also best move) after all iterations are done. */</span>
+</span><span class="line">  <span class="k">if</span><span class="p">(</span><span class="n">LastTo</span><span class="o">&amp;</span><span class="mi">8</span><span class="p">)</span>
+</span><span class="line">  <span class="p">{</span> <span class="n">InputFrom</span> <span class="o">=</span> <span class="n">BestFrom</span><span class="p">;</span>
+</span><span class="line">    <span class="n">InputTo</span>   <span class="o">=</span> <span class="n">BestTo</span> <span class="o">&amp;</span> <span class="o">~</span><span class="mh">0x88</span><span class="p">;</span>
+</span><span class="line">  <span class="p">}</span>
+</span><span class="line">  <span class="k">return</span> <span class="n">BestScore</span><span class="p">;</span>
+</span><span class="line"><span class="p">}</span>
+</span><span class="line">
+</span><span class="line"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span><span class="line"><span class="p">{</span>
+</span><span class="line"> <span class="kt">int</span> <span class="n">j</span><span class="p">,</span> <span class="n">Side</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="o">*</span><span class="n">ptr</span><span class="p">,</span> <span class="n">InBuf</span><span class="p">[</span><span class="mi">9</span><span class="p">];</span>                            <span class="cm">/* 8=white, 16=black  */</span>
+</span><span class="line">
+</span><span class="line"> <span class="cm">/* Initialize board and piece-square table (actually just a square table).      */</span>
+</span><span class="line"> <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">8</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>                                          <span class="cm">/* initial board setup*/</span>
+</span><span class="line"> <span class="p">{</span><span class="n">Board</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">Board</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mh">0x70</span><span class="p">]</span> <span class="o">=</span> <span class="n">StepVecs</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">24</span><span class="p">]</span><span class="o">+</span><span class="mi">40</span><span class="p">)</span><span class="o">+</span><span class="mi">8</span><span class="p">;</span>        <span class="cm">/* Pieces             */</span>
+</span><span class="line">  <span class="n">Board</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mh">0x10</span><span class="p">]</span> <span class="o">=</span> <span class="mi">18</span><span class="p">;</span> <span class="n">Board</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mh">0x60</span><span class="p">]</span> <span class="o">=</span> <span class="mi">9</span><span class="p">;</span>                   <span class="cm">/* black, white Pawns */</span>
+</span><span class="line">  <span class="k">for</span><span class="p">(</span><span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="mi">8</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="n">Board</span><span class="p">[</span><span class="mi">16</span><span class="o">*</span><span class="n">j</span><span class="o">+</span><span class="n">i</span><span class="o">+</span><span class="mi">8</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">4</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">4</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="n">j</span><span class="o">-</span><span class="mf">3.5</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">j</span><span class="o">-</span><span class="mf">3.5</span><span class="p">);</span>
+</span><span class="line">                                                           <span class="cm">/*common pce-sqr table*/</span>
+</span><span class="line"> <span class="p">}</span>                                                         <span class="cm">/*(in unused half b[])*/</span>
+</span><span class="line"> <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mh">0x88</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">1035</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">Zobrist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">rand</span><span class="p">()</span><span class="o">&gt;&gt;</span><span class="mi">9</span><span class="p">;</span>
+</span><span class="line">
+</span><span class="line"> <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>                                                  <span class="cm">/* play loop          */</span>
+</span><span class="line"> <span class="p">{</span><span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">121</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span><span class="line">   <span class="n">printf</span><span class="p">(</span><span class="s">&quot; %c&quot;</span><span class="p">,</span> <span class="n">i</span><span class="o">&amp;</span><span class="mi">8</span><span class="o">&amp;&amp;</span><span class="p">(</span><span class="n">i</span><span class="o">+=</span><span class="mi">7</span><span class="p">)</span> <span class="o">?</span> <span class="sc">&#39;\n&#39;</span> <span class="o">:</span> <span class="n">Sym</span><span class="p">[</span><span class="n">Board</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&amp;</span><span class="mi">15</span><span class="p">]);</span>   <span class="cm">/* print board        */</span>
+</span><span class="line">  <span class="n">ptr</span> <span class="o">=</span> <span class="n">InBuf</span><span class="p">;</span> <span class="k">while</span><span class="p">((</span><span class="o">*</span><span class="n">ptr</span><span class="o">++</span> <span class="o">=</span> <span class="n">getchar</span><span class="p">())</span> <span class="o">&gt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">);</span>         <span class="cm">/* read input line    */</span>
+</span><span class="line">  <span class="n">Nodes</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span><span class="line">  <span class="k">if</span><span class="p">(</span><span class="o">*</span><span class="n">InBuf</span><span class="o">-</span><span class="sc">&#39;\n&#39;</span><span class="p">)</span>
+</span><span class="line">  <span class="p">{</span><span class="n">InputFrom</span><span class="o">=</span><span class="n">InBuf</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">16</span><span class="o">*</span><span class="n">InBuf</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">C</span><span class="p">;</span>                       <span class="cm">/* parse entered move */</span>
+</span><span class="line">   <span class="n">InputTo</span>  <span class="o">=</span><span class="n">InBuf</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-</span><span class="mi">16</span><span class="o">*</span><span class="n">InBuf</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">+</span><span class="n">C</span><span class="p">;</span>
+</span><span class="line">  <span class="p">}</span> <span class="k">else</span> <span class="n">Search</span><span class="p">(</span><span class="n">Side</span><span class="p">,</span><span class="o">-</span><span class="n">INF</span><span class="p">,</span><span class="n">INF</span><span class="p">,</span><span class="n">RootEval</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">Rootep</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>    <span class="cm">/* or think up one    */</span>
+</span><span class="line">  <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">HASHSIZE</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="n">HashTab</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">Key</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>                 <span class="cm">/* clear hash table   */</span>
+</span><span class="line">  <span class="k">if</span><span class="p">(</span><span class="n">Search</span><span class="p">(</span><span class="n">Side</span><span class="p">,</span><span class="o">-</span><span class="n">INF</span><span class="p">,</span><span class="n">INF</span><span class="p">,</span><span class="n">RootEval</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">Rootep</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">==</span><span class="n">INF</span><span class="p">)</span>
+</span><span class="line">    <span class="n">Side</span><span class="o">^=</span><span class="mi">24</span><span class="p">;</span>                                              <span class="cm">/* check legality &amp; do*/</span>
+</span><span class="line"> <span class="p">}</span>
+</span><span class="line"> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class="line"><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+  
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <iframe width="100%" height="320" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=320&fansRow=2&ptype=1&speed=0&skin=1&isTitle=0&noborder=0&isWeibo=1&isFans=1&uid=1771027825&verifier=f729d6d3&dpc=1"></iframe>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/10/02/workflow-engine-in-python/">Workflow Engine in Python</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/07/02/the-key-technologies-in-simple-xiangqi-engine-maxqi/">The Key Technologies in Simple XiangQi Engine MaxQi</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/23/something-about-chess-series-with-ai/">Something about Chess series with AI</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/04/23/database-overview/">Database Overview</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/04/21/something-interesting-about-ai/">Something Interesting about AI</a>
+      </li>
+    
+  </ul>
+</section>
+<section>
+  <h1>Tag Cloud</h1>
+    <span id="tag-cloud"><a href='/blog/categories/android' style='font-size: 120.0%'>Android(1)</a> <a href='/blog/categories/babylife' style='font-size: 160.0%'>BabyLife(3)</a> <a href='/blog/categories/github' style='font-size: 120.0%'>Github(1)</a> <a href='/blog/categories/machinelearning' style='font-size: 160.0%'>MachineLearning(3)</a> <a href='/blog/categories/techchangeworld' style='font-size: 160.0%'>TechChangeWorld(3)</a> <a href='/blog/categories/techspark' style='font-size: 160.0%'>TechSpark(3)</a> <a href='/blog/categories/tools' style='font-size: 160.0%'>Tools(3)</a> </span>
+</section>
+<section>
+  <h1>Categories</h1>
+  <input class="search" type="text" name="filter_tags" results="0" placeholder="Filter Tags ..."/>
+  <script type="text/javascript">
+    $('input[name=filter_tags]').keyup(function(e){
+      var val = $(this).val();
+      if (/^\s*$/.test(val) || e.keyCode == 27) { // 27 is 'esc'
+        $('#category-list li').show();
+        $(this).val('');
+        return;
+      }
+      var pattern = new RegExp(val, 'i');
+      $('#category-list li').each(function(){
+        $(this)[pattern.test($(this).find('a').text()) ? 'show' : 'hide']();
+      });
+    });
+  </script>
+    <ul id="category-list"><li><a href='/blog/categories/android'>Android (1)</a></li><li><a href='/blog/categories/babylife'>BabyLife (3)</a></li><li><a href='/blog/categories/github'>Github (1)</a></li><li><a href='/blog/categories/machinelearning'>MachineLearning (3)</a></li><li><a href='/blog/categories/techchangeworld'>TechChangeWorld (3)</a></li><li><a href='/blog/categories/techspark'>TechSpark (3)</a></li><li><a href='/blog/categories/tools'>Tools (3)</a></li></ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Arek.Yao -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'arekyao';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+  <script type="text/javascript">
+    var wumiiPermaLink = ""; //
+    var wumiiTitle = ""; //
+    var wumiiTags = ""; //"1,2"
+    var wumiiSitePrefix = "http://arekyao.github.com/";
+    var wumiiParams = "&num=5&mode=3&pf=JAVASCRIPT";
+</script>
+<script type="text/javascript" src="http://widget.wumii.com/ext/relatedItemsWidget"></script>
+<a href="http://www.wumii.com/widget/relatedItems" style="border:0;">
+<img src="http://static.wumii.cn/images/pixel.png" alt="" style="border:0;padding:0;margin:0;" />
+</a>
+  <meta name="baidu-site-verification" content="QSLeJw3wwyA8dGHl" />
+  <script type="text/javascript">
+    var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F6b519082c0cda60aab2be100c6319f3e' type='text/javascript'%3E%3C/script%3E"));
+  </script>
+</body>
+</html>

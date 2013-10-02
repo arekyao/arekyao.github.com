@@ -1,0 +1,296 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Micro-Max, 一个短小精干的棋类引擎（仅133行 ） - YY Every Day</title>
+  <meta name="author" content="Arek.Yao">
+
+  
+  <meta name="description" content="Micro-Max, 一个短小精干的棋类引擎（仅133行 ） 变量索引表 Variable Index 为了最小化 micro-Max的源代码的字符数，所有字符均采用1个字符变量名，这使得变量名无意义，无描述（这坑了多少童鞋啊）
+In order to minimize the number &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://arekyao.github.io/micromax/var.html">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="YY Every Day" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">YY Every Day</a></h1>
+  
+    <h2>Never say never, because limits like fears, are often just an illusion.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:arekyao.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/micromax/index.html">Micro-Max</a></li>
+  <li><a href="/about/index.html">About Me</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article role="article">
+  
+  <header>
+    <h1 class="entry-title">Micro-Max, 一个短小精干的棋类引擎（仅133行 ）</h1>
+    
+  </header>
+  
+  <h2 id="variable-index">变量索引表 Variable Index</h2>
+
+<p>为了最小化 micro-Max的源代码的字符数，所有字符均采用1个字符变量名，这使得变量名无意义，无描述（这坑了多少童鞋啊）
+In order to minimize the number of characters in the source code of micro-Max,<br />
+all variables have one-character names, which makes the names rather non-descriptive. <br />
+The following list with descriptions might therefore be helpful. <br />
+Some names are used for different variables in main() and D(). <br />
+A letter D or m in the second column of the table distinguishes the case. A space there indicates that this is a global (‘static’) variable. Most global variables are used to pass information from one instance of the recursive search routine D() to the next, or between that routine and the main program. To be visible to the routine that uses them, the corresponding names can then not be used for a local variables. This makes that we have nearly run out of one-letter names for use in D().</p>
+
+<p>In the list below variables used in micro-Max 3.2 or 4.0 are printed in blue. Variables that are already reserved for future enhancements are given in orange.</p>
+
+<h3 id="lower-case">Lower Case</h3>
+
+<p>a  D *_      Pointer to hash-table entry for current position<br />
+b    char[]  Chess board as 0x88 array, invalid squares contain piece-square table<br />
+c  D<br />
+   m char[]  In ‘main()’ this is the input buffer<br />
+d  D int     Loop counter of iterative deepening, indicates depth<br />
+e  D int     Argument to pass current (differentially updated) evaluation<br />
+f  D char    Origin square of threat move<br />
+g  D char    Target square of threat move<br />
+h  D int     Temporay, used to calculate new remaining ply depth<br />
+i  D int     Temporay, used to hold some evaluation terms<br />
+j  D int     Loop counter for loop over directions<br />
+   m int     General loop counter. In Max 4 seed to hash key #2<br />
+k  D int     Argument to indicate side to move (8=white, 16=black)<br />
+   m int     In ‘main()’ it also holds the side to move<br />
+l  D int     Argument to pass upper window limit (beta)<br />
+m  D int     Value of best move so far<br />
+n    char[]  ASCII representation of pieces on board printout<br />
+   D int     Argument to pass current (differentially updated) evaluation<br />
+o    char[]  list of move vectors, index into this list, and initial-setup array<br />
+p  D char    Type of piece doing the move under consideration<br />
+   m *char   in ‘main()’ it is a pointer into the input buffer<br />
+q  D int     Argument to pass lower window limit (alpha)<br />
+r  D int     Step vector of current ray in move generation<br />
+s  D<br />
+t  D char    Piece to be captured by move under consideration<br />
+u  D char    Piece doing the move under consideration<br />
+v  D int     Temporay, used to hold some evaluation terms<br />
+w    char[]  Relative value of pieces (Pawn = 1)<br />
+x  D char    Origin square of move under consideration<br />
+y  D char    Target square of move under consideration<br />
+z  D int     Argument to pass target square of previous move  </p>
+
+<h3 id="upper-case">Upper Case</h3>
+
+<p>A    _[]     Hash table
+B  D char    Start square of board scan for move generation
+C    int     Constant 799 for conversion ASCII -&gt; square number, approx. value queen
+D    int()   Recursive search routine <br />
+E  D int     Argument to pass e.p. flag F<br />
+F  D int     e.p. flag: square skipped over in double move of P or K<br />
+G  D int     Corner square for castling, contains S = 0x80 on non-castling<br />
+H  D char    Capture square, where captured piece stands<br />
+I    int     Constant 8000 = ‘infinity’ score<br />
+J  D int     Argument to pass hash key #1<br />
+K    int     Origin square of input move<br />
+L    int     Target square of input move<br />
+M    int     Constant 0x88 = unused bits in valid square numbers<br />
+N    int     Counter of searched nodes, for timing purposes<br />
+O    char    Passes e.p. flag to next move at game level<br />
+P  D int     Value of null move<br />
+Q    int     Passes differentially updated evaluation score to next move<br />
+R    char    Origin square of best move returned by ‘D()’<br />
+S    int     Constant 0x80 = 128-bit (sign bit of char)<br />
+T    char[]  Random numbers for hash key, really int, but packed as char<br />
+U    MACRO<br />
+V    int     Constant 0x70 = rank mask of 0x88 board<br />
+W    char    Target square of best move returned by ‘D()’<br />
+X  D char    Origin square of best move so far<br />
+Y  D char    Target square of best move so far, marked with 128-bit as non-castling<br />
+Z  D int     Argument to pass hash key #2<br />
+_    struct  Name of structure for hash-table entry  </p>
+
+<h3 id="macro-definitions">Macro Definitions</h3>
+
+<p>F   Shorthand for for( ; ; )<br />
+K   Access to packed random-number table T[piece][square] for hash key<br />
+J   Differential update of hash key<br />
+W   Shorthand for while( )<br />
+U   Hash table size  </p>
+
+<h3 id="structure-field-names">Structure Field Names</h3>
+
+<p>_.D   char   Depth<br />
+_.K   int    Hash Lock<br />
+_.V   int    Value of position<br />
+_.X   char   Move origin square, 8- and 128-bit encode score type (upper/lower bound)<br />
+_.Y   char   Move target square, 128-bit indicates non-castling  </p>
+
+  
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <iframe width="100%" height="320" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=320&fansRow=2&ptype=1&speed=0&skin=1&isTitle=0&noborder=0&isWeibo=1&isFans=1&uid=1771027825&verifier=f729d6d3&dpc=1"></iframe>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/10/02/workflow-engine-in-python/">Workflow Engine in Python</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/07/02/the-key-technologies-in-simple-xiangqi-engine-maxqi/">The Key Technologies in Simple XiangQi Engine MaxQi</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/23/something-about-chess-series-with-ai/">Something about Chess series with AI</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/04/23/database-overview/">Database Overview</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/04/21/something-interesting-about-ai/">Something Interesting about AI</a>
+      </li>
+    
+  </ul>
+</section>
+<section>
+  <h1>Tag Cloud</h1>
+    <span id="tag-cloud"><a href='/blog/categories/android' style='font-size: 120.0%'>Android(1)</a> <a href='/blog/categories/babylife' style='font-size: 160.0%'>BabyLife(3)</a> <a href='/blog/categories/github' style='font-size: 120.0%'>Github(1)</a> <a href='/blog/categories/machinelearning' style='font-size: 160.0%'>MachineLearning(3)</a> <a href='/blog/categories/techchangeworld' style='font-size: 160.0%'>TechChangeWorld(3)</a> <a href='/blog/categories/techspark' style='font-size: 160.0%'>TechSpark(3)</a> <a href='/blog/categories/tools' style='font-size: 160.0%'>Tools(3)</a> </span>
+</section>
+<section>
+  <h1>Categories</h1>
+  <input class="search" type="text" name="filter_tags" results="0" placeholder="Filter Tags ..."/>
+  <script type="text/javascript">
+    $('input[name=filter_tags]').keyup(function(e){
+      var val = $(this).val();
+      if (/^\s*$/.test(val) || e.keyCode == 27) { // 27 is 'esc'
+        $('#category-list li').show();
+        $(this).val('');
+        return;
+      }
+      var pattern = new RegExp(val, 'i');
+      $('#category-list li').each(function(){
+        $(this)[pattern.test($(this).find('a').text()) ? 'show' : 'hide']();
+      });
+    });
+  </script>
+    <ul id="category-list"><li><a href='/blog/categories/android'>Android (1)</a></li><li><a href='/blog/categories/babylife'>BabyLife (3)</a></li><li><a href='/blog/categories/github'>Github (1)</a></li><li><a href='/blog/categories/machinelearning'>MachineLearning (3)</a></li><li><a href='/blog/categories/techchangeworld'>TechChangeWorld (3)</a></li><li><a href='/blog/categories/techspark'>TechSpark (3)</a></li><li><a href='/blog/categories/tools'>Tools (3)</a></li></ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Arek.Yao -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'arekyao';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+  <script type="text/javascript">
+    var wumiiPermaLink = ""; //
+    var wumiiTitle = ""; //
+    var wumiiTags = ""; //"1,2"
+    var wumiiSitePrefix = "http://arekyao.github.com/";
+    var wumiiParams = "&num=5&mode=3&pf=JAVASCRIPT";
+</script>
+<script type="text/javascript" src="http://widget.wumii.com/ext/relatedItemsWidget"></script>
+<a href="http://www.wumii.com/widget/relatedItems" style="border:0;">
+<img src="http://static.wumii.cn/images/pixel.png" alt="" style="border:0;padding:0;margin:0;" />
+</a>
+  <meta name="baidu-site-verification" content="QSLeJw3wwyA8dGHl" />
+  <script type="text/javascript">
+    var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F6b519082c0cda60aab2be100c6319f3e' type='text/javascript'%3E%3C/script%3E"));
+  </script>
+</body>
+</html>

@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>基本数据表示 Basic Data Representations - YY Every Day</title>
+  <title>Micro-Max, 一个短小精干的棋类引擎（仅133行 ） - YY Every Day</title>
   <meta name="author" content="Arek.Yao">
 
   
-  <meta name="description" content="基本数据表示 Basic Data Representations 棋子编码 Piece Encoding Pieces are encoded as integers, which (like anything else on a binary digital computer) are &hellip;">
+  <meta name="description" content="Micro-Max, 一个短小精干的棋类引擎（仅133行 ） 编译 micro-Max Compiling micro-Max Compiler Micro-Max was originally written in Kernighan&amp;Ritchie C, because that &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://arekyao.github.io/micromax/piece_encoding.html">
+  <link rel="canonical" href="http://arekyao.github.io/micromax/compile.html">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -70,21 +70,39 @@
 <article role="article">
   
   <header>
-    <h1 class="entry-title">基本数据表示 Basic Data Representations</h1>
+    <h1 class="entry-title">Micro-Max, 一个短小精干的棋类引擎（仅133行 ）</h1>
     
   </header>
   
-  <h2 id="piece-encodinghttphomehccnetnlhgmullerencodehtml"><a href="http://home.hccnet.nl/h.g.muller/encode.html">棋子编码 Piece Encoding</a></h2>
+  <h2 id="micro-max">编译 micro-Max</h2>
 
-<p>Pieces are encoded as integers, which (like anything else on a binary digital computer) are eventually bitpatterns. The encoding makes use of the binary representation by assigning a specific meaning to some bits of the integer encoding: the ‘8’-bit is used (i.e. set) to indicate a white piece, the ‘16’-bit indicates a black piece. This makes it easy to test if a piece u belongs to white, by bitwise anding with 8 (u&amp;8). The code uses a variable k to indicate the side that should move, which has the value 8 on white’s turn, or 16 for black, so that u&amp;k tells us if a piece belongs to the side to move. The ‘32’-bit is used to indicate that a piece is in the original position (the ‘virgin bit’). (Since this is only important for Kings and Rooks in connection with castling, Micro-Max doesn’t bother to set the virgin bit on pawns.</p>
+<h2 id="compiling-micro-max">Compiling micro-Max</h2>
 
-<p>The three low-order bits can be interpreted as a number 0-7 that indicates the piece type, and have a meaning that is independent of piece color. This makes tables that do not have to distingush by color (like piece value w[u&amp;7]) half as small. Tables that would like to make this distinction (like the character to used to representthe piece on printout) can simply be indexed with the 4 low-order bits (n[u&amp;15]).</p>
+<h4 id="compiler">Compiler</h4>
 
-<p>Upstream moving pawns are considered different pieces than downstream moving pawns (type 1 and 2, respectively). Each side has only one of the types of pawns, moving in the appropriate direction, although the engine would not frown at putting pieces on the board that move ‘backwards’. The encoding is further chosen such that tests if a piece belongs to a certain group is easy: the sliding pieces (BRQ) are giving the highest type numbers (5,6,7), so that crawling pieces can be recognized by piece type p (=u&amp;7) p&lt;5. Pieces that are awarded for moving towards the center of the board (everything but RQ) are recognized by p&lt;6, pawns by p&lt;3. The complete list thus is {1,2,3,4,5,6,7} = {P+,P-,N,K,B,R,Q}. Type 0 is not used, so it can indicate empty squares on the board.</p>
+<p>Micro-Max was originally written in Kernighan&amp;Ritchie C, because that allows more compact code than the ANSI dialect. It can be compiled with gcc, under Windows I use cygwin to run gcc. The command line to compile under cygwin if you also want to be able to run from the normal Windows command prompt is:</p>
 
-<p>The following highlights places that show how the piece encoding is used in Micro-Max.</p>
+<p>gcc -O2 -mno-cygwin max.c -o max.exe<br />
+To play you must enter moves in algebraic notation, and to make the computer do a move you should press an extra enter. You can alternate sides whenever you want, the program accepts or plays moves for the side whose turn it is to move. After having done a move, be it yours or his own, micro-Max prints a board with the new position. To quit type control-c.</p>
 
-<p><a href="http://home.hccnet.nl/h.g.muller/encode.html">更好的看代码的地址</a></p>
+<p>Adapting the Source</p>
+
+<p>If you want to change the hash-table size, because 192MB is too large for your memory (and the system starts swapping like mad), you should lower the value of U as set by the #define statement. Be sure to pick a size that is a power-of-two plus 8. The simplest way to do this is enter the number in hexadecimal, e.g.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">#define U 0x100008
+</span><span class="line">for a hash table of 12MB in stead of 192MB. 0x200008 and 0x400008 are also good values.</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>If you want to adjust the time per move, you can change the constant 1e7 in N&lt;1e7. This is the number of nodes that is minimally searched, and the time per move is directly proportional to it. So for faster play you could try 1e6 or even 1e5. Micro-Max finishes the ply it was searching, and this causes strongly variable time per move. The actual number of nodes searched is sometimes up to 10 times larger than the number given, if it starts a deeper search after the prevous one was just under the requested number of nodes.</p>
+
+<p>ANSI C</p>
+
+<p>If your compiler only understands ANSI C, you can copy-paste the listing below. The main difference with the K&amp;R version is the declaration of the routines D() and main(), that needs specification of the types within the argument list, rather than in a separate declaration outside the function body, and that main() now explicitly returns an integer (namely zero). In addition, random() was changed to rand(), because the former does not seem to be universal (gcc recognizes both). To make sure the linker recognizes printf() and getchar() in a C++ environment, the header files stdio.h and math.h are included.</p>
+
+<p>The truly lazy can download an executable that runs under Windows, which uses 48MB hash table and searches 1 million positions.</p>
+
+<p>A source of micro-Max in ANSI C:</p>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
@@ -219,6 +237,12 @@
 <span class="line-number">131</span>
 <span class="line-number">132</span>
 <span class="line-number">133</span>
+<span class="line-number">134</span>
+<span class="line-number">135</span>
+<span class="line-number">136</span>
+<span class="line-number">137</span>
+<span class="line-number">138</span>
+<span class="line-number">139</span>
 </pre></td><td class="code"><pre><code class="c"><span class="line"><span class="cm">/***************************************************************************/</span>
 </span><span class="line"><span class="cm">/*                               micro-Max,                                */</span>
 </span><span class="line"><span class="cm">/* A chess program smaller than 2KB (of non-blank source), by H.G. Muller  */</span>
@@ -231,6 +255,9 @@
 </span><span class="line"><span class="cm">/* - best-move-first &#39;sorting&#39;                                             */</span>
 </span><span class="line"><span class="cm">/* - a hash table storing score and best move                              */</span>
 </span><span class="line"><span class="cm">/* - full FIDE rules (expt minor ptomotion) and move-legality checking     */</span>
+</span><span class="line">
+</span><span class="line"><span class="cp">#include &lt;stdio.h&gt;</span>
+</span><span class="line"><span class="cp">#include &lt;math.h&gt;</span>
 </span><span class="line">
 </span><span class="line"><span class="cp">#define F(I,S,N) for(I=S;I&lt;N;I++)</span>
 </span><span class="line"><span class="cp">#define W(A) while(A)</span>
@@ -252,15 +279,17 @@
 </span><span class="line">
 </span><span class="line"><span class="n">n</span><span class="p">[]</span><span class="o">=</span><span class="s">&quot;.?+nkbrq?*?NKBRQ&quot;</span><span class="p">;</span>                        <span class="cm">/* piece symbols on printout*/</span>
 </span><span class="line">
-</span><span class="line"><span class="n">D</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">q</span><span class="p">,</span><span class="n">l</span><span class="p">,</span><span class="n">e</span><span class="p">,</span><span class="n">J</span><span class="p">,</span><span class="n">Z</span><span class="p">,</span><span class="n">E</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>    <span class="cm">/* recursive minimax search, k=moving side, n=depth*/</span>
-</span><span class="line"><span class="kt">int</span> <span class="n">k</span><span class="p">,</span><span class="n">q</span><span class="p">,</span><span class="n">l</span><span class="p">,</span><span class="n">e</span><span class="p">,</span><span class="n">J</span><span class="p">,</span><span class="n">Z</span><span class="p">,</span><span class="n">E</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">n</span><span class="p">;</span>  <span class="cm">/* (q,l)=window, e=current eval. score, E=e.p. sqr.*/</span>
-</span><span class="line"><span class="p">{</span>                       <span class="cm">/* e=score, z=prev.dest; J,Z=hashkeys; return score*/</span>
-</span><span class="line"> <span class="kt">int</span> <span class="n">j</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">h</span><span class="p">,</span><span class="n">i</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span><span class="n">F</span><span class="p">,</span><span class="n">G</span><span class="p">;</span>
+</span><span class="line"><span class="kt">int</span> <span class="nf">D</span><span class="p">(</span><span class="kt">int</span> <span class="n">k</span><span class="p">,</span><span class="kt">int</span> <span class="n">q</span><span class="p">,</span><span class="kt">int</span> <span class="n">l</span><span class="p">,</span><span class="kt">int</span> <span class="n">e</span><span class="p">,</span><span class="kt">int</span> <span class="n">J</span><span class="p">,</span><span class="kt">int</span> <span class="n">Z</span><span class="p">,</span><span class="kt">int</span> <span class="n">E</span><span class="p">,</span><span class="kt">int</span> <span class="n">z</span><span class="p">,</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+</span><span class="line"><span class="cm">/* recursive minimax search, k=moving side, n=depth*/</span>
+</span><span class="line"><span class="cm">/* (q,l)=window, e=current eval. score, E=e.p. sqr.*/</span>
+</span><span class="line"><span class="cm">/* e=score, z=prev.dest; J,Z=hashkeys; return score*/</span>
+</span><span class="line"><span class="p">{</span>
+</span><span class="line"> <span class="kt">int</span> <span class="n">j</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">h</span><span class="p">,</span><span class="n">i</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span><span class="n">F</span><span class="p">,</span><span class="n">G</span><span class="p">;</span>
 </span><span class="line"> <span class="kt">char</span> <span class="n">t</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">u</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">,</span><span class="n">H</span><span class="p">,</span><span class="n">B</span><span class="p">;</span>
 </span><span class="line"> <span class="k">struct</span> <span class="n">_</span><span class="o">*</span><span class="n">a</span><span class="o">=</span><span class="n">A</span><span class="p">;</span>
 </span><span class="line">                                               <span class="cm">/* lookup pos. in hash table*/</span>
 </span><span class="line"> <span class="n">j</span><span class="o">=</span><span class="p">(</span><span class="n">k</span><span class="o">*</span><span class="n">E</span><span class="o">^</span><span class="n">J</span><span class="p">)</span><span class="o">&amp;</span><span class="n">U</span><span class="o">-</span><span class="mi">9</span><span class="p">;</span>                                <span class="cm">/* try 8 consec. locations  */</span>
-</span><span class="line"> <span class="n">W</span><span class="p">((</span><span class="n">h</span><span class="o">=</span><span class="n">A</span><span class="p">[</span><span class="o">++</span><span class="n">j</span><span class="p">].</span><span class="n">K</span><span class="p">)</span><span class="o">&amp;&amp;</span><span class="n">h</span><span class="o">-</span><span class="n">Z</span><span class="o">&amp;&amp;--</span><span class="n">i</span><span class="p">);</span>                    <span class="cm">/* first empty or match     */</span>
+</span><span class="line"> <span class="k">while</span><span class="p">((</span><span class="n">h</span><span class="o">=</span><span class="n">A</span><span class="p">[</span><span class="o">++</span><span class="n">j</span><span class="p">].</span><span class="n">K</span><span class="p">)</span><span class="o">&amp;&amp;</span><span class="n">h</span><span class="o">-</span><span class="n">Z</span><span class="o">&amp;&amp;--</span><span class="n">i</span><span class="p">);</span>                <span class="cm">/* first empty or match     */</span>
 </span><span class="line"> <span class="n">a</span><span class="o">+=</span><span class="n">i</span><span class="o">?</span><span class="n">j</span><span class="o">:</span><span class="mi">0</span><span class="p">;</span>                                     <span class="cm">/* dummy A[0] if miss &amp; full*/</span>
 </span><span class="line"> <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="o">-&gt;</span><span class="n">K</span><span class="p">)</span>                                      <span class="cm">/* hit: pos. is in hash tab */</span>
 </span><span class="line"> <span class="p">{</span><span class="n">d</span><span class="o">=</span><span class="n">a</span><span class="o">-&gt;</span><span class="n">D</span><span class="p">;</span><span class="n">v</span><span class="o">=</span><span class="n">a</span><span class="o">-&gt;</span><span class="n">V</span><span class="p">;</span><span class="n">X</span><span class="o">=</span><span class="n">a</span><span class="o">-&gt;</span><span class="n">X</span><span class="p">;</span>                        <span class="cm">/* examine stored data      */</span>
@@ -321,7 +350,7 @@
 </span><span class="line">     <span class="p">}</span><span class="n">W</span><span class="p">(</span><span class="o">!</span><span class="n">t</span><span class="p">);</span>                                   <span class="cm">/* if not capt. continue ray*/</span>
 </span><span class="line">  <span class="p">}}}</span><span class="n">W</span><span class="p">((</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="o">+</span><span class="mi">9</span><span class="o">&amp;~</span><span class="n">M</span><span class="p">)</span><span class="o">-</span><span class="n">B</span><span class="p">);</span>                          <span class="cm">/* next sqr. of board, wrap */</span>
 </span><span class="line"><span class="nl">C:</span><span class="k">if</span><span class="p">(</span><span class="n">m</span><span class="o">&gt;</span><span class="n">I</span><span class="o">/</span><span class="mi">4</span><span class="o">|</span><span class="n">m</span><span class="o">&lt;-</span><span class="n">I</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span><span class="n">d</span><span class="o">=</span><span class="mi">99</span><span class="p">;</span>                        <span class="cm">/* mate is indep. of depth  */</span>
-</span><span class="line">  <span class="n">m</span><span class="o">=</span><span class="n">m</span><span class="o">+</span><span class="n">I</span><span class="o">?</span><span class="n">m</span><span class="o">:-</span><span class="n">D</span><span class="p">(</span><span class="mi">24</span><span class="o">-</span><span class="n">k</span><span class="p">,</span><span class="o">-</span><span class="n">I</span><span class="p">,</span><span class="n">I</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">J</span><span class="p">,</span><span class="n">Z</span><span class="p">,</span><span class="n">S</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>         <span class="cm">/* best loses K: (stale)mate*/</span>
+</span><span class="line">  <span class="n">m</span><span class="o">=</span><span class="n">m</span><span class="o">+</span><span class="n">I</span><span class="o">?</span><span class="n">m</span><span class="o">:-</span><span class="n">D</span><span class="p">(</span><span class="mi">24</span><span class="o">-</span><span class="n">k</span><span class="p">,</span><span class="o">-</span><span class="n">I</span><span class="p">,</span><span class="n">I</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">J</span><span class="p">,</span><span class="n">K</span><span class="p">,</span><span class="n">S</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>         <span class="cm">/* best loses K: (stale)mate*/</span>
 </span><span class="line">  <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">a</span><span class="o">-&gt;</span><span class="n">K</span><span class="o">|</span><span class="p">(</span><span class="n">a</span><span class="o">-&gt;</span><span class="n">X</span><span class="o">&amp;</span><span class="n">M</span><span class="p">)</span><span class="o">!=</span><span class="n">M</span><span class="o">|</span><span class="n">a</span><span class="o">-&gt;</span><span class="n">D</span><span class="o">&lt;=</span><span class="n">d</span><span class="p">)</span>                <span class="cm">/* if new/better type/depth:*/</span>
 </span><span class="line">  <span class="p">{</span><span class="n">a</span><span class="o">-&gt;</span><span class="n">K</span><span class="o">=</span><span class="n">Z</span><span class="p">;</span><span class="n">a</span><span class="o">-&gt;</span><span class="n">V</span><span class="o">=</span><span class="n">m</span><span class="p">;</span><span class="n">a</span><span class="o">-&gt;</span><span class="n">D</span><span class="o">=</span><span class="n">d</span><span class="p">;</span><span class="n">A</span><span class="o">-&gt;</span><span class="n">K</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>                <span class="cm">/* store in hash,dummy stays*/</span>
 </span><span class="line">   <span class="n">a</span><span class="o">-&gt;</span><span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="o">|</span><span class="mi">8</span><span class="o">*</span><span class="p">(</span><span class="n">m</span><span class="o">&gt;</span><span class="n">q</span><span class="p">)</span><span class="o">|</span><span class="n">S</span><span class="o">*</span><span class="p">(</span><span class="n">m</span><span class="o">&lt;</span><span class="n">l</span><span class="p">);</span><span class="n">a</span><span class="o">-&gt;</span><span class="n">Y</span><span class="o">=</span><span class="n">Y</span><span class="p">;</span>              <span class="cm">/* empty, type (limit/exact)*/</span>
@@ -332,7 +361,7 @@
 </span><span class="line"> <span class="k">return</span> <span class="n">m</span><span class="p">;</span>
 </span><span class="line"><span class="p">}</span>
 </span><span class="line">
-</span><span class="line"><span class="n">main</span><span class="p">()</span>
+</span><span class="line"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
 </span><span class="line"><span class="p">{</span>
 </span><span class="line"> <span class="kt">int</span> <span class="n">j</span><span class="p">,</span><span class="n">k</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span><span class="o">*</span><span class="n">p</span><span class="p">,</span><span class="n">c</span><span class="p">[</span><span class="mi">9</span><span class="p">];</span>
 </span><span class="line">
@@ -340,7 +369,7 @@
 </span><span class="line"> <span class="p">{</span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="n">V</span><span class="p">]</span><span class="o">=</span><span class="n">o</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">24</span><span class="p">]</span><span class="o">+</span><span class="mi">40</span><span class="p">)</span><span class="o">+</span><span class="mi">8</span><span class="p">;</span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">16</span><span class="p">]</span><span class="o">=</span><span class="mi">18</span><span class="p">;</span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">96</span><span class="p">]</span><span class="o">=</span><span class="mi">9</span><span class="p">;</span>   <span class="cm">/* initial board setup*/</span>
 </span><span class="line">  <span class="n">F</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">8</span><span class="p">)</span><span class="n">b</span><span class="p">[</span><span class="mi">16</span><span class="o">*</span><span class="n">j</span><span class="o">+</span><span class="n">i</span><span class="o">+</span><span class="mi">8</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">4</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">4</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="n">j</span><span class="o">-</span><span class="mf">3.5</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">j</span><span class="o">-</span><span class="mf">3.5</span><span class="p">);</span>   <span class="cm">/* center-pts table   */</span>
 </span><span class="line"> <span class="p">}</span>                                                   <span class="cm">/*(in unused half b[])*/</span>
-</span><span class="line"> <span class="n">F</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">M</span><span class="p">,</span><span class="mi">1035</span><span class="p">)</span><span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">random</span><span class="p">()</span><span class="o">&gt;&gt;</span><span class="mi">9</span><span class="p">;</span>
+</span><span class="line"> <span class="n">F</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">M</span><span class="p">,</span><span class="mi">1035</span><span class="p">)</span><span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">rand</span><span class="p">()</span><span class="o">&gt;&gt;</span><span class="mi">9</span><span class="p">;</span>
 </span><span class="line">
 </span><span class="line"> <span class="n">W</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>                                                <span class="cm">/* play loop          */</span>
 </span><span class="line"> <span class="p">{</span><span class="n">F</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">121</span><span class="p">)</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot; %c&quot;</span><span class="p">,</span><span class="n">i</span><span class="o">&amp;</span><span class="mi">8</span><span class="o">&amp;&amp;</span><span class="p">(</span><span class="n">i</span><span class="o">+=</span><span class="mi">7</span><span class="p">)</span><span class="o">?</span><span class="mi">10</span><span class="o">:</span><span class="n">n</span><span class="p">[</span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&amp;</span><span class="mi">15</span><span class="p">]);</span> <span class="cm">/* print board        */</span>
@@ -348,12 +377,12 @@
 </span><span class="line">  <span class="n">N</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
 </span><span class="line">  <span class="k">if</span><span class="p">(</span><span class="o">*</span><span class="n">c</span><span class="o">-</span><span class="mi">10</span><span class="p">){</span><span class="n">K</span><span class="o">=</span><span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">16</span><span class="o">*</span><span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">C</span><span class="p">;</span><span class="n">L</span><span class="o">=</span><span class="n">c</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-</span><span class="mi">16</span><span class="o">*</span><span class="n">c</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">+</span><span class="n">C</span><span class="p">;}</span><span class="k">else</span>  <span class="cm">/* parse entered move */</span>
 </span><span class="line">   <span class="n">D</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="o">-</span><span class="n">I</span><span class="p">,</span><span class="n">I</span><span class="p">,</span><span class="n">Q</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">O</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>                            <span class="cm">/* or think up one    */</span>
-</span><span class="line">  <span class="n">F</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">U</span><span class="p">)</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">K</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>                                  <span class="cm">/* clear hash table   */</span>
+</span><span class="line">  <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">U</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">K</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>                          <span class="cm">/* clear hash table   */</span>
 </span><span class="line">  <span class="k">if</span><span class="p">(</span><span class="n">D</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="o">-</span><span class="n">I</span><span class="p">,</span><span class="n">I</span><span class="p">,</span><span class="n">Q</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">O</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">==</span><span class="n">I</span><span class="p">)</span><span class="n">k</span><span class="o">^=</span><span class="mi">24</span><span class="p">;</span>                 <span class="cm">/* check legality &amp; do*/</span>
 </span><span class="line"> <span class="p">}</span>
+</span><span class="line"> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 </span><span class="line"><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
-<p>The initial boad setup might deserve some explanation: the piece types in the back of the array o[] are copied to the 1st and 8th rank of the board. On the 1st rank 40 = 8 + 32 is added, which sets the ‘white’ and the ‘virgin’ bit. On the 8th rank an extra 8 is added, for a total of 48 = 16 + 32, the ‘black’ and ‘virgin’ bits. The 18 = 16 + 2 and 9 = 8 + 1 are the encodings for a black P- and a white P+, respectively.</p>
 
 
   
