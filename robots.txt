@@ -10,4 +10,4 @@ Allow: /
 User-agent: *
 Disallow: / 
 
-Sitemap: http://arekyao.github.com/sitemap.xml 
+Sitemap: http://arekyao.github.io/sitemap.xml 

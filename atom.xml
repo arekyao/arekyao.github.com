@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[YY Every Day]]></title>
-  <link href="http://arekyao.github.com/atom.xml" rel="self"/>
-  <link href="http://arekyao.github.com/"/>
-  <updated>2013-10-02T10:14:00+08:00</updated>
-  <id>http://arekyao.github.com/</id>
+  <link href="http://arekyao.github.io/atom.xml" rel="self"/>
+  <link href="http://arekyao.github.io/"/>
+  <updated>2013-10-02T10:33:30+08:00</updated>
+  <id>http://arekyao.github.io/</id>
   <author>
     <name><![CDATA[Arek.Yao]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Workflow Engine in Python]]></title>
-    <link href="http://arekyao.github.com/blog/2013/10/02/workflow-engine-in-python/"/>
+    <link href="http://arekyao.github.io/blog/2013/10/02/workflow-engine-in-python/"/>
     <updated>2013-10-02T07:49:00+08:00</updated>
-    <id>http://arekyao.github.com/blog/2013/10/02/workflow-engine-in-python</id>
+    <id>http://arekyao.github.io/blog/2013/10/02/workflow-engine-in-python</id>
     <content type="html"><![CDATA[<h2 id="whats-workflow">1,What’s workflow</h2>
 
 <p>A <a href="http://en.wikipedia.org/wiki/Workflow">workflow</a> consists of a sequence of connected steps where each step follows without delay or gap and ends just before the subsequent step may begin.</p>
@@ -54,7 +54,7 @@ the right way is by callback function</p>
 
 <p>ps: i was stuck by this for two or three days.</p>
 
-<h2 id="a-better-example-using-spiff-workflow">4, a better example using spiff workflow</h2>
+<h2 id="one-better-example-using-spiff-workflow">4, one better example using spiff workflow</h2>
 
 <p>the case code </p>
 
@@ -531,9 +531,9 @@ the right way is by callback function</p>
   
   <entry>
     <title type="html"><![CDATA[The Key Technologies in Simple XiangQi Engine MaxQi]]></title>
-    <link href="http://arekyao.github.com/blog/2013/07/02/the-key-technologies-in-simple-xiangqi-engine-maxqi/"/>
+    <link href="http://arekyao.github.io/blog/2013/07/02/the-key-technologies-in-simple-xiangqi-engine-maxqi/"/>
     <updated>2013-07-02T08:30:00+08:00</updated>
-    <id>http://arekyao.github.com/blog/2013/07/02/the-key-technologies-in-simple-xiangqi-engine-maxqi</id>
+    <id>http://arekyao.github.io/blog/2013/07/02/the-key-technologies-in-simple-xiangqi-engine-maxqi</id>
     <content type="html"><![CDATA[<h2 id="mini-max-algorithm">1,mini-max algorithm</h2>
 
 <p>minimize the opponent’s potential max profit.</p>
@@ -630,9 +630,9 @@ The other way the piece’s weight sum is used to estimate.</p>
   
   <entry>
     <title type="html"><![CDATA[Something about Chess series with AI]]></title>
-    <link href="http://arekyao.github.com/blog/2013/06/23/something-about-chess-series-with-ai/"/>
+    <link href="http://arekyao.github.io/blog/2013/06/23/something-about-chess-series-with-ai/"/>
     <updated>2013-06-23T20:48:00+08:00</updated>
-    <id>http://arekyao.github.com/blog/2013/06/23/something-about-chess-series-with-ai</id>
+    <id>http://arekyao.github.io/blog/2013/06/23/something-about-chess-series-with-ai</id>
     <content type="html"><![CDATA[<h2 id="preface">Preface</h2>
 <p>One day, I want to learn some knowledge about the Game AI topic.
 Chess series is supposed to a big collection in Game.
@@ -982,9 +982,9 @@ xiangqi can compatible with maxqi engine</p>
   
   <entry>
     <title type="html"><![CDATA[Database Overview]]></title>
-    <link href="http://arekyao.github.com/blog/2013/04/23/database-overview/"/>
+    <link href="http://arekyao.github.io/blog/2013/04/23/database-overview/"/>
     <updated>2013-04-23T22:46:00+08:00</updated>
-    <id>http://arekyao.github.com/blog/2013/04/23/database-overview</id>
+    <id>http://arekyao.github.io/blog/2013/04/23/database-overview</id>
     <content type="html"><![CDATA[<h2 id="preface">Preface</h2>
 
 <p>What’s the most important?
@@ -1154,9 +1154,9 @@ Such as, XML, Jason, YAML etc.</p>
   
   <entry>
     <title type="html"><![CDATA[Something Interesting about AI]]></title>
-    <link href="http://arekyao.github.com/blog/2013/04/21/something-interesting-about-ai/"/>
+    <link href="http://arekyao.github.io/blog/2013/04/21/something-interesting-about-ai/"/>
     <updated>2013-04-21T19:53:00+08:00</updated>
-    <id>http://arekyao.github.com/blog/2013/04/21/something-interesting-about-ai</id>
+    <id>http://arekyao.github.io/blog/2013/04/21/something-interesting-about-ai</id>
     <content type="html"><![CDATA[<ul>
   <li>
     <h2 id="generate-music-algorithmicallyhttpwwwdatabozocom20130412generatingmusicalgorithmicallyhtml"><a href="http://www.databozo.com/2013/04/12/Generating_music_algorithmically.html">Generate Music Algorithmically</a></h2>
@@ -1472,9 +1472,9 @@ the next note’s length is decided by the previous’s.</p>
   
   <entry>
     <title type="html"><![CDATA[Android Dev on OSX]]></title>
-    <link href="http://arekyao.github.com/blog/2013/04/20/android-dev-on-osx/"/>
+    <link href="http://arekyao.github.io/blog/2013/04/20/android-dev-on-osx/"/>
     <updated>2013-04-20T00:00:00+08:00</updated>
-    <id>http://arekyao.github.com/blog/2013/04/20/android-dev-on-osx</id>
+    <id>http://arekyao.github.io/blog/2013/04/20/android-dev-on-osx</id>
     <content type="html"><![CDATA[<h2 id="some-gossip">Some gossip</h2>
 
 <p>Today it prove the conclusion that Google is much better than baidu, esp in Tech Problem.</p>
@@ -1523,9 +1523,9 @@ Onion alpha increase/decrease = KEYPAD_MULTIPLY(*) / KEYPAD_DIVIDE(/)</p>
   
   <entry>
     <title type="html"><![CDATA[TV series the Practice]]></title>
-    <link href="http://arekyao.github.com/blog/2013/04/10/tv-series-the-practice/"/>
+    <link href="http://arekyao.github.io/blog/2013/04/10/tv-series-the-practice/"/>
     <updated>2013-04-10T22:22:00+08:00</updated>
-    <id>http://arekyao.github.com/blog/2013/04/10/tv-series-the-practice</id>
+    <id>http://arekyao.github.io/blog/2013/04/10/tv-series-the-practice</id>
     <content type="html"><![CDATA[<h2 id="whats-the-practice">What’s the practice</h2>
 
 <p>The Practice is an American TV series, legal drama. </p>
@@ -1809,9 +1809,9 @@ Tech Changes World</p>
   
   <entry>
     <title type="html"><![CDATA[Life in China]]></title>
-    <link href="http://arekyao.github.com/blog/2013/03/24/life-in-china/"/>
+    <link href="http://arekyao.github.io/blog/2013/03/24/life-in-china/"/>
     <updated>2013-03-24T15:54:00+08:00</updated>
-    <id>http://arekyao.github.com/blog/2013/03/24/life-in-china</id>
+    <id>http://arekyao.github.io/blog/2013/03/24/life-in-china</id>
     <content type="html"><![CDATA[<h3 id="life-is-a-stuggle">Life is a stuggle</h3>
 
 <p>Human being is a magical kind of animal.</p>
@@ -1876,9 +1876,9 @@ The topics, which makes me unhappy, are lifestyle and the dealing skill…</p>
   
   <entry>
     <title type="html"><![CDATA[Air cleaner and English study]]></title>
-    <link href="http://arekyao.github.com/blog/2013/03/10/air-cleaner-and-english-study/"/>
+    <link href="http://arekyao.github.io/blog/2013/03/10/air-cleaner-and-english-study/"/>
     <updated>2013-03-10T00:28:00+08:00</updated>
-    <id>http://arekyao.github.com/blog/2013/03/10/air-cleaner-and-english-study</id>
+    <id>http://arekyao.github.io/blog/2013/03/10/air-cleaner-and-english-study</id>
     <content type="html"><![CDATA[<p>Here are two interesting stories.</p>
 
 <p>As you know, Peking is a great city, well-known,as big building, huge population, especially the PM2.5 .
@@ -1912,9 +1912,9 @@ Then both She and I will have a good night very soon.</p>
   
   <entry>
     <title type="html"><![CDATA[machine learning ep2]]></title>
-    <link href="http://arekyao.github.com/blog/2013/03/09/machine-learning-ep2/"/>
+    <link href="http://arekyao.github.io/blog/2013/03/09/machine-learning-ep2/"/>
     <updated>2013-03-09T22:56:00+08:00</updated>
-    <id>http://arekyao.github.com/blog/2013/03/09/machine-learning-ep2</id>
+    <id>http://arekyao.github.io/blog/2013/03/09/machine-learning-ep2</id>
     <content type="html"><![CDATA[<ul>
   <li>
     <h4 id="discriminative-learning-algorithm">Discriminative learning algorithm</h4>
@@ -1964,9 +1964,9 @@ P(y)</p>
   
   <entry>
     <title type="html"><![CDATA[Going to Python World Step by Step]]></title>
-    <link href="http://arekyao.github.com/blog/2013/02/17/going-to-python-world-step-by-step/"/>
+    <link href="http://arekyao.github.io/blog/2013/02/17/going-to-python-world-step-by-step/"/>
     <updated>2013-02-17T12:46:00+08:00</updated>
-    <id>http://arekyao.github.com/blog/2013/02/17/going-to-python-world-step-by-step</id>
+    <id>http://arekyao.github.io/blog/2013/02/17/going-to-python-world-step-by-step</id>
     <content type="html"><![CDATA[<p>First, let me introduce something about develop environment, such as Brew, easy_install,RVM, … etc. </p>
 
 <h1 id="mac-develop-environment">Mac Develop Environment</h1>
@@ -2232,9 +2232,9 @@ Here is a good scipt for mac 10.8 user
   
   <entry>
     <title type="html"><![CDATA[Machine Learning ep1]]></title>
-    <link href="http://arekyao.github.com/blog/2013/02/16/machine-learning-ep1/"/>
+    <link href="http://arekyao.github.io/blog/2013/02/16/machine-learning-ep1/"/>
     <updated>2013-02-16T22:35:00+08:00</updated>
-    <id>http://arekyao.github.com/blog/2013/02/16/machine-learning-ep1</id>
+    <id>http://arekyao.github.io/blog/2013/02/16/machine-learning-ep1</id>
     <content type="html"><![CDATA[<ul>
   <li>
     <h2 id="the-general-steps-of-machine-learning">The general steps of Machine Learning</h2>
@@ -2362,9 +2362,9 @@ Softmax Regession can solve multi</p>
   
   <entry>
     <title type="html"><![CDATA[The Overview of Machine Learning]]></title>
-    <link href="http://arekyao.github.com/blog/2013/02/15/the-overview-of-machine-learning/"/>
+    <link href="http://arekyao.github.io/blog/2013/02/15/the-overview-of-machine-learning/"/>
     <updated>2013-02-15T21:19:00+08:00</updated>
-    <id>http://arekyao.github.com/blog/2013/02/15/the-overview-of-machine-learning</id>
+    <id>http://arekyao.github.io/blog/2013/02/15/the-overview-of-machine-learning</id>
     <content type="html"><![CDATA[<blockquote>
   <p>First of all, I have to say, the Machine learning series have a very deep water,:)
 I dont have enough time to afford a full explaination, in detail, about the machine learning.
@@ -2452,9 +2452,9 @@ Data mining (which is the analysis step of Knowledge Discovery in Databases) foc
   
   <entry>
     <title type="html"><![CDATA[Break GFW with Goagent in Android MX2]]></title>
-    <link href="http://arekyao.github.com/blog/2013/02/12/break-gfw-with-goagent-in-android-mx2/"/>
+    <link href="http://arekyao.github.io/blog/2013/02/12/break-gfw-with-goagent-in-android-mx2/"/>
     <updated>2013-02-12T15:36:00+08:00</updated>
-    <id>http://arekyao.github.com/blog/2013/02/12/break-gfw-with-goagent-in-android-mx2</id>
+    <id>http://arekyao.github.io/blog/2013/02/12/break-gfw-with-goagent-in-android-mx2</id>
     <content type="html"><![CDATA[<p>A new phone <a href="http://www.meizu.com/products/mx2fun.html">MX2</a> goes into my life.</p>
 
 <p>with a problem like before.</p>
@@ -2526,9 +2526,9 @@ Maybe it's suspicious by Facebook's spam checking program, because so many faceb
   
   <entry>
     <title type="html"><![CDATA[The Days We fight against Eczema]]></title>
-    <link href="http://arekyao.github.com/blog/2013/02/10/the-days-we-fight-against-eczema/"/>
+    <link href="http://arekyao.github.io/blog/2013/02/10/the-days-we-fight-against-eczema/"/>
     <updated>2013-02-10T12:14:00+08:00</updated>
-    <id>http://arekyao.github.com/blog/2013/02/10/the-days-we-fight-against-eczema</id>
+    <id>http://arekyao.github.io/blog/2013/02/10/the-days-we-fight-against-eczema</id>
     <content type="html"><![CDATA[<p>2012, special year, a cute girl comes into our life, named QianShu.</p>
 
 <h2 id="new-life">New Life</h2>
@@ -2630,9 +2630,9 @@ Maybe it will never ends…</p>
   
   <entry>
     <title type="html"><![CDATA[How to export video from IP4s]]></title>
-    <link href="http://arekyao.github.com/blog/2013/01/20/how-to-export-video-from-ip4s/"/>
+    <link href="http://arekyao.github.io/blog/2013/01/20/how-to-export-video-from-ip4s/"/>
     <updated>2013-01-20T18:39:00+08:00</updated>
-    <id>http://arekyao.github.com/blog/2013/01/20/how-to-export-video-from-ip4s</id>
+    <id>http://arekyao.github.io/blog/2013/01/20/how-to-export-video-from-ip4s</id>
     <content type="html"><![CDATA[<p>Recently, a Mac Book Air comes to my life.
 As the same as before, a problem comes with it.</p>
 
@@ -2704,9 +2704,9 @@ Change some args, like Bitrate,Frame Rate,Video codec, etc.
   
   <entry>
     <title type="html"><![CDATA[Hello World!]]></title>
-    <link href="http://arekyao.github.com/blog/2013/01/10/hello-world/"/>
+    <link href="http://arekyao.github.io/blog/2013/01/10/hello-world/"/>
     <updated>2013-01-10T20:59:00+08:00</updated>
-    <id>http://arekyao.github.com/blog/2013/01/10/hello-world</id>
+    <id>http://arekyao.github.io/blog/2013/01/10/hello-world</id>
     <content type="html"><![CDATA[<p>It’s my first blog on github.</p>
 
 <p>At the moment,I decide to write my blog,TRY MY BEST,in English.</p>
