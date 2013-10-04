@@ -11,16 +11,61 @@ footer: false
 ---------
 
 
+每个棋子都被编码成整数，（这就跟二进制数字电脑上的其它东西一样），当然最终都是 bits。  
+这些编码利用二进制的特定位去表示特定含义：  
 
-Pieces are encoded as integers, which (like anything else on a binary digital computer) are eventually bitpatterns. The encoding makes use of the binary representation by assigning a specific meaning to some bits of the integer encoding: the '8'-bit is used (i.e. set) to indicate a white piece, the '16'-bit indicates a black piece. This makes it easy to test if a piece u belongs to white, by bitwise anding with 8 (u&8). The code uses a variable k to indicate the side that should move, which has the value 8 on white's turn, or 16 for black, so that u&k tells us if a piece belongs to the side to move. The '32'-bit is used to indicate that a piece is in the original position (the 'virgin bit'). (Since this is only important for Kings and Rooks in connection with castling, Micro-Max doesn't bother to set the virgin bit on pawns.
+*  第8位，如果为1，表示是白方   
+*  第16位，如果为1，表示是黑方  
 
-The three low-order bits can be interpreted as a number 0-7 that indicates the piece type, and have a meaning that is independent of piece color. This makes tables that do not have to distingush by color (like piece value w[u&7]) half as small. Tables that would like to make this distinction (like the character to used to representthe piece on printout) can simply be indexed with the 4 low-order bits (n[u&15]).
+这就使得可以通过位并运算（u&8），很容易去判断棋子是否为白方棋子。
+
+代码中变量 k，用于表示哪一方该出手。
+k=8，表示白方轮；k=16表示黑方轮。
+这就可以通过 u&k 操作来判断应该由哪一方棋子走
+
+* 第32位，如果为1，表示是该棋子是否处于最初的位子（virgin bit）。
+有这个位，是考虑到后续有『王车易位』的操作；这个位对于兵&卒而言，并无意义；
+
+Pieces are encoded as integers, which (like anything else on a binary digital computer) are eventually bitpatterns.  The encoding makes use of the binary representation by assigning a specific meaning to some bits of the integer encoding: the '8'-bit is used (i.e. set) to indicate a white piece, the '16'-bit indicates a black piece. This makes it easy to test if a piece u belongs to white, by bitwise anding with 8 (u&8). The code uses a variable k to indicate the side that should move, which has the value 8 on white's turn, or 16 for black, so that u&k tells us if a piece belongs to the side to move. The '32'-bit is used to indicate that a piece is in the original position (the 'virgin bit'). (Since this is only important for Kings and Rooks in connection with castling, Micro-Max doesn't bother to set the virgin bit on pawns.
+
+
+* 低3位的 bit：用于表示棋子类型（0-7，表示车，马，像，后，王等），与棋子的归属方（白方，黑方）无关。  
+基于上述内容，则可知，通过位运算（u&7）获得棋子类型。  
+用于表示棋子名称的数组（角色，代表棋子类型的，会被打印展示的），可以很简单的试用低4位，作为索引（n[u&15]）  
+
+
+The three low-order bits can be interpreted as a number 0-7 that indicates the piece type, and have a meaning that is independent of piece color. This makes tables that do not have to distingush by color (like piece value w[u&7]) half as small. Tables that would like to make this distinction (like the character to used to represent the piece on printout) can simply be indexed with the 4 low-order bits (n[u&15]).
+
+
+
+往上走的兵和往下走的兵被认为是不同的类型（类型分别为1和2）。  
+每方（白或黑）仅有其中1种兵，向合适的方向前进，当然引擎也是不会将兵往回走的。【不然太囧了】
+
+棋子的编码上，基于进一步的考虑到后续更方便的测试棋子属于某个组，所以棋子的编码上，在能够滑行（移动较多格子，不限格式数量）的棋子编码在更高的值.这样使得:  
+判断爬行棋子（只能走少数1，2格的）可以通过棋子类型p (=u&7)<5;  
+判断棋子能否相棋盘中间走（除 R，Q 外）可以通过p<6;  
+判断兵可以通过p<3;  
+
+完整的棋子类型列表为: {1,2,3,4,5,6,7} = {P+,P-,N,K,B,R,Q}  
+
+P 是兵，pawn  
+N 是马，knight，骑士  
+K 是王，king  
+B 是像，bishop，主教  
+R 是车，rook  
+Q 是皇后，queen  
+
+更多的走法，可见[这里](http://en.wikipedia.org/wiki/Chess#Movement)
+
+* 类型为0，未试用，当然也可以表示在棋盘格子中为空
 
 Upstream moving pawns are considered different pieces than downstream moving pawns (type 1 and 2, respectively). Each side has only one of the types of pawns, moving in the appropriate direction, although the engine would not frown at putting pieces on the board that move 'backwards'. The encoding is further chosen such that tests if a piece belongs to a certain group is easy: the sliding pieces (BRQ) are giving the highest type numbers (5,6,7), so that crawling pieces can be recognized by piece type p (=u&7) p<5. Pieces that are awarded for moving towards the center of the board (everything but RQ) are recognized by p<6, pawns by p<3. The complete list thus is {1,2,3,4,5,6,7} = {P+,P-,N,K,B,R,Q}. Type 0 is not used, so it can indicate empty squares on the board.
 
-The following highlights places that show how the piece encoding is used in Micro-Max.
 
+如下高亮代码展示了棋子如何使用的在 micro-max 中【这里很囧，没有高亮】  
 [更好的看代码的地址](http://home.hccnet.nl/h.g.muller/encode.html)
+
+The following highlights places that show how the piece encoding is used in Micro-Max.
 
 
 ```c
@@ -159,6 +204,13 @@ main()
 }
 
 ```
+
+最初的棋盘开局可能也需要一些解释：  
+保存在 数组o[]中棋盘类型列表将被拷贝到棋盘的第1行和第8行中。  
+在第1行中，40=8+32，这是为了设置白方棋子和初始位  
+在第8行中，48=16+32，这是为了设置黑方棋子和初始位  
+在18=16+2，9=8+1，这是黑方兵和白方的兵的编码  
+
 The initial boad setup might deserve some explanation: the piece types in the back of the array o[] are copied to the 1st and 8th rank of the board. On the 1st rank 40 = 8 + 32 is added, which sets the 'white' and the 'virgin' bit. On the 8th rank an extra 8 is added, for a total of 48 = 16 + 32, the 'black' and 'virgin' bits. The 18 = 16 + 2 and 9 = 8 + 1 are the encodings for a black P- and a white P+, respectively.
 
 

@@ -82,6 +82,13 @@ Delay Penalty
 ------
 Move Legality Checking
 
+
+
+
+***************
+
+
+
 程序中所有变量定义说明：[地址](var.html)
 
 An overview of the meaning of all variables in the program can be found here. 
