@@ -1,0 +1,206 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Micro-Max, 一个短小精干的棋类引擎（仅133行 ） - YY Every Day</title>
+  <meta name="author" content="Arek.Yao">
+
+  
+  <meta name="description" content="Micro-Max, 一个短小精干的棋类引擎（仅133行 ） 尚未翻译，敬请不期待 Recent Posts Workflow Engine in Python The Key Technologies in Simple XiangQi Engine MaxQi Something about &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://arekyao.github.io/micromax/hashing.html">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="YY Every Day" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">YY Every Day</a></h1>
+  
+    <h2>Never say never, because limits like fears, are often just an illusion.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:arekyao.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/micromax/index.html">Micro-Max</a></li>
+  <li><a href="/about/index.html">About Me</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article role="article">
+  
+  <header>
+    <h1 class="entry-title">Micro-Max, 一个短小精干的棋类引擎（仅133行 ）</h1>
+    
+  </header>
+  
+  <p>尚未翻译，敬请不期待</p>
+
+  
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <iframe width="100%" height="320" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=320&fansRow=2&ptype=1&speed=0&skin=1&isTitle=0&noborder=0&isWeibo=1&isFans=1&uid=1771027825&verifier=f729d6d3&dpc=1"></iframe>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/10/02/workflow-engine-in-python/">Workflow Engine in Python</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/07/02/the-key-technologies-in-simple-xiangqi-engine-maxqi/">The Key Technologies in Simple XiangQi Engine MaxQi</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/23/something-about-chess-series-with-ai/">Something about Chess series with AI</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/04/23/database-overview/">Database Overview</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/04/21/something-interesting-about-ai/">Something Interesting about AI</a>
+      </li>
+    
+  </ul>
+</section>
+<section>
+  <h1>Tag Cloud</h1>
+    <span id="tag-cloud"><a href='/blog/categories/android' style='font-size: 120.0%'>Android(1)</a> <a href='/blog/categories/babylife' style='font-size: 160.0%'>BabyLife(3)</a> <a href='/blog/categories/github' style='font-size: 120.0%'>Github(1)</a> <a href='/blog/categories/machinelearning' style='font-size: 160.0%'>MachineLearning(3)</a> <a href='/blog/categories/techchangeworld' style='font-size: 160.0%'>TechChangeWorld(3)</a> <a href='/blog/categories/techspark' style='font-size: 160.0%'>TechSpark(3)</a> <a href='/blog/categories/tools' style='font-size: 160.0%'>Tools(3)</a> </span>
+</section>
+<section>
+  <h1>Categories</h1>
+  <input class="search" type="text" name="filter_tags" results="0" placeholder="Filter Tags ..."/>
+  <script type="text/javascript">
+    $('input[name=filter_tags]').keyup(function(e){
+      var val = $(this).val();
+      if (/^\s*$/.test(val) || e.keyCode == 27) { // 27 is 'esc'
+        $('#category-list li').show();
+        $(this).val('');
+        return;
+      }
+      var pattern = new RegExp(val, 'i');
+      $('#category-list li').each(function(){
+        $(this)[pattern.test($(this).find('a').text()) ? 'show' : 'hide']();
+      });
+    });
+  </script>
+    <ul id="category-list"><li><a href='/blog/categories/android'>Android (1)</a></li><li><a href='/blog/categories/babylife'>BabyLife (3)</a></li><li><a href='/blog/categories/github'>Github (1)</a></li><li><a href='/blog/categories/machinelearning'>MachineLearning (3)</a></li><li><a href='/blog/categories/techchangeworld'>TechChangeWorld (3)</a></li><li><a href='/blog/categories/techspark'>TechSpark (3)</a></li><li><a href='/blog/categories/tools'>Tools (3)</a></li></ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Arek.Yao -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'arekyao';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+  <script type="text/javascript">
+    var wumiiPermaLink = ""; //
+    var wumiiTitle = ""; //
+    var wumiiTags = ""; //"1,2"
+    var wumiiSitePrefix = "http://arekyao.github.com/";
+    var wumiiParams = "&num=5&mode=3&pf=JAVASCRIPT";
+</script>
+<script type="text/javascript" src="http://widget.wumii.com/ext/relatedItemsWidget"></script>
+<a href="http://www.wumii.com/widget/relatedItems" style="border:0;">
+<img src="http://static.wumii.cn/images/pixel.png" alt="" style="border:0;padding:0;margin:0;" />
+</a>
+  <meta name="baidu-site-verification" content="QSLeJw3wwyA8dGHl" />
+  <script type="text/javascript">
+    var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F6b519082c0cda60aab2be100c6319f3e' type='text/javascript'%3E%3C/script%3E"));
+  </script>
+</body>
+</html>
