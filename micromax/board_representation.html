@@ -5,12 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>棋盘表示 - YY Every Day</title>
+  <title>基本数据表示 Basic Data Representations - YY Every Day</title>
   <meta name="author" content="Arek.Yao">
 
   
-  <meta name="description" content="棋盘表示 我最初的目标是写一个不到1024字符的棋类引擎程序，迄今为止，尚未成功。
-甚至当我放弃了国际棋联各种细节规则，比如王車易位（入堡，castling）和吃过路兵，我都未能将程序大小控制在1200字符内。 Recent Posts Workflow Engine in Python The &hellip;">
+  <meta name="description" content="基本数据表示 Basic Data Representations 棋盘 the Board 棋盘编码 Square Numbering 棋盘，一个个格子组成，被称为一个’格子数’。【这里也暗含16进制的高位和低位相同】
+现在使用的是0x88，这意味着我们能使用16列数据，但是每一行中， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -71,12 +71,335 @@
 <article role="article">
   
   <header>
-    <h1 class="entry-title">棋盘表示</h1>
+    <h1 class="entry-title">基本数据表示 Basic Data Representations</h1>
     
   </header>
   
-  <p>我最初的目标是写一个不到1024字符的棋类引擎程序，迄今为止，尚未成功。<br />
-甚至当我放弃了国际棋联各种细节规则，比如王車易位（入堡，castling）和吃过路兵，我都未能将程序大小控制在1200字符内。</p>
+  <p><a href="http://home.hccnet.nl/h.g.muller/board.html">棋盘 the Board </a></p>
+
+<h3 id="square-numbering">棋盘编码 Square Numbering</h3>
+
+<p>棋盘，一个个格子组成，被称为一个’格子数’。【这里也暗含16进制的高位和低位相同】<br />
+现在使用的是0x88，这意味着我们能使用16列数据，但是每一行中，只有前面8列是有效的，在使用的，对应着棋盘的8列。  </p>
+
+<p>二维棋盘被映射成一维数组，一行接着一行。
+由于这个原因，低4位表示列，高4位表示行。  <br />
+这也使得很容易识别棋盘上的每一步是否已经超出棋盘。   </p>
+
+<p>如之前所述，棋子移动到无效的棋盘位子（例如从 h 列到 i 列），<br />
+这会使得第8位为1（第 i-p 列为数字8-15，abcdefgh）。<br />
+更进一步的说，所有超出棋盘的棋子步法，会超出到无效的位中，并且会使得128的 bit（0x80，16进制） 被设置为1。  </p>
+
+<p>平方数的有效性，在此体现无疑，可以通过与0x88（=136）做位的与运算。
+这个常数（也是系统的名字，囧），保存在全局变量M中 ，因为它使用得很多，从而节省了大量的字符。<br />
+【该哥们就是千方百计节约字符数呢】
+（如果目的不是代码数的多少，而是代码执行速度，这样玩会走向反方向的！）</p>
+
+<p>Squares are designated by a ‘square-number’. The ‘0x88’ system is used, meaning that the the board actually has ranks of 16 squares, but only the first 8 squares of each rank are valid and correspond to the 8 files of the board. The two-dimensional board is mapped into a one-dimensional array, rank after rank. Due to this the 4 lowest-order bits of the square number indicate the file, and the higher-order bits the rank. This makes it easy to recognize moves that fall off the board. On the left and they move to invalid square numbers (e.g. from the h-file to the ‘i-file’), that have the ‘8’-bit set (the i-p file have numbers 8-15). Furthermore, all moves that move off the board at the front or back move to invalid rank, and have the 128 bit set (0x80, in hexadecimal). The validity of a square-number can thus be tested by bitwise anding with 0x88 (=136). This constant (which has given the system its name) is held in the global variable M, since it is used quite a lot, thus saving a lot of characters. (If the aim would not be source size, but speed, one would of course do the opposite!)</p>
+
+<h3 id="the-board-array">棋盘的数组 The Board Array</h3>
+
+<p>程序中的主要数据结构就是这个棋盘数组 b[129]，一个一维数组，以格子数为索引。<br />
+由于格子数有较多无用的，所以只有一半的数组真正被用来存储当前棋子的位置。<br />
+8个使用的格子和8个未使用的格子不断交替，最高的有效的格子数是0x77=119。<br />
+一个用格子数0x80=128来表示的虚拟的格子（一个被全局变量 S 所保存的值）也被包括在这个数组中。  </p>
+
+<p>这个格子数有时会被用作表示一个无效的格子（例如，在某变量能表示哪个格子被 e.p.吃掉的是可能的当没有 e.p.吃掉是可能的） <br />
+【这里，e.p.指 :<a href="http://en.wikipedia.org/wiki/Chess#En_passant">En passant</a> 】
+这样能使得在程序非故意的（错误的）保存某些东西时，确保程序不会崩溃掉（使得我们在保存格子数时，不需考虑其有效性的问题）</p>
+
+<p>The principal data structure of the program thus is the board array b[129], a one-dimensional array indexed by square-number. Because of the invalid square-numbers, only half of the array is used to store the current chess position. Blocks of 8 used and 8 unused elements alternate, the highest valid square-number is 0x77=119. A dummy square with square-number 0x80=128 (a value held in the global variable S) is included in the array. This square number is sometimes used to indicate an invalid square (e.g. in the variable that indicates on which square e.p. capture is possible when no e.p. captures are possible), to make sure there are no crashes if the program inadvertently stores something there (saving us the trouble of testing the validity of the square number before we store).</p>
+
+<h3 id="printing-the-board">打印棋盘 Printing the Board</h3>
+
+<p>尽管非连续映射到棋盘B[]数组，这是很容易遍历棋盘，跳过无效的。
+表达式x = x+9 &amp; ~8，能使x增加至下一个字段。例如，可以使用在第一个for循环的增量。<br />
+由于增加9=8+1代替1平方数的平方’a’-‘g’列，’8’位被置位，通过＆〜8处理，它跳过那些无效位。<br />
+但是这样相同的处理’h’列中，还给了第’8’位进位，由于加入1。这将重置第’8’位，并将传递进位到下一行【rank】的位中。   （＆〜8，这又会没有效果。）如果我们想环绕遍历从h8回至a1，则行数rank会溢出，可以使用〜M代替〜8，清除’128’位而不是’8’位。  </p>
+
+<p>Despite the non-contiguous mapping of the chess board into the b[] array, it is quite easy to step through all squares on the board, skipping the invalid ones. The expression to step from a field xto the next field, which can, for instance, be used in th increment part of a for-loop, is x = x+9 &amp; ~8;. Due to adding 9 = 8 + 1 in stead of 1 to a square number of a square in the ‘a’-‘g’ file, its ‘8’-bit gets set, which is taken care of by the &amp; ~8, which clears it again. But doing the same in the ‘h’ file also gives a carry into the ‘8’-bit due to the addition of 1. This resets the ‘8’-bit, and passes the carry through to the more-significant bits, i.e. the rank number. (The &amp; ~8 then has no effect.) If we want the board scan to ‘wrap around’ from h8 back to a1, we can and with ~M in stead of ~8, clearing the ‘128’-bit together with the ‘8’-bit when the rank number overflows.</p>
+
+<p>在打印出整个棋盘的代码行（in main()函数中），情况有所不同，因为当我们’溢出’到一个新的行【rank】时，也有一个新的换行打印出。<br />
+因此，使用一个常规的for循环（i++），但测试第’8’位是否为1，看是否跑到棋盘的边缘，在这里的printf（）来知道打印什么。<br />
+（一个换行符，10，或能代表棋盘格子的东东，n[b[i]&amp;15]）  如果这个测试为真，一个额外i+=7（其中总是为非零，并因此也始终被认为是真），将我们带回下一个有效棋盘格子。</p>
+
+<p>In the line that prints out the board (in main()) things are done a little differently, because the fact that we ‘overflow’ to a new rank also has to result in the printing of a new-line. Thus it uses a normal for-loop (with i++ increment), but tests the ‘8’-bit to see if we run off the board inside the printf() to know what to print (a new-line character, 10, or the representation of the piece on the square, n[b[i]&amp;15]). If this tests true, an extra i += 7 (which always evaluates non-zero, and thus considered true as well) positions us back in front of the next valid square.</p>
+
+<p>http://home.hccnet.nl/h.g.muller/board.html</p>
+
+<p>下面关键部分已经高亮【当然这里木有如你所想的高亮，请<a href="http://home.hccnet.nl/h.g.muller/board.html">移步</a> 】</p>
+
+<p>Below the declaration and use of the board are highlighted. (Where the original source contained macro’s for for or while loops, these are shown expanded for readability.)</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+<span class="line-number">42</span>
+<span class="line-number">43</span>
+<span class="line-number">44</span>
+<span class="line-number">45</span>
+<span class="line-number">46</span>
+<span class="line-number">47</span>
+<span class="line-number">48</span>
+<span class="line-number">49</span>
+<span class="line-number">50</span>
+<span class="line-number">51</span>
+<span class="line-number">52</span>
+<span class="line-number">53</span>
+<span class="line-number">54</span>
+<span class="line-number">55</span>
+<span class="line-number">56</span>
+<span class="line-number">57</span>
+<span class="line-number">58</span>
+<span class="line-number">59</span>
+<span class="line-number">60</span>
+<span class="line-number">61</span>
+<span class="line-number">62</span>
+<span class="line-number">63</span>
+<span class="line-number">64</span>
+<span class="line-number">65</span>
+<span class="line-number">66</span>
+<span class="line-number">67</span>
+<span class="line-number">68</span>
+<span class="line-number">69</span>
+<span class="line-number">70</span>
+<span class="line-number">71</span>
+<span class="line-number">72</span>
+<span class="line-number">73</span>
+<span class="line-number">74</span>
+<span class="line-number">75</span>
+<span class="line-number">76</span>
+<span class="line-number">77</span>
+<span class="line-number">78</span>
+<span class="line-number">79</span>
+<span class="line-number">80</span>
+<span class="line-number">81</span>
+<span class="line-number">82</span>
+<span class="line-number">83</span>
+<span class="line-number">84</span>
+<span class="line-number">85</span>
+<span class="line-number">86</span>
+<span class="line-number">87</span>
+<span class="line-number">88</span>
+<span class="line-number">89</span>
+<span class="line-number">90</span>
+<span class="line-number">91</span>
+<span class="line-number">92</span>
+<span class="line-number">93</span>
+<span class="line-number">94</span>
+<span class="line-number">95</span>
+<span class="line-number">96</span>
+<span class="line-number">97</span>
+<span class="line-number">98</span>
+<span class="line-number">99</span>
+<span class="line-number">100</span>
+<span class="line-number">101</span>
+<span class="line-number">102</span>
+<span class="line-number">103</span>
+<span class="line-number">104</span>
+<span class="line-number">105</span>
+<span class="line-number">106</span>
+<span class="line-number">107</span>
+<span class="line-number">108</span>
+<span class="line-number">109</span>
+<span class="line-number">110</span>
+<span class="line-number">111</span>
+<span class="line-number">112</span>
+<span class="line-number">113</span>
+<span class="line-number">114</span>
+<span class="line-number">115</span>
+<span class="line-number">116</span>
+<span class="line-number">117</span>
+<span class="line-number">118</span>
+<span class="line-number">119</span>
+<span class="line-number">120</span>
+<span class="line-number">121</span>
+<span class="line-number">122</span>
+<span class="line-number">123</span>
+<span class="line-number">124</span>
+<span class="line-number">125</span>
+<span class="line-number">126</span>
+<span class="line-number">127</span>
+<span class="line-number">128</span>
+<span class="line-number">129</span>
+<span class="line-number">130</span>
+<span class="line-number">131</span>
+<span class="line-number">132</span>
+<span class="line-number">133</span>
+<span class="line-number">134</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">
+</span><span class="line">/***************************************************************************/
+</span><span class="line">/*                               micro-Max,                                */
+</span><span class="line">/* A chess program smaller than 2KB (of non-blank source), by H.G. Muller  */
+</span><span class="line">/***************************************************************************/
+</span><span class="line">/* version 3.2 (2000 characters) features:                                 */
+</span><span class="line">/* - recursive negamax search                                              */
+</span><span class="line">/* - quiescence search with recaptures                                     */
+</span><span class="line">/* - recapture extensions                                                  */
+</span><span class="line">/* - (internal) iterative deepening                                        */
+</span><span class="line">/* - best-move-first 'sorting'                                             */
+</span><span class="line">/* - a hash table storing score and best move                              */
+</span><span class="line">/* - full FIDE rules (expt minor ptomotion) and move-legality checking     */
+</span><span class="line">
+</span><span class="line">#define F(I,S,N) for(I=S;I&lt;N;I++)
+</span><span class="line">#define W(A) while(A)
+</span><span class="line">#define K(A,B) *(int*)(T+A+(B&amp;8)+S*(B&amp;7))
+</span><span class="line">#define J(A) K(y+A,b[y])-K(x+A,u)-K(H+A,t)
+</span><span class="line">
+</span><span class="line">#define U 16777224
+</span><span class="line">struct _ {int K,V;char X,Y,D;} A[U];           /* hash table, 16M+8 entries*/
+</span><span class="line">
+</span><span class="line">int V=112,M=136,S=128,I=8e3,C=799,Q,N,i;       /* V=0x70=rank mask, M=0x88 */
+</span><span class="line">
+</span><span class="line">char O,K,L,
+</span><span class="line">w[]={0,1,1,3,-1,3,5,9},                        /* relative piece values    */
+</span><span class="line">o[]={-16,-15,-17,0,1,16,0,1,16,15,17,0,14,18,31,33,0, /* step-vector lists */
+</span><span class="line">     7,-1,11,6,8,3,6,                          /* 1st dir. in o[] per piece*/
+</span><span class="line">     6,3,5,7,4,5,3,6},                         /* initial piece setup      */
+</span><span class="line">b[129],                                        /* board: half of 16x8+dummy*/
+</span><span class="line">T[1035],                                       /* hash translation table   */
+</span><span class="line">
+</span><span class="line">n[]=".?+nkbrq?*?NKBRQ";                        /* piece symbols on printout*/
+</span><span class="line">
+</span><span class="line">D(k,q,l,e,J,Z,E,z,n)    /* recursive minimax search, k=moving side, n=depth*/
+</span><span class="line">int k,q,l,e,J,Z,E,z,n;  /* (q,l)=window, e=current eval. score, E=e.p. sqr.*/
+</span><span class="line">{                       /* e=score, z=prev.dest; J,Z=hashkeys; return score*/
+</span><span class="line"> int j,r,m,v,d,h,i=9,F,G;
+</span><span class="line"> char t,p,u,x,y,X,Y,H,B;
+</span><span class="line"> struct _*a=A;
+</span><span class="line">                                               /* lookup pos. in hash table*/
+</span><span class="line"> j=(k*E^J)&U-9;                                /* try 8 consec. locations  */
+</span><span class="line"> W((h=A[++j].K)&amp;&amp;h-Z&amp;&amp;--i);                    /* first empty or match     */
+</span><span class="line"> a+=i?j:0;                                     /* dummy A[0] if miss &amp; full*/
+</span><span class="line"> if(a-&gt;K)                                      /* hit: pos. is in hash tab */
+</span><span class="line"> {d=a-&gt;D;v=a-&gt;V;X=a-&gt;X;                        /* examine stored data      */
+</span><span class="line">  if(d&gt;=n)                                     /* if depth sufficient:     */
+</span><span class="line">  {if(v&gt;=l|X&amp;S&amp;&amp;v&lt;=q|X&amp;8)return v;             /* use if window compatible */
+</span><span class="line">   d=n-1;                                      /* or use as iter. start    */
+</span><span class="line">  }X&amp;=~M;Y=a-&gt;Y;                               /*      with best-move hint */
+</span><span class="line">  Y=d?Y:0;                                     /* don't try best at d=0    */
+</span><span class="line"> }else d=X=Y=0;                                /* start iter., no best yet */
+</span><span class="line"> N++;                                          /* node count (for timing)  */
+</span><span class="line"> W(d++&lt;n|z==8&amp;N&lt;1e7&amp;d&lt;98)                      /* iterative deepening loop */
+</span><span class="line"> {x=B=X;                                       /* start scan at prev. best */
+</span><span class="line">  Y|=8&amp;Y&gt;&gt;4;                                   /* request try noncastl. 1st*/
+</span><span class="line">  m=d&gt;1?-I:e;                                  /* unconsidered:static eval */
+</span><span class="line">  do{u=b[x];                                   /* scan board looking for   */
+</span><span class="line">   if(u&amp;k)                                     /*  own piece (inefficient!)*/
+</span><span class="line">   {r=p=u&7;                                   /* p = piece type (set r&gt;0) */
+</span><span class="line">    j=o[p+16];                                 /* first step vector f.piece*/
+</span><span class="line">    W(r=p&gt;2&amp;r&lt;0?-r:-o[++j])                    /* loop over directions o[] */
+</span><span class="line">    {A:                                        /* resume normal after best */
+</span><span class="line">     y=x;F=G=S;                                /* (x,y)=move, (F,G)=castl.R*/
+</span><span class="line">     do{H=y+=r;                                /* y traverses ray          */
+</span><span class="line">      if(Y&amp;8)H=y=Y&amp;~M;                         /* sneak in prev. best move */
+</span><span class="line">      if(y&amp;M)break;                            /* board edge hit           */
+</span><span class="line">      if(p&lt;3&amp;y==E)H=y^16;                      /* shift capt.sqr. H if e.p.*/
+</span><span class="line">      t=b[H];if(t&amp;k|p&lt;3&amp;!(r&amp;7)!=!t)break;      /* capt. own, bad pawn mode */
+</span><span class="line">      i=99*w[t&amp;7];                             /* value of capt. piece t   */
+</span><span class="line">      if(i&lt;0||E-S&amp;&amp;b[E]&amp;&amp;y-E&lt;2&amp;E-y&lt;2)m=I;      /* K capt. or bad castling  */
+</span><span class="line">      if(m&gt;=l)goto C;                          /* abort on fail high       */
+</span><span class="line">    
+</span><span class="line">      if(h=d-(y!=z))                           /* remaining depth(-recapt.)*/
+</span><span class="line">      {v=p&lt;6?b[x+8]-b[y+8]:0;                  /* center positional pts.   */
+</span><span class="line">       b[G]=b[H]=b[x]=0;b[y]=u&31;             /* do move, strip virgin-bit*/
+</span><span class="line">       if(!(G&amp;M)){b[F]=k+6;v+=30;}             /* castling: put R &amp; score  */
+</span><span class="line">       if(p&lt;3)                                 /* pawns:                   */
+</span><span class="line">       {v-=9*(((x-2)&amp;M||b[x-2]!=u)+            /* structure, undefended    */
+</span><span class="line">              ((x+2)&amp;M||b[x+2]!=u)-1);         /*        squares plus bias */
+</span><span class="line">        if(y+r+1&amp;S){b[y]|=7;i+=C;}             /* promote p to Q, add score*/
+</span><span class="line">       }
+</span><span class="line">       v=-D(24-k,-l-(l&gt;e),m&gt;q?-m:-q,-e-v-i,    /* recursive eval. of reply */
+</span><span class="line">            J+J(0),Z+J(8)+G-S,F,y,h);          /* J,Z: hash keys           */
+</span><span class="line">       v-=v&gt;e;                                 /* delayed-gain penalty     */
+</span><span class="line">       if(z==9)                                /* called as move-legality  */
+</span><span class="line">       {if(v!=-I&amp;x==K&amp;y==L)                    /*   checker: if move found */
+</span><span class="line">        {Q=-e-i;O=F;return l;}                 /*   &amp; not in check, signal */
+</span><span class="line">        v=m;                                   /* (prevent fail-lows on    */
+</span><span class="line">       }                                       /*   K-capt. replies)       */
+</span><span class="line">       b[G]=k+38;b[F]=b[y]=0;b[x]=u;b[H]=t;    /* undo move,G can be dummy */
+</span><span class="line">       if(Y&amp;8){m=v;Y&amp;=~8;goto A;}              /* best=1st done,redo normal*/
+</span><span class="line">       if(v&gt;m){m=v;X=x;Y=y|S&G;}               /* update max, mark with S  */
+</span><span class="line">      }                                        /*          if non castling */
+</span><span class="line">      t+=p&lt;5;                                  /* fake capt. for nonsliding*/
+</span><span class="line">      if(p&lt;3&amp;6*k+(y&amp;V)==S                      /* pawn on 3rd/6th, or      */
+</span><span class="line">          ||(u&amp;~24)==36&amp;j==7&amp;&amp;                 /* virgin K moving sideways,*/
+</span><span class="line">          G&amp;M&amp;&amp;b[G=(x|7)-(r&gt;&gt;1&amp;7)]&amp;32          /* 1st, virgin R in corner G*/
+</span><span class="line">          &amp;&amp;!(b[G^1]|b[G^2])                   /* 2 empty sqrs. next to R  */
+</span><span class="line">      ){F=y;t--;}                              /* unfake capt., enable e.p.*/
+</span><span class="line">     }W(!t);                                   /* if not capt. continue ray*/
+</span><span class="line">  }}}while((x=x+9&amp;~M)-B);                      /* next sqr. of board, wrap */
+</span><span class="line">C:if(m&gt;I/4|m&lt;-I/4)d=99;                        /* mate is indep. of depth  */
+</span><span class="line">  m=m+I?m:-D(24-k,-I,I,0,J,K,S,z,1)/2;         /* best loses K: (stale)mate*/
+</span><span class="line">  if(!a-&gt;K|(a-&gt;X&amp;M)!=M|a-&gt;D&lt;=d)                /* if new/better type/depth:*/
+</span><span class="line">  {a-&gt;K=Z;a-&gt;V=m;a-&gt;D=d;A-&gt;K=0;                /* store in hash,dummy stays*/
+</span><span class="line">   a-&gt;X=X|8*(m&gt;q)|S*(m&lt;l);a-&gt;Y=Y;              /* empty, type (limit/exact)*/
+</span><span class="line">  }                                            /*    encoded in X S,8 bits */
+</span><span class="line">/*if(z==8)printf("%2d ply, %9d searched, %6d by (%2x,%2x)\n",d-1,N,m,X,Y&amp;0x77);*/
+</span><span class="line"> }
+</span><span class="line"> if(z&amp;8){K=X;L=Y&amp;~M;}
+</span><span class="line"> return m;                                     
+</span><span class="line">}
+</span><span class="line">
+</span><span class="line">main()
+</span><span class="line">{
+</span><span class="line"> int j,k=8,*p,c[9];
+</span><span class="line">
+</span><span class="line"> for(i=0;i&lt;8;i++)
+</span><span class="line"> {b[i]=(b[i+V]=o[i+24]+40)+8;b[i+16]=18;b[i+96]=9;   /* initial board setup*/
+</span><span class="line">  F(j,0,8)b[16*j+i+8]=(i-4)*(i-4)+(j-3.5)*(j-3.5);   /* center-pts table   */
+</span><span class="line"> }                                                   /*(in unused half b[])*/
+</span><span class="line"> F(i,M,1035)T[i]=random()&gt;&gt;9;
+</span><span class="line">
+</span><span class="line"> W(1)                                                /* play loop          */
+</span><span class="line"> {for(i=0;i&lt;121;i++)printf(" %c",i&amp;8&amp;&amp;(i+=7)?10:n[b[i]&amp;15]); /* print board        */
+</span><span class="line">  p=c;W((*p++=getchar())&gt;10);                        /* read input line    */
+</span><span class="line">  N=0;
+</span><span class="line">  if(*c-10){K=c[0]-16*c[1]+C;L=c[2]-16*c[3]+C;}else  /* parse entered move */
+</span><span class="line">   D(k,-I,I,Q,1,1,O,8,0);                            /* or think up one    */
+</span><span class="line">  F(i,0,U)A[i].K=0;                                  /* clear hash table   */
+</span><span class="line">  if(D(k,-I,I,Q,1,1,O,9,2)==I)k^=24;                 /* check legality &amp; do*/
+</span><span class="line"> }
+</span><span class="line">}
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
   
