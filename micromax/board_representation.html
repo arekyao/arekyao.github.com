@@ -9,7 +9,7 @@
   <meta name="author" content="Arek.Yao">
 
   
-  <meta name="description" content="基本数据表示 Basic Data Representations 棋盘 the Board 棋盘编码 Square Numbering 棋盘，一个个格子组成，被称为一个’格子数’。【这里也暗含16进制的高位和低位相同】
+  <meta name="description" content="基本数据表示 Basic Data Representations 棋盘 the Board 棋盘编码 Square Numbering 棋盘，一个个格子组成，被称为一个’格子数’。『这里也暗含16进制的高位和低位相同』
 现在使用的是0x88，这意味着我们能使用16列数据，但是每一行中， &hellip;">
   
 
@@ -79,7 +79,7 @@
 
 <h3 id="square-numbering">棋盘编码 Square Numbering</h3>
 
-<p>棋盘，一个个格子组成，被称为一个’格子数’。【这里也暗含16进制的高位和低位相同】<br />
+<p>棋盘，一个个格子组成，被称为一个’格子数’。『这里也暗含16进制的高位和低位相同』
 现在使用的是0x88，这意味着我们能使用16列数据，但是每一行中，只有前面8列是有效的，在使用的，对应着棋盘的8列。  </p>
 
 <p>二维棋盘被映射成一维数组，一行接着一行。
@@ -92,7 +92,7 @@
 
 <p>格子数的有效性，在此体现无疑，可以通过与0x88（=136）做位的与运算。
 这个常数（也是系统的名字，囧），保存在全局变量M中 ，因为它使用得很多，从而节省了大量的字符。<br />
-【该哥们就是千方百计节约字符数呢】
+『该哥们就是千方百计节约字符数呢』
 （如果目的不是代码数的多少，而是代码执行速度，这样玩会走向反方向的！）</p>
 
 <p>Squares are designated by a ‘square-number’. The ‘0x88’ system is used, meaning that the the board actually has ranks of 16 squares, but only the first 8 squares of each rank are valid and correspond to the 8 files of the board. The two-dimensional board is mapped into a one-dimensional array, rank after rank. Due to this the 4 lowest-order bits of the square number indicate the file, and the higher-order bits the rank. This makes it easy to recognize moves that fall off the board. On the left and they move to invalid square numbers (e.g. from the h-file to the ‘i-file’), that have the ‘8’-bit set (the i-p file have numbers 8-15). Furthermore, all moves that move off the board at the front or back move to invalid rank, and have the 128 bit set (0x80, in hexadecimal). The validity of a square-number can thus be tested by bitwise anding with 0x88 (=136). This constant (which has given the system its name) is held in the global variable M, since it is used quite a lot, thus saving a lot of characters. (If the aim would not be source size, but speed, one would of course do the opposite!)</p>
@@ -105,7 +105,7 @@
 一个用格子数0x80=128来表示的虚拟的格子（一个被全局变量 S 所保存的值）也被包括在这个数组中。  </p>
 
 <p>这个格子数有时会被用作表示一个无效的格子（例如，在某变量能表示哪个格子被 e.p.吃掉的是可能的当没有 e.p.吃掉是可能的） <br />
-【这里，e.p.指 :<a href="http://en.wikipedia.org/wiki/Chess#En_passant">En passant</a> 】
+『这里，e.p.指 :<a href="http://en.wikipedia.org/wiki/Chess#En_passant">En passant</a> 』
 这样能使得在程序非故意的（错误的）保存某些东西时，确保程序不会崩溃掉（使得我们在保存格子数时，不需考虑其有效性的问题）</p>
 
 <p>The principal data structure of the program thus is the board array b[129], a one-dimensional array indexed by square-number. Because of the invalid square-numbers, only half of the array is used to store the current chess position. Blocks of 8 used and 8 unused elements alternate, the highest valid square-number is 0x77=119. A dummy square with square-number 0x80=128 (a value held in the global variable S) is included in the array. This square number is sometimes used to indicate an invalid square (e.g. in the variable that indicates on which square e.p. capture is possible when no e.p. captures are possible), to make sure there are no crashes if the program inadvertently stores something there (saving us the trouble of testing the validity of the square number before we store).</p>
@@ -115,17 +115,17 @@
 <p>尽管非连续映射到棋盘B[]数组，这是很容易遍历棋盘，跳过无效的。
 表达式x = x+9 &amp; ~8，能使x增加至下一个字段。例如，可以使用在第一个for循环的增量。<br />
 由于增加9=8+1代替1平方数的平方’a’-‘g’列，’8’位被置位，通过＆〜8处理，它跳过那些无效位。<br />
-但是这样相同的处理’h’列中，还给了第’8’位进位，由于加入1。这将重置第’8’位，并将传递进位到下一行【rank】的位中。   （＆〜8，这又会没有效果。）如果我们想环绕遍历从h8回至a1，则行数rank会溢出，可以使用〜M代替〜8，清除’128’位而不是’8’位。  </p>
+但是这样相同的处理’h’列中，还给了第’8’位进位，由于加入1。这将重置第’8’位，并将传递进位到下一行『rank』的位中。   （＆〜8，这又会没有效果。）如果我们想环绕遍历从h8回至a1，则行数rank会溢出，可以使用〜M代替〜8，清除’128’位而不是’8’位。  </p>
 
 <p>Despite the non-contiguous mapping of the chess board into the b[] array, it is quite easy to step through all squares on the board, skipping the invalid ones. The expression to step from a field xto the next field, which can, for instance, be used in th increment part of a for-loop, is x = x+9 &amp; ~8;. Due to adding 9 = 8 + 1 in stead of 1 to a square number of a square in the ‘a’-‘g’ file, its ‘8’-bit gets set, which is taken care of by the &amp; ~8, which clears it again. But doing the same in the ‘h’ file also gives a carry into the ‘8’-bit due to the addition of 1. This resets the ‘8’-bit, and passes the carry through to the more-significant bits, i.e. the rank number. (The &amp; ~8 then has no effect.) If we want the board scan to ‘wrap around’ from h8 back to a1, we can and with ~M in stead of ~8, clearing the ‘128’-bit together with the ‘8’-bit when the rank number overflows.</p>
 
-<p>在打印出整个棋盘的代码行（in main()函数中），情况有所不同，因为当我们’溢出’到一个新的行【rank】时，也有一个新的换行打印出。<br />
+<p>在打印出整个棋盘的代码行（in main()函数中），情况有所不同，因为当我们’溢出’到一个新的行『rank』时，也有一个新的换行打印出。<br />
 因此，使用一个常规的for循环（i++），但测试第’8’位是否为1，看是否跑到棋盘的边缘，在这里的printf（）来知道打印什么。<br />
 （一个换行符，10，或能代表棋盘格子的东东，n[b[i]&amp;15]）  如果这个测试为真，一个额外i+=7（其中总是为非零，并因此也始终被认为是真），将我们带回下一个有效棋盘格子。</p>
 
 <p>In the line that prints out the board (in main()) things are done a little differently, because the fact that we ‘overflow’ to a new rank also has to result in the printing of a new-line. Thus it uses a normal for-loop (with i++ increment), but tests the ‘8’-bit to see if we run off the board inside the printf() to know what to print (a new-line character, 10, or the representation of the piece on the square, n[b[i]&amp;15]). If this tests true, an extra i += 7 (which always evaluates non-zero, and thus considered true as well) positions us back in front of the next valid square.</p>
 
-<p>下面关键部分已经高亮【当然这里木有如你所想的高亮，请<a href="http://home.hccnet.nl/h.g.muller/board.html">移步</a> 】</p>
+<p>下面关键部分已经高亮『当然这里木有如你所想的高亮，请<a href="http://home.hccnet.nl/h.g.muller/board.html">移步</a> 』</p>
 
 <p>Below the declaration and use of the board are highlighted. (Where the original source contained macro’s for for or while loops, these are shown expanded for readability.)</p>
 

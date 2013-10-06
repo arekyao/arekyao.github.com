@@ -162,10 +162,23 @@
 </span><span class="line"><span class="p">}</span><span class="k">while</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="n">i</span><span class="o">+</span><span class="mi">9</span><span class="o">&amp;~</span><span class="n">M</span><span class="p">);</span>           <span class="cm">/* next square of board                 */</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<h4 id="the-loop-over-pieces">遍历棋子循环The Loop over Pieces</h4>
+<h4 id="the-loop-over-pieces">遍历棋子的循环 The Loop over Pieces</h4>
 
-<p>过片最大微循环被实现为一个循环在所有有效的正方形的板件一侧移动搜索。这是相当低效的，特别是如果在游戏过程中得到更多的空板。即使在开始时仅在25％的平方，它发现自己的作品。板阵列是一种直接的方式找出什么，我们发现我们走到哪里，（一个问题，经常要回答的，一旦我们试图移动一块），但它留给我们遗憾的是不知道我们的作品在哪里。对于一块列表，表中列出的平方数和每一块我们（仍然）有片式，会更适合。外环的举动发生器，然后简单地将这块扫描列表，并找到了一块，而不是每次都只是偶尔发现了一块董事会广场。因为最低限度的做法，我们决定，牺牲一块清单。这是最好的两害：牺牲板阵列将完全是灾难性的，因为每一个企图移动程序只能找出，如果此举是为了通过扫描一个被占领的广场两侧的片列表。而且有很多更企图移动比有块移动。 
-原因将变得明显，董事会扫描不开始在一个角落里，但可以从任意位置开始，变量B表示板，然后绕到直到它再次达到起广场。</p>
+<p>在 micro-Max 中，对于棋子的遍历，在实现上，是通过遍历棋盘上所有棋子，找到对应白方或者黑方的棋子。<br />
+这里效率上有点低，特别是在尾盘，棋盘越来越空的情况下。<br />
+甚至是在开局，也仅仅只有25%的棋子在棋盘上。  </p>
+
+<p>但是棋盘数组是一个比较直接的方法去找到我们想找到的以及如何走的（这个问题在每次试图走一个棋子，都需要回答的），但是这也导致我们不知道我们的棋子在什么地方。
+『因为会由棋子挂掉，当然也是因为要节约代码。这里也可以通过棋子列表等方式来实现。但是这里也不是性能的瓶颈，还需要额外维护一个数组结构，代码那是成倍的增加』</p>
+
+<p>当然一个『棋子列表』，一个表格存储每个活着的棋子的棋盘编号和棋子类型，这样来玩是更合适的。『啊，你也知道啊』<br />
+这样做，在最外层的棋子遍历上，可以很简单地扫描这个『棋子列表』就O了，每次都能找到1个活棋，而不是在一个大大的棋盘上，偶然发现一个棋子。  </p>
+
+<p>但是由于性能最好的目标『终于暴露了，哈哈』，我们决定牺牲掉这个『棋子列表』。<br />
+这可是两害，取其轻呢！<br />
+因为牺牲掉棋盘数组将是灾难性的，因为每次尝试性的移动，都需要去看这个移动是否被双方的棋子已经阻挡了。
+并且试图移动的个数比试图移动的棋子数多得多。
+原因稍后会变得更明显，棋盘扫描也可以不开始在一个角落里，而可以从任意位置开始，如变量B，可以环绕遍历棋盘，然后直到再次达到起点格。</p>
 
 <p>In micro-Max the loop over pieces is implemented as a loop over all valid squares of the board, searching for pieces of the side to move. This is rather inefficient, especially if the board gets more empty during the game. Even in the beginning only on 25% of the squares it finds own pieces. The board array is a direct way of finding out what we find where we go, (a question that has to be answered frequently once we try to move a piece), but it leaves us unfortunately unaware of where our pieces are. For that a ‘piece list’, a table listing the square number and piece type for each piece we (still) have, would be better suited. The outer loop of the move generator would then simply scan this piece list, and find a piece every time, rather than only occasionally finding a piece on a board square. Because of the minimalist approach we decided to sacrifice the piece list. This is the best of two evils: sacrificing the board array would be completely disastrous, because for every attempted move the program could only find out if the move was to an occupied square by scanning the piece lists of both sides. And there are many more attempted moves than there are pieces to move. 
 For reasons that will become apparent later, the board scan does not begin in a corner, but can begin anywhere on the board, as indicated by variable B. It then wraps around until it reaches that starting square again.</p>
