@@ -4,7 +4,7 @@
   <title><![CDATA[Category: MachineLearning | YY Every Day]]></title>
   <link href="http://arekyao.github.io/blog/categories/machinelearning/atom.xml" rel="self"/>
   <link href="http://arekyao.github.io/"/>
-  <updated>2013-10-06T23:55:21+08:00</updated>
+  <updated>2013-10-07T21:19:29+08:00</updated>
   <id>http://arekyao.github.io/</id>
   <author>
     <name><![CDATA[Arek.Yao]]></name>
@@ -35,6 +35,8 @@ h_{\theta}(x) \in \left \{ 0,1 \right \}
 </script>
 
 <p>directly</p>
+
+<!-- more -->
 
 <ul>
   <li>
@@ -81,14 +83,16 @@ P(y)</p>
 <p>This step is the most important part in machine learning. 
 Very easy to ignore and underestimate.</p>
 
-<p>Data is wrong, all the steps afterward are wrong.
-More than that, it’s very difficult to understand where is wrong, how to impove that.</p>
+<p>Data is wrong, all the steps afterward are wrong.</p>
+
+<p>More than that, it’s very difficult to understand where is wrong, how to impove that.</p>
 
 <p>Maybe the data can be produced by online logs by user.</p>
 
 <p>Maybe the data can not be gotten from machine, only by humans.</p>
 
 <h4 id="feature-selectionhttpenwikipediaorgwikifeatureselection">2, <a href="http://en.wikipedia.org/wiki/Feature_selection">Feature Selection</a></h4>
+
 <p>The less feature, the faster the model is calculated and updated</p>
 
 <p>The more feature’s meaning is ,the less prabability overfit happens </p>
@@ -209,6 +213,8 @@ It’s just my study map, or so-called logs..</p>
 <p>Here is the stories of it.</p>
 
 <h2 id="machine-learning">Machine Learning</h2>
+
+<!-- more -->
 
 <p><a href="http://en.wikipedia.org/wiki/Machine_learning">Machine learning</a>, a branch of artificial intelligence, is about the construction and study of systems that can learn from data</p>
 

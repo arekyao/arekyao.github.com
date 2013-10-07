@@ -7,14 +7,17 @@
   <meta charset="utf-8">
   <title>棋法 Move Generation - YY Every Day</title>
   <meta name="author" content="Arek.Yao">
+  <link rel="author" href="humans.txt">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
   
-  <meta name="description" content="棋法 Move Generation 棋法：基础走法 Move Generation: Simple Moves 三层嵌套循环 Three Nested Loops 走法的产生是通过三层嵌套循环完成的：
+    
+  
+  <meta name="description" content="棋法：基础走法 Move Generation: Simple Moves 三层嵌套循环 Three Nested Loops 走法的产生是通过三层嵌套循环完成的：
 * 遍历所有的棋子
 * 遍历棋子所有的方向
-* 遍历该方向上的所有格子 对于爬行棋子（如兵， &hellip;">
+* 遍历该方向上的所有格子 对于爬行棋子（如兵，马，王）， &hellip;">
   
-
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
   <meta name="MobileOptimized" content="320">
@@ -23,61 +26,62 @@
   
   <link rel="canonical" href="http://arekyao.github.io/micromax/basic_move.html">
   <link href="/favicon.png" rel="icon">
+  <link href='http://fonts.googleapis.com/css?family=Cantarell' rel='stylesheet' type='text/css'>
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="/javascripts/ender.js"></script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <link href="/atom.xml" rel="alternate" title="YY Every Day" type="application/atom+xml">
+  <meta name="og:type" content="website" />
+  <meta name="og:site_name" content="YY Every Day" />
+  <meta name="og:title" content="棋法 Move Generation" />
+  <meta name="og:description" content="棋法：基础走法 Move Generation: Simple Moves 三层嵌套循环 Three Nested Loops 走法的产生是通过三层嵌套循环完成的：
+* 遍历所有的棋子
+* 遍历棋子所有的方向
+* 遍历该方向上的所有格子 对于爬行棋子（如兵，马，王）， &hellip;" />
+  <meta name="og:url" content="http://arekyao.github.io/micromax/basic_move.html"/>
+  <meta name="url" content="http://arekyao.github.io/micromax/basic_move.html">
+  
+  <meta name="distribution" content="global">
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-
-
 
   
 
 </head>
 
-<body   >
-  <header role="banner"><hgroup>
-  <h1><a href="/">YY Every Day</a></h1>
-  
-    <h2>Never say never, because limits like fears, are often just an illusion.</h2>
-  
-</hgroup>
-
-</header>
-  <nav role="navigation"><ul class="subscription" data-subscription="rss">
-  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-  
-</ul>
-  
-<form action="http://google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="q" value="site:arekyao.github.io" />
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-  
-<ul class="main-navigation">
-  <li><a href="/">Blog</a></li>
-  <li><a href="/blog/archives">Archives</a></li>
-  <li><a href="/micromax/index.html">Micro-Max</a></li>
-  <li><a href="/about/index.html">About Me</a></li>
-</ul>
-
-</nav>
-  <div id="main">
-    <div id="content">
-      <div>
-<article role="article">
-  
-  <header>
-    <h1 class="entry-title">棋法 Move Generation</h1>
+<nav role="navigation"><div class="navbar">
+  <div class="navbar-inner">
+    <a class="brand" href="/">YY Every Day</a>
+    <ul class="nav">
+      <li><a href="/">Home</a></li>
+      <li><a href="/blog/archives">Archives</a></li>
+    </ul>
+    <ul class="nav" data-subscription="rss">
+      <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+      
+    </ul>
+      
+    <form class="navbar-form" action="http://google.com/search" method="get">
+      <fieldset role="search">
+        <input type="hidden" name="q" value="site:arekyao.github.io" />
+        <input class="span2" type="text" name="q" results="0" placeholder="Search"/>
+      </fieldset>
+    </form>
+      
     
-  </header>
-  
-  <h3 id="move-generation-simple-moveshttphomehccnetnlhgmullermovgenhtml"><a href="http://home.hccnet.nl/h.g.muller/movgen.html">棋法：基础走法 Move Generation: Simple Moves</a></h3>
+  </div>
+</div>
+</nav>
+<div class="wrapper_single">
+  <div class="container">
+    <article class="span8 offset2 article-format" role="article">
+      <div role="div">
+        
+        <header>
+          <h1 class="entry-title">棋法 Move Generation</h1>
+          
+        </header>
+        
+        <h3 id="move-generation-simple-moveshttphomehccnetnlhgmullermovgenhtml"><a href="http://home.hccnet.nl/h.g.muller/movgen.html">棋法：基础走法 Move Generation: Simple Moves</a></h3>
 
 <h4 id="three-nested-loops">三层嵌套循环 Three Nested Loops</h4>
 
@@ -168,16 +172,16 @@
 这里效率上有点低，特别是在尾盘，棋盘越来越空的情况下。<br />
 甚至是在开局，也仅仅只有25%的棋子在棋盘上。  </p>
 
-<p>但是棋盘数组是一个比较直接的方法去找到我们想找到的以及如何走的（这个问题在每次试图走一个棋子，都需要回答的），但是这也导致我们不知道我们的棋子在什么地方。
+<p>但是棋盘数组是一个比较直接的方法去找到我们想找到的以及如何走的（这个问题在每次试图走一个棋子，都需要回答的），但是这也导致我们不知道我们的棋子在什么地方。<br />
 『因为会由棋子挂掉，当然也是因为要节约代码。这里也可以通过棋子列表等方式来实现。但是这里也不是性能的瓶颈，还需要额外维护一个数组结构，代码那是成倍的增加』</p>
 
 <p>当然一个『棋子列表』，一个表格存储每个活着的棋子的棋盘编号和棋子类型，这样来玩是更合适的。『啊，你也知道啊』<br />
 这样做，在最外层的棋子遍历上，可以很简单地扫描这个『棋子列表』就O了，每次都能找到1个活棋，而不是在一个大大的棋盘上，偶然发现一个棋子。  </p>
 
-<p>但是由于性能最好的目标『终于暴露了，哈哈』，我们决定牺牲掉这个『棋子列表』。<br />
+<p>但是由于性能最好的目标，我们决定牺牲掉这个『棋子列表』。<br />
 这可是两害，取其轻呢！<br />
-因为牺牲掉棋盘数组将是灾难性的，因为每次尝试性的移动，都需要去看这个移动是否被双方的棋子已经阻挡了。
-并且试图移动的个数比试图移动的棋子数多得多。
+因为牺牲掉棋盘数组将是灾难性的，因为每次尝试性的移动，都需要去看这个移动是否被双方的棋子已经阻挡了。<br />
+并且试图移动的个数比试图移动的棋子数多得多。<br />
 原因稍后会变得更明显，棋盘扫描也可以不开始在一个角落里，而可以从任意位置开始，如变量B，可以环绕遍历棋盘，然后直到再次达到起点格。</p>
 
 <p>In micro-Max the loop over pieces is implemented as a loop over all valid squares of the board, searching for pieces of the side to move. This is rather inefficient, especially if the board gets more empty during the game. Even in the beginning only on 25% of the squares it finds own pieces. The board array is a direct way of finding out what we find where we go, (a question that has to be answered frequently once we try to move a piece), but it leaves us unfortunately unaware of where our pieces are. For that a ‘piece list’, a table listing the square number and piece type for each piece we (still) have, would be better suited. The outer loop of the move generator would then simply scan this piece list, and find a piece every time, rather than only occasionally finding a piece on a board square. Because of the minimalist approach we decided to sacrifice the piece list. This is the best of two evils: sacrificing the board array would be completely disastrous, because for every attempted move the program could only find out if the move was to an occupied square by scanning the piece lists of both sides. And there are many more attempted moves than there are pieces to move. 
@@ -466,82 +470,95 @@ For reasons that will become apparent later, the board scan does not begin in a 
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
-  
-</article>
+        
+      </div>
+    
+    </article>
+  </div>
+</div>
+<div id="footer-widgets">
+  <div class="container">
+    <div class="row">
+  <div class="span3">
+    <h2>recent posts</h2>
+    <ul class="recent_posts">
+      
+        <li>
+          <a href="/blog/2013/10/02/workflow-engine-in-python/">Workflow Engine in Python</a>
+        </li>
+      
+        <li>
+          <a href="/blog/2013/07/02/the-key-technologies-in-simple-xiangqi-engine-maxqi/">The Key Technologies in Simple XiangQi Engine MaxQi</a>
+        </li>
+      
+        <li>
+          <a href="/blog/2013/06/23/something-about-chess-series-with-ai/">Something about Chess series with AI</a>
+        </li>
+      
+        <li>
+          <a href="/blog/2013/04/23/database-overview/">Database Overview</a>
+        </li>
+      
+        <li>
+          <a href="/blog/2013/04/21/something-interesting-about-ai/">Something Interesting about AI</a>
+        </li>
+      
+    </ul>
+    <h2><a href="/blog/archives">archives</a></h2>
+  </div>
+  <div class="span3">
+    
 
+  </div>
+  <div class="span4">
+    
+
+  </div>
+  <div class="span2">
+    <h2>found on</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
 </div>
 
-<aside class="sidebar">
-  
-    <iframe width="100%" height="320" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=320&fansRow=2&ptype=1&speed=0&skin=1&isTitle=0&noborder=0&isWeibo=1&isFans=1&uid=1771027825&verifier=f729d6d3&dpc=1"></iframe>
-<section>
-  <h1>Recent Posts</h1>
-  <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/blog/2013/10/02/workflow-engine-in-python/">Workflow Engine in Python</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/07/02/the-key-technologies-in-simple-xiangqi-engine-maxqi/">The Key Technologies in Simple XiangQi Engine MaxQi</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/06/23/something-about-chess-series-with-ai/">Something about Chess series with AI</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/04/23/database-overview/">Database Overview</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/04/21/something-interesting-about-ai/">Something Interesting about AI</a>
-      </li>
-    
-  </ul>
-</section>
-<section>
-  <h1>Tag Cloud</h1>
-    <span id="tag-cloud"><a href='/blog/categories/android' style='font-size: 120.0%'>Android(1)</a> <a href='/blog/categories/babylife' style='font-size: 160.0%'>BabyLife(3)</a> <a href='/blog/categories/github' style='font-size: 120.0%'>Github(1)</a> <a href='/blog/categories/machinelearning' style='font-size: 160.0%'>MachineLearning(3)</a> <a href='/blog/categories/techchangeworld' style='font-size: 160.0%'>TechChangeWorld(3)</a> <a href='/blog/categories/techspark' style='font-size: 160.0%'>TechSpark(3)</a> <a href='/blog/categories/tools' style='font-size: 160.0%'>Tools(3)</a> </span>
-</section>
-<section>
-  <h1>Categories</h1>
-  <input class="search" type="text" name="filter_tags" results="0" placeholder="Filter Tags ..."/>
-  <script type="text/javascript">
-    $('input[name=filter_tags]').keyup(function(e){
-      var val = $(this).val();
-      if (/^\s*$/.test(val) || e.keyCode == 27) { // 27 is 'esc'
-        $('#category-list li').show();
-        $(this).val('');
-        return;
-      }
-      var pattern = new RegExp(val, 'i');
-      $('#category-list li').each(function(){
-        $(this)[pattern.test($(this).find('a').text()) ? 'show' : 'hide']();
-      });
-    });
-  </script>
-    <ul id="category-list"><li><a href='/blog/categories/android'>Android (1)</a></li><li><a href='/blog/categories/babylife'>BabyLife (3)</a></li><li><a href='/blog/categories/github'>Github (1)</a></li><li><a href='/blog/categories/machinelearning'>MachineLearning (3)</a></li><li><a href='/blog/categories/techchangeworld'>TechChangeWorld (3)</a></li><li><a href='/blog/categories/techspark'>TechSpark (3)</a></li><li><a href='/blog/categories/tools'>Tools (3)</a></li></ul>
-</section>
-
-
-
-
-
-
-  
-</aside>
-
-
-    </div>
   </div>
-  <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Arek.Yao -
-  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-left">
+  <a href="/">YY Every Day</a>
+  - Copyright &copy; 2013 - Arek.Yao
+</p>
+<p class="pull-right">
+  <span>Powered by <a href="http://octopress.org/">Octopress</a>.</span>
+  
+    <span>Designed by <a href="http://www.AdrianArtiles.com">Adrian Artiles</a>.</span>
+  
 </p>
 
+  </div>
 </footer>
-  
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+<script>window.jQuery || document.write('<script src="/javascripts/libs/jquery-1.7.2.min.js" type="text/javascript"><\/script>')</script>
+<script src="/javascripts/libs/bootstrap.min.js" type="text/javascript"></script>
+<script src="/javascripts/jquery.tweet.js" type="text/javascript"></script>
+<script src="/javascripts/jquery.instagram.js" type="text/javascript"></script>
+<script src="/javascripts/libs/jquery.masonry.min.js" type="text/javascript"></script>
+<script src="/javascripts/custom.js" type="text/javascript"></script>
+
 
 <script type="text/javascript">
       var disqus_shortname = 'arekyao';
@@ -575,22 +592,3 @@ For reasons that will become apparent later, the board scan does not begin in a 
 
 
 
-
-  <script type="text/javascript">
-    var wumiiPermaLink = ""; //
-    var wumiiTitle = ""; //
-    var wumiiTags = ""; //"1,2"
-    var wumiiSitePrefix = "http://arekyao.github.com/";
-    var wumiiParams = "&num=5&mode=3&pf=JAVASCRIPT";
-</script>
-<script type="text/javascript" src="http://widget.wumii.com/ext/relatedItemsWidget"></script>
-<a href="http://www.wumii.com/widget/relatedItems" style="border:0;">
-<img src="http://static.wumii.cn/images/pixel.png" alt="" style="border:0;padding:0;margin:0;" />
-</a>
-  <meta name="baidu-site-verification" content="QSLeJw3wwyA8dGHl" />
-  <script type="text/javascript">
-    var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-    document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F6b519082c0cda60aab2be100c6319f3e' type='text/javascript'%3E%3C/script%3E"));
-  </script>
-</body>
-</html>

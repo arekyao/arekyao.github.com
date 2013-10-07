@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Tools | YY Every Day]]></title>
   <link href="http://arekyao.github.io/blog/categories/tools/atom.xml" rel="self"/>
   <link href="http://arekyao.github.io/"/>
-  <updated>2013-10-06T23:55:21+08:00</updated>
+  <updated>2013-10-07T21:19:29+08:00</updated>
   <id>http://arekyao.github.io/</id>
   <author>
     <name><![CDATA[Arek.Yao]]></name>
@@ -29,6 +29,7 @@
 <p>Spiff Workflow is a library implementing a framework for workflows.
 It is based on http://www.workflowpatterns.com and implemented in pure Python.</p>
 
+<!-- more -->
 <p>In addition, Spiff Workflow provides a parser and workflow emulation
 layer that can be used to create executable Spiff Workflow specifications
 from Business Process Model and Notation (BPMN) documents.</p>
@@ -58,11 +59,10 @@ the right way is by callback function</p>
 
 <h2 id="one-better-example-using-spiff-workflow">4, one better example using spiff workflow</h2>
 
-<p>the case code :</p>
+<p>the case code:</p>
 
-<p>```py</p>
-
-<h1 id="coding-utf-8">-*- coding: utf-8</h1>
+<p>```py
+# -*- coding: utf-8</p>
 
 <p>import sys, os
 sys.path.insert(0, os.path.join(os.path.dirname(<strong>file</strong>),  ‘../../lib’))</p>
@@ -91,12 +91,12 @@ from SpiffWorkflow.storage import XmlSerializer</p>
     taken_path.append(‘%s%s’ % (indent, task.get_name()))
     return True</p>
 
-<p>class QuestionError(Exception):
-    ‘’’  ‘’’
-    def <strong>init</strong>(self, value):
-        self.value = value</p>
+<p>class QuestionError(Exception):</p>
 
-<pre><code>def __str__(self):
+<pre><code>def __init__(self, value):
+    self.value = value
+
+def __str__(self):
     return repr(self.value)
 </code></pre>
 
@@ -320,6 +320,8 @@ Database.</p>
 
 <h2 id="sqlhttpenwikipediaorgwikistructuredquerylanguage"><a href="http://en.wikipedia.org/wiki/Structured_Query_Language">SQL</a></h2>
 
+<!-- more -->
+
 <p>SQL (Structured Query Language) is very common.<br />
 mysql ,sybase and oracle are well-known as database, which is used a lot</p>
 
@@ -483,6 +485,8 @@ Such as, XML, Jason, YAML etc.</p>
 <h1 id="mac-develop-environment">Mac Develop Environment</h1>
 
 <h2 id="homebrew-the-missing-package-manager-for-os-xhttpmxclgithubcomhomebrew"><a href="http://mxcl.github.com/homebrew/">Homebrew: The missing package manager for OS X</a></h2>
+
+<!-- more -->
 
 <p><code>
 $ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"

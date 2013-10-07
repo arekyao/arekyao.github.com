@@ -4,7 +4,7 @@
   <title><![CDATA[YY Every Day]]></title>
   <link href="http://arekyao.github.io/atom.xml" rel="self"/>
   <link href="http://arekyao.github.io/"/>
-  <updated>2013-10-06T23:30:46+08:00</updated>
+  <updated>2013-10-07T21:19:29+08:00</updated>
   <id>http://arekyao.github.io/</id>
   <author>
     <name><![CDATA[Arek.Yao]]></name>
@@ -29,6 +29,7 @@
 <p>Spiff Workflow is a library implementing a framework for workflows.
 It is based on http://www.workflowpatterns.com and implemented in pure Python.</p>
 
+<!-- more -->
 <p>In addition, Spiff Workflow provides a parser and workflow emulation
 layer that can be used to create executable Spiff Workflow specifications
 from Business Process Model and Notation (BPMN) documents.</p>
@@ -58,7 +59,7 @@ the right way is by callback function</p>
 
 <h2 id="one-better-example-using-spiff-workflow">4, one better example using spiff workflow</h2>
 
-<p>the case code :</p>
+<p>the case code:</p>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
@@ -223,9 +224,7 @@ the right way is by callback function</p>
 <span class="line-number">161</span>
 <span class="line-number">162</span>
 <span class="line-number">163</span>
-<span class="line-number">164</span>
 </pre></td><td class="code"><pre><code class="py"><span class="line"><span class="c"># -*- coding: utf-8</span>
-</span><span class="line">
 </span><span class="line">
 </span><span class="line"><span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span>
 </span><span class="line"><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">__file__</span><span class="p">),</span>  <span class="s">&#39;../../lib&#39;</span><span class="p">))</span>
@@ -259,7 +258,7 @@ the right way is by callback function</p>
 </span><span class="line">
 </span><span class="line">
 </span><span class="line"><span class="k">class</span> <span class="nc">QuestionError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
-</span><span class="line">    <span class="sd">&#39;&#39;&#39;  &#39;&#39;&#39;</span>
+</span><span class="line">
 </span><span class="line">    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
 </span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
 </span><span class="line">
@@ -545,8 +544,10 @@ the right way is by callback function</p>
 <h2 id="alpha-beta-cutoff">2,alpha-beta cutoff</h2>
 
 <p>It stops completely evaluating a move when at least one possibility has been found that proves the move to be worse than a previously examined move.  <br />
- Such moves need not be evaluated further. <br />
- When applied to a standard minimax tree, it returns the same move as minimax would, but prunes away branches that cannot possibly influence the final decision</p>
+  <!-- more -->
+ Such moves need not be evaluated further. </p>
+
+<p>When applied to a standard minimax tree, it returns the same move as minimax would, but prunes away branches that cannot possibly influence the final decision</p>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
@@ -647,6 +648,9 @@ Techinically, it will be OK then.
 Reality is cruel, the Java version is lost at home, and the C++ version have to run on Window, not my Mac OSX.</p>
 
 <h2 id="chess--ai">Chess &amp; AI</h2>
+
+<!-- more -->
+
 <p><a href="http://www.chessvariants.org/d.chess/chess.html">Chess</a> is a two-player strategy board game played on a chessboard, a checkered gameboard with 64 squares arranged in an eight-by-eight grid. <br />
 It is one of the world’s most popular games, played by millions of people worldwide at home, in clubs, online, by correspondence, and in tournaments.</p>
 
@@ -1001,6 +1005,8 @@ Database.</p>
 
 <h2 id="sqlhttpenwikipediaorgwikistructuredquerylanguage"><a href="http://en.wikipedia.org/wiki/Structured_Query_Language">SQL</a></h2>
 
+<!-- more -->
+
 <p>SQL (Structured Query Language) is very common.<br />
 mysql ,sybase and oracle are well-known as database, which is used a lot</p>
 
@@ -1172,13 +1178,14 @@ The feature of note is frequece and length.</p>
 
 <h3 id="markov-chain">Markov Chain</h3>
 
-<p>The idea tech of Markov Chain is that, the next state (to us,it’s music note) is decided by the previous N states, only.</p>
-
-<p>That means:<br />
+<p>The idea tech of Markov Chain is that, the next state (to us,it’s music note) is decided by the previous N states, only.
+<!-- more -->
+That means:<br />
 the next note’s freq is decided by the previous’s.
 the next note’s length is decided by the previous’s.</p>
 
 <h3 id="machine-learning">Machine Learning</h3>
+
 <p>First, learn the trans probability throught lots of music sample.</p>
 
 <p>Then, we got the probability from Freq A to Freq B, From length 1/2 to 1/4</p>
@@ -1495,6 +1502,8 @@ the next note’s length is decided by the previous’s.</p>
 
 <h2 id="android-emulator-key-mapping-on-osx">Android Emulator Key Mapping On OSX</h2>
 
+<!-- more -->
+
 <p>from <a href="">http://developer.android.com/tools/help/emulator.html</a></p>
 
 <p>Home = HOME (FN + left_arrow on Macbooks)<br />
@@ -1536,6 +1545,8 @@ Onion alpha increase/decrease = KEYPAD_MULTIPLY(*) / KEYPAD_DIVIDE(/)</p>
 The Practice focused on the law firm of Robert Donnell and Associates (later becoming Donnell, Young, Dole, &amp; Frutt, and ultimately Young, Frutt, &amp; Berluti).   </p>
 
 <p>Every story per ep, is made up one or two cases, including both criminal and civil cases, which often mirror current events.Conflict between legal ethics and personal morality was a recurring theme.   </p>
+
+<!-- more -->
 
 <p>Robert Donnell is the boss, which is tall, handsome, rich, whose gf, linsay Dole and Helen Gamble.<br />
 Eugene Young is my favourite lawyer actor, black, strong in debating. <br />
@@ -1830,6 +1841,8 @@ espcially, in China.</p>
 
 <h3 id="when-boy">When boy</h3>
 
+<!-- more -->
+
 <p>When I am a little boy, I always had lots of complain about my parents.
 The topics, which makes me unhappy, are lifestyle and the dealing skill…</p>
 
@@ -1891,6 +1904,8 @@ Amazon is my fav E-Commerce platform, we bought gift cards on taobao, then order
 <p>When the machine is sent home by the Express delivery man, we decided to use it immediately.
 Everything is fine, until a month goes away.</p>
 
+<!-- more -->
+
 <p>Yep, you know, the air cleaner should be cleaned every month.
 (Some part can not cleaned and it’s disposible)
 When I open the machine, I am shocked.</p>
@@ -1935,6 +1950,8 @@ h_{\theta}(x) \in \left \{ 0,1 \right \}
 
 <p>directly</p>
 
+<!-- more -->
+
 <ul>
   <li>
     <h4 id="generative-learning-algorithm">Generative learning algorithm</h4>
@@ -1974,6 +1991,8 @@ P(y)</p>
 <h1 id="mac-develop-environment">Mac Develop Environment</h1>
 
 <h2 id="homebrew-the-missing-package-manager-for-os-xhttpmxclgithubcomhomebrew"><a href="http://mxcl.github.com/homebrew/">Homebrew: The missing package manager for OS X</a></h2>
+
+<!-- more -->
 
 <div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 </pre></td><td class="code"><pre><code class=""><span class="line">$ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"</span></code></pre></td></tr></table></div></figure></notextile></div>
@@ -2248,14 +2267,16 @@ Here is a good scipt for mac 10.8 user
 <p>This step is the most important part in machine learning. 
 Very easy to ignore and underestimate.</p>
 
-<p>Data is wrong, all the steps afterward are wrong.
-More than that, it’s very difficult to understand where is wrong, how to impove that.</p>
+<p>Data is wrong, all the steps afterward are wrong.</p>
+
+<p>More than that, it’s very difficult to understand where is wrong, how to impove that.</p>
 
 <p>Maybe the data can be produced by online logs by user.</p>
 
 <p>Maybe the data can not be gotten from machine, only by humans.</p>
 
 <h4 id="feature-selectionhttpenwikipediaorgwikifeatureselection">2, <a href="http://en.wikipedia.org/wiki/Feature_selection">Feature Selection</a></h4>
+
 <p>The less feature, the faster the model is calculated and updated</p>
 
 <p>The more feature’s meaning is ,the less prabability overfit happens </p>
@@ -2377,6 +2398,8 @@ It’s just my study map, or so-called logs..</p>
 
 <h2 id="machine-learning">Machine Learning</h2>
 
+<!-- more -->
+
 <p><a href="http://en.wikipedia.org/wiki/Machine_learning">Machine learning</a>, a branch of artificial intelligence, is about the construction and study of systems that can learn from data</p>
 
 <p>Refer to the difference between Machine Learning and Data Mining, the DM is the target, the ML is the way.</p>
@@ -2469,6 +2492,8 @@ Data mining (which is the analysis step of Knowledge Discovery in Databases) foc
 
 <p>MX2 have a pretty function, which give you easy way to root.</p>
 
+<!-- more -->
+
 <p>Just go into Account Menu, and click “you wanna root”, then reboot your phone.</p>
 
 <p>After the phone restart, it’s rooted.</p>
@@ -2546,6 +2571,8 @@ Maybe it's suspicious by Facebook's spam checking program, because so many faceb
 <p>Everything goes well.</p>
 
 <h2 id="nd-month">2nd Month</h2>
+
+<!-- more -->
 
 <p>However, something changed in 2nd month, that is <a href="http://en.wikipedia.org/wiki/Eczema">ECZEMA</a></p>
 
@@ -2649,6 +2676,8 @@ So I decide to copy them from my phone.</p>
 
 <h2 id="copy-them-from-phone">1, Copy them from phone</h2>
 
+<!-- more -->
+
 <p>Option:</p>
 
 <pre><code>ifuncbox, interface good,but it lost the info including "modify time,create time,etc."
@@ -2715,6 +2744,8 @@ Change some args, like Bitrate,Frame Rate,Video codec, etc.
 
 <p>Maybe it’s hard at first.
 I believe it will give me a lot beyond my imagination after that.</p>
+
+<!-- more -->
 
 <h1 id="how-to-build-a-blog-on-hithub">How to build a blog on hithub</h1>
 

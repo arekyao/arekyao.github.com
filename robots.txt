@@ -1,13 +1,4 @@
-User-agent: Baiduspider
-Allow: /
-
-User-agent: Googlebot
-Allow: /
-
-User-agent: Googlebot-Mobile
-Allow: /
+# www.robotstxt.org/
+# http://code.google.com/web/controlcrawlindex/
 
 User-agent: *
-Disallow: / 
-
-Sitemap: http://arekyao.github.io/sitemap.xml 
