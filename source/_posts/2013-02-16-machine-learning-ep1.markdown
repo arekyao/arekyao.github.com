@@ -16,14 +16,15 @@ This step is the most important part in machine learning.
 Very easy to ignore and underestimate.
 
 Data is wrong, all the steps afterward are wrong.
-More than that, it's very difficult to understand where is wrong, how to impove that.
 
+More than that, it's very difficult to understand where is wrong, how to impove that.
 
 Maybe the data can be produced by online logs by user.
 
 Maybe the data can not be gotten from machine, only by humans.
 
 #### 2, [Feature Selection](http://en.wikipedia.org/wiki/Feature_selection)  ####
+
 The less feature, the faster the model is calculated and updated
 
 The more feature's meaning is ,the less prabability overfit happens 

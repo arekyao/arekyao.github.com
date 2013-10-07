@@ -23,6 +23,9 @@ That needs these steps:
 1, Copy them from phone
 ---------
 
+
+<!-- more -->
+
 Option:
 
     ifuncbox, interface good,but it lost the info including "modify time,create time,etc."

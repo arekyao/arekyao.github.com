@@ -17,12 +17,15 @@ The feature of note is frequece and length.
 ###Markov Chain
 
 The idea tech of Markov Chain is that, the next state (to us,it's music note) is decided by the previous N states, only.
-
+<!-- more -->
 That means:  
 the next note's freq is decided by the previous's.
 the next note's length is decided by the previous's.
 
+
+
 ###Machine Learning
+
 First, learn the trans probability throught lots of music sample.
 
 Then, we got the probability from Freq A to Freq B, From length 1/2 to 1/4

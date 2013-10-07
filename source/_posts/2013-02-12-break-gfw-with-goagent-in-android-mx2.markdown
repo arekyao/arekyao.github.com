@@ -19,6 +19,8 @@ Here is a solution to kick that out of your way.
 
 MX2 have a pretty function, which give you easy way to root.
 
+<!-- more -->
+
 Just go into Account Menu, and click "you wanna root", then reboot your phone.
 
 After the phone restart, it's rooted.

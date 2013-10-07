@@ -16,7 +16,7 @@ The Practice focused on the law firm of Robert Donnell and Associates (later bec
 
 Every story per ep, is made up one or two cases, including both criminal and civil cases, which often mirror current events.Conflict between legal ethics and personal morality was a recurring theme.   
 
-
+<!-- more -->
 
 Robert Donnell is the boss, which is tall, handsome, rich, whose gf, linsay Dole and Helen Gamble.  
 Eugene Young is my favourite lawyer actor, black, strong in debating.   

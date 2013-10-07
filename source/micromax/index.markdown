@@ -86,7 +86,9 @@ Move Legality Checking
 
 
 ***************
-
+  
+  
+###其它
 
 
 程序中所有变量定义说明：[地址](var.html)
@@ -107,7 +109,7 @@ If you want to try micro-Max on your PC, you can copy-paste the source and compi
 Details on how to do this can be found here.
 
 
-####未来 Future
+###未来 Future
 
 
 

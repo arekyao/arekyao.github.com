@@ -19,6 +19,7 @@ it's just a complicated finite statemachine
 Spiff Workflow is a library implementing a framework for workflows.
 It is based on http://www.workflowpatterns.com and implemented in pure Python.
 
+<!-- more -->
 In addition, Spiff Workflow provides a parser and workflow emulation
 layer that can be used to create executable Spiff Workflow specifications
 from Business Process Model and Notation (BPMN) documents.
@@ -49,12 +50,10 @@ ps: I was stuck by this for two or three days.
 4, one better example using spiff workflow
 -------
 
-the case code :
+the case code:
 
 ```py
-
 # -*- coding: utf-8
-
 
 import sys, os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__),  '../../lib'))
@@ -88,7 +87,7 @@ def on_complete_cb(workflow, task, taken_path):
 
 
 class QuestionError(Exception):
-    '''  '''
+
     def __init__(self, value):
         self.value = value
 

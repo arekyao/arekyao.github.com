@@ -39,7 +39,7 @@ The three low-order bits can be interpreted as a number 0-7 that indicates the p
 
 
 往上走的兵和往下走的兵被认为是不同的类型（类型分别为1和2）。  
-每方（白或黑）仅有其中1种兵，向合适的方向前进，当然引擎也是不会将兵往回走的。【不然太囧了】
+每方（白或黑）仅有其中1种兵，向合适的方向前进，当然引擎也是不会将兵往回走的。『不然太囧了』
 
 棋子的编码上，基于进一步的考虑到后续更方便的测试棋子属于某个组，所以棋子的编码上，在能够滑行（移动较多格子，不限格式数量）的棋子编码在更高的值.这样使得:  
 判断爬行棋子（只能走少数1，2格的）可以通过棋子类型p (=u&7)<5;  
@@ -62,7 +62,7 @@ Q 是皇后，queen
 Upstream moving pawns are considered different pieces than downstream moving pawns (type 1 and 2, respectively). Each side has only one of the types of pawns, moving in the appropriate direction, although the engine would not frown at putting pieces on the board that move 'backwards'. The encoding is further chosen such that tests if a piece belongs to a certain group is easy: the sliding pieces (BRQ) are giving the highest type numbers (5,6,7), so that crawling pieces can be recognized by piece type p (=u&7) p<5. Pieces that are awarded for moving towards the center of the board (everything but RQ) are recognized by p<6, pawns by p<3. The complete list thus is {1,2,3,4,5,6,7} = {P+,P-,N,K,B,R,Q}. Type 0 is not used, so it can indicate empty squares on the board.
 
 
-如下高亮代码展示了棋子如何使用的在 micro-max 中【这里很囧，没有高亮】  
+如下高亮代码展示了棋子如何使用的在 micro-max 中。『这里很囧，没有高亮』
 [更好的看代码的地址](http://home.hccnet.nl/h.g.muller/encode.html)
 
 The following highlights places that show how the piece encoding is used in Micro-Max.

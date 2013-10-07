@@ -14,6 +14,7 @@ At the moment,I decide to write my blog,TRY MY BEST,in English.
 Maybe it's hard at first.
 I believe it will give me a lot beyond my imagination after that.
 
+<!-- more -->
 
 How to build a blog on hithub
 =====

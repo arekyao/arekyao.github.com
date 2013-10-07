@@ -23,6 +23,9 @@ espcially, in China.
 
 ###When boy
 
+
+<!-- more -->
+
 When I am a little boy, I always had lots of complain about my parents.
 The topics, which makes me unhappy, are lifestyle and the dealing skill...
 

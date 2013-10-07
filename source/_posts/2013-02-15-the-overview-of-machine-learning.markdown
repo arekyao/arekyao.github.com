@@ -16,6 +16,8 @@ Here is the stories of it.
  Machine Learning 
 -------------------
 
+<!-- more -->
+
 
 [Machine learning](http://en.wikipedia.org/wiki/Machine_learning), a branch of artificial intelligence, is about the construction and study of systems that can learn from data
 

@@ -19,6 +19,9 @@ Reality is cruel, the Java version is lost at home, and the C++ version have to 
 
 Chess & AI
 ------
+
+<!-- more -->
+
 [Chess](http://www.chessvariants.org/d.chess/chess.html) is a two-player strategy board game played on a chessboard, a checkered gameboard with 64 squares arranged in an eight-by-eight grid.   
 It is one of the world's most popular games, played by millions of people worldwide at home, in clubs, online, by correspondence, and in tournaments.
 

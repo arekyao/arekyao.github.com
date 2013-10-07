@@ -17,6 +17,8 @@ Mac Develop Environment
 [Homebrew: The missing package manager for OS X](http://mxcl.github.com/homebrew/)
 ------------
 
+<!-- more -->
+
 ```
 $ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"
 ```

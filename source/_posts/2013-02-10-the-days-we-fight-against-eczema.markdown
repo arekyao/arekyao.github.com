@@ -25,6 +25,9 @@ Everything goes well.
 2nd Month
 ------
 
+
+<!-- more -->
+
 However, something changed in 2nd month, that is [ECZEMA](http://en.wikipedia.org/wiki/Eczema)
 
 In the beginning, we did not pay too much attention to it, 

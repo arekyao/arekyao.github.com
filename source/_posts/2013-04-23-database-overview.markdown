@@ -23,6 +23,9 @@ Generally, database can be divided into two arm, SQL and NoSQL.
 [SQL](http://en.wikipedia.org/wiki/Structured_Query_Language)
 ------
 
+
+<!-- more -->
+
 SQL (Structured Query Language) is very common.  
 mysql ,sybase and oracle are well-known as database, which is used a lot
 

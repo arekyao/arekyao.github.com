@@ -27,6 +27,7 @@ By google, it works immediately
 Android Emulator Key Mapping On OSX
 ------
 
+<!-- more -->
 
 from [http://developer.android.com/tools/help/emulator.html]()
 

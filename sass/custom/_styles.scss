@@ -1,32 +1,29 @@
 // This File is imported last, and will override other styles in the cascade
 // Add styles here to make changes without digging in too much
 
-
-/* 引用 */
-#content blockquote.information {
-    border-left: 12px solid #080;
-    background-color: #bfb;
-    padding: 12px 12px 12px 0;
-    margin-left: -48px;
-    padding-left: 48px;
+// Add back the social sharing CSS
+.sharing {
+  p.meta + & {
+    padding: { top: 1em; left: 0; }
+    margin-bottom: 20px;
+    background: $img-border top left repeat-x;
+  }
 }
 
-/* 表格 */
-#content table.mytable {
-  border-collapse: collapse;
-  margin-left: auto;
-  margin-right: auto;
-  /*border: solid 1px black;*/
- /* width: 100%; */
-}
-#content table.mytable td, #content table.mytable th {
-    padding: 3px 5px;
-    border: solid 1px #070;
-}
-#content table.mytable th {
-    background-color: #080;
-    color: white;
-}
+#fb-root { display: none; }
 
+// Restore bullets
+.entry-content ol li { list-style: decimal outside none; padding: 0.1em 0 0.5em 0; }
+.entry-content ul li { list-style: disc outside none; padding: 0.1em 0 0.5em 0; }
 
+// Tweak text in the front page widgets area
+p.widgets { margin: 0 0 8px 0; line-height: 1.5; padding-top: 2px; }
 
+// Get rid of box-shadow for individual archive entries
+article.archive-article-format { box-shadow: none; padding: 0; }
+
+// Add a little space between the top of the archive list and the page title
+#blog-archives { margin-top: 30px; }
+
+// Add a little horizontal space in dt elements
+.dl-horizontal dt { width: 135px; }

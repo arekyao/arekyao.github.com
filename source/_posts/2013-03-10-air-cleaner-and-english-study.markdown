@@ -20,7 +20,7 @@ Amazon is my fav E-Commerce platform, we bought gift cards on taobao, then order
 When the machine is sent home by the Express delivery man, we decided to use it immediately.
 Everything is fine, until a month goes away.
 
-
+<!-- more -->
 
 Yep, you know, the air cleaner should be cleaned every month.
 (Some part can not cleaned and it's disposible)
