@@ -4,7 +4,7 @@
   <title><![CDATA[YY Every Day]]></title>
   <link href="http://arekyao.github.io/atom.xml" rel="self"/>
   <link href="http://arekyao.github.io/"/>
-  <updated>2013-10-08T00:19:24+08:00</updated>
+  <updated>2013-10-08T23:30:19+08:00</updated>
   <id>http://arekyao.github.io/</id>
   <author>
     <name><![CDATA[Arek.Yao]]></name>
@@ -615,7 +615,7 @@ if the best move is tried first, and trying idiotic moves first (such as both Qu
 
 <p>the good is the hash key is recalculated by two “xor”</p>
 
-<h2 id="monte-carlo-methods">7,Monte Carlo methods</h2>
+<h2 id="monte-carlo-methods">7,Monte Carlo methods</h2>
 
 <p>This method can be used to estimate the board status(which side is at better thant the other side)</p>
 
@@ -2747,7 +2747,7 @@ I believe it will give me a lot beyond my imagination after that.</p>
 
 <!-- more -->
 
-<h1 id="how-to-build-a-blog-on-hithub">How to build a blog on hithub</h1>
+<h1 id="how-to-build-a-blog-on-github">How to build a blog on github</h1>
 
 <h2 id="apply-a-account--some-repo">1,  apply a account &amp; some repo</h2>
 

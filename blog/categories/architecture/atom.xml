@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Tools | YY Every Day]]></title>
-  <link href="http://arekyao.github.io/blog/categories/tools/atom.xml" rel="self"/>
+  <title><![CDATA[Category: Architecture | YY Every Day]]></title>
+  <link href="http://arekyao.github.io/blog/categories/architecture/atom.xml" rel="self"/>
   <link href="http://arekyao.github.io/"/>
-  <updated>2013-10-08T00:19:24+08:00</updated>
+  <updated>2013-10-08T23:31:49+08:00</updated>
   <id>http://arekyao.github.io/</id>
   <author>
     <name><![CDATA[Arek.Yao]]></name>
@@ -472,6 +472,59 @@ Such as, XML, Jason, YAML etc.</p>
   <li><a href="">http://nosql-database.org/</a></li>
 </ol>
 
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Android Dev on OSX]]></title>
+    <link href="http://arekyao.github.io/blog/2013/04/20/android-dev-on-osx/"/>
+    <updated>2013-04-20T00:00:00+08:00</updated>
+    <id>http://arekyao.github.io/blog/2013/04/20/android-dev-on-osx</id>
+    <content type="html"><![CDATA[<h2 id="some-gossip">Some gossip</h2>
+
+<p>Today it prove the conclusion that Google is much better than baidu, esp in Tech Problem.</p>
+
+<p>here is one:</p>
+
+<p>Android Emulation Key HOME is not found on OSX.  </p>
+
+<p>There is not HOME key on OSX.</p>
+
+<p>After lots of try, i got ESC, but it’s BACK key.</p>
+
+<p>By Bidu, try lots of query, it does not work.</p>
+
+<p>By google, it works immediately</p>
+
+<h2 id="android-emulator-key-mapping-on-osx">Android Emulator Key Mapping On OSX</h2>
+
+<!-- more -->
+
+<p>from <a href="">http://developer.android.com/tools/help/emulator.html</a></p>
+
+<p>Home = HOME (FN + left_arrow on Macbooks)<br />
+Menu (left softkey) = F2 or Page-up button<br />
+Star (right softkey) = Shift-F2 or Page Down<br />
+Back = ESC<br />
+Call/dial button = F3<br />
+Hangup/end call button = F4<br />
+Search = F5<br />
+Power button = F7<br />
+Audio volume up button = KEYPAD_PLUS, Ctrl-F5<br />
+Audio volume down button = KEYPAD_MINUS, Ctrl-F6<br />
+Camera button = Ctrl-KEYPAD<em>5, Ctrl-F3<br />
+Switch to previous layout orientation (for example, portrait, landscape) = KEYPAD</em>7, Ctrl-F11<br />
+Switch to next layout orientation (for example, portrait, landscape) = KEYPAD<em>9, Ctrl-F12<br />
+Toggle cell networking on/off = F8<br />
+Toggle code profiling = F9 (only with -trace startup option)<br />
+Toggle fullscreen mode = Alt-Enter<br />
+Toggle trackball mode = F6
+Enter trackball mode temporarily (while key is pressed) = Delete
+DPad left/up/right/down = KEYPAD</em>4/8/6/2
+DPad center click = KEYPAD_5
+Onion alpha increase/decrease = KEYPAD_MULTIPLY(*) / KEYPAD_DIVIDE(/)</p>
+
+<p><a href="">http://stackoverflow.com/questions/7628606/how-to-emulate-pressing-home-button-in-android-emulator</a></p>
 ]]></content>
   </entry>
   
