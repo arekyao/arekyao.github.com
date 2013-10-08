@@ -3,7 +3,7 @@ layout: post
 title: "Something about Chess series with AI"
 date: 2013-06-23 20:48
 comments: true
-categories: TechSpark
+categories: Algorithm
 ---
 Preface
 ---

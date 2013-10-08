@@ -3,7 +3,7 @@ layout: post
 title: "The Key Technologies in Simple XiangQi Engine MaxQi"
 date: 2013-07-02 08:30
 comments: true
-categories: TechSpark
+categories: Algorithm
 ---
 
 1,mini-max algorithm
@@ -82,7 +82,7 @@ The final Zobrist hash is computed by combining those bitstrings using bitwise X
 the good is the hash key is recalculated by two "xor"
 
 
-7,Monte Carlo methods
+7,Monte Carlo methods
 -----
 
 This method can be used to estimate the board status(which side is at better thant the other side)

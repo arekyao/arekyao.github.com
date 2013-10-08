@@ -3,7 +3,7 @@ layout: post
 title: "Air cleaner and English study"
 date: 2013-03-10 00:28
 comments: true
-categories: BabyLife
+categories: Life 
 ---
 
 

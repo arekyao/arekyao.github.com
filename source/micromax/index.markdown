@@ -59,7 +59,6 @@ On these pages various aspects of micro-Max are described:
 
 * 搜索算法
 ----
-
 [Alpha-Beta Minimax ](alpha_beta_minimax.html)  
 [Quiescence搜索 Quiescence Search](quiescence_search.html)  
 [进一步&退一步 Do and Undo Move](do_and_undo_move,html)  

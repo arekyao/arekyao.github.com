@@ -3,7 +3,7 @@ layout: post
 title: "The Days We fight against Eczema"
 date: 2013-02-10 12:14
 comments: true
-categories: BabyLife 
+categories: Life 
 ---
 
 2012, special year, a cute girl comes into our life, named QianShu.

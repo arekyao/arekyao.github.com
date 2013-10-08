@@ -3,7 +3,7 @@ layout: post
 title: "Going to Python World Step by Step"
 date: 2013-02-17 12:46
 comments: true
-categories: Tools
+categories: Architecture
 ---
 
 First, let me introduce something about develop environment, such as Brew, easy_install,RVM, ... etc. 

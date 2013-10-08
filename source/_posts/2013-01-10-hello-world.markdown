@@ -4,7 +4,9 @@ title: "Hello World!"
 date: 2013-01-10 20:59
 comments: true
 math: true
-categories: Github
+categories: TechChangeWorld
+
+
 ---
 
 It's my first blog on github.
@@ -16,7 +18,7 @@ I believe it will give me a lot beyond my imagination after that.
 
 <!-- more -->
 
-How to build a blog on hithub
+How to build a blog on github
 =====
 
 1,  apply a account & some repo 

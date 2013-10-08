@@ -3,7 +3,7 @@ layout: post
 title: "Life in China"
 date: 2013-03-24 15:54
 comments: true
-categories: BabyLife
+categories: Life 
 ---
 
 ###Life is a stuggle

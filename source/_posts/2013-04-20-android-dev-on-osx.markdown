@@ -3,7 +3,7 @@ layout: post
 title: "Android Dev on OSX"
 date: 2013-04-20 00:00
 comments: true
-categories: Android
+categories: Architecture
 ---
 
 Some gossip
