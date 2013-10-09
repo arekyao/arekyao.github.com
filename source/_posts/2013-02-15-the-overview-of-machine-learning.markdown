@@ -3,7 +3,9 @@ layout: post
 title: "The Overview of Machine Learning"
 date: 2013-02-15 21:19
 comments: true
-categories: MachineLearning 
+categories: Algorithm 
+tags: [MachineLearning]
+
 ---
 
 > First of all, I have to say, the Machine learning series have a very deep water,:)

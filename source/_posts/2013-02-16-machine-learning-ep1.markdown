@@ -3,7 +3,8 @@ layout: post
 title: "Machine Learning ep1"
 date: 2013-02-16 22:35
 comments: true
-categories: MachineLearning
+categories: Algorithm
+tags: [MachineLearning]
 ---
 
 

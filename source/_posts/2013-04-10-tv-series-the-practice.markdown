@@ -4,6 +4,7 @@ title: "TV series the Practice"
 date: 2013-04-10 22:22
 comments: true
 categories: TechChangeWorld
+tags: [practice,TV,python]
 ---
 
 What's the practice

@@ -4,6 +4,7 @@ title: "The Key Technologies in Simple XiangQi Engine MaxQi"
 date: 2013-07-02 08:30
 comments: true
 categories: Algorithm
+tags: [xiangqi, chess, maxqi]
 ---
 
 1,mini-max algorithm

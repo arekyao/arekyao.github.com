@@ -4,6 +4,7 @@ title: "Something Interesting about AI"
 date: 2013-04-21 19:53
 comments: true
 categories: TechSpark
+tags: [AI,JustForFun]
 ---
 
 * [Generate Music Algorithmically](http://www.databozo.com/2013/04/12/Generating_music_algorithmically.html)

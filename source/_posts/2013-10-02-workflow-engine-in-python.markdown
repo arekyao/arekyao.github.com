@@ -4,6 +4,7 @@ title: "Workflow Engine in Python"
 date: 2013-10-02 07:49
 comments: true
 categories: Architecture
+tags: [workflow, python, spiffworkflow]
 ---
 
 1,What's workflow

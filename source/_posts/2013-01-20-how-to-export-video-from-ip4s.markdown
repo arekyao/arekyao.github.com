@@ -4,6 +4,7 @@ title: "How to export video from IP4s"
 date: 2013-01-20 18:39
 comments: true
 categories: TechChangeWorld 
+tags: [iPhone, DIY]
 ---
 
 

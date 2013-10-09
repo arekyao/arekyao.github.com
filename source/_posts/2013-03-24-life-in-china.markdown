@@ -4,6 +4,7 @@ title: "Life in China"
 date: 2013-03-24 15:54
 comments: true
 categories: Life 
+tags: [baby,life]
 ---
 
 ###Life is a stuggle

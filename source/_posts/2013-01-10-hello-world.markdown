@@ -5,6 +5,7 @@ date: 2013-01-10 20:59
 comments: true
 math: true
 categories: TechChangeWorld
+tags: [octopress,blogger]
 
 
 ---
@@ -30,11 +31,16 @@ How to build a blog on github
 2,install ruby,[jekyll][],[markdown][],etc
 -----------
 
-    install rvm to manager ruby version,ruby 1.9 needed 
-    gem install rdoc
-    gem install jekyll
-    gem install rdiscount or kramdown
-    easy_install Pygments
+```
+install rvm to manager ruby version,ruby 1.9 needed 
+$rvm install 1.9.2 && rvm use 1.9.2
+$git clone git://github.com/imathis/octopress.git octopress
+$gem install rdoc
+$gem install jekyll
+$gem install kramdown
+$easy_install Pygments
+
+```
 
 this is typical structure in [jekyll][] frame
 
