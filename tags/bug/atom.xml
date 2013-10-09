@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: bug | YY Every Day]]></title>
   <link href="http://arekyao.github.io/tags/bug/atom.xml" rel="self"/>
   <link href="http://arekyao.github.io/"/>
-  <updated>2013-10-09T23:01:40+08:00</updated>
+  <updated>2013-10-09T23:11:10+08:00</updated>
   <id>http://arekyao.github.io/</id>
   <author>
     <name><![CDATA[Arek.Yao]]></name>
@@ -23,6 +23,8 @@
 <p>Here is one of the solutions:</p>
 
 <h3 id="git-clone-two-repos">1,git clone two repos</h3>
+
+<!-- more -->
 
 <p>git clone https://github.com/robbyedwards/octopress-tag-pages<br />
 git clone https://github.com/robbyedwards/octopress-tag-cloudclone  </p>

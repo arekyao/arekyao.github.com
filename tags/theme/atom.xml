@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: theme | YY Every Day]]></title>
   <link href="http://arekyao.github.io/tags/theme/atom.xml" rel="self"/>
   <link href="http://arekyao.github.io/"/>
-  <updated>2013-10-09T23:01:40+08:00</updated>
+  <updated>2013-10-09T23:11:10+08:00</updated>
   <id>http://arekyao.github.io/</id>
   <author>
     <name><![CDATA[Arek.Yao]]></name>
@@ -32,6 +32,8 @@ https://github.com/imathis/octopress/wiki/3rd-Party-Octopress-Themes</p>
 <p>https://github.com/arekyao/everyday</p>
 
 <h3 id="install-the-theme">Install the theme</h3>
+
+<!-- more -->
 
 <p>```sh
 $ cd yourOctopress

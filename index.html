@@ -162,82 +162,12 @@ posted in
 
 <h3 id="git-clone-two-repos">1,git clone two repos</h3>
 
-<p>git clone https://github.com/robbyedwards/octopress-tag-pages<br />
-git clone https://github.com/robbyedwards/octopress-tag-cloudclone  </p>
-
-<p>The first one is used to generate the tag page. 
-The latter one is for tag clound</p>
-
-<h3 id="octopress-tag-pages">2,octopress-tag-pages</h3>
-
-<p>cp tag_generator.rb to /plugins<br />
-cp tag_index.html to /source/_layouts<br />
-cp tag_feed.xml to /source/_includes/custom/  </p>
-
-<p>ps:the last one is not included in official document,but it’s really needed</p>
-
-<h3 id="octopress-tag-cloud">3,octopress-tag-cloud</h3>
-
-<p>cp tag_cloud.rb to /plugins</p>
-
-<p>cp those code below to /source/_includes/custom/asides/tags.html。</p>
-
-<p>Actually, the similiar file tags.html is in octopress-tag-cloud</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-</pre></td><td class="code"><pre><code class="xml"><span class="line"><span class="nt">&lt;section&gt;</span>
-</span><span class="line">  <span class="nt">&lt;h1&gt;</span>Tags<span class="nt">&lt;/h1&gt;</span>
-</span><span class="line">  <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">&quot;tag-cloud&quot;</span><span class="nt">&gt;</span>
-</span><span class="line">    {\[del this \]% tag_cloud font-size: 90-210%, limit: 10, style: para %}
-</span><span class="line">  <span class="nt">&lt;/ul&gt;</span>
-</span><span class="line"><span class="nt">&lt;/section&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h3 id="add-the-block-to-somewhere">4,add the block to somewhere</h3>
-
-<p>add some code in _config.xml’s default_asides,such as:</p>
-
-<p>default_asides: [asides/category_list.html, asides/recent_posts.html, custom/asides/tags.html]</p>
-
-<h3 id="one-bug-of-tag-cloud">5,one bug of tag cloud</h3>
-
-<p>after doing before, there may be a problem or bug waiting for you.</p>
-
-<p>when rake, the error is:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="xml"><span class="line">Liquid Exception: comparison of Array with Array failed in page
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>At first, I think there must be something wrong with my setting.</p>
-
-<p>At last, I got some info from this:</p>
-
-<blockquote>
-  <p>This would occur when every tag is applied for only ONCE. Not sure if this is a bug. 
-Anyway you can simply apply one of the tags on more than one post.</p>
-</blockquote>
-
-<p>http://jeffli.me/blog/2013/06/17/add-tags-and-tag-cloud-support-to-octopress/</p>
-
-<p>We get the bug away by a trick:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-</pre></td><td class="code"><pre><code class="xml"><span class="line">add same tag to three post before &#39;rake generate&#39;
-</span><span class="line">then rake, will be ok
-</span><span class="line">after that, change tag to what supposed to be, little by little
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-<p>ok, there is a use of TDD, lol</p>
-
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/10/09/how-to-add-tag-cloud-to-your-octopress-blog/">Read on &rarr;</a>
+    </footer>
   
 
 
@@ -393,58 +323,12 @@ posted in
 
 <p>save code to the file plugins/category_list_tag.rb</p>
 
-<div class="highlight"><pre><code class="ruby"><span class="k">module</span> <span class="nn">Jekyll</span>
-  <span class="k">class</span> <span class="nc">CategoryListTag</span> <span class="o">&lt;</span> <span class="ss">Liquid</span><span class="p">:</span><span class="ss">:Tag</span>
-    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
-      <span class="n">html</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-      <span class="n">categories</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">registers</span><span class="o">[</span><span class="ss">:site</span><span class="o">].</span><span class="n">categories</span><span class="o">.</span><span class="n">keys</span>
-      <span class="n">categories</span><span class="o">.</span><span class="n">sort</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">category</span><span class="o">|</span>
-        <span class="n">posts_in_category</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">registers</span><span class="o">[</span><span class="ss">:site</span><span class="o">].</span><span class="n">categories</span><span class="o">[</span><span class="n">category</span><span class="o">].</span><span class="n">size</span>
-        <span class="n">category_dir</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">registers</span><span class="o">[</span><span class="ss">:site</span><span class="o">].</span><span class="n">config</span><span class="o">[</span><span class="s1">&#39;category_dir&#39;</span><span class="o">]</span>
-        <span class="n">category_url</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">category_dir</span><span class="p">,</span> <span class="n">category</span><span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="sr">/_|\P{Word}/</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="sr">/-{2,}/</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">downcase</span><span class="p">)</span>
-        <span class="n">html</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;&lt;li class=&#39;category&#39;&gt;&lt;a href=&#39;/</span><span class="si">#{</span><span class="n">category_url</span><span class="si">}</span><span class="s2">/&#39;&gt;</span><span class="si">#{</span><span class="n">category</span><span class="si">}</span><span class="s2"> (</span><span class="si">#{</span><span class="n">posts_in_category</span><span class="si">}</span><span class="s2">)&lt;/a&gt;&lt;/li&gt;</span><span class="se">\n</span><span class="s2">&quot;</span>
-      <span class="k">end</span>
-      <span class="n">html</span>
-    <span class="k">end</span>
-  <span class="k">end</span>
-<span class="k">end</span>
-
-<span class="ss">Liquid</span><span class="p">:</span><span class="ss">:Template</span><span class="o">.</span><span class="n">register_tag</span><span class="p">(</span><span class="s1">&#39;category_list&#39;</span><span class="p">,</span> <span class="ss">Jekyll</span><span class="p">:</span><span class="ss">:CategoryListTag</span><span class="p">)</span>
-</code></pre></div>
-
-<p>This plugin will register a tag『in xml 』 called catetory_list in liquid.<br />
-All your category in you blog, will be organised in li.  </p>
-
-<h3 id="add-aside">2,add aside</h3>
-
-<p>copy those code to source/_includes/asides/category_list.html</p>
-
-<p>del the ‘\’</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-</pre></td><td class="code"><pre><code class="xml"><span class="line"><span class="nt">&lt;section&gt;</span>
-</span><span class="line">  <span class="nt">&lt;h1&gt;</span>Categories<span class="nt">&lt;/h1&gt;</span>
-</span><span class="line">  <span class="nt">&lt;ul</span> <span class="na">id=</span><span class="s">&quot;categories&quot;</span><span class="nt">&gt;</span>
-</span><span class="line">    {\% category_list %}
-</span><span class="line">  <span class="nt">&lt;/ul&gt;</span>
-</span><span class="line"><span class="nt">&lt;/section&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>then modify config file _config.yml:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="xml"><span class="line">default_asides: [asides/category_list.html, asides/recent_posts.html]
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>or include the category_list.html in some file</p>
-
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/09/09/how-to-add-category-list-to-you-octopress-blog/">Read on &rarr;</a>
+    </footer>
   
 
 
@@ -527,20 +411,12 @@ https://github.com/imathis/octopress/wiki/3rd-Party-Octopress-Themes</p>
 
 <h3 id="install-the-theme">Install the theme</h3>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span><span class="nb">cd </span>yourOctopress
-</span><span class="line"><span class="nv">$ </span>git clone https://github.com/arekyao/everyday .themes/everyday
-</span><span class="line"><span class="nv">$ </span>rake install<span class="o">[</span><span class="s1">&#39;everyday&#39;</span><span class="o">]</span>
-</span><span class="line"><span class="nv">$ </span>rake generate
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>‘rake generate’ is very important and you will face lots of problems without it.</p>
-
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/08/09/how-to-change-your-octopress-blog-theme/">Read on &rarr;</a>
+    </footer>
   
 
 
