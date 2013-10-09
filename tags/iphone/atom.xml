@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: iPhone | YY Every Day]]></title>
+  <link href="http://arekyao.github.io/tags/iphone/atom.xml" rel="self"/>
+  <link href="http://arekyao.github.io/"/>
+  <updated>2013-10-09T11:15:11+08:00</updated>
+  <id>http://arekyao.github.io/</id>
+  <author>
+    <name><![CDATA[Arek.Yao]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Something about Chess series with AI]]></title>
+    <link href="http://arekyao.github.io/blog/2013/06/23/something-about-chess-series-with-ai/"/>
+    <updated>2013-06-23T20:48:00+08:00</updated>
+    <id>http://arekyao.github.io/blog/2013/06/23/something-about-chess-series-with-ai</id>
+    <content type="html"><![CDATA[<h2 id="preface">Preface</h2>
+<p>One day, I want to learn some knowledge about the Game AI topic.
+Chess series is supposed to a big collection in Game.
+Xiangqi is my fav chess game, and I am familiar with it.
+It’s a good choice.</p>
+
+<p>Besides, six years ago, I have developed xiangqi program both in java &amp; C++.
+I can use it to learn AI engine ,and the program developed before , can be seen as a GUI.
+Techinically, it will be OK then.
+Reality is cruel, the Java version is lost at home, and the C++ version have to run on Window, not my Mac OSX.</p>
+
+<h2 id="chess--ai">Chess &amp; AI</h2>
+
+<!-- more -->
+
+<p><a href="http://www.chessvariants.org/d.chess/chess.html">Chess</a> is a two-player strategy board game played on a chessboard, a checkered gameboard with 64 squares arranged in an eight-by-eight grid. <br />
+It is one of the world’s most popular games, played by millions of people worldwide at home, in clubs, online, by correspondence, and in tournaments.</p>
+
+<p>So if chess has AI, then we can compete with Computer.  </p>
+
+<p>More interestingly, we can let two Computer with AI fight with each other.</p>
+
+<p>There are all kinds of chess game, which seems alike.</p>
+
+<p>They have these Feature:
+* board with X * Y
+* pieces with some rule</p>
+
+<p>Chess(International)
+http://www.chessvariants.org/d.chess/chess.html</p>
+
+<p>Xiangqi(Chinese Chess)
+http://www.chessvariants.org/xiangqi.html</p>
+
+<h2 id="xboard--fairymax">Xboard &amp; FairyMax</h2>
+<p>Xboard is a chess program, FairyMax is a chess engine(AI)</p>
+
+<p><a href="http://www.gnu.org/software/xboard/">Xboard</a> is a graphical user interface for chess in all its major forms, <br />
+including international chess, xiangqi (Chinese chess), shogi (Japanese chess) and Makruk, <br />
+in addition to many minor variants such as Losers Chess, Crazyhouse, Chess960 and Capablanca Chess.  </p>
+
+<p><a href="http://home.hccnet.nl/h.g.muller/CVfairy.html">FairyMax</a>
+FairyMax is developed by H.G.Muller, who is super fan of chess.
+Maxqi is the xiangqi engine.</p>
+
+<h2 id="learing">Learing</h2>
+
+<h5 id="first--install-xboard--fairymax">First , install xboard &amp; Fairymax</h5>
+
+<p>Here is a way:</p>
+
+<p><a href="">https://github.com/Homebrew/homebrew-games</a></p>
+
+<h5 id="second-problem-is-how-to-run-xboard">Second Problem is how to run xboard….</h5>
+
+<p>Don’t underestimate it.
+It takes me lots of time to test it.</p>
+
+<p>Help information? xboard help?     It does not work <br />
+The output is full of useless infomation</p>
+
+<p>Xboard web help? User guide ? It does not work.<br />
+http://www.gnu.org/software/xboard/user_guide/UserGuide.html</p>
+
+<p>at last, I have to learn how to run, From an appication on Window..</p>
+
+<p>OMG….</p>
+
+<p>1, copy the xboard.ini to be used as xboard.rc</p>
+
+<p>2, then I got the knowledge, the viariant arg…supposed to be the xiangqi</p>
+
+<p>3, use fcp can call the maxqi. from user guide</p>
+
+<p>now, it almost works but have a problem
+xiangqi can compatible with maxqi engine</p>
+
+<p>4, firstProtocolVersion is need.</p>
+
+<p>ok,then you can run xboard</p>
+
+<p><code>
+	xboard -variant xiangqi -firstProtocolVersion 1 -fcp maxqi
+</code></p>
+
+<h5 id="review-the-maxqi-code">review the maxqi code</h5>
+<p>Now the biggest problem,which I will face, is coming….</p>
+
+<p>Why?</p>
+
+<p>Becaure somebody want to program the engine with 1200 characters.</p>
+
+<p>Here is the code, are you crazy? especially, the Function D()…..</p>
+
+<p>I got the code little by little, and hesitate when D() function come to me…</p>
+
+<p>```c Function D http://fairymax.sourcearchive.com/documentation/4.8q-2/maxqi_8c_source.html Source Article</p>
+
+<p>D(k,q,l,e,z,n)          /* recursive minimax search, k=moving side, n=depth<em>/
+    int k,q,l,e,z,n;        /</em> (q,l)=window, e=current eval. score, E=e.p. sqr.<em>/
+{                       /</em> e=score, z=prev.dest; J,Z=hashkeys; return score<em>/
+    int j,r,m,v,d,h,i,P,V,f=J,g=Z,C,s,flag,F;
+    unsigned char t,p,u,x,y,X,Y,B,lu;
+    struct _</em>a=A+(J+k&amp;U-1);                       /* lookup pos. in hash table<em>/
+    q-=q&lt;e;l-=l&lt;=e;                               /</em> adj. window: delay bonus <em>/
+    d=a-&gt;D;m=a-&gt;V;F=a-&gt;F;                         /</em> resume at stored depth   <em>/
+    X=a-&gt;X;Y=a-&gt;Y;                                /</em> start at best-move hint  <em>/
+    if(z&amp;S&amp;&amp;a-&gt;K==Z)printf(“# root hit %d %d %x\n”,a-&gt;D,a-&gt;V,a-&gt;F);
+    if(a-&gt;K-Z|z&amp;S  |                              /</em> miss: other pos. or empty<em>/
+            !(m&lt;=q|F&amp;8&amp;&amp;m&gt;=l|F&amp;S))                       /</em>   or window incompatible <em>/
+        d=X=0,Y=-1;                                  /</em> start iter. from scratch <em>/
+    W(d++&lt;n||d&lt;3||              /</em>** min depth = 2   iterative deepening loop <em>/
+            z&amp;S&amp;&amp;K==I&amp;&amp;(GetTickCount()-Ticks&lt;tlim&amp;d&lt;=MaxDepth|| /</em> root: deepen upto time   <em>/
+                (K=X,L=Y,d=3)))                             /</em> time’s up: go do best    <em>/
+    {x=B=X;lu=1;                                  /</em> start scan at prev. best <em>/
+        h=Y-255;                                       /</em> if move, request 1st try <em>/
+        P=d&gt;2&amp;&amp;l+I?D(16-k,-l,1-l,-e,2</em>S,d-3):I;      /* search null move         <em>/
+        m=-P&lt;l|R&lt;5?d-2?-I:e:-P;   /</em>** prune if &gt; beta  unconsidered:static eval <em>/
+        N++;                                         /</em> node count (for timing)  <em>/
+        do{u=b[x];                                   /</em> scan board looking for   <em>/
+            if(u)m=lu|u&amp;15^3?m:(d=98,I),lu=u&amp;15^3;        /</em> Kings facing each other  <em>/
+            if(u&amp;&amp;(u&amp;16)==k)                            /</em>  own piece (inefficient!)<em>/
+            {r=p=u&amp;15;                                  /</em> p = piece type (set r&gt;0) <em>/
+                j=od[p];                                   /</em> first step vector f.piece<em>/
+                W(r=o[++j])                                /</em> loop over directions o[] <em>/
+                {A:                                        /</em> resume normal after best <em>/
+                    flag=h?3:of[j];                           /</em> move modes (for fairies) <em>/
+                    y=x;                                      /</em> (x,y)=move               <em>/
+                    do{                                       /</em> y traverses ray, or:     <em>/
+                        y=h?Y:y+r;                               /</em> sneak in prev. best move <em>/
+                        if(y&gt;=16</em>BH|(y&amp;15)&gt;=BW)break;            /* board edge hit           <em>/
+                        t=b[y];                                  /</em> captured piece           <em>/
+                        if(flag&amp;1+!t)                            /</em> mode (capt/nonc) allowed?<em>/
+                        {if(t&amp;&amp;(t&amp;16)==k||flag»10&amp;zn[y])break;  /</em> capture own or bad zone  <em>/
+                            i=w[t&amp;15];                              /</em> value of capt. piece t   <em>/
+                            if(i&lt;0)m=I,d=98;                        /</em> K capture                <em>/
+                            if(m&gt;=l&amp;d&gt;1)goto C;                     /</em> abort on fail high       <em>/
+                            v=d-1?e:i-p;                            /</em>** MVV/LVA scoring if d=1<strong>/
+                            if(d-!t&gt;1)                              /</strong>* all captures if d=2  <strong><em>/
+                            {v=centr[p]?b[x+257]-b[y+257]:0;        /</em> center positional pts.   <em>/
+                                b[x]=0;b[y]=u;                         /</em> do move                  <em>/
+                                v-=w[p]&gt;0|R&lt;10?0:20;                   /</em></strong> freeze K in mid-game <strong><em>/
+                                if(p&lt;3)                                /</em> pawns:                   <em>/
+                                {v+=2;                                 /</em> end-game Pawn-push bonus <em>/
+                                    if(zn[x]-zn[y])b[y]+=5,               /</em> upgrade Pawn and         <em>/
+                                        i+=w[p+5]-w[p];                      /</em>          promotion bonus <em>/
+                                }
+                                if(z&amp;S &amp;&amp; GamePtr&lt;6) v+=(rand()»10&amp;31)-16; // randomize in root
+                                J+=J(0);Z+=J(4);
+                                v+=e+i;V=m&gt;q?m:q;                      /</em></strong> new eval &amp; alpha    <strong>**/
+                                C=d-1-(d&gt;5&amp;p&gt;2&amp;!t&amp;!h);                 /* nw depth, reduce non-cpt.<em>/
+                                C=R&lt;10|P-I|d&lt;3||t&amp;&amp;p-3?C:d;            /</em> extend 1 ply if in-check <em>/
+                                do
+                                    s=C&gt;2|v&gt;V?-D(16-k,-l,-V,-v,/</em></strong> futility, recursive eval. of reply <em>/
+                                            0,C):v;
+                                W(s&gt;q&amp;++C&lt;d); v=s;                     /</em> no fail:re-srch unreduced<em>/
+                                if(z&amp;S&amp;&amp;K-I)                           /</em> move pending: check legal<em>/
+                                {if(v+I&amp;&amp;x==K&amp;y==L)                    /</em>   if move found          <em>/
+                                    {Q=-e-i;
+                                        a-&gt;D=99;a-&gt;V=500;                    /</em> lock game in hash as loss<em>/
+                                        R-=i/FAC;                            /</em>** total captd material <em>**/
+                                        Fifty = t|p&lt;3?0:Fifty+1;
+                                        return l;}                /</em>   &amp; not in check, signal <em>/
+                                        v=m;                                  /</em> (prevent fail-lows on    <em>/
+                                }                                      /</em>   K-capt. replies)       <em>/
+                                J=f;Z=g;
+                                b[y]=t;b[x]=u;                         /</em> undo move                <em>/
+                            }                                       /</em>          if non-castling <em>/
+                            if(v&gt;m)                                 /</em> new best, update max,best<em>/
+                                m=v,X=x,Y=y;                           /</em> no marking!              <em>/
+                            if(h){h=0;goto A;}                      /</em> redo after doing old best<em>/
+                        }
+                        s=t;
+                        t+=flag&amp;4;                               /</em> fake capt. for nonsliding<em>/
+                        if(s&amp;&amp;flag&amp;8)t=0,flag^=flag»4&amp;15;       /</em> hoppers go to next phase <em>/
+                        if(!(flag&amp;S))                            /</em> zig-zag piece?           <em>/
+                            r^=flag»12,flag^=flag»4&amp;15;           /</em> alternate vector &amp; mode  <em>/
+                    }W(!t);                                   /</em> if not capt. continue ray<em>/
+                }}
+                if((++x&amp;15)&gt;=BW)x=x+16&amp;240,lu=1;            /</em> next sqr. of board, wrap <em>/
+                if(x&gt;=16</em>BH)x=0;
+        }W(x-B);         <br />
+C:if(a-&gt;D&lt;99)                                  /* protect game history     <em>/
+      a-&gt;K=Z,a-&gt;V=m,a-&gt;D=d,a-&gt;X=X,                /</em> always store in hash tab <em>/
+          a-&gt;F=8</em>(m&gt;q)|S<em>(m&lt;l),a-&gt;Y=Y;                /</em> move, type (bound/exact),<em>/
+  if(z&amp;S&amp;&amp;Post){
+      printf(“%2d “,d-2);
+      printf(“%6d “,m);
+      printf(“%8d %10d %c%c%c%c\n”,(GetTickCount()-Ticks)/10,N,
+              ‘i’-(X»4&amp;15),’9’-(X&amp;15),’i’-(Y»4&amp;15),’9’-(Y&amp;15)),fflush(stdout);}
+    }                                             /</em>    encoded in X S,8 bits <em>/
+    if(z&amp;4</em>S)K=X,L=Y&amp;~S;
+    return m+=m&lt;e;                                /* delayed-loss bonus       */
+}</p>
+
+<p>```</p>
+
+<p>Then I think for a while….</p>
+
+<p>maxqi engine is so pop, why nobody discuss this??</p>
+
+<p>why no notes? Google maxqi,no good results.</p>
+
+<p>Then I Google fairymax, still no good results…</p>
+
+<p>At last, I saw that the fairymax derived from Micro-Max…</p>
+
+<p>then ,i got everything….</p>
+
+<h5 id="micro-maxhttphomehccnetnlhgmullermax-src2html"><a href="http://home.hccnet.nl/h.g.muller/max-src2.html">micro-max</a></h5>
+
+<h6 id="basic-data-representations"># Basic Data Representations</h6>
+
+<ul>
+  <li>Piece Encoding</li>
+  <li>Board Representation</li>
+  <li>Move Generation</li>
+</ul>
+
+<h6 id="basic-moves"># Basic Moves</h6>
+
+<ul>
+  <li>En Passant Capture</li>
+  <li>Castling</li>
+  <li>Pawn Promotions</li>
+</ul>
+
+<h6 id="search-algorithm"># Search Algorithm</h6>
+
+<ul>
+  <li>Alpha-Beta Minimax</li>
+  <li>Quiescence Search</li>
+  <li>Do and Undo Move</li>
+  <li>Iterative Deepening</li>
+  <li>Move Sorting</li>
+</ul>
+
+<h6 id="transposition-table"># Transposition Table</h6>
+
+<ul>
+  <li>Hashing</li>
+  <li>Replacement</li>
+</ul>
+
+<h6 id="evaluation">#Evaluation</h6>
+<ul>
+  <li>Material</li>
+  <li>Piece-Square Table</li>
+  <li>Checkmate and Stalemate</li>
+  <li>Delay Penalty</li>
+</ul>
+
+<h6 id="the-interface"># The Interface</h6>
+<p>Move Legality Checking</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[How to export video from IP4s]]></title>
+    <link href="http://arekyao.github.io/blog/2013/01/20/how-to-export-video-from-ip4s/"/>
+    <updated>2013-01-20T18:39:00+08:00</updated>
+    <id>http://arekyao.github.io/blog/2013/01/20/how-to-export-video-from-ip4s</id>
+    <content type="html"><![CDATA[<p>Recently, a Mac Book Air comes to my life.
+As the same as before, a problem comes with it.</p>
+
+<p>First, pls let me introduce some backgrounds.</p>
+
+<h1 id="the-mission">The Mission:</h1>
+
+<p>There are so many Videos, taken by IP4s, which cost too much space on phone.
+So I decide to copy them from my phone.</p>
+
+<p>That needs these steps:</p>
+
+<h2 id="copy-them-from-phone">1, Copy them from phone</h2>
+
+<!-- more -->
+
+<p>Option:</p>
+
+<pre><code>ifuncbox, interface good,but it lost the info including "modify time,create time,etc."
+phoneview, works good, but it need money, $30 , too much for me. 
+itools,  can not work.
+...
+
+at last the simple application, iphoto, works!
+</code></pre>
+
+<h2 id="rename-them">2, Rename them</h2>
+
+<p>The PM give a MRD, that asks for the name should contain video’s taken time.
+Here is the script:</p>
+
+<p>``` sh
+#!/bin/bash</p>
+
+<p>for i in <code>ls *.MOV</code>;
+do
+    echo $i;
+    stat $i;
+    sec=<code>stat -t "%s" $i | awk  '{print $12}' | sed 's/"//g'</code>
+    name<em>2=<code>date -r "$sec" "+%Y%m%d_%H%M%S"</code>
+    name</em>1=<code>echo $i | sed 's/.MOV//'</code>
+    newname=<code>echo $name_1"_"$name_2".MOV"</code>
+    cp $i output/$newname
+done
+```</p>
+
+<h2 id="convert-and-compress">3, Convert and Compress</h2>
+
+<p>Option</p>
+
+<pre><code>Xilisoft Video Converter Ultimate.
+
+Change some args, like Bitrate,Frame Rate,Video codec, etc.
+</code></pre>
+
+<h2 id="thats-all-everything-works-good">That’s all, Everything works good!</h2>
+
+]]></content>
+  </entry>
+  
+</feed>

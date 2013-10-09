@@ -4,7 +4,7 @@
   <title><![CDATA[Category: TechChangeWorld | YY Every Day]]></title>
   <link href="http://arekyao.github.io/blog/categories/techchangeworld/atom.xml" rel="self"/>
   <link href="http://arekyao.github.io/"/>
-  <updated>2013-10-08T23:31:49+08:00</updated>
+  <updated>2013-10-09T11:14:54+08:00</updated>
   <id>http://arekyao.github.io/</id>
   <author>
     <name><![CDATA[Arek.Yao]]></name>
@@ -365,12 +365,16 @@ I believe it will give me a lot beyond my imagination after that.</p>
 
 <h2 id="install-rubyjekyllmarkdownetc">2,install ruby,<a href="https://github.com/mreid/jekyll/" title="Jekyll">jekyll</a>,<a href="http://markdown.tw/">markdown</a>,etc</h2>
 
-<pre><code>install rvm to manager ruby version,ruby 1.9 needed 
-gem install rdoc
-gem install jekyll
-gem install rdiscount or kramdown
-easy_install Pygments
-</code></pre>
+<p>```
+install rvm to manager ruby version,ruby 1.9 needed 
+$rvm install 1.9.2 &amp;&amp; rvm use 1.9.2
+$git clone git://github.com/imathis/octopress.git octopress
+$gem install rdoc
+$gem install jekyll
+$gem install kramdown
+$easy_install Pygments</p>
+
+<p>```</p>
 
 <p>this is typical structure in <a href="https://github.com/mreid/jekyll/" title="Jekyll">jekyll</a> frame</p>
 

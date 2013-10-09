@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: SQL | YY Every Day]]></title>
+  <link href="http://arekyao.github.io/tags/sql/atom.xml" rel="self"/>
+  <link href="http://arekyao.github.io/"/>
+  <updated>2013-10-09T11:14:54+08:00</updated>
+  <id>http://arekyao.github.io/</id>
+  <author>
+    <name><![CDATA[Arek.Yao]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Database Overview]]></title>
+    <link href="http://arekyao.github.io/blog/2013/04/23/database-overview/"/>
+    <updated>2013-04-23T22:46:00+08:00</updated>
+    <id>http://arekyao.github.io/blog/2013/04/23/database-overview</id>
+    <content type="html"><![CDATA[<h2 id="preface">Preface</h2>
+
+<p>What’s the most important?
+Infomation!</p>
+
+<p>How to get and save infomation?
+Database.</p>
+
+<p>Here is some story about database.</p>
+
+<p>Generally, database can be divided into two arm, SQL and NoSQL.</p>
+
+<h2 id="sqlhttpenwikipediaorgwikistructuredquerylanguage"><a href="http://en.wikipedia.org/wiki/Structured_Query_Language">SQL</a></h2>
+
+<!-- more -->
+
+<p>SQL (Structured Query Language) is very common.<br />
+mysql ,sybase and oracle are well-known as database, which is used a lot</p>
+
+<table class="mytable">
+  <thead>
+    <tr>
+      <th>Source</th>
+      <th style="text-align: left">Common name</th>
+      <th style="text-align: center">Full name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Microsoft / Sybase</td>
+      <td style="text-align: left">T-SQL</td>
+      <td style="text-align: center">Transact-SQL</td>
+    </tr>
+    <tr>
+      <td>MySQL</td>
+      <td style="text-align: left">SQL/PSM</td>
+      <td style="text-align: center">SQL/Persistent Stored Module (implements SQL/PSM)</td>
+    </tr>
+    <tr>
+      <td>Oracle</td>
+      <td style="text-align: left">PL/SQL</td>
+      <td style="text-align: center">Procedural Language/SQL (based on Ada)</td>
+    </tr>
+    <tr>
+      <td>Sybase</td>
+      <td style="text-align: left">Watcom-SQL	SQL Anywhere</td>
+      <td style="text-align: center">Watcom-SQL Dialect</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="nosqlhttpenwikipediaorgwikinosql"><a href="http://en.wikipedia.org/wiki/Nosql">NoSQL</a></h2>
+
+<p>Feature:
+It provides mechanism for storage and retrieval of data that use looser consistency models than traditional relational databases  </p>
+
+<p>Achieve horizontal scaling and higher availability</p>
+
+<ul>
+  <li>
+    <h5 id="document-store">Document Store</h5>
+  </li>
+</ul>
+
+<p>Document is encoded to some 
+In general, they all assume that documents <strong>encapsulate</strong> and <strong>encode</strong> data (or information) in some standard formats or encodings.
+Such as, XML, Jason, YAML etc.</p>
+
+<table class="mytable">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th style="text-align: left">Language</th>
+      <th style="text-align: center">Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>BaseX</td>
+      <td style="text-align: left">Java, XQuery</td>
+      <td style="text-align: center">XML database</td>
+    </tr>
+    <tr>
+      <td>Couchbase Server</td>
+      <td style="text-align: left">Erlang, C++</td>
+      <td style="text-align: center">Support for JSON and binary documents</td>
+    </tr>
+    <tr>
+      <td>Apache CouchDB</td>
+      <td style="text-align: left">Erlang</td>
+      <td style="text-align: center">JSON store</td>
+    </tr>
+    <tr>
+      <td>MongoDB</td>
+      <td style="text-align: left">C++, C#</td>
+      <td style="text-align: center">BSON store (binary format JSON)</td>
+    </tr>
+    <tr>
+      <td>SimpleDB</td>
+      <td style="text-align: left">Erlang</td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td>Oracle NoSQL Database</td>
+      <td style="text-align: left">Java</td>
+      <td style="text-align: center"> </td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>
+    <h5 id="graph">Graph</h5>
+  </li>
+</ul>
+
+<p>The kind of data could be social relations, public transport links, road maps or network topologies, for example.</p>
+
+<ul>
+  <li>
+    <h5 id="key-value-store">Key Value Store</h5>
+    <p>kv cache in RAM  </p>
+  </li>
+</ul>
+
+<p>Radis </p>
+
+<p>Memcached</p>
+
+<p>Keyvalue stores on solid state or rotating disk</p>
+
+<p>MemcacheDB</p>
+
+<p>MongoDB</p>
+
+<ul>
+  <li>
+    <h5 id="multivalue-database">Multivalue database</h5>
+  </li>
+</ul>
+
+<p>InfinityDB</p>
+
+<ul>
+  <li>
+    <h5 id="object-databasehttpenwikipediaorgwikiobjectdatabase"><a href="http://en.wikipedia.org/wiki/Object_database">Object database</a></h5>
+  </li>
+  <li>
+    <h5 id="tabular">Tabular</h5>
+  </li>
+</ul>
+
+<p>Apache Accumulo</p>
+
+<p>BigTable</p>
+
+<p>Apache Hbase</p>
+
+<p>Hypertable</p>
+
+<p>Reference</p>
+
+<ol>
+  <li><a href="">http://nosql-database.org/</a></li>
+</ol>
+
+]]></content>
+  </entry>
+  
+</feed>

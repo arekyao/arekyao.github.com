@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: JustForFun | YY Every Day]]></title>
+  <link href="http://arekyao.github.io/tags/justforfun/atom.xml" rel="self"/>
+  <link href="http://arekyao.github.io/"/>
+  <updated>2013-10-09T11:14:54+08:00</updated>
+  <id>http://arekyao.github.io/</id>
+  <author>
+    <name><![CDATA[Arek.Yao]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Something about Chess series with AI]]></title>
+    <link href="http://arekyao.github.io/blog/2013/06/23/something-about-chess-series-with-ai/"/>
+    <updated>2013-06-23T20:48:00+08:00</updated>
+    <id>http://arekyao.github.io/blog/2013/06/23/something-about-chess-series-with-ai</id>
+    <content type="html"><![CDATA[<h2 id="preface">Preface</h2>
+<p>One day, I want to learn some knowledge about the Game AI topic.
+Chess series is supposed to a big collection in Game.
+Xiangqi is my fav chess game, and I am familiar with it.
+It’s a good choice.</p>
+
+<p>Besides, six years ago, I have developed xiangqi program both in java &amp; C++.
+I can use it to learn AI engine ,and the program developed before , can be seen as a GUI.
+Techinically, it will be OK then.
+Reality is cruel, the Java version is lost at home, and the C++ version have to run on Window, not my Mac OSX.</p>
+
+<h2 id="chess--ai">Chess &amp; AI</h2>
+
+<!-- more -->
+
+<p><a href="http://www.chessvariants.org/d.chess/chess.html">Chess</a> is a two-player strategy board game played on a chessboard, a checkered gameboard with 64 squares arranged in an eight-by-eight grid. <br />
+It is one of the world’s most popular games, played by millions of people worldwide at home, in clubs, online, by correspondence, and in tournaments.</p>
+
+<p>So if chess has AI, then we can compete with Computer.  </p>
+
+<p>More interestingly, we can let two Computer with AI fight with each other.</p>
+
+<p>There are all kinds of chess game, which seems alike.</p>
+
+<p>They have these Feature:
+* board with X * Y
+* pieces with some rule</p>
+
+<p>Chess(International)
+http://www.chessvariants.org/d.chess/chess.html</p>
+
+<p>Xiangqi(Chinese Chess)
+http://www.chessvariants.org/xiangqi.html</p>
+
+<h2 id="xboard--fairymax">Xboard &amp; FairyMax</h2>
+<p>Xboard is a chess program, FairyMax is a chess engine(AI)</p>
+
+<p><a href="http://www.gnu.org/software/xboard/">Xboard</a> is a graphical user interface for chess in all its major forms, <br />
+including international chess, xiangqi (Chinese chess), shogi (Japanese chess) and Makruk, <br />
+in addition to many minor variants such as Losers Chess, Crazyhouse, Chess960 and Capablanca Chess.  </p>
+
+<p><a href="http://home.hccnet.nl/h.g.muller/CVfairy.html">FairyMax</a>
+FairyMax is developed by H.G.Muller, who is super fan of chess.
+Maxqi is the xiangqi engine.</p>
+
+<h2 id="learing">Learing</h2>
+
+<h5 id="first--install-xboard--fairymax">First , install xboard &amp; Fairymax</h5>
+
+<p>Here is a way:</p>
+
+<p><a href="">https://github.com/Homebrew/homebrew-games</a></p>
+
+<h5 id="second-problem-is-how-to-run-xboard">Second Problem is how to run xboard….</h5>
+
+<p>Don’t underestimate it.
+It takes me lots of time to test it.</p>
+
+<p>Help information? xboard help?     It does not work <br />
+The output is full of useless infomation</p>
+
+<p>Xboard web help? User guide ? It does not work.<br />
+http://www.gnu.org/software/xboard/user_guide/UserGuide.html</p>
+
+<p>at last, I have to learn how to run, From an appication on Window..</p>
+
+<p>OMG….</p>
+
+<p>1, copy the xboard.ini to be used as xboard.rc</p>
+
+<p>2, then I got the knowledge, the viariant arg…supposed to be the xiangqi</p>
+
+<p>3, use fcp can call the maxqi. from user guide</p>
+
+<p>now, it almost works but have a problem
+xiangqi can compatible with maxqi engine</p>
+
+<p>4, firstProtocolVersion is need.</p>
+
+<p>ok,then you can run xboard</p>
+
+<p><code>
+	xboard -variant xiangqi -firstProtocolVersion 1 -fcp maxqi
+</code></p>
+
+<h5 id="review-the-maxqi-code">review the maxqi code</h5>
+<p>Now the biggest problem,which I will face, is coming….</p>
+
+<p>Why?</p>
+
+<p>Becaure somebody want to program the engine with 1200 characters.</p>
+
+<p>Here is the code, are you crazy? especially, the Function D()…..</p>
+
+<p>I got the code little by little, and hesitate when D() function come to me…</p>
+
+<p>```c Function D http://fairymax.sourcearchive.com/documentation/4.8q-2/maxqi_8c_source.html Source Article</p>
+
+<p>D(k,q,l,e,z,n)          /* recursive minimax search, k=moving side, n=depth<em>/
+    int k,q,l,e,z,n;        /</em> (q,l)=window, e=current eval. score, E=e.p. sqr.<em>/
+{                       /</em> e=score, z=prev.dest; J,Z=hashkeys; return score<em>/
+    int j,r,m,v,d,h,i,P,V,f=J,g=Z,C,s,flag,F;
+    unsigned char t,p,u,x,y,X,Y,B,lu;
+    struct _</em>a=A+(J+k&amp;U-1);                       /* lookup pos. in hash table<em>/
+    q-=q&lt;e;l-=l&lt;=e;                               /</em> adj. window: delay bonus <em>/
+    d=a-&gt;D;m=a-&gt;V;F=a-&gt;F;                         /</em> resume at stored depth   <em>/
+    X=a-&gt;X;Y=a-&gt;Y;                                /</em> start at best-move hint  <em>/
+    if(z&amp;S&amp;&amp;a-&gt;K==Z)printf(“# root hit %d %d %x\n”,a-&gt;D,a-&gt;V,a-&gt;F);
+    if(a-&gt;K-Z|z&amp;S  |                              /</em> miss: other pos. or empty<em>/
+            !(m&lt;=q|F&amp;8&amp;&amp;m&gt;=l|F&amp;S))                       /</em>   or window incompatible <em>/
+        d=X=0,Y=-1;                                  /</em> start iter. from scratch <em>/
+    W(d++&lt;n||d&lt;3||              /</em>** min depth = 2   iterative deepening loop <em>/
+            z&amp;S&amp;&amp;K==I&amp;&amp;(GetTickCount()-Ticks&lt;tlim&amp;d&lt;=MaxDepth|| /</em> root: deepen upto time   <em>/
+                (K=X,L=Y,d=3)))                             /</em> time’s up: go do best    <em>/
+    {x=B=X;lu=1;                                  /</em> start scan at prev. best <em>/
+        h=Y-255;                                       /</em> if move, request 1st try <em>/
+        P=d&gt;2&amp;&amp;l+I?D(16-k,-l,1-l,-e,2</em>S,d-3):I;      /* search null move         <em>/
+        m=-P&lt;l|R&lt;5?d-2?-I:e:-P;   /</em>** prune if &gt; beta  unconsidered:static eval <em>/
+        N++;                                         /</em> node count (for timing)  <em>/
+        do{u=b[x];                                   /</em> scan board looking for   <em>/
+            if(u)m=lu|u&amp;15^3?m:(d=98,I),lu=u&amp;15^3;        /</em> Kings facing each other  <em>/
+            if(u&amp;&amp;(u&amp;16)==k)                            /</em>  own piece (inefficient!)<em>/
+            {r=p=u&amp;15;                                  /</em> p = piece type (set r&gt;0) <em>/
+                j=od[p];                                   /</em> first step vector f.piece<em>/
+                W(r=o[++j])                                /</em> loop over directions o[] <em>/
+                {A:                                        /</em> resume normal after best <em>/
+                    flag=h?3:of[j];                           /</em> move modes (for fairies) <em>/
+                    y=x;                                      /</em> (x,y)=move               <em>/
+                    do{                                       /</em> y traverses ray, or:     <em>/
+                        y=h?Y:y+r;                               /</em> sneak in prev. best move <em>/
+                        if(y&gt;=16</em>BH|(y&amp;15)&gt;=BW)break;            /* board edge hit           <em>/
+                        t=b[y];                                  /</em> captured piece           <em>/
+                        if(flag&amp;1+!t)                            /</em> mode (capt/nonc) allowed?<em>/
+                        {if(t&amp;&amp;(t&amp;16)==k||flag»10&amp;zn[y])break;  /</em> capture own or bad zone  <em>/
+                            i=w[t&amp;15];                              /</em> value of capt. piece t   <em>/
+                            if(i&lt;0)m=I,d=98;                        /</em> K capture                <em>/
+                            if(m&gt;=l&amp;d&gt;1)goto C;                     /</em> abort on fail high       <em>/
+                            v=d-1?e:i-p;                            /</em>** MVV/LVA scoring if d=1<strong>/
+                            if(d-!t&gt;1)                              /</strong>* all captures if d=2  <strong><em>/
+                            {v=centr[p]?b[x+257]-b[y+257]:0;        /</em> center positional pts.   <em>/
+                                b[x]=0;b[y]=u;                         /</em> do move                  <em>/
+                                v-=w[p]&gt;0|R&lt;10?0:20;                   /</em></strong> freeze K in mid-game <strong><em>/
+                                if(p&lt;3)                                /</em> pawns:                   <em>/
+                                {v+=2;                                 /</em> end-game Pawn-push bonus <em>/
+                                    if(zn[x]-zn[y])b[y]+=5,               /</em> upgrade Pawn and         <em>/
+                                        i+=w[p+5]-w[p];                      /</em>          promotion bonus <em>/
+                                }
+                                if(z&amp;S &amp;&amp; GamePtr&lt;6) v+=(rand()»10&amp;31)-16; // randomize in root
+                                J+=J(0);Z+=J(4);
+                                v+=e+i;V=m&gt;q?m:q;                      /</em></strong> new eval &amp; alpha    <strong>**/
+                                C=d-1-(d&gt;5&amp;p&gt;2&amp;!t&amp;!h);                 /* nw depth, reduce non-cpt.<em>/
+                                C=R&lt;10|P-I|d&lt;3||t&amp;&amp;p-3?C:d;            /</em> extend 1 ply if in-check <em>/
+                                do
+                                    s=C&gt;2|v&gt;V?-D(16-k,-l,-V,-v,/</em></strong> futility, recursive eval. of reply <em>/
+                                            0,C):v;
+                                W(s&gt;q&amp;++C&lt;d); v=s;                     /</em> no fail:re-srch unreduced<em>/
+                                if(z&amp;S&amp;&amp;K-I)                           /</em> move pending: check legal<em>/
+                                {if(v+I&amp;&amp;x==K&amp;y==L)                    /</em>   if move found          <em>/
+                                    {Q=-e-i;
+                                        a-&gt;D=99;a-&gt;V=500;                    /</em> lock game in hash as loss<em>/
+                                        R-=i/FAC;                            /</em>** total captd material <em>**/
+                                        Fifty = t|p&lt;3?0:Fifty+1;
+                                        return l;}                /</em>   &amp; not in check, signal <em>/
+                                        v=m;                                  /</em> (prevent fail-lows on    <em>/
+                                }                                      /</em>   K-capt. replies)       <em>/
+                                J=f;Z=g;
+                                b[y]=t;b[x]=u;                         /</em> undo move                <em>/
+                            }                                       /</em>          if non-castling <em>/
+                            if(v&gt;m)                                 /</em> new best, update max,best<em>/
+                                m=v,X=x,Y=y;                           /</em> no marking!              <em>/
+                            if(h){h=0;goto A;}                      /</em> redo after doing old best<em>/
+                        }
+                        s=t;
+                        t+=flag&amp;4;                               /</em> fake capt. for nonsliding<em>/
+                        if(s&amp;&amp;flag&amp;8)t=0,flag^=flag»4&amp;15;       /</em> hoppers go to next phase <em>/
+                        if(!(flag&amp;S))                            /</em> zig-zag piece?           <em>/
+                            r^=flag»12,flag^=flag»4&amp;15;           /</em> alternate vector &amp; mode  <em>/
+                    }W(!t);                                   /</em> if not capt. continue ray<em>/
+                }}
+                if((++x&amp;15)&gt;=BW)x=x+16&amp;240,lu=1;            /</em> next sqr. of board, wrap <em>/
+                if(x&gt;=16</em>BH)x=0;
+        }W(x-B);         <br />
+C:if(a-&gt;D&lt;99)                                  /* protect game history     <em>/
+      a-&gt;K=Z,a-&gt;V=m,a-&gt;D=d,a-&gt;X=X,                /</em> always store in hash tab <em>/
+          a-&gt;F=8</em>(m&gt;q)|S<em>(m&lt;l),a-&gt;Y=Y;                /</em> move, type (bound/exact),<em>/
+  if(z&amp;S&amp;&amp;Post){
+      printf(“%2d “,d-2);
+      printf(“%6d “,m);
+      printf(“%8d %10d %c%c%c%c\n”,(GetTickCount()-Ticks)/10,N,
+              ‘i’-(X»4&amp;15),’9’-(X&amp;15),’i’-(Y»4&amp;15),’9’-(Y&amp;15)),fflush(stdout);}
+    }                                             /</em>    encoded in X S,8 bits <em>/
+    if(z&amp;4</em>S)K=X,L=Y&amp;~S;
+    return m+=m&lt;e;                                /* delayed-loss bonus       */
+}</p>
+
+<p>```</p>
+
+<p>Then I think for a while….</p>
+
+<p>maxqi engine is so pop, why nobody discuss this??</p>
+
+<p>why no notes? Google maxqi,no good results.</p>
+
+<p>Then I Google fairymax, still no good results…</p>
+
+<p>At last, I saw that the fairymax derived from Micro-Max…</p>
+
+<p>then ,i got everything….</p>
+
+<h5 id="micro-maxhttphomehccnetnlhgmullermax-src2html"><a href="http://home.hccnet.nl/h.g.muller/max-src2.html">micro-max</a></h5>
+
+<h6 id="basic-data-representations"># Basic Data Representations</h6>
+
+<ul>
+  <li>Piece Encoding</li>
+  <li>Board Representation</li>
+  <li>Move Generation</li>
+</ul>
+
+<h6 id="basic-moves"># Basic Moves</h6>
+
+<ul>
+  <li>En Passant Capture</li>
+  <li>Castling</li>
+  <li>Pawn Promotions</li>
+</ul>
+
+<h6 id="search-algorithm"># Search Algorithm</h6>
+
+<ul>
+  <li>Alpha-Beta Minimax</li>
+  <li>Quiescence Search</li>
+  <li>Do and Undo Move</li>
+  <li>Iterative Deepening</li>
+  <li>Move Sorting</li>
+</ul>
+
+<h6 id="transposition-table"># Transposition Table</h6>
+
+<ul>
+  <li>Hashing</li>
+  <li>Replacement</li>
+</ul>
+
+<h6 id="evaluation">#Evaluation</h6>
+<ul>
+  <li>Material</li>
+  <li>Piece-Square Table</li>
+  <li>Checkmate and Stalemate</li>
+  <li>Delay Penalty</li>
+</ul>
+
+<h6 id="the-interface"># The Interface</h6>
+<p>Move Legality Checking</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Something Interesting about AI]]></title>
+    <link href="http://arekyao.github.io/blog/2013/04/21/something-interesting-about-ai/"/>
+    <updated>2013-04-21T19:53:00+08:00</updated>
+    <id>http://arekyao.github.io/blog/2013/04/21/something-interesting-about-ai</id>
+    <content type="html"><![CDATA[<ul>
+  <li>
+    <h2 id="generate-music-algorithmicallyhttpwwwdatabozocom20130412generatingmusicalgorithmicallyhtml"><a href="http://www.databozo.com/2013/04/12/Generating_music_algorithmically.html">Generate Music Algorithmically</a></h2>
+  </li>
+</ul>
+
+<h3 id="music-feature">Music Feature</h3>
+
+<p>Music is compose by lots of note.<br />
+The feature of note is frequece and length.</p>
+
+<h3 id="markov-chain">Markov Chain</h3>
+
+<p>The idea tech of Markov Chain is that, the next state (to us,it’s music note) is decided by the previous N states, only.
+<!-- more -->
+That means:<br />
+the next note’s freq is decided by the previous’s.
+the next note’s length is decided by the previous’s.</p>
+
+<h3 id="machine-learning">Machine Learning</h3>
+
+<p>First, learn the trans probability throught lots of music sample.</p>
+
+<p>Then, we got the probability from Freq A to Freq B, From length 1/2 to 1/4</p>
+
+<p>Last, generate note by probability, random. Create music file according to the note data.</p>
+
+<h3 id="code">Code</h3>
+
+<p>The lib “pysynth.py” for gen music through two arg (freq and length)</p>
+
+<p>The key program “MarkovBuilder.py” for TransArray&amp;GenerateNote</p>
+
+<p>```py</p>
+
+<p>’’’
+Created on May 14, 2009</p>
+
+<p>@author: darkxanthos
+‘’’
+import random</p>
+
+<p>class MarkovBuilder:
+    def <strong>init</strong>(self, value_list):
+        self._values_added = 0
+        self._reverse_value_lookup = value_list
+        self._value_lookup = {}
+        for i in range(0, len(value_list)):
+            self._value_lookup[value_list[i]] = i
+        #Initialize our adjacency matrix with the initial
+        #probabilities for note transitions.
+        self._matrix=[[0 for x in range(0,len(value_list))] for i in range(0,len(value_list))]</p>
+
+<pre><code>def add(self, from_value, to_value):
+    """Add a path from a note to another note. Re-adding a path between notes will increase the associated weight."""
+    value = self._value_lookup
+    self._matrix[value[from_value]][value[to_value]] += 1
+    self._values_added = self._values_added + 1
+    
+def next_value(self, from_value):
+    value = self._value_lookup[from_value]
+    value_counts = self._matrix[value]
+    value_index = self.randomly_choose(value_counts)
+    if(value_index &lt; 0):
+        raise RuntimeError, "Non-existent value selected."
+    else:
+        return self._reverse_value_lookup[value_index]
+        
+def randomly_choose(self, choice_counts):
+    """Given an array of counts, returns the index that was randomly chosen"""
+    counted_sum = 0
+    count_sum = sum(choice_counts)
+    selected_count = random.randrange(1, count_sum + 1)
+    for index in range(0, len(choice_counts)):
+        counted_sum += choice_counts[index]
+        if(counted_sum &gt;= selected_count):
+            return index
+    raise RuntimeError, "Impossible value selection made. BAD!"
+</code></pre>
+
+<p>```</p>
+
+<p>Main Program “MarkovMusic.py”</p>
+
+<p>```</p>
+
+<p>’’’
+Created on May 12, 2009</p>
+
+<p>@author: Justin Bozonier
+‘’’
+import pysynth
+from MarkovBuilder import MarkovBuilder</p>
+
+<p>class MusicMatrix:
+    def <strong>init</strong>(self):
+        self._previous_note = None
+        self._markov = MarkovBuilder([“a”, “a#”, “b”, “c”, “c#”, “d”, “d#”, “e”, “f”, “f#”, “g”, “g#”])
+        self._timings = MarkovBuilder([1, 2, 4, 8, 16])</p>
+
+<pre><code>def add(self, to_note):
+    """Add a path from a note to another note. Re-adding a path between notes will increase the associated weight."""
+    if(self._previous_note is None):
+        self._previous_note = to_note
+        return
+    from_note = self._previous_note
+    self._markov.add(from_note[0], to_note[0])
+    self._timings.add(from_note[1], to_note[1])
+    self._previous_note = to_note
+    
+def next_note(self, from_note):
+    return [self._markov.next_value(from_note[0]), self._timings.next_value(from_note[1])]
+</code></pre>
+
+<h1 id="playing-it-comes-next-">Playing it comes next :)</h1>
+<p>#test = [[‘c’,4], [‘e’,4], [‘g’,4], [‘c5’,1]]
+#pysynth.make_wav(test, fn = “test.wav”)</p>
+
+<p>musicLearner = MusicMatrix()</p>
+
+<h1 id="input-the-melody-of-row-row-row-your-boat">Input the melody of Row, Row, Row Your Boat</h1>
+<p># The MusicMatrix will automatically use this to 
+# model our own song after it.
+musicLearner.add([“c”, 4])
+musicLearner.add([“c”, 4])
+musicLearner.add([“c”, 4])
+musicLearner.add([“d”, 8])
+musicLearner.add([“e”, 4])
+musicLearner.add([“e”, 4])
+musicLearner.add([“d”, 8])
+musicLearner.add([“e”, 4])
+musicLearner.add([“f”, 8])
+musicLearner.add([“g”, 2])</p>
+
+<p>musicLearner.add([“c”, 8])
+musicLearner.add([“c”, 8])
+musicLearner.add([“c”, 8])</p>
+
+<p>musicLearner.add([“g”, 8])
+musicLearner.add([“g”, 8])
+musicLearner.add([“g”, 8])</p>
+
+<p>musicLearner.add([“e”, 8])
+musicLearner.add([“e”, 8])
+musicLearner.add([“e”, 8])</p>
+
+<p>musicLearner.add([“c”, 8])
+musicLearner.add([“c”, 8])
+musicLearner.add([“c”, 8])</p>
+
+<p>musicLearner.add([“g”, 4])
+musicLearner.add([“f”, 8])
+musicLearner.add([“e”, 4])
+musicLearner.add([“d”, 8])
+musicLearner.add([“c”, 2])</p>
+
+<p>random_score = []
+current_note = [“c”, 4]
+for i in range(0,100):
+    print current_note[0] + “, “ + str(current_note[1])
+    current_note = musicLearner.next_note(current_note)
+    random_score.append(current_note)</p>
+
+<p>pysynth.make_wav(random_score, fn = “first_score.wav”)</p>
+
+<p>```</p>
+
+<p>code src: <br />
+<a href="http://github.com/jcbozonier/MarkovMusic/tree/master">http://github.com/jcbozonier/MarkovMusic/tree/master</a></p>
+
+<ul>
+  <li>
+    <h2 id="ai-snakehttphawsteincompostssnake-aihtml"><a href="http://hawstein.com/posts/snake-ai.html">AI Snake</a></h2>
+  </li>
+</ul>
+
+<h4 id="strategy-1">Strategy 1</h4>
+
+<p>If Target is the food, choose the shortest path</p>
+
+<h4 id="strategy-2">Strategy 2</h4>
+
+<p>If Target is the tail, choose the longest path</p>
+
+<p>code src:<br />
+<a href="">https://github.com/Hawstein/snake-ai</a></p>
+
+<ul>
+  <li>
+    <h2 id="ai-solves-super-mario-bros-and-other-classic-nes-gameshttpwwwwiredcouknewsarchive2013-0412super-mario-solved"><a href="http://www.wired.co.uk/news/archive/2013-04/12/super-mario-solved">AI ‘solves’ Super Mario Bros. and other classic NES games</a></h2>
+  </li>
+</ul>
+
+<embed src="http://player.youku.com/player.php/sid/XNTQzMTM1NDky/v.swf" allowfullscreen="true" quality="high" width="480" height="400" align="middle" allowscriptaccess="always" type="application/x-shockwave-flash" />
+
+<p><a href="">http://v.youku.com/v_show/id_XNTQzMTM1NDky.html</a></p>
+
+<p><a href="">http://www.cs.cmu.edu/~tom7/mario/mario.pdf</a></p>
+
+]]></content>
+  </entry>
+  
+</feed>

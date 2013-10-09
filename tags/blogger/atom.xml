@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: blogger | YY Every Day]]></title>
+  <link href="http://arekyao.github.io/tags/blogger/atom.xml" rel="self"/>
+  <link href="http://arekyao.github.io/"/>
+  <updated>2013-10-09T11:15:11+08:00</updated>
+  <id>http://arekyao.github.io/</id>
+  <author>
+    <name><![CDATA[Arek.Yao]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Hello World!]]></title>
+    <link href="http://arekyao.github.io/blog/2013/01/10/hello-world/"/>
+    <updated>2013-01-10T20:59:00+08:00</updated>
+    <id>http://arekyao.github.io/blog/2013/01/10/hello-world</id>
+    <content type="html"><![CDATA[<p>It’s my first blog on github.</p>
+
+<p>At the moment,I decide to write my blog,TRY MY BEST,in English.</p>
+
+<p>Maybe it’s hard at first.
+I believe it will give me a lot beyond my imagination after that.</p>
+
+<!-- more -->
+
+<h1 id="how-to-build-a-blog-on-github">How to build a blog on github</h1>
+
+<h2 id="apply-a-account--some-repo">1,  apply a account &amp; some repo</h2>
+
+<pre><code>apply a id on github and a new repo named "yourid.github.com"
+</code></pre>
+
+<h2 id="install-rubyjekyllmarkdownetc">2,install ruby,<a href="https://github.com/mreid/jekyll/" title="Jekyll">jekyll</a>,<a href="http://markdown.tw/">markdown</a>,etc</h2>
+
+<p>```
+install rvm to manager ruby version,ruby 1.9 needed 
+$rvm install 1.9.2 &amp;&amp; rvm use 1.9.2
+$git clone git://github.com/imathis/octopress.git octopress
+$gem install rdoc
+$gem install jekyll
+$gem install kramdown
+$easy_install Pygments</p>
+
+<p>```</p>
+
+<p>this is typical structure in <a href="https://github.com/mreid/jekyll/" title="Jekyll">jekyll</a> frame</p>
+
+<pre><code>|-- _config.yml
+|-- _includes
+|-- _layouts
+|   |-- default.html
+|   `-- post.html
+|-- _posts
+|   |-- 2007-10-29-why-every-programmer-should-play-nethack.textile
+|   `-- 2009-04-26-barcamp-boston-4-roundup.textile
+|-- _site
+`-- index.html
+</code></pre>
+
+<h2 id="install-octopress">3,install <a href="https://github.com/imathis/octopress">Octopress</a></h2>
+
+<pre><code>$ rake new_post["title"]
+$ rake generate     
+$ rake watch       
+$ rake preview    
+</code></pre>
+
+<h2 id="about-math-block">4, About Math Block</h2>
+
+<p><a href="http://www.ctex.org/LaTeX">LaTeX</a> + <a href="http://www.mathjax.org/">MathJax</a></p>
+
+<pre><code>LaTex is a document markup language and document preparation system for the TeX typesetting program
+</code></pre>
+
+<p>LaTex is just a format language, or just a standard. (not a lib or tool, just a language which doesn’t need installed)    </p>
+
+<pre><code>MathJax is a cross-browser JavaScript library that displays mathematical equations in web browser
+</code></pre>
+
+<p>MathJax is a library, even though, it does not need installed either. </p>
+
+<pre><code>The easiest way to use MathJax is to link directly to the MathJax distributed network service (see Using the MathJax CDN)
+http://docs.mathjax.org/en/latest/installation.html
+</code></pre>
+
+<p>LaTex Tools:
+  <a href="http://www.codecogs.com/latex/eqneditor.php">Online LaTeX Equation Editor</a></p>
+
+<p>ps : I am so stupid, try my best to download a lib, MathJax…. totally useless.. </p>
+
+<h2 id="about-git">5, About Git</h2>
+
+<p><a href="">http://rogerdudler.github.io/git-guide/index.zh.html</a></p>
+
+<p><a href="">http://marklodato.github.io/visual-git-guide/index-en.html</a></p>
+
+<h3 id="reference">Reference:</h3>
+
+<ul>
+  <li><a href="http://www.cnblogs.com/TheGrandDesign/articles/2573282.html">像黑客一样写博客——Jekyll入门</a></li>
+  <li><a href="http://fancyoung.com/blog/octopress-study/">技术博客利器——Octopress</a></li>
+  <li><a href="http://liuhongjiang.github.com/tech/blog/2012/11/21/math/">公式编辑</a></li>
+</ul>
+
+<blockquote class="information">
+  <ul>
+    <li>Ruby  <br />
+      <ul>
+        <li><a href="https://github.com/mreid/jekyll/" title="Jekyll">Jekyll</a></li>
+        <li><a href="http://tinytree.info/">Bonsai</a> 一个非常简单（但实用）的小脚本</li>
+        <li><a href="http://webgen.rubyforge.org/">Webgen</a> 一个较复杂的生成器</li>
+      </ul>
+    </li>
+    <li>Python
+      <ul>
+        <li><a href="http://ringce.com/hyde">Hyde</a> Jekyll的Python语言实现版本</li>
+        <li><a href="http://pypi.python.org/pypi/cyrax">Cyrax</a> 使用Jinja2模板引擎的生成器</li>
+      </ul>
+    </li>
+    <li>PHP
+      <ul>
+        <li><a href="http://www.phrozn.info/">Phrozn</a> PHP语言实现的静态网站生成器</li>
+      </ul>
+    </li>
+  </ul>
+</blockquote>
+
+<h3 id="my-test-table">My Test Table</h3>
+
+<table class="mytable">
+  <thead>
+    <tr>
+      <th>Default aligned</th>
+      <th style="text-align: left">Left aligned</th>
+      <th style="text-align: center">Center aligned</th>
+      <th style="text-align: right">Right aligned</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>First body part</td>
+      <td style="text-align: left">Second cell</td>
+      <td style="text-align: center">Third cell</td>
+      <td style="text-align: right">fourth cell</td>
+    </tr>
+    <tr>
+      <td>Second line</td>
+      <td style="text-align: left">foo</td>
+      <td style="text-align: center"><strong>strong</strong></td>
+      <td style="text-align: right">baz</td>
+    </tr>
+    <tr>
+      <td>Third line</td>
+      <td style="text-align: left">quux</td>
+      <td style="text-align: center">baz</td>
+      <td style="text-align: right">bar</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="my-math-test">My Math Test</h3>
+
+<script type="math/tex; mode=display">% &lt;![CDATA[
+
+\begin{align*}
+  & \phi(x,y) = \phi \left(\sum_{i=1}^n x_ie_i, \sum_{j=1}^n y_je_j \right)
+  = \sum_{i=1}^n \sum_{j=1}^n x_i y_j \phi(e_i, e_j) = \\
+  & (x_1, \ldots, x_n) \left( \begin{array}{ccc}
+      \phi(e_1, e_1) & \cdots & \phi(e_1, e_n) \\
+      \vdots & \ddots & \vdots \\
+      \phi(e_n, e_1) & \cdots & \phi(e_n, e_n)
+    \end{array} \right)
+  \left( \begin{array}{c}
+      y_1 \\
+      \vdots \\
+      y_n
+    \end{array} \right)
+\end{align*}
+ %]]&gt;</script>
+
+]]></content>
+  </entry>
+  
+</feed>
