@@ -4,7 +4,7 @@ title: "How to Add tag cloud to your Octopress blog"
 date: 2013-10-09 12:21
 comments: true
 categories: TechChangeWorld
-tags: [octopress,blogger,tag]
+tags: [octopress,blogger,bug]
 ---
 
 
