@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: blogger | YY Every Day]]></title>
   <link href="http://arekyao.github.io/tags/blogger/atom.xml" rel="self"/>
   <link href="http://arekyao.github.io/"/>
-  <updated>2013-10-09T12:15:32+08:00</updated>
+  <updated>2013-10-09T12:42:51+08:00</updated>
   <id>http://arekyao.github.io/</id>
   <author>
     <name><![CDATA[Arek.Yao]]></name>
@@ -12,6 +12,87 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[How to Add tag cloud to your Octopress blog]]></title>
+    <link href="http://arekyao.github.io/blog/2013/10/09/how-to-add-tag-cloud-to-your-octopress-blog/"/>
+    <updated>2013-10-09T12:21:00+08:00</updated>
+    <id>http://arekyao.github.io/blog/2013/10/09/how-to-add-tag-cloud-to-your-octopress-blog</id>
+    <content type="html"><![CDATA[<p>As same as adding “category list”,there are so many ways leading to Roma.</p>
+
+<p>Here is one of the solutions:</p>
+
+<h3 id="git-clone-two-repos">1,git clone two repos</h3>
+
+<p>git clone https://github.com/robbyedwards/octopress-tag-pages<br />
+git clone https://github.com/robbyedwards/octopress-tag-cloudclone  </p>
+
+<p>The first one is used to generate the tag page. 
+The latter one is for tag clound</p>
+
+<h3 id="octopress-tag-pages">2,octopress-tag-pages</h3>
+
+<p>cp tag_generator.rb to /plugins<br />
+cp tag_index.html to /source/_layouts<br />
+cp tag_feed.xml to /source/_includes/custom/  </p>
+
+<p>ps:the last one is not included in official document,but it’s really needed</p>
+
+<h3 id="octopress-tag-cloud">3,octopress-tag-cloud</h3>
+
+<p>cp tag_cloud.rb to /plugins</p>
+
+<p>cp those code below to /source/_includes/custom/asides/tags.html。</p>
+
+<p>Actually, the similiar file tags.html is in octopress-tag-cloud</p>
+
+<p>```xml</p>
+<section>
+  <h1>Tags</h1>
+  <ul class="tag-cloud">
+    {\[del this \]% tag_cloud font-size: 90-210%, limit: 10, style: para %}
+  </ul>
+</section>
+<p>```</p>
+
+<h3 id="add-the-block-to-somewhere">4,add the block to somewhere</h3>
+
+<p>add some code in _config.xml’s default_asides,such as:</p>
+
+<p>default_asides: [asides/category_list.html, asides/recent_posts.html, custom/asides/tags.html]</p>
+
+<h3 id="one-bug-of-tag-cloud">5,one bug of tag cloud</h3>
+
+<p>after doing before, there may be a problem or bug waiting for you.</p>
+
+<p>when rake, the error is:</p>
+
+<p><code>
+Liquid Exception: comparison of Array with Array failed in page
+</code></p>
+
+<p>At first, I think there must be something wrong with my setting.</p>
+
+<p>At last, I got some info from this:</p>
+
+<blockquote>
+  <p>This would occur when every tag is applied for only ONCE. Not sure if this is a bug. 
+Anyway you can simply apply one of the tags on more than one post.</p>
+</blockquote>
+
+<p>http://jeffli.me/blog/2013/06/17/add-tags-and-tag-cloud-support-to-octopress/</p>
+
+<p>We get the bug away by a trick:</p>
+
+<p><code>
+add same tag to three post before 'rake generate'
+then rake, will be ok
+after that, change tag to what supposed to be, little by little
+</code>
+ok, there is a use of TDD, lol</p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Hello World!]]></title>

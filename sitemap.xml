@@ -71,6 +71,12 @@
         <lastmod>2013-10-09T10:49:26+08:00</lastmod>
     </url>
     <url>
+        <loc>
+            http://arekyao.github.io/blog/2013/10/09/how-to-add-tag-cloud-to-your-octopress-blog/
+        </loc>
+        <lastmod>2013-10-09T12:42:17+08:00</lastmod>
+    </url>
+    <url>
         <loc>http://arekyao.github.io/404.html</loc>
         <lastmod>2013-10-09T11:53:15+08:00</lastmod>
     </url>
@@ -80,11 +86,11 @@
     </url>
     <url>
         <loc>http://arekyao.github.io/blog/archives/</loc>
-        <lastmod>2013-10-09T12:09:49+08:00</lastmod>
+        <lastmod>2013-10-09T12:42:17+08:00</lastmod>
     </url>
     <url>
         <loc>http://arekyao.github.io/</loc>
-        <lastmod>2013-10-09T12:09:49+08:00</lastmod>
+        <lastmod>2013-10-09T12:42:17+08:00</lastmod>
     </url>
     <url>
         <loc>http://arekyao.github.io/micromax/alpha_beta_minimax.html</loc>
