@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Tag: tag | YY Every Day]]></title>
-  <link href="http://arekyao.github.io/tags/tag/atom.xml" rel="self"/>
+  <title><![CDATA[Tag: bug | YY Every Day]]></title>
+  <link href="http://arekyao.github.io/tags/bug/atom.xml" rel="self"/>
   <link href="http://arekyao.github.io/"/>
-  <updated>2013-10-09T17:12:51+08:00</updated>
+  <updated>2013-10-09T23:01:40+08:00</updated>
   <id>http://arekyao.github.io/</id>
   <author>
     <name><![CDATA[Arek.Yao]]></name>

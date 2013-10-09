@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: theme | YY Every Day]]></title>
+  <link href="http://arekyao.github.io/tags/theme/atom.xml" rel="self"/>
+  <link href="http://arekyao.github.io/"/>
+  <updated>2013-10-09T23:01:40+08:00</updated>
+  <id>http://arekyao.github.io/</id>
+  <author>
+    <name><![CDATA[Arek.Yao]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[How to change your octopress blog theme]]></title>
+    <link href="http://arekyao.github.io/blog/2013/08/09/how-to-change-your-octopress-blog-theme/"/>
+    <updated>2013-08-09T22:51:00+08:00</updated>
+    <id>http://arekyao.github.io/blog/2013/08/09/how-to-change-your-octopress-blog-theme</id>
+    <content type="html"><![CDATA[<h3 id="get-the-theme">Get the theme</h3>
+
+<p>There are 3rd Party Octopress Themes in :
+https://github.com/imathis/octopress/wiki/3rd-Party-Octopress-Themes</p>
+
+<p>I pretty love FoxSlide and Reynard, but the reynard does not work in my octopress with some unknown problme.</p>
+
+<p>So I forked FoxSlide and make one by myself.</p>
+
+<p>Here is my product:</p>
+
+<p>https://github.com/arekyao/everyday</p>
+
+<h3 id="install-the-theme">Install the theme</h3>
+
+<p>```sh
+$ cd yourOctopress
+$ git clone https://github.com/arekyao/everyday .themes/everyday
+$ rake install[‘everyday’]
+$ rake generate</p>
+
+<p>```</p>
+
+<p>‘rake generate’ is very important and you will face lots of problems without it.</p>
+
+]]></content>
+  </entry>
+  
+</feed>
