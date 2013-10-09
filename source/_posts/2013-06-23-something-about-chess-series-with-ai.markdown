@@ -4,7 +4,7 @@ title: "Something about Chess series with AI"
 date: 2013-06-23 20:48
 comments: true
 categories: Algorithm
-tags: [iPhone, DIY,JustForFun]
+tags: [AI,chess,JustForFun]
 
 ---
 Preface
