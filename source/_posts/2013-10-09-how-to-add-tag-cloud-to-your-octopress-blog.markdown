@@ -15,6 +15,8 @@ Here is one of the solutions:
 
 ###1,git clone two repos
 
+<!-- more -->
+
 git clone https://github.com/robbyedwards/octopress-tag-pages  
 git clone https://github.com/robbyedwards/octopress-tag-cloudclone  
 

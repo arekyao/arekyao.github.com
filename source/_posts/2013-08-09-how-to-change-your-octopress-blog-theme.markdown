@@ -23,6 +23,7 @@ https://github.com/arekyao/everyday
 
 ###Install the theme
 
+<!-- more -->
 
 ```sh
 $ cd yourOctopress

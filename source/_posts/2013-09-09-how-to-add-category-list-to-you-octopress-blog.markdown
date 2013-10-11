@@ -12,6 +12,8 @@ tags: [octopress,blogger]
 
 save code to the file plugins/category_list_tag.rb
 
+<!-- more -->
+
 {% highlight ruby %}
 
 module Jekyll

@@ -4,7 +4,7 @@ title: "Android Dev on OSX"
 date: 2013-04-20 00:00
 comments: true
 categories: Architecture
-tags: [Android,SearchEngine]
+tags: [Android,SearchEngine, OSX]
 ---
 
 Some gossip
