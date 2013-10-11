@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: scipy | YY Every Day]]></title>
+  <link href="http://arekyao.github.io/tags/scipy/atom.xml" rel="self"/>
+  <link href="http://arekyao.github.io/"/>
+  <updated>2013-10-11T23:59:56+08:00</updated>
+  <id>http://arekyao.github.io/</id>
+  <author>
+    <name><![CDATA[Arek.Yao]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Data Mining: R, Python, RapidMiner or Matlab]]></title>
+    <link href="http://arekyao.github.io/blog/2013/10/11/data-mining-r-python-rapidminer-or-matlab/"/>
+    <updated>2013-10-11T22:04:00+08:00</updated>
+    <id>http://arekyao.github.io/blog/2013/10/11/data-mining-r-python-rapidminer-or-matlab</id>
+    <content type="html"><![CDATA[<p>In work or study, we have more and more problmes, which can be solved by data mining.</p>
+
+<p>Refer to data mining tools, kinds of stuff some out,such as R, spss, mathematica,etc.
+The most popular packages in the industry are SAS and SPSS, but they are quite expensive, so you might wanna have a free one, and better a open source one.</p>
+
+<ul>
+  <li>R</li>
+  <li>RapidMiner</li>
+  <li>python</li>
+  <li>Matlab</li>
+</ul>
+
+<!-- more -->
+
+<p>Here is a <a href="http://www.kdnuggets.com/2013/06/kdnuggets-annual-software-poll-rapidminer-r-vie-for-first-place.html">poll from KDnuggets</a></p>
+
+<p><img src="/images/blog/top.KDnuggetsAnnual_Software_Poll.png" alt="KDnuggets Annual Software Poll: Data Mining" /></p>
+
+<h2 id="python">1,Python</h2>
+
+<ul>
+  <li>script language and interactive</li>
+  <li>open source and lots of lib, such as NLTK, scipy, scikit-learn, etc.</li>
+  <li>Good for mathematics.</li>
+  <li>Limited list of machine learning algorithms.</li>
+  <li>Machine learning is not handled uniformly between the different libraries.</li>
+  <li>efficiency in training model is little low, comparing C language</li>
+  <li>easier to integrate a work flow with other program, because other work may be done by python</li>
+  <li>windows/linux/osx/android,etc</li>
+</ul>
+
+<h2 id="r">2,R</h2>
+
+<ul>
+  <li>Open source</li>
+  <li>interactive</li>
+  <li>learning curve. Language is pretty different from current mainstream languages like C, C#, C++, Java, PHP and VB.</li>
+  <li>Very extensive statistical library.</li>
+  <li>Very concise for solving statistical problems.</li>
+  <li>a powerful elegant array language in the tradition of APL, Mathematica and MATLAB, but also LISP/Scheme.</li>
+  <li>easy to integrate this into a work flow with your other programs. You just spawn an R program and pass input in and read output from a pipe.</li>
+  <li>R was created in 1990.</li>
+  <li>Less specialized towards data mining</li>
+  <li>windows/linuxs/osx</li>
+</ul>
+
+<p>Link: <a href="http://www.youtube.com/watch?v=3t8LiXlBL40">Screencast showing how a trained R user can generate a PMML neural network model in 60 seconds</a>.</p>
+
+<h2 id="rapidminer">3,RapidMiner</h2>
+<ul>
+  <li>an open source statistical and data mining package</li>
+  <li>written in Java, easy to transplant across multi-operating system</li>
+  <li>Lot of data mining algorithms.</li>
+  <li>Good graphics</li>
+  <li>It easily reads and writes Excel files and different databases.</li>
+  <li>program by piping components together in a graphic ETL workflows</li>
+  <li>If you set up an illegal workflows RapidMiner suggest Quick Fixes to make it legal</li>
+  <li>hard to learn, however good video tutorials</li>
+  <li>can work with R &amp; SPSS</li>
+</ul>
+
+<h2 id="matlab">4,Matlab</h2>
+<ul>
+  <li>good at matrix &amp; plot</li>
+  <li>easy program, language grama is like c</li>
+  <li>too huge ,too expensive</li>
+</ul>
+
+<h4 id="reference">Reference:</h4>
+
+<p>1,http://blog.samibadawi.com/2010/06/orange-r-rapidminer-statistica-and-weka.html<br />
+2,http://blog.samibadawi.com/2010/04/r-rapidminer-statistica-ssas-or-weka.html<br />
+3,http://orange.biolab.si/<br />
+4,http://rapid-i.com/<br />
+5,http://cos.name/<br />
+6,http://r-ke.info/<br />
+7,http://www.kdnuggets.com/2013/06/kdnuggets-annual-software-poll-rapidminer-r-vie-for-first-place.html  </p>
+
+]]></content>
+  </entry>
+  
+</feed>

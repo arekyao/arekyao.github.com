@@ -46,7 +46,7 @@
     </url>
     <url>
         <loc>http://arekyao.github.io/blog/2013/04/20/android-dev-on-osx/</loc>
-        <lastmod>2013-10-09T11:12:24+08:00</lastmod>
+        <lastmod>2013-10-11T23:07:12+08:00</lastmod>
     </url>
     <url>
         <loc>http://arekyao.github.io/blog/2013/04/21/something-interesting-about-ai/</loc>
@@ -64,7 +64,7 @@
         <loc>
             http://arekyao.github.io/blog/2013/07/02/the-key-technologies-in-simple-xiangqi-engine-maxqi/
         </loc>
-        <lastmod>2013-10-09T10:49:02+08:00</lastmod>
+        <lastmod>2013-10-11T23:06:53+08:00</lastmod>
     </url>
     <url>
         <loc>
@@ -79,6 +79,12 @@
         <lastmod>2013-10-09T23:09:44+08:00</lastmod>
     </url>
     <url>
+        <loc>
+            http://arekyao.github.io/blog/2013/09/15/setting-up-django-and-your-web-server-with-uwsgi-and-nginx/
+        </loc>
+        <lastmod>2013-10-11T22:06:56+08:00</lastmod>
+    </url>
+    <url>
         <loc>http://arekyao.github.io/blog/2013/10/02/workflow-engine-in-python/</loc>
         <lastmod>2013-10-09T10:49:26+08:00</lastmod>
     </url>
@@ -90,9 +96,9 @@
     </url>
     <url>
         <loc>
-            http://arekyao.github.io/blog/2013/10/11/setting-up-django-and-your-web-server-with-uwsgi-and-nginx/
+            http://arekyao.github.io/blog/2013/10/11/data-mining-r-python-rapidminer-or-matlab/
         </loc>
-        <lastmod>2013-10-11T21:46:23+08:00</lastmod>
+        <lastmod>2013-10-11T23:59:45+08:00</lastmod>
     </url>
     <url>
         <loc>http://arekyao.github.io/404.html</loc>
@@ -104,7 +110,7 @@
     </url>
     <url>
         <loc>http://arekyao.github.io/blog/archives/</loc>
-        <lastmod>2013-10-11T21:46:23+08:00</lastmod>
+        <lastmod>2013-10-11T23:59:45+08:00</lastmod>
     </url>
     <url>
         <loc>http://arekyao.github.io/categories.html</loc>
@@ -112,7 +118,7 @@
     </url>
     <url>
         <loc>http://arekyao.github.io/</loc>
-        <lastmod>2013-10-11T21:46:23+08:00</lastmod>
+        <lastmod>2013-10-11T23:59:45+08:00</lastmod>
     </url>
     <url>
         <loc>http://arekyao.github.io/micromax/alpha_beta_minimax.html</loc>

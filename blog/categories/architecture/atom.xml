@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Architecture | YY Every Day]]></title>
   <link href="http://arekyao.github.io/blog/categories/architecture/atom.xml" rel="self"/>
   <link href="http://arekyao.github.io/"/>
-  <updated>2013-10-11T21:46:31+08:00</updated>
+  <updated>2013-10-11T23:59:56+08:00</updated>
   <id>http://arekyao.github.io/</id>
   <author>
     <name><![CDATA[Arek.Yao]]></name>
@@ -14,10 +14,384 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Data Mining: R, Python, RapidMiner or Matlab]]></title>
+    <link href="http://arekyao.github.io/blog/2013/10/11/data-mining-r-python-rapidminer-or-matlab/"/>
+    <updated>2013-10-11T22:04:00+08:00</updated>
+    <id>http://arekyao.github.io/blog/2013/10/11/data-mining-r-python-rapidminer-or-matlab</id>
+    <content type="html"><![CDATA[<p>In work or study, we have more and more problmes, which can be solved by data mining.</p>
+
+<p>Refer to data mining tools, kinds of stuff some out,such as R, spss, mathematica,etc.
+The most popular packages in the industry are SAS and SPSS, but they are quite expensive, so you might wanna have a free one, and better a open source one.</p>
+
+<ul>
+  <li>R</li>
+  <li>RapidMiner</li>
+  <li>python</li>
+  <li>Matlab</li>
+</ul>
+
+<!-- more -->
+
+<p>Here is a <a href="http://www.kdnuggets.com/2013/06/kdnuggets-annual-software-poll-rapidminer-r-vie-for-first-place.html">poll from KDnuggets</a></p>
+
+<p><img src="/images/blog/top.KDnuggetsAnnual_Software_Poll.png" alt="KDnuggets Annual Software Poll: Data Mining" /></p>
+
+<h2 id="python">1,Python</h2>
+
+<ul>
+  <li>script language and interactive</li>
+  <li>open source and lots of lib, such as NLTK, scipy, scikit-learn, etc.</li>
+  <li>Good for mathematics.</li>
+  <li>Limited list of machine learning algorithms.</li>
+  <li>Machine learning is not handled uniformly between the different libraries.</li>
+  <li>efficiency in training model is little low, comparing C language</li>
+  <li>easier to integrate a work flow with other program, because other work may be done by python</li>
+  <li>windows/linux/osx/android,etc</li>
+</ul>
+
+<h2 id="r">2,R</h2>
+
+<ul>
+  <li>Open source</li>
+  <li>interactive</li>
+  <li>learning curve. Language is pretty different from current mainstream languages like C, C#, C++, Java, PHP and VB.</li>
+  <li>Very extensive statistical library.</li>
+  <li>Very concise for solving statistical problems.</li>
+  <li>a powerful elegant array language in the tradition of APL, Mathematica and MATLAB, but also LISP/Scheme.</li>
+  <li>easy to integrate this into a work flow with your other programs. You just spawn an R program and pass input in and read output from a pipe.</li>
+  <li>R was created in 1990.</li>
+  <li>Less specialized towards data mining</li>
+  <li>windows/linuxs/osx</li>
+</ul>
+
+<p>Link: <a href="http://www.youtube.com/watch?v=3t8LiXlBL40">Screencast showing how a trained R user can generate a PMML neural network model in 60 seconds</a>.</p>
+
+<h2 id="rapidminer">3,RapidMiner</h2>
+<ul>
+  <li>an open source statistical and data mining package</li>
+  <li>written in Java, easy to transplant across multi-operating system</li>
+  <li>Lot of data mining algorithms.</li>
+  <li>Good graphics</li>
+  <li>It easily reads and writes Excel files and different databases.</li>
+  <li>program by piping components together in a graphic ETL workflows</li>
+  <li>If you set up an illegal workflows RapidMiner suggest Quick Fixes to make it legal</li>
+  <li>hard to learn, however good video tutorials</li>
+  <li>can work with R &amp; SPSS</li>
+</ul>
+
+<h2 id="matlab">4,Matlab</h2>
+<ul>
+  <li>good at matrix &amp; plot</li>
+  <li>easy program, language grama is like c</li>
+  <li>too huge ,too expensive</li>
+</ul>
+
+<h4 id="reference">Reference:</h4>
+
+<p>1,http://blog.samibadawi.com/2010/06/orange-r-rapidminer-statistica-and-weka.html<br />
+2,http://blog.samibadawi.com/2010/04/r-rapidminer-statistica-ssas-or-weka.html<br />
+3,http://orange.biolab.si/<br />
+4,http://rapid-i.com/<br />
+5,http://cos.name/<br />
+6,http://r-ke.info/<br />
+7,http://www.kdnuggets.com/2013/06/kdnuggets-annual-software-poll-rapidminer-r-vie-for-first-place.html  </p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Workflow Engine in Python]]></title>
+    <link href="http://arekyao.github.io/blog/2013/10/02/workflow-engine-in-python/"/>
+    <updated>2013-10-02T07:49:00+08:00</updated>
+    <id>http://arekyao.github.io/blog/2013/10/02/workflow-engine-in-python</id>
+    <content type="html"><![CDATA[<h2 id="whats-workflow">1,What’s workflow</h2>
+
+<p>A <a href="http://en.wikipedia.org/wiki/Workflow">workflow</a> consists of a sequence of connected steps where each step follows without delay or gap and ends just before the subsequent step may begin.</p>
+
+<p>it’s just a complicated finite statemachine</p>
+
+<h2 id="spiff-workflowhttpsgithubcomknipknapspiffworkflow">2,<a href="https://github.com/knipknap/SpiffWorkflow">Spiff workflow</a></h2>
+
+<p>Spiff Workflow is a library implementing a framework for workflows.
+It is based on http://www.workflowpatterns.com and implemented in pure Python.</p>
+
+<!-- more -->
+<p>In addition, Spiff Workflow provides a parser and workflow emulation
+layer that can be used to create executable Spiff Workflow specifications
+from Business Process Model and Notation (BPMN) documents.</p>
+
+<p>For documentation please refer to:</p>
+
+<p>https://github.com/knipknap/SpiffWorkflow/wiki</p>
+
+<h2 id="how-to-make-spiff-workflow-work">3,How to make spiff workflow work</h2>
+
+<p>There are many test cases in test directory, you would know how it works, at least know most parts.</p>
+
+<p>Generally, it can work like this:</p>
+
+<ul>
+  <li>a, template ,which define the workflow based on <a href="http://www.workflowpatterns.com/">workflow pattern</a>   </li>
+  <li>b, tools  which can transform the template to real object in spiff object  </li>
+  <li>c, engine, which is used to make spiff workflow object work like flow,lol  </li>
+</ul>
+
+<p>However,there is some trap in it.
+you can make it work by function,complete_all() or complete_next()
+but you can not know how the flow works by getting ready task,
+the right way is by callback function</p>
+
+<p>ps: I was stuck by this for two or three days.</p>
+
+<h2 id="one-better-example-using-spiff-workflow">4, one better example using spiff workflow</h2>
+
+<p>the case code:</p>
+
+<p>```py
+# -*- coding: utf-8</p>
+
+<p>import sys, os
+sys.path.insert(0, os.path.join(os.path.dirname(<strong>file</strong>),  ‘../../lib’))</p>
+
+<p>from SpiffWorkflow.specs import *
+from SpiffWorkflow import Task, Workflow
+from SpiffWorkflow.storage import XmlSerializer</p>
+
+<p>def on_entered_cb(workflow, task, taken_path):
+    #print “entered:”,task.get_name()
+    return True</p>
+
+<p>def on_ready_cb(workflow, task, taken_path):
+    #print “ready:”,task.get_name()
+    return True</p>
+
+<p>def on_reached_cb(workflow, task, taken_path):
+    #print “reached:”,task.get_name()
+    return True</p>
+
+<p>def on_complete_cb(workflow, task, taken_path):
+    # Record the path.
+    print “complete:”,task.get_name()
+    #print task.get_description()
+    indent = ‘  ‘ * (task._get_depth() - 1)
+    taken_path.append(‘%s%s’ % (indent, task.get_name()))
+    return True</p>
+
+<p>class QuestionError(Exception):</p>
+
+<pre><code>def __init__(self, value):
+    self.value = value
+
+def __str__(self):
+    return repr(self.value)
+</code></pre>
+
+<p>class QuestionWorkflow(object):
+    def <strong>init</strong>(self):
+        self.serializer = XmlSerializer()</p>
+
+<pre><code>def set_up(self,filename):
+    # Test patterns that are defined in XML format.
+    xml = open(filename).read()
+    self.wf_spec = WorkflowSpec.deserialize(XmlSerializer(), xml, filename = filename)
+    self.taken_path = self.track_workflow(self.wf_spec)
+    self.workflow   = Workflow(self.wf_spec)
+
+
+def run(self, UserSelection, restart=False):
+
+    if restart:
+        self.workflow = Workflow(self.wf_spec)
+
+    workflow = self.workflow
+    condition_keys = []
+    if UserSelection is None:
+        UserSelection = {}
+
+    task_data_dict = UserSelection.copy()
+
+    while not workflow.is_completed():
+        tasks = workflow.get_tasks(Task.READY)
+
+        for t in tasks:
+            print "Ready:", t.task_spec.name
+            if  hasattr(t.task_spec, "cond_task_specs"):
+                for cond, name in t.task_spec.cond_task_specs:
+                    for cond_unit in cond.args:
+                        if hasattr(cond_unit, "name"):
+                            condition_keys.append(cond_unit.name)
+   
+
+        flag_keys_in_user_select = True
+        for cond_key in condition_keys:
+            if not task_data_dict.has_key(cond_key):
+                print cond_key
+                flag_keys_in_user_select = False
+                break
+
+        if not flag_keys_in_user_select:
+            # some tast's condition's key not in input userselect dict
+            return
+
+        for t in tasks:
+            t.set_data(**task_data_dict)
+
+        workflow.complete_next()
+
+    if not workflow.is_completed():
+        raise QuestionError('invalid feature[%s]' % filename)
+
+def print_trace(self):
+    path = '\n'.join(self.taken_path) + '\n'
+    info = ""
+    info += 'the workflowrun path:\n'
+    info += '%s\n' % path
+    print info
+
+
+def track_task(self, task_spec, taken_path):
+
+    #reached event call back
+    if task_spec.reached_event.is_connected(on_reached_cb):
+        task_spec.reached_event.disconnect(on_reached_cb)
+    task_spec.reached_event.connect(on_reached_cb, taken_path)
+
+    #completed event call back
+    if task_spec.completed_event.is_connected(on_complete_cb):
+        task_spec.completed_event.disconnect(on_complete_cb)
+    task_spec.completed_event.connect(on_complete_cb, taken_path)
+
+    #enter event call back
+    if task_spec.entered_event.is_connected(on_entered_cb):
+        task_spec.entered_event.disconnect(on_entered_cb)
+    task_spec.entered_event.connect(on_entered_cb, taken_path)
+
+    #ready event call back
+    if task_spec.ready_event.is_connected(on_ready_cb):
+        task_spec.ready_event.disconnect(on_ready_cb)
+    task_spec.ready_event.connect(on_ready_cb, taken_path)
+
+
+
+def track_workflow(self, wf_spec, taken_path = None):
+    if taken_path is None:
+        taken_path = []
+    for name in wf_spec.task_specs:
+        #print "track_workflow:",name
+        self.track_task(wf_spec.task_specs[name], taken_path)
+    return taken_path
+</code></pre>
+
+<p>if <strong>name</strong> == ‘<strong>main</strong>’:
+    qw = QuestionWorkflow()
+    qw.set_up(“./case.xml”)
+    print “==========1st question==========”
+    user_selct = {‘man’:’1’}
+    qw.run(user_selct)
+    print “==========2nd question==========”
+    user_selct = {‘man’:’1’, ‘house’: ‘2’}
+    qw.run(user_selct)
+    print “==========3rd question==========”
+    user_selct = {‘man’:’1’, ‘house’: ‘2’, ‘why’: ‘because you are a hero’}
+    qw.run(user_selct)</p>
+
+<pre><code>'''
+print "==========4th question========="
+user_selct = {'man':'1', 'house': '2', 'role':'5'}
+qw.run(user_selct)
+'''
+
+print "==========fix some question=========="
+user_selct = {'man':'1', 'house': '1', 'role':'5'}
+qw.run(user_selct,True)
+
+print 
+</code></pre>
+
+<p>```</p>
+
+<p>the template case.xml file</p>
+
+<p>```xml </p>
+
+<?xml version="1.0" encoding="UTF-8"?>
+<process-definition name="Daixm Workflow" revision="1.6">
+    <description>
+    A test workflow that contains all possible tasks.
+    </description>
+
+    <!-- Start with an implicit simple split. -->
+    <start-task>
+        <successor>house_choice</successor>
+    </start-task>
+
+    <exclusive-choice name="house_choice">
+        <!-- No House -->
+        <default-successor>role_choice</default-successor>
+
+        <conditional-successor>
+            <equals left-field="house" right-value="1" />
+            <successor>build_house</successor>
+        </conditional-successor>
+
+        <conditional-successor>
+            <equals left-field="house" right-value="2" />
+            <successor>buy_house</successor>
+        </conditional-successor>
+    </exclusive-choice>
+
+    <task name="buy_house">
+        <description></description>
+        <successor>house_location</successor>
+    </task>
+
+    <task name="house_location">
+        <successor>house_age</successor>
+    </task>
+
+    <task name="house_age">
+        <successor>role_choice</successor>
+    </task>
+
+    <task name="build_house">
+        <successor>role_choice</successor>
+    </task>
+
+
+    <exclusive-choice name="role_choice">
+        <!-- No House -->
+        <default-successor>no_jobs</default-successor>
+        <conditional-successor>
+            <equals left-field="role" right-value="1" />
+            <successor>jobs_working</successor>
+        </conditional-successor>
+    </exclusive-choice>
+
+
+    <task name="no_jobs">
+        <successor>last</successor>
+    </task>
+
+    <task name="jobs_working">
+        <successor>last</successor>
+    </task>
+
+    <!-- A final task. -->
+    <task name="last">
+        <successor>end</successor>
+    </task>
+</process-definition>
+
+<p>```</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Setting up Django and your web server with uWSGI and nginx]]></title>
-    <link href="http://arekyao.github.io/blog/2013/10/11/setting-up-django-and-your-web-server-with-uwsgi-and-nginx/"/>
-    <updated>2013-10-11T21:21:00+08:00</updated>
-    <id>http://arekyao.github.io/blog/2013/10/11/setting-up-django-and-your-web-server-with-uwsgi-and-nginx</id>
+    <link href="http://arekyao.github.io/blog/2013/09/15/setting-up-django-and-your-web-server-with-uwsgi-and-nginx/"/>
+    <updated>2013-09-15T21:21:00+08:00</updated>
+    <id>http://arekyao.github.io/blog/2013/09/15/setting-up-django-and-your-web-server-with-uwsgi-and-nginx</id>
     <content type="html"><![CDATA[<p>Recently, there are many modules or system in python.</p>
 
 <p>This post, let’s focus on webserver system</p>
@@ -542,294 +916,6 @@ daemonize = /var/log/uwsgi/yourproject.log # background the process &amp; log
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Workflow Engine in Python]]></title>
-    <link href="http://arekyao.github.io/blog/2013/10/02/workflow-engine-in-python/"/>
-    <updated>2013-10-02T07:49:00+08:00</updated>
-    <id>http://arekyao.github.io/blog/2013/10/02/workflow-engine-in-python</id>
-    <content type="html"><![CDATA[<h2 id="whats-workflow">1,What’s workflow</h2>
-
-<p>A <a href="http://en.wikipedia.org/wiki/Workflow">workflow</a> consists of a sequence of connected steps where each step follows without delay or gap and ends just before the subsequent step may begin.</p>
-
-<p>it’s just a complicated finite statemachine</p>
-
-<h2 id="spiff-workflowhttpsgithubcomknipknapspiffworkflow">2,<a href="https://github.com/knipknap/SpiffWorkflow">Spiff workflow</a></h2>
-
-<p>Spiff Workflow is a library implementing a framework for workflows.
-It is based on http://www.workflowpatterns.com and implemented in pure Python.</p>
-
-<!-- more -->
-<p>In addition, Spiff Workflow provides a parser and workflow emulation
-layer that can be used to create executable Spiff Workflow specifications
-from Business Process Model and Notation (BPMN) documents.</p>
-
-<p>For documentation please refer to:</p>
-
-<p>https://github.com/knipknap/SpiffWorkflow/wiki</p>
-
-<h2 id="how-to-make-spiff-workflow-work">3,How to make spiff workflow work</h2>
-
-<p>There are many test cases in test directory, you would know how it works, at least know most parts.</p>
-
-<p>Generally, it can work like this:</p>
-
-<ul>
-  <li>a, template ,which define the workflow based on <a href="http://www.workflowpatterns.com/">workflow pattern</a>   </li>
-  <li>b, tools  which can transform the template to real object in spiff object  </li>
-  <li>c, engine, which is used to make spiff workflow object work like flow,lol  </li>
-</ul>
-
-<p>However,there is some trap in it.
-you can make it work by function,complete_all() or complete_next()
-but you can not know how the flow works by getting ready task,
-the right way is by callback function</p>
-
-<p>ps: I was stuck by this for two or three days.</p>
-
-<h2 id="one-better-example-using-spiff-workflow">4, one better example using spiff workflow</h2>
-
-<p>the case code:</p>
-
-<p>```py
-# -*- coding: utf-8</p>
-
-<p>import sys, os
-sys.path.insert(0, os.path.join(os.path.dirname(<strong>file</strong>),  ‘../../lib’))</p>
-
-<p>from SpiffWorkflow.specs import *
-from SpiffWorkflow import Task, Workflow
-from SpiffWorkflow.storage import XmlSerializer</p>
-
-<p>def on_entered_cb(workflow, task, taken_path):
-    #print “entered:”,task.get_name()
-    return True</p>
-
-<p>def on_ready_cb(workflow, task, taken_path):
-    #print “ready:”,task.get_name()
-    return True</p>
-
-<p>def on_reached_cb(workflow, task, taken_path):
-    #print “reached:”,task.get_name()
-    return True</p>
-
-<p>def on_complete_cb(workflow, task, taken_path):
-    # Record the path.
-    print “complete:”,task.get_name()
-    #print task.get_description()
-    indent = ‘  ‘ * (task._get_depth() - 1)
-    taken_path.append(‘%s%s’ % (indent, task.get_name()))
-    return True</p>
-
-<p>class QuestionError(Exception):</p>
-
-<pre><code>def __init__(self, value):
-    self.value = value
-
-def __str__(self):
-    return repr(self.value)
-</code></pre>
-
-<p>class QuestionWorkflow(object):
-    def <strong>init</strong>(self):
-        self.serializer = XmlSerializer()</p>
-
-<pre><code>def set_up(self,filename):
-    # Test patterns that are defined in XML format.
-    xml = open(filename).read()
-    self.wf_spec = WorkflowSpec.deserialize(XmlSerializer(), xml, filename = filename)
-    self.taken_path = self.track_workflow(self.wf_spec)
-    self.workflow   = Workflow(self.wf_spec)
-
-
-def run(self, UserSelection, restart=False):
-
-    if restart:
-        self.workflow = Workflow(self.wf_spec)
-
-    workflow = self.workflow
-    condition_keys = []
-    if UserSelection is None:
-        UserSelection = {}
-
-    task_data_dict = UserSelection.copy()
-
-    while not workflow.is_completed():
-        tasks = workflow.get_tasks(Task.READY)
-
-        for t in tasks:
-            print "Ready:", t.task_spec.name
-            if  hasattr(t.task_spec, "cond_task_specs"):
-                for cond, name in t.task_spec.cond_task_specs:
-                    for cond_unit in cond.args:
-                        if hasattr(cond_unit, "name"):
-                            condition_keys.append(cond_unit.name)
-   
-
-        flag_keys_in_user_select = True
-        for cond_key in condition_keys:
-            if not task_data_dict.has_key(cond_key):
-                print cond_key
-                flag_keys_in_user_select = False
-                break
-
-        if not flag_keys_in_user_select:
-            # some tast's condition's key not in input userselect dict
-            return
-
-        for t in tasks:
-            t.set_data(**task_data_dict)
-
-        workflow.complete_next()
-
-    if not workflow.is_completed():
-        raise QuestionError('invalid feature[%s]' % filename)
-
-def print_trace(self):
-    path = '\n'.join(self.taken_path) + '\n'
-    info = ""
-    info += 'the workflowrun path:\n'
-    info += '%s\n' % path
-    print info
-
-
-def track_task(self, task_spec, taken_path):
-
-    #reached event call back
-    if task_spec.reached_event.is_connected(on_reached_cb):
-        task_spec.reached_event.disconnect(on_reached_cb)
-    task_spec.reached_event.connect(on_reached_cb, taken_path)
-
-    #completed event call back
-    if task_spec.completed_event.is_connected(on_complete_cb):
-        task_spec.completed_event.disconnect(on_complete_cb)
-    task_spec.completed_event.connect(on_complete_cb, taken_path)
-
-    #enter event call back
-    if task_spec.entered_event.is_connected(on_entered_cb):
-        task_spec.entered_event.disconnect(on_entered_cb)
-    task_spec.entered_event.connect(on_entered_cb, taken_path)
-
-    #ready event call back
-    if task_spec.ready_event.is_connected(on_ready_cb):
-        task_spec.ready_event.disconnect(on_ready_cb)
-    task_spec.ready_event.connect(on_ready_cb, taken_path)
-
-
-
-def track_workflow(self, wf_spec, taken_path = None):
-    if taken_path is None:
-        taken_path = []
-    for name in wf_spec.task_specs:
-        #print "track_workflow:",name
-        self.track_task(wf_spec.task_specs[name], taken_path)
-    return taken_path
-</code></pre>
-
-<p>if <strong>name</strong> == ‘<strong>main</strong>’:
-    qw = QuestionWorkflow()
-    qw.set_up(“./case.xml”)
-    print “==========1st question==========”
-    user_selct = {‘man’:’1’}
-    qw.run(user_selct)
-    print “==========2nd question==========”
-    user_selct = {‘man’:’1’, ‘house’: ‘2’}
-    qw.run(user_selct)
-    print “==========3rd question==========”
-    user_selct = {‘man’:’1’, ‘house’: ‘2’, ‘why’: ‘because you are a hero’}
-    qw.run(user_selct)</p>
-
-<pre><code>'''
-print "==========4th question========="
-user_selct = {'man':'1', 'house': '2', 'role':'5'}
-qw.run(user_selct)
-'''
-
-print "==========fix some question=========="
-user_selct = {'man':'1', 'house': '1', 'role':'5'}
-qw.run(user_selct,True)
-
-print 
-</code></pre>
-
-<p>```</p>
-
-<p>the template case.xml file</p>
-
-<p>```xml </p>
-
-<?xml version="1.0" encoding="UTF-8"?>
-<process-definition name="Daixm Workflow" revision="1.6">
-    <description>
-    A test workflow that contains all possible tasks.
-    </description>
-
-    <!-- Start with an implicit simple split. -->
-    <start-task>
-        <successor>house_choice</successor>
-    </start-task>
-
-    <exclusive-choice name="house_choice">
-        <!-- No House -->
-        <default-successor>role_choice</default-successor>
-
-        <conditional-successor>
-            <equals left-field="house" right-value="1" />
-            <successor>build_house</successor>
-        </conditional-successor>
-
-        <conditional-successor>
-            <equals left-field="house" right-value="2" />
-            <successor>buy_house</successor>
-        </conditional-successor>
-    </exclusive-choice>
-
-    <task name="buy_house">
-        <description></description>
-        <successor>house_location</successor>
-    </task>
-
-    <task name="house_location">
-        <successor>house_age</successor>
-    </task>
-
-    <task name="house_age">
-        <successor>role_choice</successor>
-    </task>
-
-    <task name="build_house">
-        <successor>role_choice</successor>
-    </task>
-
-
-    <exclusive-choice name="role_choice">
-        <!-- No House -->
-        <default-successor>no_jobs</default-successor>
-        <conditional-successor>
-            <equals left-field="role" right-value="1" />
-            <successor>jobs_working</successor>
-        </conditional-successor>
-    </exclusive-choice>
-
-
-    <task name="no_jobs">
-        <successor>last</successor>
-    </task>
-
-    <task name="jobs_working">
-        <successor>last</successor>
-    </task>
-
-    <!-- A final task. -->
-    <task name="last">
-        <successor>end</successor>
-    </task>
-</process-definition>
-
-<p>```</p>
-
-]]></content>
-  </entry>
-  
-  <entry>
     <title type="html"><![CDATA[Database Overview]]></title>
     <link href="http://arekyao.github.io/blog/2013/04/23/database-overview/"/>
     <updated>2013-04-23T22:46:00+08:00</updated>
@@ -1053,194 +1139,6 @@ DPad center click = KEYPAD_5
 Onion alpha increase/decrease = KEYPAD_MULTIPLY(*) / KEYPAD_DIVIDE(/)</p>
 
 <p><a href="">http://stackoverflow.com/questions/7628606/how-to-emulate-pressing-home-button-in-android-emulator</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Going to Python World Step by Step]]></title>
-    <link href="http://arekyao.github.io/blog/2013/02/17/going-to-python-world-step-by-step/"/>
-    <updated>2013-02-17T12:46:00+08:00</updated>
-    <id>http://arekyao.github.io/blog/2013/02/17/going-to-python-world-step-by-step</id>
-    <content type="html"><![CDATA[<p>First, let me introduce something about develop environment, such as Brew, easy_install,RVM, … etc. </p>
-
-<h1 id="mac-develop-environment">Mac Develop Environment</h1>
-
-<h2 id="homebrew-the-missing-package-manager-for-os-xhttpmxclgithubcomhomebrew"><a href="http://mxcl.github.com/homebrew/">Homebrew: The missing package manager for OS X</a></h2>
-
-<!-- more -->
-
-<p><code>
-$ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"
-</code></p>
-
-<p>with brew, you can install anything in command. eg:</p>
-
-<p><code>
-$brew install lighttpd
-</code></p>
-
-<h2 id="easyinstallhttppypipythonorgpypisetuptools"><a href="http://pypi.python.org/pypi/setuptools/">Easy_install</a></h2>
-<blockquote>
-  <p>Download the appropriate egg for your version of Python (e.g. setuptools-0.6c9-py2.4.egg). Do NOT rename it.
-Run it as if it were a shell script, e.g. sh setuptools-0.6c9-py2.4.egg. 
-Setuptools will install itself using the matching version of Python (e.g. python2.4), and will place the easy_install executable in the default location for installing Python scripts (as determined by the standard distutils configuration files, or by the Python installation).</p>
-
-</blockquote>
-
-<p>with this, you can install anything abou python package in command. eg:</p>
-
-<p><code>
-easy_install xxx
-</code></p>
-
-<p>BTW: 
-You can check package info in “/Library/Python/2.7/site-packages”</p>
-
-<h2 id="rvm-ruby-version-managerhttpsrvmio"><a href="https://rvm.io/">RVM: Ruby Version Manager</a></h2>
-<p><code>
-$ \curl -L https://get.rvm.io | bash -s stable --ruby
-</code></p>
-
-<hr />
-
-<h1 id="common-python-library">Common Python Library</h1>
-
-<h2 id="nlp">1, NLP:</h2>
-<p>nltk:  <a href="http://nltk.org/">http://nltk.org/</a></p>
-
-<p>chinese word segment <a href="https://github.com/fxsjy/jieba">https://github.com/fxsjy/jieba</a></p>
-
-<h2 id="machine-learning">2, Machine Learning</h2>
-<p>scikit_learn: <a href="https://pypi.python.org/pypi/scikit-learn/">https://pypi.python.org/pypi/scikit-learn/</a></p>
-
-<p>However,ML’s scikit-learn lib have to depend on lots of other package(scipy….)
-Here is a good scipt for mac 10.8 user
-<a href="http://fonnesbeck.github.com/ScipySuperpack/">http://fonnesbeck.github.com/ScipySuperpack/</a></p>
-
-<p><a href="https://raw.github.com/fonnesbeck/ScipySuperpack/master/install_superpack.sh">the scipt code</a> :</p>
-
-<p>```sh
-#!/bin/sh
-PYTHON=’/usr/bin/python’
-GIT_FILENAME=’git-1.7.7.3-intel-universal-snow-leopard’
-GIT_VOLUME=’/Volumes/Git 1.7.7.3 Snow Leopard Intel Universal/’
-GFORTRAN=’gcc-42-5666.3-darwin11.pkg’
-SUDO=’sudo’</p>
-
-<p>if [ -z “$VIRTUAL_ENV” ]; then
-    # Standard Python env
-    PYTHON=/usr/bin/python
-    SUDO=${SUDO}
-else
-    # Virtualenv
-    PYTHON=python
-    SUDO=”” #${SUDO} is not required in a virtualenv
-fi</p>
-
-<p>if  [ -d “.git” ]; then</p>
-
-<pre><code>SUPERPACK_PATH='.'
-</code></pre>
-
-<p>else</p>
-
-<pre><code>SUPERPACK_PATH='ScipySuperpack'
-
-hash git &amp;&gt; /dev/null
-if [ $? -eq 1 ]; then
-    echo 'Downloading Git for OS X ...'
-    curl -o ${GIT_FILENAME}.dmg http://git-osx-installer.googlecode.com/files/${GIT_FILENAME}.dmg
-    echo 'Installing Git ...'
-    hdiutil mount ${GIT_FILENAME}.dmg
-    ${SUDO} installer -pkg "${GIT_VOLUME}${GIT_FILENAME}.pkg" -target '/'
-    hdiutil unmount "${GIT_VOLUME}"
-    echo 'Cleaning up'
-    rm ${GIT_FILENAME}.dmg
-    echo 'Cloning Scipy Superpack'
-    /usr/local/git/bin/git clone --depth=1 git://github.com/fonnesbeck/ScipySuperpack.git
-else
-    echo 'Cloning Scipy Superpack'
-    git clone --depth=1 git://github.com/fonnesbeck/ScipySuperpack.git
-fi fi
-</code></pre>
-
-<h1 id="hash-gfortran--devnull">hash gfortran &amp;&gt; /dev/null</h1>
-<p># if [ $? -eq 1 ]; then
-echo ‘Downloading gFortran …’
-curl -o ${GFORTRAN} http://r.research.att.com/tools/${GFORTRAN}
-echo ‘Installing gFortran …’
-${SUDO} installer -pkg ${GFORTRAN} -target ‘/’
-# fi</p>
-
-<p>hash easy_install &amp;&gt; /dev/null
-if [ $? -eq 1 ]; then
-    echo ‘Downloading ez_setup …’
-    curl -o ez_setup.py http://peak.telecommunity.com/dist/ez_setup.py
-    echo ‘Installing ez_setup …’
-    ${SUDO} “${PYTHON}” ez_setup.py
-    rm ez_setup.py
-fi</p>
-
-<p>echo ‘Installing Scipy Superpack …’
-${SUDO} “${PYTHON}” -m easy_install -N -Z ${SUPERPACK_PATH}/*.egg</p>
-
-<p>echo ‘Installing readline …’
-${SUDO} “${PYTHON}” -m easy_install -N -Z readline
-echo ‘Installing nose …’
-${SUDO} “${PYTHON}” -m easy_install -N -Z nose
-echo ‘Installing six’
-${SUDO} “${PYTHON}” -m easy_install -N -Z six
-echo ‘Installing python-dateutil’
-${SUDO} “${PYTHON}” -m easy_install -N -Z python-dateutil
-echo ‘Installing pytz’
-${SUDO} “${PYTHON}” -m easy_install -N -Z pytz
-echo ‘Installing Tornado’
-${SUDO} “${PYTHON}” -m easy_install -N -Z tornado
-echo ‘Installing pyzmq’
-${SUDO} “${PYTHON}” -m easy_install -N -Z pyzmq
-echo ‘Installing pika’
-${SUDO} “${PYTHON}” -m easy_install -N -Z pika
-echo ‘Installing jinja2’
-${SUDO} “${PYTHON}” -m easy_install -N -Z jinja2
-echo ‘Installing patsy’
-${SUDO} “${PYTHON}” -m easy_install -N -Z patsy
-if  [ ! -d “.git” ]; then
-    echo ‘Cleaning up’<br />
-    rm -rf ${SUPERPACK_PATH}
-fi</p>
-
-<p>echo ‘Done’</p>
-
-<p>```</p>
-
-<h2 id="scrapyhttpscrapyorgdownload">3, <a href="http://scrapy.org/download/">Scrapy</a></h2>
-
-<p>A Spider Structure based on Python</p>
-
-<h2 id="ipythonhttpipythonorginstallhtml">4, <a href="http://ipython.org/install.html">IPython</a></h2>
-<p>a good Python IDE</p>
-
-<h2 id="web-frameworkhttpwikipythonorgmoinwebframeworks">5, <a href="http://wiki.python.org/moin/WebFrameworks">Web Framework</a></h2>
-
-<p><a href="http://www.douban.com/group/web.py/">Web.py</a></p>
-
-<p><a href="http://www.douban.com/group/django/">Django</a></p>
-
-<p>http://www.douban.com/group/django/</p>
-
-<h2 id="python-study">6, Python study</h2>
-
-<p><a href="">http://gnosis.cx/TPiP/</a></p>
-
-<p><a href="">http://docs.python-guide.org/en/latest/</a></p>
-
-<h2 id="morehttpwwwpythonorgaboutapps"><a href="http://www.python.org/about/apps/">More…</a></h2>
-
-<h2 id="reference">Reference</h2>
-
-<p><a href="http://www.cnblogs.com/vamei/archive/2013/02/06/2892628.html">http://www.cnblogs.com/vamei/archive/2013/02/06/2892628.html</a><br />
-<a href="http://www.python.org/about/apps/">http://www.python.org/about/apps/</a><br />
-<a href="">http://docs.python-guide.org/en/latest/</a>  </p>
 ]]></content>
   </entry>
   
