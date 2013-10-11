@@ -89,6 +89,12 @@
         <lastmod>2013-10-09T23:09:38+08:00</lastmod>
     </url>
     <url>
+        <loc>
+            http://arekyao.github.io/blog/2013/10/11/setting-up-django-and-your-web-server-with-uwsgi-and-nginx/
+        </loc>
+        <lastmod>2013-10-11T21:44:39+08:00</lastmod>
+    </url>
+    <url>
         <loc>http://arekyao.github.io/404.html</loc>
         <lastmod>2013-10-09T11:53:15+08:00</lastmod>
     </url>
@@ -98,7 +104,7 @@
     </url>
     <url>
         <loc>http://arekyao.github.io/blog/archives/</loc>
-        <lastmod>2013-10-09T23:09:53+08:00</lastmod>
+        <lastmod>2013-10-11T21:44:39+08:00</lastmod>
     </url>
     <url>
         <loc>http://arekyao.github.io/categories.html</loc>
@@ -106,7 +112,7 @@
     </url>
     <url>
         <loc>http://arekyao.github.io/</loc>
-        <lastmod>2013-10-09T23:09:53+08:00</lastmod>
+        <lastmod>2013-10-11T21:44:39+08:00</lastmod>
     </url>
     <url>
         <loc>http://arekyao.github.io/micromax/alpha_beta_minimax.html</loc>
