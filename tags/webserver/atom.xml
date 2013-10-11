@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: webserver | YY Every Day]]></title>
   <link href="http://arekyao.github.io/tags/webserver/atom.xml" rel="self"/>
   <link href="http://arekyao.github.io/"/>
-  <updated>2013-10-11T21:45:07+08:00</updated>
+  <updated>2013-10-11T21:46:31+08:00</updated>
   <id>http://arekyao.github.io/</id>
   <author>
     <name><![CDATA[Arek.Yao]]></name>
@@ -37,6 +37,8 @@ complete stack of web application and server software.</p>
 <p><a href="http://djangoproject.com/">Django</a> is a high-level Python Web framework that encourages rapid development and clean, pragmatic design.</p>
 
 <p><a href="http://nginx.org/">nginx</a> (pronounced <em>engine-x</em>) is a free, open-source, high-performance HTTP server and reverse proxy, as well as an IMAP/POP3 proxy server.</p>
+
+<!-- more -->
 
 <h2 id="some-notes-about-this-tutorial">Some notes about this tutorial</h2>
 
