@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: octopress | YY Every Day]]></title>
   <link href="http://arekyao.github.io/tags/octopress/atom.xml" rel="self"/>
   <link href="http://arekyao.github.io/"/>
-  <updated>2013-10-12T14:15:40+08:00</updated>
+  <updated>2013-10-16T17:27:49+08:00</updated>
   <id>http://arekyao.github.io/</id>
   <author>
     <name><![CDATA[Arek.Yao]]></name>
@@ -167,16 +167,14 @@ default_asides: [asides/category_list.html, asides/recent_posts.html]</p>
     <id>http://arekyao.github.io/blog/2013/08/09/how-to-change-your-octopress-blog-theme</id>
     <content type="html"><![CDATA[<h3 id="get-the-theme">Get the theme</h3>
 
-<p>There are 3rd Party Octopress Themes in :
+<p>There are 3rd Party Octopress Themes in :<br />
 https://github.com/imathis/octopress/wiki/3rd-Party-Octopress-Themes</p>
 
-<p>I pretty love FoxSlide and Reynard, but the reynard does not work in my octopress with some unknown problme.</p>
+<p>I pretty love FoxSlide and Reynard, but the reynard does not work in my octopress with some unknown problme.<br />
+So I forked FoxSlide and make one by myself.</p>
 
-<p>So I forked FoxSlide and make one by myself.</p>
-
-<p>Here is my product:</p>
-
-<p>https://github.com/arekyao/everyday</p>
+<p>Here is my product:<br />
+https://github.com/arekyao/everyday</p>
 
 <h3 id="install-the-theme">Install the theme</h3>
 
@@ -190,7 +188,7 @@ $ rake generate</p>
 
 <p>```</p>
 
-<p>‘rake generate’ is very important and you will face lots of problems without it.</p>
+<p>‘rake generate’ is very important and you would face lots of problems without it.</p>
 
 ]]></content>
   </entry>
