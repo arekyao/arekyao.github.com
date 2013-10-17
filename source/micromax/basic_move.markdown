@@ -1,20 +1,21 @@
 ---
 layout: page
-title: 棋法 Move Generation
+title: "棋法 Move Generation"
 footer: false
----
 
+---
 
 
 ### [棋法：基础走法 Move Generation: Simple Moves](http://home.hccnet.nl/h.g.muller/movgen.html)
 
-
 ####三层嵌套循环 Three Nested Loops
 
 走法的产生是通过三层嵌套循环完成的：  
-* 遍历所有的棋子  
-* 遍历棋子所有的方向  
-* 遍历该方向上的所有格子  
+
++ 遍历所有的棋子
++ 遍历棋子所有的方向
++ 遍历该方向上的所有格子
+
 
 对于爬行棋子（如兵，马，王），针对棋子的遍历循环通过在第一层循环之后就终止了，尽管兵（E.P.）和王（别忘了还有王车易位）有时也能在特定方向上，移动不止一步。  
 对于任何棋子，内层的循环都会放弃，当已经走出棋盘或者走到某个阻挡的棋子。
@@ -24,9 +25,10 @@ footer: false
 
 Move generation is done by three nested loops:
 
-* over the pieces  
-* over all directions for that piece  
-* over all squares in that direction  
+* over the pieces
+* over all directions for that piece
+* over all squares in that direction
+
 
 
 For crawling pieces (PNK) the loop over squares is usually terminated after the first iteration, although Pawns and Kings (castling!) sometimes also make more than one step in a particular direction. For any piece this inner loop can be aborted because we run off the board or into an obstructing piece, although for obstructing enemy pieces the move might still be legal. Before discussing the nitty-gritty details of the implementation in micro-Max below, we give the general outline of the basic move generator:
@@ -88,7 +90,15 @@ do{                 /* LOOP OVER PIECES                 */
 In micro-Max the loop over pieces is implemented as a loop over all valid squares of the board, searching for pieces of the side to move. This is rather inefficient, especially if the board gets more empty during the game. Even in the beginning only on 25% of the squares it finds own pieces. The board array is a direct way of finding out what we find where we go, (a question that has to be answered frequently once we try to move a piece), but it leaves us unfortunately unaware of where our pieces are. For that a 'piece list', a table listing the square number and piece type for each piece we (still) have, would be better suited. The outer loop of the move generator would then simply scan this piece list, and find a piece every time, rather than only occasionally finding a piece on a board square. Because of the minimalist approach we decided to sacrifice the piece list. This is the best of two evils: sacrificing the board array would be completely disastrous, because for every attempted move the program could only find out if the move was to an occupied square by scanning the piece lists of both sides. And there are many more attempted moves than there are pieces to move. 
 For reasons that will become apparent later, the board scan does not begin in a corner, but can begin anywhere on the board, as indicated by variable B. It then wraps around until it reaches that starting square again.
 
-#### The Loop over Directions
+####遍历方向的循环 The Loop over Directions
+
+如果棋盘的扫描发现一个可以移动的棋子，我们就开始为该棋子产生走法。为此我们遍历移动向量列表，每个是该种类型棋子能移动的方向。一个已初始的的全局数组 o[]包括这个移动向量 r（该数字是必须加入到当前格子以在那个方向上走一步）。此列表通过循环索引j扫描，直到遇到一个0 （这显然是一个无效的一步向量，因为它将没有步子可走）。这个对于所有棋子类型的棋步向量的列表都被放到一个相同的数组中，一个挨着一个，中间以0相隔。
+
+
+列表相结合，在可能的情况下，列表中的女王（国王也用于）直方向preceed对角线的方向，使最终清单的一部分，可用于一个主教，开始在中间位置。对于每件类型，我们需要知道从哪里开始扫描的o []数组，这个信息存储进一步在O []数组本身，因此，一块P型发现它的出发方向指标j在o [ P 30 ] 。我们可以说，问题o [ ]总结了大多数国际象棋的规则。
+
+为了节省一些字符在初始化列表中，我们使用的事实，通常会在允许的方向相反的方向对。然后，该列表包含只包含正试图与超过指示在循环中的每一步矢量的两个标志。除非这块是一个兵，当然。这就解释了混淆表达P> 2 ＆R <0 ？ -R ： -O [J ]未来方向r ：先负版试过了，第二次这样的负值是否定的，并再次使用。
+
 
 If the scan of the board discovers a friendly piece, we start generating moves for this piece. To this end we loop through a list of move vectors, one for every direction a piece of that type can move in. An initialized global array o[] contains the move vectors r (numbers that have to be added to the current square to make one step in that direction). This list is scanned by the loop index j until a 0 is encountered (which obviously is an invalid move vector, since it would make no step at all). The move-vector lists for all piece types are all placed in the same array, one after the other, separated by zeroes. Lists are combined where possible: in the list for a Queen (which is also used for the King) the straight directions all preceed the diagonal directions, so that the final part of the list can be used for a Bishop, by starting it in the middle. For each piece type we need to know where to start scanning the o[] array, this information is stored further in the o[] array itself, so that a piece of type p finds its starting direction index j at o[p+30]. We could say that o[] summarizes most of the rules for chess.
 
