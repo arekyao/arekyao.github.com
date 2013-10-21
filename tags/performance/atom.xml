@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: performance | YY Every Day]]></title>
+  <link href="http://arekyao.github.io/tags/performance/atom.xml" rel="self"/>
+  <link href="http://arekyao.github.io/"/>
+  <updated>2013-10-22T00:19:29+08:00</updated>
+  <id>http://arekyao.github.io/</id>
+  <author>
+    <name><![CDATA[Arek.Yao]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[How to improve the Performance of System]]></title>
+    <link href="http://arekyao.github.io/blog/2013/10/18/how-to-improve-the-performance-of-system/"/>
+    <updated>2013-10-18T18:04:00+08:00</updated>
+    <id>http://arekyao.github.io/blog/2013/10/18/how-to-improve-the-performance-of-system</id>
+    <content type="html"><![CDATA[<h2 id="preface">1,Preface</h2>
+
+<p>Happy families are all alike; every unhappy family is unhappy in its own way.<br />
+So does System.</p>
+
+<p>Here is just a simple way to find out what’s ‘unhappy’ in your system.</p>
+
+<h2 id="think-as-time-goes">2,Think as time goes</h2>
+
+<p>There are lots of ways to thinking and find something.<br />
+Thinking as time goes is an easy one.</p>
+
+<p>However, what we are going to talking, in fact, is thinking as data flows.</p>
+
+<!-- more -->
+
+<p>Refer to your system, the data will be transferred like this:</p>
+
+<p>UserRequest -&gt; HttpServer -&gt; UIServer -&gt; DataServer -&gt; Database<br />
+UserReceiver &lt;- HttpServer &lt;- UIServer &lt;- DataServer &lt;- Database</p>
+
+<h2 id="userrequest--userreceiver">3,UserRequest &amp; UserReceiver</h2>
+
+<p>Those belong to User Client.</p>
+
+<p>User’s Client depends on Environment, where user run his program, like Operating System, like web browser if the program is an webapp, etc.</p>
+
+<p>If you are doing a stress testing on your system, your stress test tools is a factor ,too.</p>
+
+<h2 id="server-machine">4,Server Machine</h2>
+
+<p>Others like httpserver,uiserver, database, etc, are running on your server, your machine.
+Server Machine can have four kind of bottleneck.</p>
+
+<ul>
+  <li>CPU (see top)</li>
+  <li>Swap (see free)</li>
+  <li>Network (see iftop)</li>
+  <li>Disk (see iotop)</li>
+</ul>
+
+<blockquote>
+  <p>Where is the bottleneck?” is a good question, so I’ll ask it back to you in different words: 
+is the CPU maxed out (see top)? 
+Are the disks struggling (iotop)? 
+Are you hitting swap (free)? 
+Are you filling the network pipe (iftop)? 
+                          –  Shish Nov 23 ‘11 at 11:21</p>
+</blockquote>
+
+<p>The posts, which will give the detail on User &amp; Machine, is on the way.</p>
+
+]]></content>
+  </entry>
+  
+</feed>

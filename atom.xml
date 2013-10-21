@@ -4,7 +4,7 @@
   <title><![CDATA[YY Every Day]]></title>
   <link href="http://arekyao.github.io/atom.xml" rel="self"/>
   <link href="http://arekyao.github.io/"/>
-  <updated>2013-10-17T12:28:15+08:00</updated>
+  <updated>2013-10-22T00:19:29+08:00</updated>
   <id>http://arekyao.github.io/</id>
   <author>
     <name><![CDATA[Arek.Yao]]></name>
@@ -12,6 +12,66 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[How to improve the Performance of System]]></title>
+    <link href="http://arekyao.github.io/blog/2013/10/18/how-to-improve-the-performance-of-system/"/>
+    <updated>2013-10-18T18:04:00+08:00</updated>
+    <id>http://arekyao.github.io/blog/2013/10/18/how-to-improve-the-performance-of-system</id>
+    <content type="html"><![CDATA[<h2 id="preface">1,Preface</h2>
+
+<p>Happy families are all alike; every unhappy family is unhappy in its own way.<br />
+So does System.</p>
+
+<p>Here is just a simple way to find out what’s ‘unhappy’ in your system.</p>
+
+<h2 id="think-as-time-goes">2,Think as time goes</h2>
+
+<p>There are lots of ways to thinking and find something.<br />
+Thinking as time goes is an easy one.</p>
+
+<p>However, what we are going to talking, in fact, is thinking as data flows.</p>
+
+<!-- more -->
+
+<p>Refer to your system, the data will be transferred like this:</p>
+
+<p>UserRequest -&gt; HttpServer -&gt; UIServer -&gt; DataServer -&gt; Database<br />
+UserReceiver &lt;- HttpServer &lt;- UIServer &lt;- DataServer &lt;- Database</p>
+
+<h2 id="userrequest--userreceiver">3,UserRequest &amp; UserReceiver</h2>
+
+<p>Those belong to User Client.</p>
+
+<p>User’s Client depends on Environment, where user run his program, like Operating System, like web browser if the program is an webapp, etc.</p>
+
+<p>If you are doing a stress testing on your system, your stress test tools is a factor ,too.</p>
+
+<h2 id="server-machine">4,Server Machine</h2>
+
+<p>Others like httpserver,uiserver, database, etc, are running on your server, your machine.
+Server Machine can have four kind of bottleneck.</p>
+
+<ul>
+  <li>CPU (see top)</li>
+  <li>Swap (see free)</li>
+  <li>Network (see iftop)</li>
+  <li>Disk (see iotop)</li>
+</ul>
+
+<blockquote>
+  <p>Where is the bottleneck?” is a good question, so I’ll ask it back to you in different words: 
+is the CPU maxed out (see top)? 
+Are the disks struggling (iotop)? 
+Are you hitting swap (free)? 
+Are you filling the network pipe (iftop)? 
+                          –  Shish Nov 23 ‘11 at 11:21</p>
+</blockquote>
+
+<p>The posts, which will give the detail on User &amp; Machine, is on the way.</p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Data Mining: R, Python, RapidMiner or Matlab]]></title>
@@ -3350,112 +3410,6 @@ Maybe it's suspicious by Facebook's spam checking program, because so many faceb
 <p>That’s all.</p>
 
 <p>Any Problem, you can Solve it by Google.</p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[The Days We fight against Eczema]]></title>
-    <link href="http://arekyao.github.io/blog/2013/02/10/the-days-we-fight-against-eczema/"/>
-    <updated>2013-02-10T12:14:00+08:00</updated>
-    <id>http://arekyao.github.io/blog/2013/02/10/the-days-we-fight-against-eczema</id>
-    <content type="html"><![CDATA[<p>2012, special year, a cute girl comes into our life, named QianShu.</p>
-
-<h2 id="new-life">New Life</h2>
-
-<p>In her 1st month :</p>
-
-<p>Weight, good.</p>
-
-<p>Height, good.</p>
-
-<p>Breast milk, good.</p>
-
-<p>Everything goes well.</p>
-
-<h2 id="nd-month">2nd Month</h2>
-
-<!-- more -->
-
-<p>However, something changed in 2nd month, that is <a href="http://en.wikipedia.org/wiki/Eczema">ECZEMA</a></p>
-
-<p>In the beginning, we did not pay too much attention to it, 
-because almost every new born baby would have this reaction and situation.
-(ps: difficult to call it illness).</p>
-
-<p>The eczema is not serious, at that time.
-Only a few in face, none in body. Looks bearable for me.</p>
-
-<p>We bought YuMeiJing, which is tranditional, old brand in Beijing.
-It’s used by lots of workmates, when they were babies.</p>
-
-<p>It works, when in 1 or 2 weeks. 
-After that, it turn worse.</p>
-
-<h2 id="rd-month">3rd Month</h2>
-
-<p>The red spots spread from face to the whole body, including legs, back and butt…
-From then on, we got that ,we should take it serious.</p>
-
-<p>We got a lot of infomation on Internet.</p>
-
-<blockquote class="information">
-  <p>Symptoms:
-      redness, skin edema, itching and dryness, crusting, flaking, blistering, cracking, oozing, or bleeding.</p>
-
-  <pre><code>  Scratching open a healing lesion may result in scarring and may enlarge the rash.
-</code></pre>
-
-  <p>Cause:
-       The cause of eczema is unknown but is presumed to be a combination of genetic and environmental factors.</p>
-</blockquote>
-
-<p>At last, We get used to this kind of view;</p>
-
-<pre><code>The Eczema is a reaction, from the body can not get used to Environment.
-</code></pre>
-
-<p>Baby is a new life, from Mom’s body.</p>
-
-<p>Everything is new for it.</p>
-
-<pre><code>It needs to get with Environment, like food, air, water...etc.
-</code></pre>
-
-<p>So we take some actions to avoid its allergy.</p>
-
-<pre><code>The most dangerous FOOD (which contain much protein):
-milk, eggs, fish, peanut, etc.
-</code></pre>
-
-<p>After we forbid those food, it did not look better, at first.</p>
-
-<p>Think…for half a day, we found a suspious food, “Mixed Food Oil”.
-The mixed oil contain peanut oil…..:(</p>
-
-<p>After that acts, it goes right way.
-Baby’s eczema is beaten and lost its battle field.
-Though a few wrong things happened, but the general situation is better than before.</p>
-
-<h2 id="th-month">4th Month</h2>
-<p>Air Cleaner&amp; Wet machine is bought before Lunar New Year.
-So far, hard to say whether it is useful ,
-It need time to prove.</p>
-
-<h2 id="now">Now</h2>
-<p>Only its face is still red and hot, and there are lots of red spots on face.
-Sometimes good, Sometime bad…</p>
-
-<p>The battle is still on….
-Maybe it will never ends…</p>
-
-<p>We will fight against it …. </p>
-
-<h2 id="reference">Reference:</h2>
-
-<p>1, <a href="http://blog.sina.com.cn/doctorcui">Doctor CuiYutao</a></p>
-
-<p>2, <a href="http://en.wikipedia.org/wiki/Eczema">Eczema</a></p>
 
 ]]></content>
   </entry>

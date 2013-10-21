@@ -1,0 +1,386 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>How to improve the Performance of System - YY Every Day</title>
+  <meta name="author" content="Arek.Yao">
+  <link rel="author" href="humans.txt">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  
+    
+  
+  <meta name="description" content="1,Preface Happy families are all alike; every unhappy family is unhappy in its own way.
+So does System. Here is just a simple way to find out what’s &hellip;">
+  
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://arekyao.github.io/blog/2013/10/18/how-to-improve-the-performance-of-system/">
+  <link href="/favicon.png" rel="icon">
+  <link href='http://fonts.googleapis.com/css?family=Cantarell' rel='stylesheet' type='text/css'>
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="YY Every Day" type="application/atom+xml">
+  <meta name="og:type" content="website" />
+  <meta name="og:site_name" content="YY Every Day" />
+  <meta name="og:title" content="How to improve the Performance of System" />
+  <meta name="og:description" content="1,Preface Happy families are all alike; every unhappy family is unhappy in its own way.
+So does System. Here is just a simple way to find out what’s &hellip;" />
+  <meta name="og:url" content="http://arekyao.github.io/blog/2013/10/18/how-to-improve-the-performance-of-system/"/>
+  <meta name="url" content="http://arekyao.github.io/blog/2013/10/18/how-to-improve-the-performance-of-system/">
+  
+  <meta name="subject" content="Architecture"/>
+  <meta name="category" content="Architecture"/>
+  
+  <meta name="distribution" content="global">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <nav role="navigation"><div class="navbar">
+  <div class="navbar-inner">
+    <a class="brand" href="/">YY Every Day</a>
+    <ul class="nav">
+      <li><a href="/">Home</a></li>
+      <li><a href="/blog/archives">Archives</a></li>
+      <li><a href="/tags.html">Tags</a></li>
+      <li><a href="/categories.html">Categories</a></li>
+      <li><a href="/micromax/index.html">micro-Max</a></li>
+      <li><a href="/about/">AboutMe</a></li>
+    </ul>
+    <ul class="nav" data-subscription="rss">
+      <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+      
+    </ul>
+      
+    <form class="navbar-form" action="http://google.com/search" method="get">
+      <fieldset role="search">
+        <input type="hidden" name="q" value="site:arekyao.github.io" />
+        <input class="span2" type="text" name="q" results="0" placeholder="Search"/>
+      </fieldset>
+    </form>
+      
+    
+  </div>
+</div>
+</nav>
+  <div class="wrapper_single">
+    <div class="container">
+      <article class="span8 offset2" role="article">
+        <div class="article-format">
+
+  <header>
+    
+      <h1 class="entry-title">How to Improve the Performance of System</h1>
+    
+    
+      <p class="meta">
+        
+  
+
+
+  
+    <span class="byline author vcard">by <span class="fn">Arek.Yao</span></span>
+  
+
+ - 
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-18T18:04:00+08:00" pubdate data-updated="true">Oct 18<span>th</span>, 2013</time> - 
+        
+
+posted in
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/architecture/'>Architecture</a>
+  
+</span>
+
+
+        
+
+- tagged by  
+<span class="tags">
+  
+    <a class='tag' href='/tags/performance/'>performance</a>, <a class='tag' href='/tags/system/'>system</a>, <a class='tag' href='/tags/webserver/'>webserver</a>
+  
+</span>
+
+
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2 id="preface">1,Preface</h2>
+
+<p>Happy families are all alike; every unhappy family is unhappy in its own way.<br />
+So does System.</p>
+
+<p>Here is just a simple way to find out what’s ‘unhappy’ in your system.</p>
+
+<h2 id="think-as-time-goes">2,Think as time goes</h2>
+
+<p>There are lots of ways to thinking and find something.<br />
+Thinking as time goes is an easy one.</p>
+
+<p>However, what we are going to talking, in fact, is thinking as data flows.</p>
+
+<!-- more -->
+
+<p>Refer to your system, the data will be transferred like this:</p>
+
+<p>UserRequest -&gt; HttpServer -&gt; UIServer -&gt; DataServer -&gt; Database<br />
+UserReceiver &lt;- HttpServer &lt;- UIServer &lt;- DataServer &lt;- Database</p>
+
+<h2 id="userrequest--userreceiver">3,UserRequest &amp; UserReceiver</h2>
+
+<p>Those belong to User Client.</p>
+
+<p>User’s Client depends on Environment, where user run his program, like Operating System, like web browser if the program is an webapp, etc.</p>
+
+<p>If you are doing a stress testing on your system, your stress test tools is a factor ,too.</p>
+
+<h2 id="server-machine">4,Server Machine</h2>
+
+<p>Others like httpserver,uiserver, database, etc, are running on your server, your machine.
+Server Machine can have four kind of bottleneck.</p>
+
+<ul>
+  <li>CPU (see top)</li>
+  <li>Swap (see free)</li>
+  <li>Network (see iftop)</li>
+  <li>Disk (see iotop)</li>
+</ul>
+
+<blockquote>
+  <p>Where is the bottleneck?” is a good question, so I’ll ask it back to you in different words: 
+is the CPU maxed out (see top)? 
+Are the disks struggling (iotop)? 
+Are you hitting swap (free)? 
+Are you filling the network pipe (iftop)? 
+                          –  Shish Nov 23 ‘11 at 11:21</p>
+</blockquote>
+
+<p>The posts, which will give the detail on User &amp; Machine, is on the way.</p>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+
+  
+    <span class="byline author vcard">by <span class="fn">Arek.Yao</span></span>
+  
+
+ - 
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-18T18:04:00+08:00" pubdate data-updated="true">Oct 18<span>th</span>, 2013</time> - 
+      
+
+posted in
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/architecture/'>Architecture</a>
+  
+</span>
+
+
+      
+
+- tagged by  
+<span class="tags">
+  
+    <a class='tag' href='/tags/performance/'>performance</a>, <a class='tag' href='/tags/system/'>system</a>, <a class='tag' href='/tags/webserver/'>webserver</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://arekyao.github.io/blog/2013/10/18/how-to-improve-the-performance-of-system/" data-via="" data-counturl="http://arekyao.github.io/blog/2013/10/18/how-to-improve-the-performance-of-system/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    
+      <a class="pull-left" href="/blog/2013/10/11/data-mining-r-python-rapidminer-or-matlab/" title="Previous Post: Data Mining: R, Python, RapidMiner or Matlab">&laquo; Data Mining: R, Python, RapidMiner or Matlab</a>
+    
+    
+  </footer>
+
+</div>
+
+        
+          <div class="article-format">
+            <h1>Comments</h1>
+            <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+          </div>
+        
+      </article>
+    </div>
+  </div>
+  <div id="footer-widgets">
+  <div class="container">
+    <div class="row">
+  <div class="span3">
+    <h2>recent posts</h2>
+    <ul class="recent_posts">
+      
+        <li>
+          <a href="/blog/2013/10/18/how-to-improve-the-performance-of-system/">How to improve the Performance of System</a>
+        </li>
+      
+        <li>
+          <a href="/blog/2013/10/11/data-mining-r-python-rapidminer-or-matlab/">Data Mining: R, Python, RapidMiner or Matlab</a>
+        </li>
+      
+        <li>
+          <a href="/blog/2013/10/09/how-to-add-tag-cloud-to-your-octopress-blog/">How to Add tag cloud to your Octopress blog</a>
+        </li>
+      
+        <li>
+          <a href="/blog/2013/10/02/workflow-engine-in-python/">Workflow Engine in Python</a>
+        </li>
+      
+        <li>
+          <a href="/blog/2013/09/15/setting-up-django-and-your-web-server-with-uwsgi-and-nginx/">Setting up Django and your web server with uWSGI and nginx</a>
+        </li>
+      
+    </ul>
+    <h2><a href="/blog/archives">archives</a></h2>
+  </div>
+  <div class="span3">
+  </div>
+  <div class="span3">
+  </div>
+  <div class="span3">
+    <h2>hot tags</h2>
+<ul class="tag-cloud">
+    <li><a style="font-size: 104%" href="/tags/machinelearning/">MachineLearning</a></li>
+<li><a style="font-size: 104%" href="/tags/baby/">baby</a></li>
+<li><a style="font-size: 107%" href="/tags/blogger/">blogger</a></li>
+<li><a style="font-size: 104%" href="/tags/life/">life</a></li>
+<li><a style="font-size: 107%" href="/tags/octopress/">octopress</a></li>
+<li><a style="font-size: 110%" href="/tags/python/">python</a></li>
+
+</ul>
+
+    <h2><a href="/tags.html">Tags</a></h2>
+  </div>
+</div>
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F654cfc47b6302994615bbe58fa7d9a14' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+
+
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-left">
+  <a href="/">YY Every Day</a>
+  - Copyright &copy; 2013 - Arek.Yao
+</p>
+<p class="pull-right">
+  <span>Powered by <a href="http://octopress.org/">Octopress</a>.</span>
+  
+    <span>Designed by <a href="http://www.AdrianArtiles.com">Adrian Artiles</a>.</span>
+  
+</p>
+
+  </div>
+</footer>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+<script>window.jQuery || document.write('<script src="/javascripts/libs/jquery-1.7.2.min.js" type="text/javascript"><\/script>')</script>
+<script src="/javascripts/libs/bootstrap.min.js" type="text/javascript"></script>
+<script src="/javascripts/jquery.tweet.js" type="text/javascript"></script>
+<script src="/javascripts/jquery.instagram.js" type="text/javascript"></script>
+<script src="/javascripts/libs/jquery.masonry.min.js" type="text/javascript"></script>
+<script src="/javascripts/custom.js" type="text/javascript"></script>
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'arekyao';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://arekyao.github.io/blog/2013/10/18/how-to-improve-the-performance-of-system/';
+        var disqus_url = 'http://arekyao.github.io/blog/2013/10/18/how-to-improve-the-performance-of-system/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+</body>
+</html>

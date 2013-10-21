@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Architecture | YY Every Day]]></title>
   <link href="http://arekyao.github.io/blog/categories/architecture/atom.xml" rel="self"/>
   <link href="http://arekyao.github.io/"/>
-  <updated>2013-10-17T12:28:15+08:00</updated>
+  <updated>2013-10-22T00:19:29+08:00</updated>
   <id>http://arekyao.github.io/</id>
   <author>
     <name><![CDATA[Arek.Yao]]></name>
@@ -12,6 +12,66 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[How to improve the Performance of System]]></title>
+    <link href="http://arekyao.github.io/blog/2013/10/18/how-to-improve-the-performance-of-system/"/>
+    <updated>2013-10-18T18:04:00+08:00</updated>
+    <id>http://arekyao.github.io/blog/2013/10/18/how-to-improve-the-performance-of-system</id>
+    <content type="html"><![CDATA[<h2 id="preface">1,Preface</h2>
+
+<p>Happy families are all alike; every unhappy family is unhappy in its own way.<br />
+So does System.</p>
+
+<p>Here is just a simple way to find out what’s ‘unhappy’ in your system.</p>
+
+<h2 id="think-as-time-goes">2,Think as time goes</h2>
+
+<p>There are lots of ways to thinking and find something.<br />
+Thinking as time goes is an easy one.</p>
+
+<p>However, what we are going to talking, in fact, is thinking as data flows.</p>
+
+<!-- more -->
+
+<p>Refer to your system, the data will be transferred like this:</p>
+
+<p>UserRequest -&gt; HttpServer -&gt; UIServer -&gt; DataServer -&gt; Database<br />
+UserReceiver &lt;- HttpServer &lt;- UIServer &lt;- DataServer &lt;- Database</p>
+
+<h2 id="userrequest--userreceiver">3,UserRequest &amp; UserReceiver</h2>
+
+<p>Those belong to User Client.</p>
+
+<p>User’s Client depends on Environment, where user run his program, like Operating System, like web browser if the program is an webapp, etc.</p>
+
+<p>If you are doing a stress testing on your system, your stress test tools is a factor ,too.</p>
+
+<h2 id="server-machine">4,Server Machine</h2>
+
+<p>Others like httpserver,uiserver, database, etc, are running on your server, your machine.
+Server Machine can have four kind of bottleneck.</p>
+
+<ul>
+  <li>CPU (see top)</li>
+  <li>Swap (see free)</li>
+  <li>Network (see iftop)</li>
+  <li>Disk (see iotop)</li>
+</ul>
+
+<blockquote>
+  <p>Where is the bottleneck?” is a good question, so I’ll ask it back to you in different words: 
+is the CPU maxed out (see top)? 
+Are the disks struggling (iotop)? 
+Are you hitting swap (free)? 
+Are you filling the network pipe (iftop)? 
+                          –  Shish Nov 23 ‘11 at 11:21</p>
+</blockquote>
+
+<p>The posts, which will give the detail on User &amp; Machine, is on the way.</p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Data Mining: R, Python, RapidMiner or Matlab]]></title>
@@ -1086,59 +1146,6 @@ Such as, XML, Jason, YAML etc.</p>
   <li><a href="">http://nosql-database.org/</a></li>
 </ol>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Android Dev on OSX]]></title>
-    <link href="http://arekyao.github.io/blog/2013/04/20/android-dev-on-osx/"/>
-    <updated>2013-04-20T00:00:00+08:00</updated>
-    <id>http://arekyao.github.io/blog/2013/04/20/android-dev-on-osx</id>
-    <content type="html"><![CDATA[<h2 id="some-gossip">Some gossip</h2>
-
-<p>Today it prove the conclusion that Google is much better than baidu, esp in Tech Problem.</p>
-
-<p>here is one:</p>
-
-<p>Android Emulation Key HOME is not found on OSX.  </p>
-
-<p>There is not HOME key on OSX.</p>
-
-<p>After lots of try, i got ESC, but it’s BACK key.</p>
-
-<p>By Bidu, try lots of query, it does not work.</p>
-
-<p>By google, it works immediately</p>
-
-<h2 id="android-emulator-key-mapping-on-osx">Android Emulator Key Mapping On OSX</h2>
-
-<!-- more -->
-
-<p>from <a href="">http://developer.android.com/tools/help/emulator.html</a></p>
-
-<p>Home = HOME (FN + left_arrow on Macbooks)<br />
-Menu (left softkey) = F2 or Page-up button<br />
-Star (right softkey) = Shift-F2 or Page Down<br />
-Back = ESC<br />
-Call/dial button = F3<br />
-Hangup/end call button = F4<br />
-Search = F5<br />
-Power button = F7<br />
-Audio volume up button = KEYPAD_PLUS, Ctrl-F5<br />
-Audio volume down button = KEYPAD_MINUS, Ctrl-F6<br />
-Camera button = Ctrl-KEYPAD<em>5, Ctrl-F3<br />
-Switch to previous layout orientation (for example, portrait, landscape) = KEYPAD</em>7, Ctrl-F11<br />
-Switch to next layout orientation (for example, portrait, landscape) = KEYPAD<em>9, Ctrl-F12<br />
-Toggle cell networking on/off = F8<br />
-Toggle code profiling = F9 (only with -trace startup option)<br />
-Toggle fullscreen mode = Alt-Enter<br />
-Toggle trackball mode = F6
-Enter trackball mode temporarily (while key is pressed) = Delete
-DPad left/up/right/down = KEYPAD</em>4/8/6/2
-DPad center click = KEYPAD_5
-Onion alpha increase/decrease = KEYPAD_MULTIPLY(*) / KEYPAD_DIVIDE(/)</p>
-
-<p><a href="">http://stackoverflow.com/questions/7628606/how-to-emulate-pressing-home-button-in-android-emulator</a></p>
 ]]></content>
   </entry>
   
