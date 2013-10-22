@@ -4,7 +4,7 @@ title: "Break GFW with Goagent in Android MX2"
 date: 2013-02-12 15:36
 comments: true
 categories: TechChangeWorld
-tags: [MX2,DIY]
+tags: [MX2,DIY,GFW]
 ---
 
 A new phone [MX2](http://www.meizu.com/products/mx2fun.html) goes into my life.
