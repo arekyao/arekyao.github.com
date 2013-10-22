@@ -4,7 +4,7 @@
   <title><![CDATA[Category: TechChangeWorld | YY Every Day]]></title>
   <link href="http://arekyao.github.io/blog/categories/techchangeworld/atom.xml" rel="self"/>
   <link href="http://arekyao.github.io/"/>
-  <updated>2013-10-22T23:45:57+08:00</updated>
+  <updated>2013-10-22T23:46:37+08:00</updated>
   <id>http://arekyao.github.io/</id>
   <author>
     <name><![CDATA[Arek.Yao]]></name>
@@ -161,27 +161,28 @@ ok, there is a use of TDD, lol</p>
 
 <!-- more -->
 
-<p>{% highlight ruby %}</p>
+<p><div class="highlight"><pre><code class="ruby"><span class="o">&lt;</span><span class="sr">/p&gt;</span>
 
-<p>module Jekyll
-  class CategoryListTag &lt; Liquid::Tag
-    def render(context)
-      html = “”
-      categories = context.registers[:site].categories.keys
-      categories.sort.each do |category|
-        posts_in_category = context.registers[:site].categories[category].size
-        category_dir = context.registers[:site].config[‘category_dir’]
-        category_url = File.join(category_dir, category.gsub(/_|\P{Word}/, ‘-‘).gsub(/-{2,}/, ‘-‘).downcase)
-        html « “&lt;li class='category'&gt;<a href="http://arekyao.github.io/#{category_url}/">#{category} (#{posts_in_category})</a>&lt;/li&gt;\n”
-      end
-      html
-    end
-  end
-end</p>
+<span class="sr">&lt;p&gt;module Jekyll</span>
+<span class="sr">  class CategoryListTag &amp;lt; Liquid::Tag</span>
+<span class="sr">    def render(context)</span>
+<span class="sr">      html = “”</span>
+<span class="sr">      categories = context.registers[:site].categories.keys</span>
+<span class="sr">      categories.sort.each do |category|</span>
+<span class="sr">        posts_in_category = context.registers[:site].categories[category].size</span>
+<span class="sr">        category_dir = context.registers[:site].config[‘category_dir’]</span>
+<span class="sr">        category_url = File.join(category_dir, category.gsub(/</span><span class="n">_</span><span class="o">|</span><span class="p">\</span><span class="n">P</span><span class="p">{</span><span class="no">Word</span><span class="p">}</span><span class="o">/</span><span class="p">,</span> <span class="err">‘</span><span class="o">-</span><span class="err">‘</span><span class="p">)</span><span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="sr">/-{2,}/</span><span class="p">,</span> <span class="err">‘</span><span class="o">-</span><span class="err">‘</span><span class="p">)</span><span class="o">.</span><span class="n">downcase</span><span class="p">)</span>
+        <span class="n">html</span> <span class="err">« “</span><span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">li</span> <span class="n">class</span><span class="o">=</span><span class="s1">&#39;category&#39;</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span><span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s2">&quot;http://arekyao.github.io/</span><span class="si">#{</span><span class="n">category_url</span><span class="si">}</span><span class="s2">/&quot;</span><span class="o">&gt;</span><span class="c1">#{category} (#{posts_in_category})&lt;/a&gt;&amp;lt;/li&amp;gt;\n”</span>
+      <span class="k">end</span>
+      <span class="n">html</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
 
-<p>Liquid::Template.register_tag(‘category_list’, Jekyll::CategoryListTag)</p>
+<span class="sr">&lt;p&gt;Liquid::Template.register_tag(‘category_list’, Jekyll::CategoryListTag)&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
 
-<p>{% endhighlight %}</p>
+<span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>
+</code></pre></div></p>
 
 <p>This plugin will register a tag『in xml 』 called catetory_list in liquid.<br />
 All your category in you blog, will be organised in li.  </p>
