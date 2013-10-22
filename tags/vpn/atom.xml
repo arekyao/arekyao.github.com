@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: VPN | YY Every Day]]></title>
+  <link href="http://arekyao.github.io/tags/vpn/atom.xml" rel="self"/>
+  <link href="http://arekyao.github.io/"/>
+  <updated>2013-10-22T15:02:19+08:00</updated>
+  <id>http://arekyao.github.io/</id>
+  <author>
+    <name><![CDATA[Arek.Yao]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[How to break gfw to git]]></title>
+    <link href="http://arekyao.github.io/blog/2013/10/22/how-to-break-gfw-to-git/"/>
+    <updated>2013-10-22T14:39:00+08:00</updated>
+    <id>http://arekyao.github.io/blog/2013/10/22/how-to-break-gfw-to-git</id>
+    <content type="html"><![CDATA[<p>Recently, github is blocked by Somebody.<br />
+git clone,git push … no way.<br />
+So how to break the wall?</p>
+
+<p>Here is a way.</p>
+
+<h2 id="git-protocol">Git Protocol</h2>
+
+<p>Git has three protocol working:</p>
+
+<ul>
+  <li>git://  </li>
+  <li>ssh://  </li>
+  <li>http(s)://  </li>
+</ul>
+
+<p>and Proxy has two protocol mainly:</p>
+
+<ul>
+  <li>http(s)://  </li>
+  <li>sock  </li>
+</ul>
+
+<p>I git successfully https:// with http-proxyer (mine is goAgent)</p>
+
+<p>The way is so easy:</p>
+
+<p><code>
+export http_proxy="http://127.0.0.1:8087"
+export https_proxy="http://127.0.0.1:8087" 
+</code></p>
+
+<p>However, i did not succ with ssh:// or git:// with http-proxyer.and still dunno why</p>
+
+<h2 id="vpn">VPN</h2>
+
+<p>The other way is easier, VPN.</p>
+
+<p>There are lots of vpn server, free and not free.</p>
+
+<p>Here is a free vpn,enjoy it </p>
+
+<p><a href="http://www.pptpvpn.org/">http://www.pptpvpn.org/</a></p>
+
+]]></content>
+  </entry>
+  
+</feed>
