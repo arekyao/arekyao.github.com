@@ -44,6 +44,8 @@ RSE
 
 FRTP...
 
+<!-- more -->
+
 --------------------------------------------
 
 * [Linear Regression](http://en.wikipedia.org/wiki/Linear_regression)
