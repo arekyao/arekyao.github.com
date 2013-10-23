@@ -4,7 +4,7 @@
   <title><![CDATA[YY Every Day]]></title>
   <link href="http://arekyao.github.io/atom.xml" rel="self"/>
   <link href="http://arekyao.github.io/"/>
-  <updated>2013-10-22T23:46:37+08:00</updated>
+  <updated>2013-10-23T22:26:47+08:00</updated>
   <id>http://arekyao.github.io/</id>
   <author>
     <name><![CDATA[Arek.Yao]]></name>
@@ -12,6 +12,79 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Surfing your Keyboard in Bash with Shortcut]]></title>
+    <link href="http://arekyao.github.io/blog/2013/10/23/surfing-your-keyboard-in-bash-with-shortcut/"/>
+    <updated>2013-10-23T22:05:00+08:00</updated>
+    <id>http://arekyao.github.io/blog/2013/10/23/surfing-your-keyboard-in-bash-with-shortcut</id>
+    <content type="html"><![CDATA[<p>Nowadays, the more spending time in Bash shell and typing longer commands, the more precious time is in my mind.<br />
+So I spent some time to read about “Command Line Editing” in the bash manual and Google the experience old man left.  </p>
+
+<p>Well, here’s the new shortcuts I learned:</p>
+
+<p>ps: the em is my favourite</p>
+
+<!-- more -->
+
+<h3 id="basic-moves">Basic moves</h3>
+
+<ul>
+  <li>Move back one character. Ctrl + b</li>
+  <li>Move forward one character. Ctrl + f</li>
+  <li>Delete current character. Ctrl + d</li>
+  <li>Delete previous character. Backspace</li>
+  <li><em>Undo.</em> <code>Ctrl + -</code></li>
+</ul>
+
+<h3 id="moving-faster">Moving faster</h3>
+
+<ul>
+  <li>Move to the start of line. Ctrl + a</li>
+  <li>Move to the end of line. Ctrl + e</li>
+  <li><em>Move forward a word.</em> <code>Meta + f</code> <em>(a word contains alphabets and digits, no symbols)</em></li>
+  <li><em>Move backward a word.</em> <code>Meta + b</code></li>
+  <li>Clear the screen. Ctrl + l</li>
+</ul>
+
+<p>What is Meta? Meta is your Alt key, normally. <br />
+For Mac OSX user, you need to enable it yourself. <br />
+Open Terminal &gt; Preferences &gt; Settings &gt; Keyboard, and enable Use option as meta key. <br />
+Meta key, by convention, is used for operations on word.  </p>
+
+<h3 id="cut-and-paste-kill-and-yank-for-old-schoolers">Cut and paste (‘Kill and yank’ for old schoolers)</h3>
+
+<ul>
+  <li><em>Cut from cursor to the end of line.</em> <code>Ctrl + k</code></li>
+  <li><em>Cut from cursor to the end of word.</em> <code>Meta + d</code></li>
+  <li><em>Cut from cursor to the start of word.</em> <code>Meta + Backspace</code></li>
+  <li><em>Cut from cursor to previous whitespace.</em> <code>Ctrl + w</code></li>
+  <li>Paste the last cut text. Ctrl + y</li>
+  <li>Loop through and paste previously cut text. Meta + y (use it after Ctrl + y)</li>
+  <li>Loop through and paste the last argument of previous commands. Meta + .</li>
+</ul>
+
+<h3 id="search-the-command-history">Search the command history</h3>
+
+<ul>
+  <li><em>Search as you type.</em> <code>Ctrl + r</code> and type the search term; Repeat Ctrl + r to loop through results.</li>
+  <li>Search the last remembered search term. Ctrl + r twice.</li>
+  <li>End the search at current history entry. Ctrl + j</li>
+  <li>Cancel the search and restore original line. Ctrl + g</li>
+</ul>
+
+<h3 id="not-enough">Not Enough??</h3>
+
+<p>Come on!</p>
+
+<ul>
+  <li>A comprehensive bash <a href="http://www.catonmat.net/blog/bash-emacs-editing-mode-cheat-sheet/">editing mode cheatsheet</a> by Peteris Krumin (catonmat.net).  </li>
+  <li>Vim users! Do you know you can switch to Vi-style editing mode? Here: <a href="http://www.catonmat.net/blog/bash-vi-editing-mode-cheat-sheet/">vi-style cheatsheet</a>.</li>
+  <li>Bash command line editing is actually handled by GNU Readline Library. So just dive into <a href="http://www.gnu.org/software/readline/#Documentation">Readline manual</a> for everything else.</li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How to break gfw to git]]></title>
@@ -3297,98 +3370,6 @@ Softmax Regession can solve multi</p>
 <p><a href="">http://deeplearning.stanford.edu/wiki/index.php/UFLDL%E6%95%99%E7%A8%8B</a></p>
 
 <p>It’s not finished…</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[The Overview of Machine Learning]]></title>
-    <link href="http://arekyao.github.io/blog/2013/02/15/the-overview-of-machine-learning/"/>
-    <updated>2013-02-15T21:19:00+08:00</updated>
-    <id>http://arekyao.github.io/blog/2013/02/15/the-overview-of-machine-learning</id>
-    <content type="html"><![CDATA[<blockquote>
-  <p>First of all, I have to say, the Machine learning series have a very deep water,:)
-I dont have enough time to afford a full explaination, in detail, about the machine learning.
-It’s just my study map, or so-called logs..</p>
-</blockquote>
-
-<p>Here is the stories of it.</p>
-
-<h2 id="machine-learning">Machine Learning</h2>
-
-<!-- more -->
-
-<p><a href="http://en.wikipedia.org/wiki/Machine_learning">Machine learning</a>, a branch of artificial intelligence, is about the construction and study of systems that can learn from data</p>
-
-<p>Refer to the difference between Machine Learning and Data Mining, the DM is the target, the ML is the way.</p>
-
-<blockquote>
-  <p>Machine learning focuses on prediction, based on known properties learned from the training data.
-Data mining (which is the analysis step of Knowledge Discovery in Databases) focuses on the discovery of (previously) unknown properties on the data.</p>
-</blockquote>
-
-<p>Algorithms Type OF ML</p>
-
-<ul>
-  <li>
-    <h2 id="supervised-learning">1,Supervised learning</h2>
-  </li>
-</ul>
-
-<blockquote>
-  <p>generates a function that maps inputs to desired outputs (also called labels, because they are often provided by human experts labeling the training examples). For example, in a <code>classification</code> problem, the learner approximates a function mapping a vector into classes by looking at input-output examples of the function.</p>
-</blockquote>
-
-<h3 id="decision-tree">+ Decision Tree</h3>
-
-<h3 id="association-rule-learning">+ Association rule learning</h3>
-
-<h3 id="svm">+ SVM</h3>
-
-<h3 id="random-forrest">+ Random Forrest</h3>
-
-<h3 id="naive-bayes-classifier">+ Naive bayes classifier</h3>
-
-<h3 id="linearregression">+ Linear_regression</h3>
-
-<h3 id="section">…</h3>
-
-<ul>
-  <li>
-    <h2 id="unsupervised-learning">2,Unsupervised learning</h2>
-    <blockquote>
-      <p>models a set of inputs, like <code>clustering</code>. See also data mining and knowledge discovery. Here, labels are not known during training.</p>
-    </blockquote>
-  </li>
-  <li>
-    <h2 id="semi-supervised-learning">3,Semi-supervised learning</h2>
-  </li>
-</ul>
-
-<blockquote>
-  <p>combines both labeled and unlabeled examples to generate an appropriate function or classifier. Transduction, or transductive inference, tries to predict new outputs on specific and fixed (test) cases from observed, specific (training) cases.</p>
-</blockquote>
-
-<ul>
-  <li>
-    <h2 id="reinforcement-learning">4,Reinforcement learning</h2>
-    <blockquote>
-      <p>learns how to act given an observation of the world. Every action has some impact in the environment, and the environment provides feedback in the form of rewards that guides the learning algorithm.</p>
-    </blockquote>
-  </li>
-  <li>
-    <h2 id="learning-to-learn">5,Learning to learn</h2>
-    <p>learns its own inductive bias based on previous experience.</p>
-  </li>
-</ul>
-
-<h2 id="reference">Reference:</h2>
-<p>1, <a href="http://v.163.com/special/opencourse/machinelearning.html">网易公开课</a> </p>
-
-<p>2, <a href="http://zhfuzh.blog.163.com/blog/static/14553938720127309539465">行走的馒头</a> </p>
-
-<p>3, <a href="http://cs229.stanford.edu/materials.html">Stanford’s lesson</a></p>
-
-<p>4, <a href="http://www.datasciencecentral.com/profiles/blogs/berkeley-course-on-data-science">Berkeley course on Data Science,北美+德国18名校的数据挖掘、数据分析、人工智能及机器学习课程资源汇总</a></p>
 ]]></content>
   </entry>
   
