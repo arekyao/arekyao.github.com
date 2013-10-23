@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: shortcut | YY Every Day]]></title>
+  <link href="http://arekyao.github.io/tags/shortcut/atom.xml" rel="self"/>
+  <link href="http://arekyao.github.io/"/>
+  <updated>2013-10-23T22:33:46+08:00</updated>
+  <id>http://arekyao.github.io/</id>
+  <author>
+    <name><![CDATA[Arek.Yao]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Surfing your Keyboard in Bash with Shortcut]]></title>
+    <link href="http://arekyao.github.io/blog/2013/10/23/surfing-your-keyboard-in-bash-with-shortcut/"/>
+    <updated>2013-10-23T22:05:00+08:00</updated>
+    <id>http://arekyao.github.io/blog/2013/10/23/surfing-your-keyboard-in-bash-with-shortcut</id>
+    <content type="html"><![CDATA[<p>Nowadays, the more spending time in Bash shell and typing longer commands, the more precious time is in my mind.<br />
+So I spent some time to read about “Command Line Editing” in the bash manual and Google the experience old man left.  </p>
+
+<p>Well, here’s the new shortcuts I learned:</p>
+
+<p>ps: the em is my favourite</p>
+
+<!-- more -->
+
+<h3 id="basic-moves">Basic moves</h3>
+
+<ul>
+  <li>Move back one character. Ctrl + b</li>
+  <li>Move forward one character. Ctrl + f</li>
+  <li>Delete current character. Ctrl + d</li>
+  <li>Delete previous character. Backspace</li>
+  <li><em>Undo.</em> <code>Ctrl + -</code></li>
+</ul>
+
+<h3 id="moving-faster">Moving faster</h3>
+
+<ul>
+  <li>Move to the start of line. Ctrl + a</li>
+  <li>Move to the end of line. Ctrl + e</li>
+  <li><em>Move forward a word.</em> <code>Meta + f</code> <em>(a word contains alphabets and digits, no symbols)</em></li>
+  <li><em>Move backward a word.</em> <code>Meta + b</code></li>
+  <li>Clear the screen. Ctrl + l</li>
+</ul>
+
+<p>What is Meta? Meta is your Alt key, normally. <br />
+For Mac OSX user, you need to enable it yourself. <br />
+Open Terminal &gt; Preferences &gt; Settings &gt; Keyboard, and enable Use option as meta key. <br />
+Meta key, by convention, is used for operations on word.  </p>
+
+<h3 id="cut-and-paste-kill-and-yank-for-old-schoolers">Cut and paste (‘Kill and yank’ for old schoolers)</h3>
+
+<ul>
+  <li><em>Cut from cursor to the end of line.</em> <code>Ctrl + k</code></li>
+  <li><em>Cut from cursor to the end of word.</em> <code>Meta + d</code></li>
+  <li><em>Cut from cursor to the start of word.</em> <code>Meta + Backspace</code></li>
+  <li><em>Cut from cursor to previous whitespace.</em> <code>Ctrl + w</code></li>
+  <li>Paste the last cut text. Ctrl + y</li>
+  <li>Loop through and paste previously cut text. Meta + y (use it after Ctrl + y)</li>
+  <li>Loop through and paste the last argument of previous commands. Meta + .</li>
+</ul>
+
+<h3 id="search-the-command-history">Search the command history</h3>
+
+<ul>
+  <li><em>Search as you type.</em> <code>Ctrl + r</code> and type the search term; Repeat Ctrl + r to loop through results.</li>
+  <li>Search the last remembered search term. Ctrl + r twice.</li>
+  <li>End the search at current history entry. Ctrl + j</li>
+  <li>Cancel the search and restore original line. Ctrl + g</li>
+</ul>
+
+<h3 id="not-enough">Not Enough??</h3>
+
+<p>Come on!</p>
+
+<ul>
+  <li>A comprehensive bash <a href="http://www.catonmat.net/blog/bash-emacs-editing-mode-cheat-sheet/">editing mode cheatsheet</a> by Peteris Krumin (catonmat.net).  </li>
+  <li>Vim users! Do you know you can switch to Vi-style editing mode? Here: <a href="http://www.catonmat.net/blog/bash-vi-editing-mode-cheat-sheet/">vi-style cheatsheet</a>.</li>
+  <li>Bash command line editing is actually handled by GNU Readline Library. So just dive into <a href="http://www.gnu.org/software/readline/#Documentation">Readline manual</a> for everything else.</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>
