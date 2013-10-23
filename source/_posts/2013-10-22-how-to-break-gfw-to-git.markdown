@@ -3,13 +3,15 @@ layout: post
 title: "How to break gfw to git"
 date: 2013-10-22 14:39
 comments: true
-categories: TechChangeWorld
+categories: TechTricks
 tags: [DIY,GFW,git,github,proxy,VPN]
 ---
 
 Recently, github is blocked by Somebody.  
 git clone,git push ... no way.  
 So how to break the wall?
+
+<!-- more -->
 
 Here is a way.
 

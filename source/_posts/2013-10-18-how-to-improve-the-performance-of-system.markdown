@@ -3,7 +3,7 @@ layout: post
 title: "How to improve the Performance of System"
 date: 2013-10-18 18:04
 comments: true
-categories: Architecture
+categories: TechMinds
 tags: [performance, system, webserver]
 ---
 
