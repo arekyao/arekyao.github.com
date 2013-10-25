@@ -13,10 +13,7 @@
   
     
   
-  <meta name="description" content=" Discriminative learning algorithm learn $$
-P(y|x)
-$$
-or h_{\theta}(x) \in \left \{ 0,1 \right \} directly ">
+  <meta name="description" content="Linear Regression It’s a simple model,and very useful Locally Weighted Linear Regression the training data only contain the data near X (is not it &hellip;">
   
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -32,10 +29,7 @@ or h_{\theta}(x) \in \left \{ 0,1 \right \} directly ">
   <meta name="og:type" content="website" />
   <meta name="og:site_name" content="YY Every Day" />
   <meta name="og:title" content="Machine learning ep2" />
-  <meta name="og:description" content=" Discriminative learning algorithm learn $$
-P(y|x)
-$$
-or h_{\theta}(x) \in \left \{ 0,1 \right \} directly " />
+  <meta name="og:description" content="Linear Regression It’s a simple model,and very useful Locally Weighted Linear Regression the training data only contain the data near X (is not it &hellip;" />
   <meta name="og:url" content="http://arekyao.github.io/blog/2013/03/09/machine-learning-ep2/"/>
   <meta name="url" content="http://arekyao.github.io/blog/2013/03/09/machine-learning-ep2/">
   
@@ -142,6 +136,77 @@ posted in
 
   <div class="entry-content"><ul>
   <li>
+    <h2 id="linear-regressionhttpenwikipediaorgwikilinearregression"><a href="http://en.wikipedia.org/wiki/Linear_regression">Linear Regression</a></h2>
+  </li>
+</ul>
+
+<p>It’s a simple model,and very useful</p>
+
+<ul>
+  <li>
+    <h2 id="locally-weighted-linear-regression">Locally Weighted Linear Regression</h2>
+  </li>
+</ul>
+
+<p>the training data only contain the data near X  (is not it cool?)</p>
+
+<!-- more -->
+
+<hr />
+
+<ul>
+  <li>
+    <h2 id="batch-gradient-descent-vs-stochastic-gradient-descent">Batch Gradient Descent vs stochastic gradient descent（随机梯度下降）</h2>
+  </li>
+</ul>
+
+<h5 id="batch-gradient-descent">Batch Gradient Descent:</h5>
+
+<blockquote>
+  <p>You need to run over every training example before doing an update, which means that if you have a large dataset, you might spend much time on getting something that works.</p>
+</blockquote>
+
+<h5 id="stochastic-gradient-descent">Stochastic gradient descent:</h5>
+<blockquote>
+  <p>on the other hand, does updates every time it finds a training example, however, since it only uses one update, it may never converge, although you can still be pretty close to the minimum.</p>
+</blockquote>
+
+<p>In conclusion, if your data is large, you might want to use Stochastic Gradient Descent.</p>
+
+<h4 id="newton-method">Newton Method:</h4>
+<p>Advantage: fast iteration to get result
+Disadvantage: have to invert the N*N’s (N is the number of feature) every step</p>
+
+<ul>
+  <li>
+    <h2 id="when-to-stop-the-iteration-of-gradient-descent">When to stop the iteration of Gradient Descent</h2>
+    <p>It has two ways.</p>
+  </li>
+</ul>
+
+<p><code>Condition 1: the two iteration's result is so close to ignore</code></p>
+
+<p><code>Condition 2: the loss is very small, which can be ignored</code></p>
+
+<ul>
+  <li>parametric learning algorithm &amp; non-parametric learning algorithm</li>
+</ul>
+
+<blockquote>
+  <p>non-parametric learning: the number of arguments will go with size of training data</p>
+</blockquote>
+
+<ul>
+  <li>
+    <h2 id="exponential-distribution-family">Exponential distribution family</h2>
+    <p>eg: Normal Distribution, Poisson Distribution, Bernouli Distribution </p>
+  </li>
+  <li>
+    <h2 id="logistic-regression--softmax-regression">Logistic Regression &amp; Softmax Regression</h2>
+    <p>Logistic Regression only 2 kinds
+Softmax Regession can solve multi</p>
+  </li>
+  <li>
     <h4 id="discriminative-learning-algorithm">Discriminative learning algorithm</h4>
   </li>
 </ul>
@@ -157,8 +222,6 @@ h_{\theta}(x) \in \left \{ 0,1 \right \}
 </script>
 
 <p>directly</p>
-
-<!-- more -->
 
 <ul>
   <li>
@@ -302,9 +365,9 @@ posted in
     <h2>hot tags</h2>
 <ul class="tag-cloud">
     <li><a style="font-size: 104%" href="/tags/diy/">DIY</a></li>
-<li><a style="font-size: 104%" href="/tags/machinelearning/">MachineLearning</a></li>
 <li><a style="font-size: 104%" href="/tags/baby/">baby</a></li>
 <li><a style="font-size: 107%" href="/tags/blogger/">blogger</a></li>
+<li><a style="font-size: 104%" href="/tags/life/">life</a></li>
 <li><a style="font-size: 107%" href="/tags/octopress/">octopress</a></li>
 <li><a style="font-size: 110%" href="/tags/python/">python</a></li>
 

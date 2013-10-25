@@ -4,7 +4,7 @@
   <title><![CDATA[YY Every Day]]></title>
   <link href="http://arekyao.github.io/atom.xml" rel="self"/>
   <link href="http://arekyao.github.io/"/>
-  <updated>2013-10-23T23:01:46+08:00</updated>
+  <updated>2013-10-25T08:21:57+08:00</updated>
   <id>http://arekyao.github.io/</id>
   <author>
     <name><![CDATA[Arek.Yao]]></name>
@@ -23,7 +23,7 @@ So I spent some time to read about “Command Line Editing” in the bash manual
 
 <p>Well, here’s the new shortcuts I learned:</p>
 
-<p>ps: the em is my favourite</p>
+<p>ps: the marked ones as em are my favourite.</p>
 
 <!-- more -->
 
@@ -2924,6 +2924,77 @@ Then both She and I will have a good night very soon.</p>
     <id>http://arekyao.github.io/blog/2013/03/09/machine-learning-ep2</id>
     <content type="html"><![CDATA[<ul>
   <li>
+    <h2 id="linear-regressionhttpenwikipediaorgwikilinearregression"><a href="http://en.wikipedia.org/wiki/Linear_regression">Linear Regression</a></h2>
+  </li>
+</ul>
+
+<p>It’s a simple model,and very useful</p>
+
+<ul>
+  <li>
+    <h2 id="locally-weighted-linear-regression">Locally Weighted Linear Regression</h2>
+  </li>
+</ul>
+
+<p>the training data only contain the data near X  (is not it cool?)</p>
+
+<!-- more -->
+
+<hr />
+
+<ul>
+  <li>
+    <h2 id="batch-gradient-descent-vs-stochastic-gradient-descent">Batch Gradient Descent vs stochastic gradient descent（随机梯度下降）</h2>
+  </li>
+</ul>
+
+<h5 id="batch-gradient-descent">Batch Gradient Descent:</h5>
+
+<blockquote>
+  <p>You need to run over every training example before doing an update, which means that if you have a large dataset, you might spend much time on getting something that works.</p>
+</blockquote>
+
+<h5 id="stochastic-gradient-descent">Stochastic gradient descent:</h5>
+<blockquote>
+  <p>on the other hand, does updates every time it finds a training example, however, since it only uses one update, it may never converge, although you can still be pretty close to the minimum.</p>
+</blockquote>
+
+<p>In conclusion, if your data is large, you might want to use Stochastic Gradient Descent.</p>
+
+<h4 id="newton-method">Newton Method:</h4>
+<p>Advantage: fast iteration to get result
+Disadvantage: have to invert the N*N’s (N is the number of feature) every step</p>
+
+<ul>
+  <li>
+    <h2 id="when-to-stop-the-iteration-of-gradient-descent">When to stop the iteration of Gradient Descent</h2>
+    <p>It has two ways.</p>
+  </li>
+</ul>
+
+<p><code>Condition 1: the two iteration's result is so close to ignore</code></p>
+
+<p><code>Condition 2: the loss is very small, which can be ignored</code></p>
+
+<ul>
+  <li>parametric learning algorithm &amp; non-parametric learning algorithm</li>
+</ul>
+
+<blockquote>
+  <p>non-parametric learning: the number of arguments will go with size of training data</p>
+</blockquote>
+
+<ul>
+  <li>
+    <h2 id="exponential-distribution-family">Exponential distribution family</h2>
+    <p>eg: Normal Distribution, Poisson Distribution, Bernouli Distribution </p>
+  </li>
+  <li>
+    <h2 id="logistic-regression--softmax-regression">Logistic Regression &amp; Softmax Regression</h2>
+    <p>Logistic Regression only 2 kinds
+Softmax Regession can solve multi</p>
+  </li>
+  <li>
     <h4 id="discriminative-learning-algorithm">Discriminative learning algorithm</h4>
   </li>
 </ul>
@@ -2939,8 +3010,6 @@ h_{\theta}(x) \in \left \{ 0,1 \right \}
 </script>
 
 <p>directly</p>
-
-<!-- more -->
 
 <ul>
   <li>
@@ -3286,82 +3355,6 @@ Very easy to ignore and underestimate.</p>
 <p>RSE</p>
 
 <p>FRTP…</p>
-
-<hr />
-
-<ul>
-  <li>
-    <h2 id="linear-regressionhttpenwikipediaorgwikilinearregression"><a href="http://en.wikipedia.org/wiki/Linear_regression">Linear Regression</a></h2>
-  </li>
-</ul>
-
-<p>It’s a simple model,and very useful</p>
-
-<ul>
-  <li>
-    <h2 id="locally-weighted-linear-regression">Locally Weighted Linear Regression</h2>
-  </li>
-</ul>
-
-<p>the training data only contain the data near X  (is not it cool?)</p>
-
-<hr />
-
-<ul>
-  <li>
-    <h2 id="batch-gradient-descent-vs-stochastic-gradient-descent">Batch Gradient Descent vs stochastic gradient descent（随机梯度下降）</h2>
-  </li>
-</ul>
-
-<h5 id="batch-gradient-descent">Batch Gradient Descent:</h5>
-
-<blockquote>
-  <p>You need to run over every training example before doing an update, which means that if you have a large dataset, you might spend much time on getting something that works.</p>
-</blockquote>
-
-<h5 id="stochastic-gradient-descent">Stochastic gradient descent:</h5>
-<blockquote>
-  <p>on the other hand, does updates every time it finds a training example, however, since it only uses one update, it may never converge, although you can still be pretty close to the minimum.</p>
-</blockquote>
-
-<p>In conclusion, if your data is large, you might want to use Stochastic Gradient Descent.</p>
-
-<h4 id="newton-method">Newton Method:</h4>
-<p>Advantage: fast iteration to get result
-Disadvantage: have to invert the N*N’s (N is the number of feature) every step</p>
-
-<ul>
-  <li>
-    <h2 id="when-to-stop-the-iteration-of-gradient-descent">When to stop the iteration of Gradient Descent</h2>
-    <p>It has two ways.</p>
-  </li>
-</ul>
-
-<p><code>Condition 1: the two iteration's result is so close to ignore</code></p>
-
-<p><code>Condition 2: the loss is very small, which can be ignored</code></p>
-
-<ul>
-  <li>parametric learning algorithm &amp; non-parametric learning algorithm</li>
-</ul>
-
-<blockquote>
-  <p>non-parametric learning: the number of arguments will go with size of training data</p>
-</blockquote>
-
-<ul>
-  <li>
-    <h2 id="exponential-distribution-family">Exponential distribution family</h2>
-    <p>eg: Normal Distribution, Poisson Distribution, Bernouli Distribution </p>
-  </li>
-  <li>
-    <h2 id="logistic-regression--softmax-regression">Logistic Regression &amp; Softmax Regression</h2>
-    <p>Logistic Regression only 2 kinds
-Softmax Regession can solve multi</p>
-  </li>
-</ul>
-
-<hr />
 
 <h2 id="reference">Reference:</h2>
 

@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: Overview | YY Every Day]]></title>
+  <link href="http://arekyao.github.io/tags/overview/atom.xml" rel="self"/>
+  <link href="http://arekyao.github.io/"/>
+  <updated>2013-10-25T08:21:57+08:00</updated>
+  <id>http://arekyao.github.io/</id>
+  <author>
+    <name><![CDATA[Arek.Yao]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Database Overview]]></title>
+    <link href="http://arekyao.github.io/blog/2013/04/23/database-overview/"/>
+    <updated>2013-04-23T22:46:00+08:00</updated>
+    <id>http://arekyao.github.io/blog/2013/04/23/database-overview</id>
+    <content type="html"><![CDATA[<h2 id="preface">Preface</h2>
+
+<p>What’s the most important?
+Infomation!</p>
+
+<p>How to get and save infomation?
+Database.</p>
+
+<p>Here is some story about database.</p>
+
+<p>Generally, database can be divided into two arm, SQL and NoSQL.</p>
+
+<h2 id="sqlhttpenwikipediaorgwikistructuredquerylanguage"><a href="http://en.wikipedia.org/wiki/Structured_Query_Language">SQL</a></h2>
+
+<!-- more -->
+
+<p>SQL (Structured Query Language) is very common.<br />
+mysql ,sybase and oracle are well-known as database, which is used a lot</p>
+
+<table class="mytable">
+  <thead>
+    <tr>
+      <th>Source</th>
+      <th style="text-align: left">Common name</th>
+      <th style="text-align: center">Full name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Microsoft / Sybase</td>
+      <td style="text-align: left">T-SQL</td>
+      <td style="text-align: center">Transact-SQL</td>
+    </tr>
+    <tr>
+      <td>MySQL</td>
+      <td style="text-align: left">SQL/PSM</td>
+      <td style="text-align: center">SQL/Persistent Stored Module (implements SQL/PSM)</td>
+    </tr>
+    <tr>
+      <td>Oracle</td>
+      <td style="text-align: left">PL/SQL</td>
+      <td style="text-align: center">Procedural Language/SQL (based on Ada)</td>
+    </tr>
+    <tr>
+      <td>Sybase</td>
+      <td style="text-align: left">Watcom-SQL	SQL Anywhere</td>
+      <td style="text-align: center">Watcom-SQL Dialect</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="nosqlhttpenwikipediaorgwikinosql"><a href="http://en.wikipedia.org/wiki/Nosql">NoSQL</a></h2>
+
+<p>Feature:
+It provides mechanism for storage and retrieval of data that use looser consistency models than traditional relational databases  </p>
+
+<p>Achieve horizontal scaling and higher availability</p>
+
+<ul>
+  <li>
+    <h5 id="document-store">Document Store</h5>
+  </li>
+</ul>
+
+<p>Document is encoded to some 
+In general, they all assume that documents <strong>encapsulate</strong> and <strong>encode</strong> data (or information) in some standard formats or encodings.
+Such as, XML, Jason, YAML etc.</p>
+
+<table class="mytable">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th style="text-align: left">Language</th>
+      <th style="text-align: center">Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>BaseX</td>
+      <td style="text-align: left">Java, XQuery</td>
+      <td style="text-align: center">XML database</td>
+    </tr>
+    <tr>
+      <td>Couchbase Server</td>
+      <td style="text-align: left">Erlang, C++</td>
+      <td style="text-align: center">Support for JSON and binary documents</td>
+    </tr>
+    <tr>
+      <td>Apache CouchDB</td>
+      <td style="text-align: left">Erlang</td>
+      <td style="text-align: center">JSON store</td>
+    </tr>
+    <tr>
+      <td>MongoDB</td>
+      <td style="text-align: left">C++, C#</td>
+      <td style="text-align: center">BSON store (binary format JSON)</td>
+    </tr>
+    <tr>
+      <td>SimpleDB</td>
+      <td style="text-align: left">Erlang</td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td>Oracle NoSQL Database</td>
+      <td style="text-align: left">Java</td>
+      <td style="text-align: center"> </td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>
+    <h5 id="graph">Graph</h5>
+  </li>
+</ul>
+
+<p>The kind of data could be social relations, public transport links, road maps or network topologies, for example.</p>
+
+<ul>
+  <li>
+    <h5 id="key-value-store">Key Value Store</h5>
+    <p>kv cache in RAM  </p>
+  </li>
+</ul>
+
+<p>Radis </p>
+
+<p>Memcached</p>
+
+<p>Keyvalue stores on solid state or rotating disk</p>
+
+<p>MemcacheDB</p>
+
+<p>MongoDB</p>
+
+<ul>
+  <li>
+    <h5 id="multivalue-database">Multivalue database</h5>
+  </li>
+</ul>
+
+<p>InfinityDB</p>
+
+<ul>
+  <li>
+    <h5 id="object-databasehttpenwikipediaorgwikiobjectdatabase"><a href="http://en.wikipedia.org/wiki/Object_database">Object database</a></h5>
+  </li>
+  <li>
+    <h5 id="tabular">Tabular</h5>
+  </li>
+</ul>
+
+<p>Apache Accumulo</p>
+
+<p>BigTable</p>
+
+<p>Apache Hbase</p>
+
+<p>Hypertable</p>
+
+<p>Reference</p>
+
+<ol>
+  <li><a href="">http://nosql-database.org/</a></li>
+</ol>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[The Overview of Machine Learning]]></title>
+    <link href="http://arekyao.github.io/blog/2013/02/15/the-overview-of-machine-learning/"/>
+    <updated>2013-02-15T21:19:00+08:00</updated>
+    <id>http://arekyao.github.io/blog/2013/02/15/the-overview-of-machine-learning</id>
+    <content type="html"><![CDATA[<blockquote>
+  <p>First of all, I have to say, the Machine learning series have a very deep water,:)
+I dont have enough time to afford a full explaination, in detail, about the machine learning.
+It’s just my study map, or so-called logs..</p>
+</blockquote>
+
+<p>Here is the stories of it.</p>
+
+<h2 id="machine-learning">Machine Learning</h2>
+
+<!-- more -->
+
+<p><a href="http://en.wikipedia.org/wiki/Machine_learning">Machine learning</a>, a branch of artificial intelligence, is about the construction and study of systems that can learn from data</p>
+
+<p>Refer to the difference between Machine Learning and Data Mining, the DM is the target, the ML is the way.</p>
+
+<blockquote>
+  <p>Machine learning focuses on prediction, based on known properties learned from the training data.
+Data mining (which is the analysis step of Knowledge Discovery in Databases) focuses on the discovery of (previously) unknown properties on the data.</p>
+</blockquote>
+
+<p>Algorithms Type OF ML</p>
+
+<ul>
+  <li>
+    <h2 id="supervised-learning">1,Supervised learning</h2>
+  </li>
+</ul>
+
+<blockquote>
+  <p>generates a function that maps inputs to desired outputs (also called labels, because they are often provided by human experts labeling the training examples). For example, in a <code>classification</code> problem, the learner approximates a function mapping a vector into classes by looking at input-output examples of the function.</p>
+</blockquote>
+
+<h3 id="decision-tree">+ Decision Tree</h3>
+
+<h3 id="association-rule-learning">+ Association rule learning</h3>
+
+<h3 id="svm">+ SVM</h3>
+
+<h3 id="random-forrest">+ Random Forrest</h3>
+
+<h3 id="naive-bayes-classifier">+ Naive bayes classifier</h3>
+
+<h3 id="linearregression">+ Linear_regression</h3>
+
+<h3 id="section">…</h3>
+
+<ul>
+  <li>
+    <h2 id="unsupervised-learning">2,Unsupervised learning</h2>
+    <blockquote>
+      <p>models a set of inputs, like <code>clustering</code>. See also data mining and knowledge discovery. Here, labels are not known during training.</p>
+    </blockquote>
+  </li>
+  <li>
+    <h2 id="semi-supervised-learning">3,Semi-supervised learning</h2>
+  </li>
+</ul>
+
+<blockquote>
+  <p>combines both labeled and unlabeled examples to generate an appropriate function or classifier. Transduction, or transductive inference, tries to predict new outputs on specific and fixed (test) cases from observed, specific (training) cases.</p>
+</blockquote>
+
+<ul>
+  <li>
+    <h2 id="reinforcement-learning">4,Reinforcement learning</h2>
+    <blockquote>
+      <p>learns how to act given an observation of the world. Every action has some impact in the environment, and the environment provides feedback in the form of rewards that guides the learning algorithm.</p>
+    </blockquote>
+  </li>
+  <li>
+    <h2 id="learning-to-learn">5,Learning to learn</h2>
+    <p>learns its own inductive bias based on previous experience.</p>
+  </li>
+</ul>
+
+<h2 id="reference">Reference:</h2>
+<p>1, <a href="http://v.163.com/special/opencourse/machinelearning.html">网易公开课</a> </p>
+
+<p>2, <a href="http://zhfuzh.blog.163.com/blog/static/14553938720127309539465">行走的馒头</a> </p>
+
+<p>3, <a href="http://cs229.stanford.edu/materials.html">Stanford’s lesson</a></p>
+
+<p>4, <a href="http://www.datasciencecentral.com/profiles/blogs/berkeley-course-on-data-science">Berkeley course on Data Science,北美+德国18名校的数据挖掘、数据分析、人工智能及机器学习课程资源汇总</a></p>
+]]></content>
+  </entry>
+  
+</feed>
