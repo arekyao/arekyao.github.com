@@ -4,7 +4,7 @@
   <title><![CDATA[YY Every Day]]></title>
   <link href="http://arekyao.github.io/atom.xml" rel="self"/>
   <link href="http://arekyao.github.io/"/>
-  <updated>2013-10-25T08:21:57+08:00</updated>
+  <updated>2013-11-04T17:38:26+08:00</updated>
   <id>http://arekyao.github.io/</id>
   <author>
     <name><![CDATA[Arek.Yao]]></name>
@@ -12,6 +12,61 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Great Mac Tools List]]></title>
+    <link href="http://arekyao.github.io/blog/2013/11/04/great-mac-tools-list/"/>
+    <updated>2013-11-04T17:13:00+08:00</updated>
+    <id>http://arekyao.github.io/blog/2013/11/04/great-mac-tools-list</id>
+    <content type="html"><![CDATA[<ul>
+  <li>AliWangwang</li>
+  <li>Aperture</li>
+  <li>AppCleaner</li>
+  <li>Automator</li>
+  <li>BaiduYun</li>
+  <li>BetterTouchTool</li>
+  <li>BetterZip</li>
+  <li>Chrome</li>
+  <li>Evernote</li>
+  <li>Flip4Mac</li>
+  <li>Jumpcut</li>
+  <li>KeePassX</li>
+  <li>KeyCue</li>
+  <li>MPlayerX</li>
+  <li>Mail</li>
+  <li>OmniFocus</li>
+  <li>OmniGraffle</li>
+  <li>Orange</li>
+  <li>PDFpenPro</li>
+  <li>Parallels Destop</li>
+  <li>Pixelmator</li>
+  <li>Panorama Maker</li>
+  <li>QQ</li>
+  <li>R</li>
+  <li>SecureCRT</li>
+  <li>Sublime Text</li>
+  <li>Thunder</li>
+  <li>TimeSink</li>
+  <li>TotalFinder</li>
+  <li>UltraEdit</li>
+  <li>Weixin</li>
+  <li>WinRAR</li>
+  <li>Xilisoft Video Converter Ultimate</li>
+  <li>fakeThunder</li>
+  <li>fetion</li>
+  <li>iFunBox</li>
+  <li>iStat</li>
+  <li>pdfsam</li>
+  <li>
+    <p>youdaoDic</p>
+  </li>
+  <li>brew</li>
+  <li>easy_install</li>
+  <li>virtualenv</li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Surfing your Keyboard in Bash with Shortcut]]></title>
@@ -3307,64 +3362,6 @@ Here is a good scipt for mac 10.8 user
 <p><a href="http://www.cnblogs.com/vamei/archive/2013/02/06/2892628.html">http://www.cnblogs.com/vamei/archive/2013/02/06/2892628.html</a><br />
 <a href="http://www.python.org/about/apps/">http://www.python.org/about/apps/</a><br />
 <a href="">http://docs.python-guide.org/en/latest/</a>  </p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Machine Learning ep1]]></title>
-    <link href="http://arekyao.github.io/blog/2013/02/16/machine-learning-ep1/"/>
-    <updated>2013-02-16T22:35:00+08:00</updated>
-    <id>http://arekyao.github.io/blog/2013/02/16/machine-learning-ep1</id>
-    <content type="html"><![CDATA[<ul>
-  <li>
-    <h2 id="the-general-steps-of-machine-learning">The general steps of Machine Learning</h2>
-  </li>
-</ul>
-
-<h4 id="traning-data--test-data">1, Traning Data &amp; Test Data</h4>
-
-<p>This step is the most important part in machine learning. 
-Very easy to ignore and underestimate.</p>
-
-<p>Data is wrong, all the steps afterward are wrong.</p>
-
-<p>More than that, it’s very difficult to understand where is wrong, how to impove that.</p>
-
-<p>Maybe the data can be produced by online logs by user.</p>
-
-<p>Maybe the data can not be gotten from machine, only by humans.</p>
-
-<!-- more -->
-
-<h4 id="feature-selectionhttpenwikipediaorgwikifeatureselection">2, <a href="http://en.wikipedia.org/wiki/Feature_selection">Feature Selection</a></h4>
-
-<p>The less feature, the faster the model is calculated and updated</p>
-
-<p>The more feature’s meaning is ,the less prabability overfit happens </p>
-
-<p>L1-norm</p>
-
-<p>http://www.cnblogs.com/heaad/archive/2011/01/02/1924088.html</p>
-
-<h4 id="model-choosing">3, Model Choosing</h4>
-
-<p>Different model has its personality</p>
-
-<h4 id="evaluation">4, Evaluation</h4>
-
-<p>RSE</p>
-
-<p>FRTP…</p>
-
-<h2 id="reference">Reference:</h2>
-
-<p><a href="">http://zhfuzh.blog.163.com/blog/static/14553938720127309539465/</a></p>
-
-<p><a href="">http://blog.csdn.net/pennyliang/article/details/6998517</a></p>
-
-<p><a href="">http://deeplearning.stanford.edu/wiki/index.php/UFLDL%E6%95%99%E7%A8%8B</a></p>
-
-<p>It’s not finished…</p>
 ]]></content>
   </entry>
   

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: Mac | YY Every Day]]></title>
+  <link href="http://arekyao.github.io/tags/mac/atom.xml" rel="self"/>
+  <link href="http://arekyao.github.io/"/>
+  <updated>2013-11-04T17:38:26+08:00</updated>
+  <id>http://arekyao.github.io/</id>
+  <author>
+    <name><![CDATA[Arek.Yao]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Great Mac Tools List]]></title>
+    <link href="http://arekyao.github.io/blog/2013/11/04/great-mac-tools-list/"/>
+    <updated>2013-11-04T17:13:00+08:00</updated>
+    <id>http://arekyao.github.io/blog/2013/11/04/great-mac-tools-list</id>
+    <content type="html"><![CDATA[<ul>
+  <li>AliWangwang</li>
+  <li>Aperture</li>
+  <li>AppCleaner</li>
+  <li>Automator</li>
+  <li>BaiduYun</li>
+  <li>BetterTouchTool</li>
+  <li>BetterZip</li>
+  <li>Chrome</li>
+  <li>Evernote</li>
+  <li>Flip4Mac</li>
+  <li>Jumpcut</li>
+  <li>KeePassX</li>
+  <li>KeyCue</li>
+  <li>MPlayerX</li>
+  <li>Mail</li>
+  <li>OmniFocus</li>
+  <li>OmniGraffle</li>
+  <li>Orange</li>
+  <li>PDFpenPro</li>
+  <li>Parallels Destop</li>
+  <li>Pixelmator</li>
+  <li>Panorama Maker</li>
+  <li>QQ</li>
+  <li>R</li>
+  <li>SecureCRT</li>
+  <li>Sublime Text</li>
+  <li>Thunder</li>
+  <li>TimeSink</li>
+  <li>TotalFinder</li>
+  <li>UltraEdit</li>
+  <li>Weixin</li>
+  <li>WinRAR</li>
+  <li>Xilisoft Video Converter Ultimate</li>
+  <li>fakeThunder</li>
+  <li>fetion</li>
+  <li>iFunBox</li>
+  <li>iStat</li>
+  <li>pdfsam</li>
+  <li>
+    <p>youdaoDic</p>
+  </li>
+  <li>brew</li>
+  <li>easy_install</li>
+  <li>virtualenv</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>
