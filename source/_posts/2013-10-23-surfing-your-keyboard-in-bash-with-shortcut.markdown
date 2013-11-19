@@ -13,7 +13,7 @@ So I spent some time to read about “Command Line Editing” in the bash manual
 
 Well, here’s the new shortcuts I learned:
 
-ps: the em is my favourite
+ps: the marked ones as em are my favourite.
 
 <!-- more -->
 

@@ -26,10 +26,9 @@ complete stack of web application and server software.
 
 [Django](http://djangoproject.com/) is a high-level Python Web framework that encourages rapid development and clean, pragmatic design.
 
+<!-- more -->
 
 [nginx](http://nginx.org/) (pronounced *engine-x*) is a free, open-source, high-performance HTTP server and reverse proxy, as well as an IMAP/POP3 proxy server.
-
-<!-- more -->
 
 ##Some notes about this tutorial
 

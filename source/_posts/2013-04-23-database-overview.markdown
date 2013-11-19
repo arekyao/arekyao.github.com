@@ -4,7 +4,7 @@ title: "Database Overview"
 date: 2013-04-23 22:46
 comments: true
 categories: Architecture
-tags: [database, SQL, mongodb, redis]
+tags: [Overview,database, SQL, mongodb, redis]
 ---
 
 Preface

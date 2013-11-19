@@ -4,7 +4,7 @@ title: "The Overview of Machine Learning"
 date: 2013-02-15 21:19
 comments: true
 categories: Algorithm 
-tags: [MachineLearning]
+tags: [MachineLearning,Overview,SupervisedLearning,UnsupervisedLearning, DecisionTree, NaiveBayes,RandomForrest,SVM]
 
 ---
 
