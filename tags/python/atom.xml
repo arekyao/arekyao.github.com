@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: python | YY Every Day]]></title>
   <link href="http://arekyao.github.io/tags/python/atom.xml" rel="self"/>
   <link href="http://arekyao.github.io/"/>
-  <updated>2013-11-04T17:38:26+08:00</updated>
+  <updated>2013-11-19T09:20:59+08:00</updated>
   <id>http://arekyao.github.io/</id>
   <author>
     <name><![CDATA[Arek.Yao]]></name>
@@ -12,6 +12,179 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Magnet Searcher Engine, DHT Crawler, P2P Resource Saver]]></title>
+    <link href="http://arekyao.github.io/blog/2013/11/17/dht-crawler-p2p-resource-saver/"/>
+    <updated>2013-11-17T00:07:00+08:00</updated>
+    <id>http://arekyao.github.io/blog/2013/11/17/dht-crawler-p2p-resource-saver</id>
+    <content type="html"><![CDATA[<h2 id="preface">1.Preface</h2>
+
+<p>In China, Pirate Party, as hot as The Communist Party, can get some resources like movies, books, tv series, easily and free, without danger because of some reason.</p>
+
+<!-- more -->
+
+<p>And there are too many ways to get them, such as http, ftp, bt, ed2k and too many tools to work in protocol as refer.  However, one of the worst things is how to find the links.  </p>
+
+<p>BT and EMule is the most popular, because it works by p2p tech (peer to peer, a computing or networking distributed application architecture that partitions tasks or workloads among peers)  </p>
+
+<p><a href="http://en.wikipedia.org/wiki/Distributed_hash_table">DHT</a> is more advantaged architecture, very interesting, which has two key feature:</p>
+
+<p>a, distributed, peer to peer<br />
+b, decentralized  </p>
+
+<p>decentralized (no boss, democracy) and distributed (every small person involved in the jobs, but the team, the big team is great, beyond your imagination)</p>
+
+<p>Some product list is like this:</p>
+
+<p><a href="http://bt.shousibaocai.com/">磁力搜索</a></p>
+
+<p><a href="http://www.wotorrent.com/">磁力搜索引擎</a></p>
+
+<p><a href="http://cili.so/">磁力搜</a></p>
+
+<h2 id="magnet-searcher-engine">2.Magnet Searcher Engine</h2>
+
+<p>A search engine should have three parts:</p>
+
+<h4 id="a-data">a, data</h4>
+
+<p>The key module, you have to own the magnet links.<br />
+Searcher engine, like google, baidu? yep ,one way.  </p>
+
+<p>The greater way is get them by dht crawler which i will give the desciption later.</p>
+
+<h4 id="b-index--weight">b, index &amp; weight</h4>
+
+<p>Making the index, for latter search more quickly.<br />
+Give every link some weight, and it will be used in rank</p>
+
+<h4 id="c-search--rank">c, search &amp; rank</h4>
+
+<p>the service for keyword search
+rank it 
+some post process, like making unique, making some special format better rank, etc</p>
+
+<h2 id="data-module---dht-crawler">3, Data Module - DHT Crawler</h2>
+
+<p>It works in THREE steps: getting id, detail and file</p>
+
+<h4 id="a-get-the-source-id">a, get the source id</h4>
+
+<p>According to DHT procotol, you can pretend a p2p client, get all info by peers’s “get_peers” package</p>
+
+<p>The more code: <a href="https://github.com/arekyao/dht-crawler">https://github.com/arekyao/dht-crawler</a></p>
+
+<p>```python</p>
+
+<p>def handle_query(self, message):
+        trans_id = message[“t”]
+        query_type = message[“q”]
+        args = message[“a”]
+        node_id = args[“id”]</p>
+
+<pre><code>    client_host, client_port = self.client_address
+    logger.debug("Query message %s from %s:%d, id:%r" % (query_type, client_host, client_port, node_id.encode("hex")))
+    
+    # Do we know already about this node?
+    node = self.server.dht.rt.node_by_id(node_id)
+    if not node:
+        node = Node(client_host, client_port, node_id)
+        logger.debug("We don`t know about %r, add it as new" % (node))
+        self.server.dht.rt.update_node(node_id, node)
+    else:
+        logger.debug("We already know about: %r" % (node))
+
+    node.update_access()
+
+    if query_type == "ping":
+        logger.debug("handle query ping")
+        node.pong(socket=self.server.socket, trans_id = trans_id, sender_id=self.server.dht.node._id, lock=self.server.send_lock)
+    elif query_type == "find_node":
+        logger.debug("handle query find_node")
+        target = args["target"]
+        found_nodes = encode_nodes(self.server.dht.rt.get_close_nodes(target, 8))
+        node.found_node(found_nodes, socket=self.server.socket, trans_id = trans_id, sender_id=self.server.dht.node._id, lock=self.server.send_lock)
+    elif query_type == "get_peers":
+        logger.debug("handle query get_peers")
+        logger.error(args)
+        logger.error("get_peer_info_hash_crawler:" + args['info_hash'].encode("hex"))
+        node.pong(socket=self.server.socket, trans_id = trans_id, sender_id=self.server.dht.node._id, lock=self.server.send_lock)
+        return
+    elif query_type == "announce_peer":
+        logger.debug("handle query announce_peer")
+        logger.error(args)
+        logger.error("announce_peer_info_hash_crawler:" + args['info_hash'].encode("hex"))
+        node.pong(socket=self.server.socket, trans_id = trans_id, sender_id=self.server.dht.node._id, lock=self.server.send_lock)
+        return
+    else:
+        logger.error("Unknown query type: %s" % (query_type))
+</code></pre>
+
+<p>```</p>
+
+<h4 id="b-get-the-detail-info-like-whether-availble">b, get the detail info, like whether availble</h4>
+
+<p>Send “announce_peer” package to peers, to announce that:<br />
+You wanna the resouce, bla bla</p>
+
+<h4 id="c-get-the-torrent-file-and-the-desciption">c, get the torrent file, and the desciption</h4>
+
+<p>with the infohash, you can easy to get the file by this:</p>
+
+<blockquote>
+  <p>“http://torrage.com/torrent/” ++ MagHash ++ “.torrent”<br />
+“https://zoink.it/torrent/” ++ MagHash ++ “.torrent”<br />
+http://bt.box.n0808.com  </p>
+</blockquote>
+
+<p>```bash</p>
+
+<p>awk ‘{
+    code=toupper($1);
+    head=substr(code,0,2)
+    tail=substr(code,39,2)
+    print “http://bt.box.n0808.com/”head”/”tail”/”code”.torrent”
+}’</p>
+
+<p>```</p>
+
+<p>Yep, you already have the torrent files, decode the files, and you can get more info.</p>
+
+<h2 id="index-module--rank-module">3, Index module &amp; Rank module</h2>
+
+<p>It’s typical search engine modules.<br />
+Easy to get lots of infomations on Internet.</p>
+
+<h2 id="about-dht-protocolhttpwwwbittorrentorgbepsbep0005html">4, About <a href="http://www.bittorrent.org/beps/bep_0005.html">DHT protocol</a></h2>
+
+<p>Four Query Operation:</p>
+
+<ul>
+  <li>
+    <p>ping: check a node alive</p>
+  </li>
+  <li>
+    <p>find_node: find some node</p>
+  </li>
+  <li>
+    <p>get_peers: get some resouce and querying by id</p>
+  </li>
+  <li>
+    <p>announce_peer: announce downloading some resouce.</p>
+  </li>
+</ul>
+
+<h2 id="reference">Reference</h2>
+
+<ul>
+  <li>http://blog.csdn.net/liweisnake/article/details/9207919</li>
+  <li>http://codemacro.com/2013/07/02/dhtcrawler2/</li>
+  <li>http://gobismoon.blog.163.com/blog/static/5244280220100893055533/</li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Data Mining: R, Python, RapidMiner or Matlab]]></title>
@@ -410,9 +583,9 @@ complete stack of web application and server software.</p>
 
 <p><a href="http://djangoproject.com/">Django</a> is a high-level Python Web framework that encourages rapid development and clean, pragmatic design.</p>
 
-<p><a href="http://nginx.org/">nginx</a> (pronounced <em>engine-x</em>) is a free, open-source, high-performance HTTP server and reverse proxy, as well as an IMAP/POP3 proxy server.</p>
-
 <!-- more -->
+
+<p><a href="http://nginx.org/">nginx</a> (pronounced <em>engine-x</em>) is a free, open-source, high-performance HTTP server and reverse proxy, as well as an IMAP/POP3 proxy server.</p>
 
 <h2 id="some-notes-about-this-tutorial">Some notes about this tutorial</h2>
 
@@ -1100,194 +1273,6 @@ You came to kill me? </p>
 <p>Is that COOOOOOL?!
 Tech Changes World</p>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Going to Python World Step by Step]]></title>
-    <link href="http://arekyao.github.io/blog/2013/02/17/going-to-python-world-step-by-step/"/>
-    <updated>2013-02-17T12:46:00+08:00</updated>
-    <id>http://arekyao.github.io/blog/2013/02/17/going-to-python-world-step-by-step</id>
-    <content type="html"><![CDATA[<p>First, let me introduce something about develop environment, such as Brew, easy_install,RVM, … etc. </p>
-
-<h1 id="mac-develop-environment">Mac Develop Environment</h1>
-
-<h2 id="homebrew-the-missing-package-manager-for-os-xhttpmxclgithubcomhomebrew"><a href="http://mxcl.github.com/homebrew/">Homebrew: The missing package manager for OS X</a></h2>
-
-<!-- more -->
-
-<p><code>
-$ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"
-</code></p>
-
-<p>with brew, you can install anything in command. eg:</p>
-
-<p><code>
-$brew install lighttpd
-</code></p>
-
-<h2 id="easyinstallhttppypipythonorgpypisetuptools"><a href="http://pypi.python.org/pypi/setuptools/">Easy_install</a></h2>
-<blockquote>
-  <p>Download the appropriate egg for your version of Python (e.g. setuptools-0.6c9-py2.4.egg). Do NOT rename it.
-Run it as if it were a shell script, e.g. sh setuptools-0.6c9-py2.4.egg. 
-Setuptools will install itself using the matching version of Python (e.g. python2.4), and will place the easy_install executable in the default location for installing Python scripts (as determined by the standard distutils configuration files, or by the Python installation).</p>
-
-</blockquote>
-
-<p>with this, you can install anything abou python package in command. eg:</p>
-
-<p><code>
-easy_install xxx
-</code></p>
-
-<p>BTW: 
-You can check package info in “/Library/Python/2.7/site-packages”</p>
-
-<h2 id="rvm-ruby-version-managerhttpsrvmio"><a href="https://rvm.io/">RVM: Ruby Version Manager</a></h2>
-<p><code>
-$ \curl -L https://get.rvm.io | bash -s stable --ruby
-</code></p>
-
-<hr />
-
-<h1 id="common-python-library">Common Python Library</h1>
-
-<h2 id="nlp">1, NLP:</h2>
-<p>nltk:  <a href="http://nltk.org/">http://nltk.org/</a></p>
-
-<p>chinese word segment <a href="https://github.com/fxsjy/jieba">https://github.com/fxsjy/jieba</a></p>
-
-<h2 id="machine-learning">2, Machine Learning</h2>
-<p>scikit_learn: <a href="https://pypi.python.org/pypi/scikit-learn/">https://pypi.python.org/pypi/scikit-learn/</a></p>
-
-<p>However,ML’s scikit-learn lib have to depend on lots of other package(scipy….)
-Here is a good scipt for mac 10.8 user
-<a href="http://fonnesbeck.github.com/ScipySuperpack/">http://fonnesbeck.github.com/ScipySuperpack/</a></p>
-
-<p><a href="https://raw.github.com/fonnesbeck/ScipySuperpack/master/install_superpack.sh">the scipt code</a> :</p>
-
-<p>```sh
-#!/bin/sh
-PYTHON=’/usr/bin/python’
-GIT_FILENAME=’git-1.7.7.3-intel-universal-snow-leopard’
-GIT_VOLUME=’/Volumes/Git 1.7.7.3 Snow Leopard Intel Universal/’
-GFORTRAN=’gcc-42-5666.3-darwin11.pkg’
-SUDO=’sudo’</p>
-
-<p>if [ -z “$VIRTUAL_ENV” ]; then
-    # Standard Python env
-    PYTHON=/usr/bin/python
-    SUDO=${SUDO}
-else
-    # Virtualenv
-    PYTHON=python
-    SUDO=”” #${SUDO} is not required in a virtualenv
-fi</p>
-
-<p>if  [ -d “.git” ]; then</p>
-
-<pre><code>SUPERPACK_PATH='.'
-</code></pre>
-
-<p>else</p>
-
-<pre><code>SUPERPACK_PATH='ScipySuperpack'
-
-hash git &amp;&gt; /dev/null
-if [ $? -eq 1 ]; then
-    echo 'Downloading Git for OS X ...'
-    curl -o ${GIT_FILENAME}.dmg http://git-osx-installer.googlecode.com/files/${GIT_FILENAME}.dmg
-    echo 'Installing Git ...'
-    hdiutil mount ${GIT_FILENAME}.dmg
-    ${SUDO} installer -pkg "${GIT_VOLUME}${GIT_FILENAME}.pkg" -target '/'
-    hdiutil unmount "${GIT_VOLUME}"
-    echo 'Cleaning up'
-    rm ${GIT_FILENAME}.dmg
-    echo 'Cloning Scipy Superpack'
-    /usr/local/git/bin/git clone --depth=1 git://github.com/fonnesbeck/ScipySuperpack.git
-else
-    echo 'Cloning Scipy Superpack'
-    git clone --depth=1 git://github.com/fonnesbeck/ScipySuperpack.git
-fi fi
-</code></pre>
-
-<h1 id="hash-gfortran--devnull">hash gfortran &amp;&gt; /dev/null</h1>
-<p># if [ $? -eq 1 ]; then
-echo ‘Downloading gFortran …’
-curl -o ${GFORTRAN} http://r.research.att.com/tools/${GFORTRAN}
-echo ‘Installing gFortran …’
-${SUDO} installer -pkg ${GFORTRAN} -target ‘/’
-# fi</p>
-
-<p>hash easy_install &amp;&gt; /dev/null
-if [ $? -eq 1 ]; then
-    echo ‘Downloading ez_setup …’
-    curl -o ez_setup.py http://peak.telecommunity.com/dist/ez_setup.py
-    echo ‘Installing ez_setup …’
-    ${SUDO} “${PYTHON}” ez_setup.py
-    rm ez_setup.py
-fi</p>
-
-<p>echo ‘Installing Scipy Superpack …’
-${SUDO} “${PYTHON}” -m easy_install -N -Z ${SUPERPACK_PATH}/*.egg</p>
-
-<p>echo ‘Installing readline …’
-${SUDO} “${PYTHON}” -m easy_install -N -Z readline
-echo ‘Installing nose …’
-${SUDO} “${PYTHON}” -m easy_install -N -Z nose
-echo ‘Installing six’
-${SUDO} “${PYTHON}” -m easy_install -N -Z six
-echo ‘Installing python-dateutil’
-${SUDO} “${PYTHON}” -m easy_install -N -Z python-dateutil
-echo ‘Installing pytz’
-${SUDO} “${PYTHON}” -m easy_install -N -Z pytz
-echo ‘Installing Tornado’
-${SUDO} “${PYTHON}” -m easy_install -N -Z tornado
-echo ‘Installing pyzmq’
-${SUDO} “${PYTHON}” -m easy_install -N -Z pyzmq
-echo ‘Installing pika’
-${SUDO} “${PYTHON}” -m easy_install -N -Z pika
-echo ‘Installing jinja2’
-${SUDO} “${PYTHON}” -m easy_install -N -Z jinja2
-echo ‘Installing patsy’
-${SUDO} “${PYTHON}” -m easy_install -N -Z patsy
-if  [ ! -d “.git” ]; then
-    echo ‘Cleaning up’<br />
-    rm -rf ${SUPERPACK_PATH}
-fi</p>
-
-<p>echo ‘Done’</p>
-
-<p>```</p>
-
-<h2 id="scrapyhttpscrapyorgdownload">3, <a href="http://scrapy.org/download/">Scrapy</a></h2>
-
-<p>A Spider Structure based on Python</p>
-
-<h2 id="ipythonhttpipythonorginstallhtml">4, <a href="http://ipython.org/install.html">IPython</a></h2>
-<p>a good Python IDE</p>
-
-<h2 id="web-frameworkhttpwikipythonorgmoinwebframeworks">5, <a href="http://wiki.python.org/moin/WebFrameworks">Web Framework</a></h2>
-
-<p><a href="http://www.douban.com/group/web.py/">Web.py</a></p>
-
-<p><a href="http://www.douban.com/group/django/">Django</a></p>
-
-<p>http://www.douban.com/group/django/</p>
-
-<h2 id="python-study">6, Python study</h2>
-
-<p><a href="">http://gnosis.cx/TPiP/</a></p>
-
-<p><a href="">http://docs.python-guide.org/en/latest/</a></p>
-
-<h2 id="morehttpwwwpythonorgaboutapps"><a href="http://www.python.org/about/apps/">More…</a></h2>
-
-<h2 id="reference">Reference</h2>
-
-<p><a href="http://www.cnblogs.com/vamei/archive/2013/02/06/2892628.html">http://www.cnblogs.com/vamei/archive/2013/02/06/2892628.html</a><br />
-<a href="http://www.python.org/about/apps/">http://www.python.org/about/apps/</a><br />
-<a href="">http://docs.python-guide.org/en/latest/</a>  </p>
 ]]></content>
   </entry>
   

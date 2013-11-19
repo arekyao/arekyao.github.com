@@ -4,7 +4,7 @@
   <title><![CDATA[YY Every Day]]></title>
   <link href="http://arekyao.github.io/atom.xml" rel="self"/>
   <link href="http://arekyao.github.io/"/>
-  <updated>2013-11-04T17:38:26+08:00</updated>
+  <updated>2013-11-19T09:20:59+08:00</updated>
   <id>http://arekyao.github.io/</id>
   <author>
     <name><![CDATA[Arek.Yao]]></name>
@@ -14,6 +14,220 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Magnet Searcher Engine, DHT Crawler, P2P Resource Saver]]></title>
+    <link href="http://arekyao.github.io/blog/2013/11/17/dht-crawler-p2p-resource-saver/"/>
+    <updated>2013-11-17T00:07:00+08:00</updated>
+    <id>http://arekyao.github.io/blog/2013/11/17/dht-crawler-p2p-resource-saver</id>
+    <content type="html"><![CDATA[<h2 id="preface">1.Preface</h2>
+
+<p>In China, Pirate Party, as hot as The Communist Party, can get some resources like movies, books, tv series, easily and free, without danger because of some reason.</p>
+
+<!-- more -->
+
+<p>And there are too many ways to get them, such as http, ftp, bt, ed2k and too many tools to work in protocol as refer.  However, one of the worst things is how to find the links.  </p>
+
+<p>BT and EMule is the most popular, because it works by p2p tech (peer to peer, a computing or networking distributed application architecture that partitions tasks or workloads among peers)  </p>
+
+<p><a href="http://en.wikipedia.org/wiki/Distributed_hash_table">DHT</a> is more advantaged architecture, very interesting, which has two key feature:</p>
+
+<p>a, distributed, peer to peer<br />
+b, decentralized  </p>
+
+<p>decentralized (no boss, democracy) and distributed (every small person involved in the jobs, but the team, the big team is great, beyond your imagination)</p>
+
+<p>Some product list is like this:</p>
+
+<p><a href="http://bt.shousibaocai.com/">磁力搜索</a></p>
+
+<p><a href="http://www.wotorrent.com/">磁力搜索引擎</a></p>
+
+<p><a href="http://cili.so/">磁力搜</a></p>
+
+<h2 id="magnet-searcher-engine">2.Magnet Searcher Engine</h2>
+
+<p>A search engine should have three parts:</p>
+
+<h4 id="a-data">a, data</h4>
+
+<p>The key module, you have to own the magnet links.<br />
+Searcher engine, like google, baidu? yep ,one way.  </p>
+
+<p>The greater way is get them by dht crawler which i will give the desciption later.</p>
+
+<h4 id="b-index--weight">b, index &amp; weight</h4>
+
+<p>Making the index, for latter search more quickly.<br />
+Give every link some weight, and it will be used in rank</p>
+
+<h4 id="c-search--rank">c, search &amp; rank</h4>
+
+<p>the service for keyword search
+rank it 
+some post process, like making unique, making some special format better rank, etc</p>
+
+<h2 id="data-module---dht-crawler">3, Data Module - DHT Crawler</h2>
+
+<p>It works in THREE steps: getting id, detail and file</p>
+
+<h4 id="a-get-the-source-id">a, get the source id</h4>
+
+<p>According to DHT procotol, you can pretend a p2p client, get all info by peers’s “get_peers” package</p>
+
+<p>The more code: <a href="https://github.com/arekyao/dht-crawler">https://github.com/arekyao/dht-crawler</a></p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+<span class="line-number">42</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="k">def</span> <span class="nf">handle_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
+</span><span class="line">        <span class="n">trans_id</span> <span class="o">=</span> <span class="n">message</span><span class="p">[</span><span class="s">&quot;t&quot;</span><span class="p">]</span>
+</span><span class="line">        <span class="n">query_type</span> <span class="o">=</span> <span class="n">message</span><span class="p">[</span><span class="s">&quot;q&quot;</span><span class="p">]</span>
+</span><span class="line">        <span class="n">args</span> <span class="o">=</span> <span class="n">message</span><span class="p">[</span><span class="s">&quot;a&quot;</span><span class="p">]</span>
+</span><span class="line">        <span class="n">node_id</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="s">&quot;id&quot;</span><span class="p">]</span>
+</span><span class="line">
+</span><span class="line">        <span class="n">client_host</span><span class="p">,</span> <span class="n">client_port</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client_address</span>
+</span><span class="line">        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;Query message </span><span class="si">%s</span><span class="s"> from </span><span class="si">%s</span><span class="s">:</span><span class="si">%d</span><span class="s">, id:</span><span class="si">%r</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">query_type</span><span class="p">,</span> <span class="n">client_host</span><span class="p">,</span> <span class="n">client_port</span><span class="p">,</span> <span class="n">node_id</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">&quot;hex&quot;</span><span class="p">)))</span>
+</span><span class="line">
+</span><span class="line">        <span class="c"># Do we know already about this node?</span>
+</span><span class="line">        <span class="n">node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">dht</span><span class="o">.</span><span class="n">rt</span><span class="o">.</span><span class="n">node_by_id</span><span class="p">(</span><span class="n">node_id</span><span class="p">)</span>
+</span><span class="line">        <span class="k">if</span> <span class="ow">not</span> <span class="n">node</span><span class="p">:</span>
+</span><span class="line">            <span class="n">node</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">client_host</span><span class="p">,</span> <span class="n">client_port</span><span class="p">,</span> <span class="n">node_id</span><span class="p">)</span>
+</span><span class="line">            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;We don`t know about </span><span class="si">%r</span><span class="s">, add it as new&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">node</span><span class="p">))</span>
+</span><span class="line">            <span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">dht</span><span class="o">.</span><span class="n">rt</span><span class="o">.</span><span class="n">update_node</span><span class="p">(</span><span class="n">node_id</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span>
+</span><span class="line">        <span class="k">else</span><span class="p">:</span>
+</span><span class="line">            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;We already know about: </span><span class="si">%r</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">node</span><span class="p">))</span>
+</span><span class="line">
+</span><span class="line">        <span class="n">node</span><span class="o">.</span><span class="n">update_access</span><span class="p">()</span>
+</span><span class="line">
+</span><span class="line">        <span class="k">if</span> <span class="n">query_type</span> <span class="o">==</span> <span class="s">&quot;ping&quot;</span><span class="p">:</span>
+</span><span class="line">            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;handle query ping&quot;</span><span class="p">)</span>
+</span><span class="line">            <span class="n">node</span><span class="o">.</span><span class="n">pong</span><span class="p">(</span><span class="n">socket</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">socket</span><span class="p">,</span> <span class="n">trans_id</span> <span class="o">=</span> <span class="n">trans_id</span><span class="p">,</span> <span class="n">sender_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">dht</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">_id</span><span class="p">,</span> <span class="n">lock</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">send_lock</span><span class="p">)</span>
+</span><span class="line">        <span class="k">elif</span> <span class="n">query_type</span> <span class="o">==</span> <span class="s">&quot;find_node&quot;</span><span class="p">:</span>
+</span><span class="line">            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;handle query find_node&quot;</span><span class="p">)</span>
+</span><span class="line">            <span class="n">target</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="s">&quot;target&quot;</span><span class="p">]</span>
+</span><span class="line">            <span class="n">found_nodes</span> <span class="o">=</span> <span class="n">encode_nodes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">dht</span><span class="o">.</span><span class="n">rt</span><span class="o">.</span><span class="n">get_close_nodes</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+</span><span class="line">            <span class="n">node</span><span class="o">.</span><span class="n">found_node</span><span class="p">(</span><span class="n">found_nodes</span><span class="p">,</span> <span class="n">socket</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">socket</span><span class="p">,</span> <span class="n">trans_id</span> <span class="o">=</span> <span class="n">trans_id</span><span class="p">,</span> <span class="n">sender_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">dht</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">_id</span><span class="p">,</span> <span class="n">lock</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">send_lock</span><span class="p">)</span>
+</span><span class="line">        <span class="k">elif</span> <span class="n">query_type</span> <span class="o">==</span> <span class="s">&quot;get_peers&quot;</span><span class="p">:</span>
+</span><span class="line">            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;handle query get_peers&quot;</span><span class="p">)</span>
+</span><span class="line">            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+</span><span class="line">            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s">&quot;get_peer_info_hash_crawler:&quot;</span> <span class="o">+</span> <span class="n">args</span><span class="p">[</span><span class="s">&#39;info_hash&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">&quot;hex&quot;</span><span class="p">))</span>
+</span><span class="line">            <span class="n">node</span><span class="o">.</span><span class="n">pong</span><span class="p">(</span><span class="n">socket</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">socket</span><span class="p">,</span> <span class="n">trans_id</span> <span class="o">=</span> <span class="n">trans_id</span><span class="p">,</span> <span class="n">sender_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">dht</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">_id</span><span class="p">,</span> <span class="n">lock</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">send_lock</span><span class="p">)</span>
+</span><span class="line">            <span class="k">return</span>
+</span><span class="line">        <span class="k">elif</span> <span class="n">query_type</span> <span class="o">==</span> <span class="s">&quot;announce_peer&quot;</span><span class="p">:</span>
+</span><span class="line">            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;handle query announce_peer&quot;</span><span class="p">)</span>
+</span><span class="line">            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+</span><span class="line">            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s">&quot;announce_peer_info_hash_crawler:&quot;</span> <span class="o">+</span> <span class="n">args</span><span class="p">[</span><span class="s">&#39;info_hash&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">&quot;hex&quot;</span><span class="p">))</span>
+</span><span class="line">            <span class="n">node</span><span class="o">.</span><span class="n">pong</span><span class="p">(</span><span class="n">socket</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">socket</span><span class="p">,</span> <span class="n">trans_id</span> <span class="o">=</span> <span class="n">trans_id</span><span class="p">,</span> <span class="n">sender_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">dht</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">_id</span><span class="p">,</span> <span class="n">lock</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">send_lock</span><span class="p">)</span>
+</span><span class="line">            <span class="k">return</span>
+</span><span class="line">        <span class="k">else</span><span class="p">:</span>
+</span><span class="line">            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s">&quot;Unknown query type: </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">query_type</span><span class="p">))</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h4 id="b-get-the-detail-info-like-whether-availble">b, get the detail info, like whether availble</h4>
+
+<p>Send “announce_peer” package to peers, to announce that:<br />
+You wanna the resouce, bla bla</p>
+
+<h4 id="c-get-the-torrent-file-and-the-desciption">c, get the torrent file, and the desciption</h4>
+
+<p>with the infohash, you can easy to get the file by this:</p>
+
+<blockquote>
+  <p>“http://torrage.com/torrent/” ++ MagHash ++ “.torrent”<br />
+“https://zoink.it/torrent/” ++ MagHash ++ “.torrent”<br />
+http://bt.box.n0808.com  </p>
+</blockquote>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line">awk <span class="s1">&#39;{</span>
+</span><span class="line"><span class="s1">    code=toupper($1);</span>
+</span><span class="line"><span class="s1">    head=substr(code,0,2)</span>
+</span><span class="line"><span class="s1">    tail=substr(code,39,2)</span>
+</span><span class="line"><span class="s1">    print &quot;http://bt.box.n0808.com/&quot;head&quot;/&quot;tail&quot;/&quot;code&quot;.torrent&quot;</span>
+</span><span class="line"><span class="s1">}&#39;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Yep, you already have the torrent files, decode the files, and you can get more info.</p>
+
+<h2 id="index-module--rank-module">3, Index module &amp; Rank module</h2>
+
+<p>It’s typical search engine modules.<br />
+Easy to get lots of infomations on Internet.</p>
+
+<h2 id="about-dht-protocolhttpwwwbittorrentorgbepsbep0005html">4, About <a href="http://www.bittorrent.org/beps/bep_0005.html">DHT protocol</a></h2>
+
+<p>Four Query Operation:</p>
+
+<ul>
+  <li>
+    <p>ping: check a node alive</p>
+  </li>
+  <li>
+    <p>find_node: find some node</p>
+  </li>
+  <li>
+    <p>get_peers: get some resouce and querying by id</p>
+  </li>
+  <li>
+    <p>announce_peer: announce downloading some resouce.</p>
+  </li>
+</ul>
+
+<h2 id="reference">Reference</h2>
+
+<ul>
+  <li>http://blog.csdn.net/liweisnake/article/details/9207919</li>
+  <li>http://codemacro.com/2013/07/02/dhtcrawler2/</li>
+  <li>http://gobismoon.blog.163.com/blog/static/5244280220100893055533/</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Great Mac Tools List]]></title>
     <link href="http://arekyao.github.io/blog/2013/11/04/great-mac-tools-list/"/>
     <updated>2013-11-04T17:13:00+08:00</updated>
@@ -21,7 +235,8 @@
     <content type="html"><![CDATA[<ul>
   <li>AliWangwang</li>
   <li>Aperture</li>
-  <li>AppCleaner</li>
+  <li>AppCleaner
+<!-- more --></li>
   <li>Automator</li>
   <li>BaiduYun</li>
   <li>BetterTouchTool</li>
@@ -971,9 +1186,9 @@ complete stack of web application and server software.</p>
 
 <p><a href="http://djangoproject.com/">Django</a> is a high-level Python Web framework that encourages rapid development and clean, pragmatic design.</p>
 
-<p><a href="http://nginx.org/">nginx</a> (pronounced <em>engine-x</em>) is a free, open-source, high-performance HTTP server and reverse proxy, as well as an IMAP/POP3 proxy server.</p>
-
 <!-- more -->
+
+<p><a href="http://nginx.org/">nginx</a> (pronounced <em>engine-x</em>) is a free, open-source, high-performance HTTP server and reverse proxy, as well as an IMAP/POP3 proxy server.</p>
 
 <h2 id="some-notes-about-this-tutorial">Some notes about this tutorial</h2>
 
@@ -3092,276 +3307,6 @@ P(y)</p>
 
 <p>(A+1)/(B+1)</p>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Going to Python World Step by Step]]></title>
-    <link href="http://arekyao.github.io/blog/2013/02/17/going-to-python-world-step-by-step/"/>
-    <updated>2013-02-17T12:46:00+08:00</updated>
-    <id>http://arekyao.github.io/blog/2013/02/17/going-to-python-world-step-by-step</id>
-    <content type="html"><![CDATA[<p>First, let me introduce something about develop environment, such as Brew, easy_install,RVM, … etc. </p>
-
-<h1 id="mac-develop-environment">Mac Develop Environment</h1>
-
-<h2 id="homebrew-the-missing-package-manager-for-os-xhttpmxclgithubcomhomebrew"><a href="http://mxcl.github.com/homebrew/">Homebrew: The missing package manager for OS X</a></h2>
-
-<!-- more -->
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">$ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>with brew, you can install anything in command. eg:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">$brew install lighttpd</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h2 id="easyinstallhttppypipythonorgpypisetuptools"><a href="http://pypi.python.org/pypi/setuptools/">Easy_install</a></h2>
-<blockquote>
-  <p>Download the appropriate egg for your version of Python (e.g. setuptools-0.6c9-py2.4.egg). Do NOT rename it.
-Run it as if it were a shell script, e.g. sh setuptools-0.6c9-py2.4.egg. 
-Setuptools will install itself using the matching version of Python (e.g. python2.4), and will place the easy_install executable in the default location for installing Python scripts (as determined by the standard distutils configuration files, or by the Python installation).</p>
-
-</blockquote>
-
-<p>with this, you can install anything abou python package in command. eg:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">easy_install xxx</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>BTW: 
-You can check package info in “/Library/Python/2.7/site-packages”</p>
-
-<h2 id="rvm-ruby-version-managerhttpsrvmio"><a href="https://rvm.io/">RVM: Ruby Version Manager</a></h2>
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">$ \curl -L https://get.rvm.io | bash -s stable --ruby</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<hr />
-
-<h1 id="common-python-library">Common Python Library</h1>
-
-<h2 id="nlp">1, NLP:</h2>
-<p>nltk:  <a href="http://nltk.org/">http://nltk.org/</a></p>
-
-<p>chinese word segment <a href="https://github.com/fxsjy/jieba">https://github.com/fxsjy/jieba</a></p>
-
-<h2 id="machine-learning">2, Machine Learning</h2>
-<p>scikit_learn: <a href="https://pypi.python.org/pypi/scikit-learn/">https://pypi.python.org/pypi/scikit-learn/</a></p>
-
-<p>However,ML’s scikit-learn lib have to depend on lots of other package(scipy….)
-Here is a good scipt for mac 10.8 user
-<a href="http://fonnesbeck.github.com/ScipySuperpack/">http://fonnesbeck.github.com/ScipySuperpack/</a></p>
-
-<p><a href="https://raw.github.com/fonnesbeck/ScipySuperpack/master/install_superpack.sh">the scipt code</a> :</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-<span class="line-number">20</span>
-<span class="line-number">21</span>
-<span class="line-number">22</span>
-<span class="line-number">23</span>
-<span class="line-number">24</span>
-<span class="line-number">25</span>
-<span class="line-number">26</span>
-<span class="line-number">27</span>
-<span class="line-number">28</span>
-<span class="line-number">29</span>
-<span class="line-number">30</span>
-<span class="line-number">31</span>
-<span class="line-number">32</span>
-<span class="line-number">33</span>
-<span class="line-number">34</span>
-<span class="line-number">35</span>
-<span class="line-number">36</span>
-<span class="line-number">37</span>
-<span class="line-number">38</span>
-<span class="line-number">39</span>
-<span class="line-number">40</span>
-<span class="line-number">41</span>
-<span class="line-number">42</span>
-<span class="line-number">43</span>
-<span class="line-number">44</span>
-<span class="line-number">45</span>
-<span class="line-number">46</span>
-<span class="line-number">47</span>
-<span class="line-number">48</span>
-<span class="line-number">49</span>
-<span class="line-number">50</span>
-<span class="line-number">51</span>
-<span class="line-number">52</span>
-<span class="line-number">53</span>
-<span class="line-number">54</span>
-<span class="line-number">55</span>
-<span class="line-number">56</span>
-<span class="line-number">57</span>
-<span class="line-number">58</span>
-<span class="line-number">59</span>
-<span class="line-number">60</span>
-<span class="line-number">61</span>
-<span class="line-number">62</span>
-<span class="line-number">63</span>
-<span class="line-number">64</span>
-<span class="line-number">65</span>
-<span class="line-number">66</span>
-<span class="line-number">67</span>
-<span class="line-number">68</span>
-<span class="line-number">69</span>
-<span class="line-number">70</span>
-<span class="line-number">71</span>
-<span class="line-number">72</span>
-<span class="line-number">73</span>
-<span class="line-number">74</span>
-<span class="line-number">75</span>
-<span class="line-number">76</span>
-<span class="line-number">77</span>
-<span class="line-number">78</span>
-<span class="line-number">79</span>
-<span class="line-number">80</span>
-<span class="line-number">81</span>
-<span class="line-number">82</span>
-<span class="line-number">83</span>
-<span class="line-number">84</span>
-<span class="line-number">85</span>
-<span class="line-number">86</span>
-<span class="line-number">87</span>
-<span class="line-number">88</span>
-<span class="line-number">89</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="c">#!/bin/sh</span>
-</span><span class="line"><span class="nv">PYTHON</span><span class="o">=</span><span class="s1">&#39;/usr/bin/python&#39;</span>
-</span><span class="line"><span class="nv">GIT_FILENAME</span><span class="o">=</span><span class="s1">&#39;git-1.7.7.3-intel-universal-snow-leopard&#39;</span>
-</span><span class="line"><span class="nv">GIT_VOLUME</span><span class="o">=</span><span class="s1">&#39;/Volumes/Git 1.7.7.3 Snow Leopard Intel Universal/&#39;</span>
-</span><span class="line"><span class="nv">GFORTRAN</span><span class="o">=</span><span class="s1">&#39;gcc-42-5666.3-darwin11.pkg&#39;</span>
-</span><span class="line"><span class="nv">SUDO</span><span class="o">=</span><span class="s1">&#39;sudo&#39;</span>
-</span><span class="line">
-</span><span class="line"><span class="k">if</span> <span class="o">[</span> -z <span class="s2">&quot;$VIRTUAL_ENV&quot;</span> <span class="o">]</span>; <span class="k">then</span>
-</span><span class="line">    <span class="c"># Standard Python env</span>
-</span><span class="line">    <span class="nv">PYTHON</span><span class="o">=</span>/usr/bin/python
-</span><span class="line">    <span class="nv">SUDO</span><span class="o">=</span><span class="k">${</span><span class="nv">SUDO</span><span class="k">}</span>
-</span><span class="line"><span class="k">else</span>
-</span><span class="line">    <span class="c"># Virtualenv</span>
-</span><span class="line">    <span class="nv">PYTHON</span><span class="o">=</span>python
-</span><span class="line">    <span class="nv">SUDO</span><span class="o">=</span><span class="s2">&quot;&quot;</span> <span class="c">#${SUDO} is not required in a virtualenv</span>
-</span><span class="line"><span class="k">fi</span>
-</span><span class="line">
-</span><span class="line"><span class="k">if</span>  <span class="o">[</span> -d <span class="s2">&quot;.git&quot;</span> <span class="o">]</span>; <span class="k">then</span>
-</span><span class="line"><span class="k">    </span>
-</span><span class="line"><span class="k">    </span><span class="nv">SUPERPACK_PATH</span><span class="o">=</span><span class="s1">&#39;.&#39;</span>
-</span><span class="line">
-</span><span class="line"><span class="k">else</span>
-</span><span class="line"><span class="k">    </span>
-</span><span class="line"><span class="k">    </span><span class="nv">SUPERPACK_PATH</span><span class="o">=</span><span class="s1">&#39;ScipySuperpack&#39;</span>
-</span><span class="line">
-</span><span class="line">    <span class="nb">hash </span>git &amp;&gt; /dev/null
-</span><span class="line">    <span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> -eq 1 <span class="o">]</span>; <span class="k">then</span>
-</span><span class="line"><span class="k">        </span><span class="nb">echo</span> <span class="s1">&#39;Downloading Git for OS X ...&#39;</span>
-</span><span class="line">        curl -o <span class="k">${</span><span class="nv">GIT_FILENAME</span><span class="k">}</span>.dmg http://git-osx-installer.googlecode.com/files/<span class="k">${</span><span class="nv">GIT_FILENAME</span><span class="k">}</span>.dmg
-</span><span class="line">        <span class="nb">echo</span> <span class="s1">&#39;Installing Git ...&#39;</span>
-</span><span class="line">        hdiutil mount <span class="k">${</span><span class="nv">GIT_FILENAME</span><span class="k">}</span>.dmg
-</span><span class="line">        <span class="k">${</span><span class="nv">SUDO</span><span class="k">}</span> installer -pkg <span class="s2">&quot;${GIT_VOLUME}${GIT_FILENAME}.pkg&quot;</span> -target <span class="s1">&#39;/&#39;</span>
-</span><span class="line">        hdiutil unmount <span class="s2">&quot;${GIT_VOLUME}&quot;</span>
-</span><span class="line">        <span class="nb">echo</span> <span class="s1">&#39;Cleaning up&#39;</span>
-</span><span class="line">        rm <span class="k">${</span><span class="nv">GIT_FILENAME</span><span class="k">}</span>.dmg
-</span><span class="line">        <span class="nb">echo</span> <span class="s1">&#39;Cloning Scipy Superpack&#39;</span>
-</span><span class="line">        /usr/local/git/bin/git clone --depth<span class="o">=</span>1 git://github.com/fonnesbeck/ScipySuperpack.git
-</span><span class="line">    <span class="k">else</span>
-</span><span class="line"><span class="k">        </span><span class="nb">echo</span> <span class="s1">&#39;Cloning Scipy Superpack&#39;</span>
-</span><span class="line">        git clone --depth<span class="o">=</span>1 git://github.com/fonnesbeck/ScipySuperpack.git
-</span><span class="line">    <span class="k">fi</span>
-</span><span class="line"><span class="k">fi</span>
-</span><span class="line">
-</span><span class="line"><span class="c"># hash gfortran &amp;&gt; /dev/null</span>
-</span><span class="line"><span class="c"># if [ $? -eq 1 ]; then</span>
-</span><span class="line"><span class="nb">echo</span> <span class="s1">&#39;Downloading gFortran ...&#39;</span>
-</span><span class="line">curl -o <span class="k">${</span><span class="nv">GFORTRAN</span><span class="k">}</span> http://r.research.att.com/tools/<span class="k">${</span><span class="nv">GFORTRAN</span><span class="k">}</span>
-</span><span class="line"><span class="nb">echo</span> <span class="s1">&#39;Installing gFortran ...&#39;</span>
-</span><span class="line"><span class="k">${</span><span class="nv">SUDO</span><span class="k">}</span> installer -pkg <span class="k">${</span><span class="nv">GFORTRAN</span><span class="k">}</span> -target <span class="s1">&#39;/&#39;</span>
-</span><span class="line"><span class="c"># fi</span>
-</span><span class="line">
-</span><span class="line"><span class="nb">hash </span>easy_install &amp;&gt; /dev/null
-</span><span class="line"><span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> -eq 1 <span class="o">]</span>; <span class="k">then</span>
-</span><span class="line"><span class="k">    </span><span class="nb">echo</span> <span class="s1">&#39;Downloading ez_setup ...&#39;</span>
-</span><span class="line">    curl -o ez_setup.py http://peak.telecommunity.com/dist/ez_setup.py
-</span><span class="line">    <span class="nb">echo</span> <span class="s1">&#39;Installing ez_setup ...&#39;</span>
-</span><span class="line">    <span class="k">${</span><span class="nv">SUDO</span><span class="k">}</span> <span class="s2">&quot;${PYTHON}&quot;</span> ez_setup.py
-</span><span class="line">    rm ez_setup.py
-</span><span class="line"><span class="k">fi</span>
-</span><span class="line">
-</span><span class="line"><span class="nb">echo</span> <span class="s1">&#39;Installing Scipy Superpack ...&#39;</span>
-</span><span class="line"><span class="k">${</span><span class="nv">SUDO</span><span class="k">}</span> <span class="s2">&quot;${PYTHON}&quot;</span> -m easy_install -N -Z <span class="k">${</span><span class="nv">SUPERPACK_PATH</span><span class="k">}</span>/*.egg
-</span><span class="line">
-</span><span class="line"><span class="nb">echo</span> <span class="s1">&#39;Installing readline ...&#39;</span>
-</span><span class="line"><span class="k">${</span><span class="nv">SUDO</span><span class="k">}</span> <span class="s2">&quot;${PYTHON}&quot;</span> -m easy_install -N -Z readline
-</span><span class="line"><span class="nb">echo</span> <span class="s1">&#39;Installing nose ...&#39;</span>
-</span><span class="line"><span class="k">${</span><span class="nv">SUDO</span><span class="k">}</span> <span class="s2">&quot;${PYTHON}&quot;</span> -m easy_install -N -Z nose
-</span><span class="line"><span class="nb">echo</span> <span class="s1">&#39;Installing six&#39;</span>
-</span><span class="line"><span class="k">${</span><span class="nv">SUDO</span><span class="k">}</span> <span class="s2">&quot;${PYTHON}&quot;</span> -m easy_install -N -Z six
-</span><span class="line"><span class="nb">echo</span> <span class="s1">&#39;Installing python-dateutil&#39;</span>
-</span><span class="line"><span class="k">${</span><span class="nv">SUDO</span><span class="k">}</span> <span class="s2">&quot;${PYTHON}&quot;</span> -m easy_install -N -Z python-dateutil
-</span><span class="line"><span class="nb">echo</span> <span class="s1">&#39;Installing pytz&#39;</span>
-</span><span class="line"><span class="k">${</span><span class="nv">SUDO</span><span class="k">}</span> <span class="s2">&quot;${PYTHON}&quot;</span> -m easy_install -N -Z pytz
-</span><span class="line"><span class="nb">echo</span> <span class="s1">&#39;Installing Tornado&#39;</span>
-</span><span class="line"><span class="k">${</span><span class="nv">SUDO</span><span class="k">}</span> <span class="s2">&quot;${PYTHON}&quot;</span> -m easy_install -N -Z tornado
-</span><span class="line"><span class="nb">echo</span> <span class="s1">&#39;Installing pyzmq&#39;</span>
-</span><span class="line"><span class="k">${</span><span class="nv">SUDO</span><span class="k">}</span> <span class="s2">&quot;${PYTHON}&quot;</span> -m easy_install -N -Z pyzmq
-</span><span class="line"><span class="nb">echo</span> <span class="s1">&#39;Installing pika&#39;</span>
-</span><span class="line"><span class="k">${</span><span class="nv">SUDO</span><span class="k">}</span> <span class="s2">&quot;${PYTHON}&quot;</span> -m easy_install -N -Z pika
-</span><span class="line"><span class="nb">echo</span> <span class="s1">&#39;Installing jinja2&#39;</span>
-</span><span class="line"><span class="k">${</span><span class="nv">SUDO</span><span class="k">}</span> <span class="s2">&quot;${PYTHON}&quot;</span> -m easy_install -N -Z jinja2
-</span><span class="line"><span class="nb">echo</span> <span class="s1">&#39;Installing patsy&#39;</span>
-</span><span class="line"><span class="k">${</span><span class="nv">SUDO</span><span class="k">}</span> <span class="s2">&quot;${PYTHON}&quot;</span> -m easy_install -N -Z patsy
-</span><span class="line"><span class="k">if</span>  <span class="o">[</span> ! -d <span class="s2">&quot;.git&quot;</span> <span class="o">]</span>; <span class="k">then</span>
-</span><span class="line"><span class="k">    </span><span class="nb">echo</span> <span class="s1">&#39;Cleaning up&#39;</span>
-</span><span class="line">    rm -rf <span class="k">${</span><span class="nv">SUPERPACK_PATH</span><span class="k">}</span>
-</span><span class="line"><span class="k">fi</span>
-</span><span class="line">
-</span><span class="line"><span class="nb">echo</span> <span class="s1">&#39;Done&#39;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h2 id="scrapyhttpscrapyorgdownload">3, <a href="http://scrapy.org/download/">Scrapy</a></h2>
-
-<p>A Spider Structure based on Python</p>
-
-<h2 id="ipythonhttpipythonorginstallhtml">4, <a href="http://ipython.org/install.html">IPython</a></h2>
-<p>a good Python IDE</p>
-
-<h2 id="web-frameworkhttpwikipythonorgmoinwebframeworks">5, <a href="http://wiki.python.org/moin/WebFrameworks">Web Framework</a></h2>
-
-<p><a href="http://www.douban.com/group/web.py/">Web.py</a></p>
-
-<p><a href="http://www.douban.com/group/django/">Django</a></p>
-
-<p>http://www.douban.com/group/django/</p>
-
-<h2 id="python-study">6, Python study</h2>
-
-<p><a href="">http://gnosis.cx/TPiP/</a></p>
-
-<p><a href="">http://docs.python-guide.org/en/latest/</a></p>
-
-<h2 id="morehttpwwwpythonorgaboutapps"><a href="http://www.python.org/about/apps/">More…</a></h2>
-
-<h2 id="reference">Reference</h2>
-
-<p><a href="http://www.cnblogs.com/vamei/archive/2013/02/06/2892628.html">http://www.cnblogs.com/vamei/archive/2013/02/06/2892628.html</a><br />
-<a href="http://www.python.org/about/apps/">http://www.python.org/about/apps/</a><br />
-<a href="">http://docs.python-guide.org/en/latest/</a>  </p>
 ]]></content>
   </entry>
   

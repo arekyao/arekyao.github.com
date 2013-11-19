@@ -1,0 +1,538 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Magnet Searcher Engine, DHT Crawler, P2P Resource Saver - YY Every Day</title>
+  <meta name="author" content="Arek.Yao">
+  <link rel="author" href="humans.txt">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  
+    
+  
+  <meta name="description" content="1.Preface In China, Pirate Party, as hot as The Communist Party, can get some resources like movies, books, tv series, easily and free, without &hellip;">
+  <meta name="keywords" content="磁力搜索, 磁力搜索原理, 磁力搜索技术">
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://arekyao.github.io/blog/2013/11/17/dht-crawler-p2p-resource-saver/">
+  <link href="/favicon.png" rel="icon">
+  <link href='http://fonts.googleapis.com/css?family=Cantarell' rel='stylesheet' type='text/css'>
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="YY Every Day" type="application/atom+xml">
+  <meta name="og:type" content="website" />
+  <meta name="og:site_name" content="YY Every Day" />
+  <meta name="og:title" content="Magnet Searcher Engine, DHT Crawler, P2P Resource Saver" />
+  <meta name="og:description" content="1.Preface In China, Pirate Party, as hot as The Communist Party, can get some resources like movies, books, tv series, easily and free, without &hellip;" />
+  <meta name="og:url" content="http://arekyao.github.io/blog/2013/11/17/dht-crawler-p2p-resource-saver/"/>
+  <meta name="url" content="http://arekyao.github.io/blog/2013/11/17/dht-crawler-p2p-resource-saver/">
+  
+  <meta name="subject" content="TechSpark"/>
+  <meta name="category" content="TechSpark"/>
+  
+  <meta name="distribution" content="global">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <nav role="navigation"><div class="navbar">
+  <div class="navbar-inner">
+    <a class="brand" href="/">YY Every Day</a>
+    <ul class="nav">
+      <li><a href="/">Home</a></li>
+      <li><a href="/blog/archives">Archives</a></li>
+      <li><a href="/tags.html">Tags</a></li>
+      <li><a href="/categories.html">Categories</a></li>
+      <li><a href="/micromax/index.html">micro-Max</a></li>
+      <li><a href="/about/">AboutMe</a></li>
+    </ul>
+    <ul class="nav" data-subscription="rss">
+      <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+      
+    </ul>
+      
+    <form class="navbar-form" action="http://google.com/search" method="get">
+      <fieldset role="search">
+        <input type="hidden" name="q" value="site:arekyao.github.io" />
+        <input class="span2" type="text" name="q" results="0" placeholder="Search"/>
+      </fieldset>
+    </form>
+      
+    
+  </div>
+</div>
+</nav>
+  <div class="wrapper_single">
+    <div class="container">
+      <article class="span8 offset2" role="article">
+        <div class="article-format">
+
+  <header>
+    
+      <h1 class="entry-title">Magnet Searcher Engine, DHT Crawler, P2P Resource Saver</h1>
+    
+    
+      <p class="meta">
+        
+  
+
+
+  
+    <span class="byline author vcard">by <span class="fn">Arek.Yao</span></span>
+  
+
+ - 
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-17T00:07:00+08:00" pubdate data-updated="true">Nov 17<span>th</span>, 2013</time> - 
+        
+
+posted in
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/techspark/'>TechSpark</a>
+  
+</span>
+
+
+        
+
+- tagged by  
+<span class="tags">
+  
+    <a class='tag' href='/tags/justforfun/'>JustForFun</a>, <a class='tag' href='/tags/magnetsearcher/'>MagnetSearcher</a>, <a class='tag' href='/tags/searchengine/'>SearchEngine</a>, <a class='tag' href='/tags/python/'>python</a>, <a class='tag' href='/tags/torrent/'>torrent</a>
+  
+</span>
+
+
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2 id="preface">1.Preface</h2>
+
+<p>In China, Pirate Party, as hot as The Communist Party, can get some resources like movies, books, tv series, easily and free, without danger because of some reason.</p>
+
+<!-- more -->
+
+<p>And there are too many ways to get them, such as http, ftp, bt, ed2k and too many tools to work in protocol as refer.  However, one of the worst things is how to find the links.  </p>
+
+<p>BT and EMule is the most popular, because it works by p2p tech (peer to peer, a computing or networking distributed application architecture that partitions tasks or workloads among peers)  </p>
+
+<p><a href="http://en.wikipedia.org/wiki/Distributed_hash_table">DHT</a> is more advantaged architecture, very interesting, which has two key feature:</p>
+
+<p>a, distributed, peer to peer<br />
+b, decentralized  </p>
+
+<p>decentralized (no boss, democracy) and distributed (every small person involved in the jobs, but the team, the big team is great, beyond your imagination)</p>
+
+<p>Some product list is like this:</p>
+
+<p><a href="http://bt.shousibaocai.com/">磁力搜索</a></p>
+
+<p><a href="http://www.wotorrent.com/">磁力搜索引擎</a></p>
+
+<p><a href="http://cili.so/">磁力搜</a></p>
+
+<h2 id="magnet-searcher-engine">2.Magnet Searcher Engine</h2>
+
+<p>A search engine should have three parts:</p>
+
+<h4 id="a-data">a, data</h4>
+
+<p>The key module, you have to own the magnet links.<br />
+Searcher engine, like google, baidu? yep ,one way.  </p>
+
+<p>The greater way is get them by dht crawler which i will give the desciption later.</p>
+
+<h4 id="b-index--weight">b, index &amp; weight</h4>
+
+<p>Making the index, for latter search more quickly.<br />
+Give every link some weight, and it will be used in rank</p>
+
+<h4 id="c-search--rank">c, search &amp; rank</h4>
+
+<p>the service for keyword search
+rank it 
+some post process, like making unique, making some special format better rank, etc</p>
+
+<h2 id="data-module---dht-crawler">3, Data Module - DHT Crawler</h2>
+
+<p>It works in THREE steps: getting id, detail and file</p>
+
+<h4 id="a-get-the-source-id">a, get the source id</h4>
+
+<p>According to DHT procotol, you can pretend a p2p client, get all info by peers’s “get_peers” package</p>
+
+<p>The more code: <a href="https://github.com/arekyao/dht-crawler">https://github.com/arekyao/dht-crawler</a></p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+<span class="line-number">42</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="k">def</span> <span class="nf">handle_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
+</span><span class="line">        <span class="n">trans_id</span> <span class="o">=</span> <span class="n">message</span><span class="p">[</span><span class="s">&quot;t&quot;</span><span class="p">]</span>
+</span><span class="line">        <span class="n">query_type</span> <span class="o">=</span> <span class="n">message</span><span class="p">[</span><span class="s">&quot;q&quot;</span><span class="p">]</span>
+</span><span class="line">        <span class="n">args</span> <span class="o">=</span> <span class="n">message</span><span class="p">[</span><span class="s">&quot;a&quot;</span><span class="p">]</span>
+</span><span class="line">        <span class="n">node_id</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="s">&quot;id&quot;</span><span class="p">]</span>
+</span><span class="line">
+</span><span class="line">        <span class="n">client_host</span><span class="p">,</span> <span class="n">client_port</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client_address</span>
+</span><span class="line">        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;Query message </span><span class="si">%s</span><span class="s"> from </span><span class="si">%s</span><span class="s">:</span><span class="si">%d</span><span class="s">, id:</span><span class="si">%r</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">query_type</span><span class="p">,</span> <span class="n">client_host</span><span class="p">,</span> <span class="n">client_port</span><span class="p">,</span> <span class="n">node_id</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">&quot;hex&quot;</span><span class="p">)))</span>
+</span><span class="line">
+</span><span class="line">        <span class="c"># Do we know already about this node?</span>
+</span><span class="line">        <span class="n">node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">dht</span><span class="o">.</span><span class="n">rt</span><span class="o">.</span><span class="n">node_by_id</span><span class="p">(</span><span class="n">node_id</span><span class="p">)</span>
+</span><span class="line">        <span class="k">if</span> <span class="ow">not</span> <span class="n">node</span><span class="p">:</span>
+</span><span class="line">            <span class="n">node</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">client_host</span><span class="p">,</span> <span class="n">client_port</span><span class="p">,</span> <span class="n">node_id</span><span class="p">)</span>
+</span><span class="line">            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;We don`t know about </span><span class="si">%r</span><span class="s">, add it as new&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">node</span><span class="p">))</span>
+</span><span class="line">            <span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">dht</span><span class="o">.</span><span class="n">rt</span><span class="o">.</span><span class="n">update_node</span><span class="p">(</span><span class="n">node_id</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span>
+</span><span class="line">        <span class="k">else</span><span class="p">:</span>
+</span><span class="line">            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;We already know about: </span><span class="si">%r</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">node</span><span class="p">))</span>
+</span><span class="line">
+</span><span class="line">        <span class="n">node</span><span class="o">.</span><span class="n">update_access</span><span class="p">()</span>
+</span><span class="line">
+</span><span class="line">        <span class="k">if</span> <span class="n">query_type</span> <span class="o">==</span> <span class="s">&quot;ping&quot;</span><span class="p">:</span>
+</span><span class="line">            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;handle query ping&quot;</span><span class="p">)</span>
+</span><span class="line">            <span class="n">node</span><span class="o">.</span><span class="n">pong</span><span class="p">(</span><span class="n">socket</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">socket</span><span class="p">,</span> <span class="n">trans_id</span> <span class="o">=</span> <span class="n">trans_id</span><span class="p">,</span> <span class="n">sender_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">dht</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">_id</span><span class="p">,</span> <span class="n">lock</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">send_lock</span><span class="p">)</span>
+</span><span class="line">        <span class="k">elif</span> <span class="n">query_type</span> <span class="o">==</span> <span class="s">&quot;find_node&quot;</span><span class="p">:</span>
+</span><span class="line">            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;handle query find_node&quot;</span><span class="p">)</span>
+</span><span class="line">            <span class="n">target</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="s">&quot;target&quot;</span><span class="p">]</span>
+</span><span class="line">            <span class="n">found_nodes</span> <span class="o">=</span> <span class="n">encode_nodes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">dht</span><span class="o">.</span><span class="n">rt</span><span class="o">.</span><span class="n">get_close_nodes</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+</span><span class="line">            <span class="n">node</span><span class="o">.</span><span class="n">found_node</span><span class="p">(</span><span class="n">found_nodes</span><span class="p">,</span> <span class="n">socket</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">socket</span><span class="p">,</span> <span class="n">trans_id</span> <span class="o">=</span> <span class="n">trans_id</span><span class="p">,</span> <span class="n">sender_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">dht</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">_id</span><span class="p">,</span> <span class="n">lock</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">send_lock</span><span class="p">)</span>
+</span><span class="line">        <span class="k">elif</span> <span class="n">query_type</span> <span class="o">==</span> <span class="s">&quot;get_peers&quot;</span><span class="p">:</span>
+</span><span class="line">            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;handle query get_peers&quot;</span><span class="p">)</span>
+</span><span class="line">            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+</span><span class="line">            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s">&quot;get_peer_info_hash_crawler:&quot;</span> <span class="o">+</span> <span class="n">args</span><span class="p">[</span><span class="s">&#39;info_hash&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">&quot;hex&quot;</span><span class="p">))</span>
+</span><span class="line">            <span class="n">node</span><span class="o">.</span><span class="n">pong</span><span class="p">(</span><span class="n">socket</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">socket</span><span class="p">,</span> <span class="n">trans_id</span> <span class="o">=</span> <span class="n">trans_id</span><span class="p">,</span> <span class="n">sender_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">dht</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">_id</span><span class="p">,</span> <span class="n">lock</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">send_lock</span><span class="p">)</span>
+</span><span class="line">            <span class="k">return</span>
+</span><span class="line">        <span class="k">elif</span> <span class="n">query_type</span> <span class="o">==</span> <span class="s">&quot;announce_peer&quot;</span><span class="p">:</span>
+</span><span class="line">            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;handle query announce_peer&quot;</span><span class="p">)</span>
+</span><span class="line">            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+</span><span class="line">            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s">&quot;announce_peer_info_hash_crawler:&quot;</span> <span class="o">+</span> <span class="n">args</span><span class="p">[</span><span class="s">&#39;info_hash&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">&quot;hex&quot;</span><span class="p">))</span>
+</span><span class="line">            <span class="n">node</span><span class="o">.</span><span class="n">pong</span><span class="p">(</span><span class="n">socket</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">socket</span><span class="p">,</span> <span class="n">trans_id</span> <span class="o">=</span> <span class="n">trans_id</span><span class="p">,</span> <span class="n">sender_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">dht</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">_id</span><span class="p">,</span> <span class="n">lock</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">send_lock</span><span class="p">)</span>
+</span><span class="line">            <span class="k">return</span>
+</span><span class="line">        <span class="k">else</span><span class="p">:</span>
+</span><span class="line">            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s">&quot;Unknown query type: </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">query_type</span><span class="p">))</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h4 id="b-get-the-detail-info-like-whether-availble">b, get the detail info, like whether availble</h4>
+
+<p>Send “announce_peer” package to peers, to announce that:<br />
+You wanna the resouce, bla bla</p>
+
+<h4 id="c-get-the-torrent-file-and-the-desciption">c, get the torrent file, and the desciption</h4>
+
+<p>with the infohash, you can easy to get the file by this:</p>
+
+<blockquote>
+  <p>“http://torrage.com/torrent/” ++ MagHash ++ “.torrent”<br />
+“https://zoink.it/torrent/” ++ MagHash ++ “.torrent”<br />
+http://bt.box.n0808.com  </p>
+</blockquote>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line">awk <span class="s1">&#39;{</span>
+</span><span class="line"><span class="s1">    code=toupper($1);</span>
+</span><span class="line"><span class="s1">    head=substr(code,0,2)</span>
+</span><span class="line"><span class="s1">    tail=substr(code,39,2)</span>
+</span><span class="line"><span class="s1">    print &quot;http://bt.box.n0808.com/&quot;head&quot;/&quot;tail&quot;/&quot;code&quot;.torrent&quot;</span>
+</span><span class="line"><span class="s1">}&#39;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Yep, you already have the torrent files, decode the files, and you can get more info.</p>
+
+<h2 id="index-module--rank-module">3, Index module &amp; Rank module</h2>
+
+<p>It’s typical search engine modules.<br />
+Easy to get lots of infomations on Internet.</p>
+
+<h2 id="about-dht-protocolhttpwwwbittorrentorgbepsbep0005html">4, About <a href="http://www.bittorrent.org/beps/bep_0005.html">DHT protocol</a></h2>
+
+<p>Four Query Operation:</p>
+
+<ul>
+  <li>
+    <p>ping: check a node alive</p>
+  </li>
+  <li>
+    <p>find_node: find some node</p>
+  </li>
+  <li>
+    <p>get_peers: get some resouce and querying by id</p>
+  </li>
+  <li>
+    <p>announce_peer: announce downloading some resouce.</p>
+  </li>
+</ul>
+
+<h2 id="reference">Reference</h2>
+
+<ul>
+  <li>http://blog.csdn.net/liweisnake/article/details/9207919</li>
+  <li>http://codemacro.com/2013/07/02/dhtcrawler2/</li>
+  <li>http://gobismoon.blog.163.com/blog/static/5244280220100893055533/</li>
+</ul>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+
+  
+    <span class="byline author vcard">by <span class="fn">Arek.Yao</span></span>
+  
+
+ - 
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-17T00:07:00+08:00" pubdate data-updated="true">Nov 17<span>th</span>, 2013</time> - 
+      
+
+posted in
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/techspark/'>TechSpark</a>
+  
+</span>
+
+
+      
+
+- tagged by  
+<span class="tags">
+  
+    <a class='tag' href='/tags/justforfun/'>JustForFun</a>, <a class='tag' href='/tags/magnetsearcher/'>MagnetSearcher</a>, <a class='tag' href='/tags/searchengine/'>SearchEngine</a>, <a class='tag' href='/tags/python/'>python</a>, <a class='tag' href='/tags/torrent/'>torrent</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://arekyao.github.io/blog/2013/11/17/dht-crawler-p2p-resource-saver/" data-via="" data-counturl="http://arekyao.github.io/blog/2013/11/17/dht-crawler-p2p-resource-saver/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    
+      <a class="pull-left" href="/blog/2013/11/04/great-mac-tools-list/" title="Previous Post: Great Mac Tools List">&laquo; Great Mac Tools List</a>
+    
+    
+  </footer>
+
+</div>
+
+        
+          <div class="article-format">
+            <h1>Comments</h1>
+            <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+          </div>
+        
+      </article>
+    </div>
+  </div>
+  <div id="footer-widgets">
+  <div class="container">
+    <div class="row">
+  <div class="span3">
+    <h2>recent posts</h2>
+    <ul class="recent_posts">
+      
+        <li>
+          <a href="/blog/2013/11/17/dht-crawler-p2p-resource-saver/">Magnet Searcher Engine, DHT Crawler, P2P Resource Saver</a>
+        </li>
+      
+        <li>
+          <a href="/blog/2013/11/04/great-mac-tools-list/">Great Mac Tools List</a>
+        </li>
+      
+        <li>
+          <a href="/blog/2013/10/23/surfing-your-keyboard-in-bash-with-shortcut/">Surfing your Keyboard in Bash with Shortcut</a>
+        </li>
+      
+        <li>
+          <a href="/blog/2013/10/22/how-to-break-gfw-to-git/">How to break gfw to git</a>
+        </li>
+      
+        <li>
+          <a href="/blog/2013/10/18/how-to-improve-the-performance-of-system/">How to improve the Performance of System</a>
+        </li>
+      
+    </ul>
+    <h2><a href="/blog/archives">archives</a></h2>
+  </div>
+  <div class="span3">
+  </div>
+  <div class="span3">
+  </div>
+  <div class="span3">
+    <h2>hot tags</h2>
+<ul class="tag-cloud">
+    <li><a style="font-size: 102%" href="/tags/diy/">DIY</a></li>
+<li><a style="font-size: 102%" href="/tags/baby/">baby</a></li>
+<li><a style="font-size: 105%" href="/tags/blogger/">blogger</a></li>
+<li><a style="font-size: 102%" href="/tags/life/">life</a></li>
+<li><a style="font-size: 105%" href="/tags/octopress/">octopress</a></li>
+<li><a style="font-size: 110%" href="/tags/python/">python</a></li>
+
+</ul>
+
+    <h2><a href="/tags.html">Tags</a></h2>
+  </div>
+</div>
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F654cfc47b6302994615bbe58fa7d9a14' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+
+
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-left">
+  <a href="/">YY Every Day</a>
+  - Copyright &copy; 2013 - Arek.Yao
+</p>
+<p class="pull-right">
+  <span>Powered by <a href="http://octopress.org/">Octopress</a>.</span>
+  
+    <span>Designed by <a href="http://www.AdrianArtiles.com">Adrian Artiles</a>.</span>
+  
+</p>
+
+  </div>
+</footer>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+<script>window.jQuery || document.write('<script src="/javascripts/libs/jquery-1.7.2.min.js" type="text/javascript"><\/script>')</script>
+<script src="/javascripts/libs/bootstrap.min.js" type="text/javascript"></script>
+<script src="/javascripts/jquery.tweet.js" type="text/javascript"></script>
+<script src="/javascripts/jquery.instagram.js" type="text/javascript"></script>
+<script src="/javascripts/libs/jquery.masonry.min.js" type="text/javascript"></script>
+<script src="/javascripts/custom.js" type="text/javascript"></script>
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'arekyao';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://arekyao.github.io/blog/2013/11/17/dht-crawler-p2p-resource-saver/';
+        var disqus_url = 'http://arekyao.github.io/blog/2013/11/17/dht-crawler-p2p-resource-saver/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+</body>
+</html>

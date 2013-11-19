@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Mac | YY Every Day]]></title>
   <link href="http://arekyao.github.io/tags/mac/atom.xml" rel="self"/>
   <link href="http://arekyao.github.io/"/>
-  <updated>2013-11-04T17:38:26+08:00</updated>
+  <updated>2013-11-19T09:20:59+08:00</updated>
   <id>http://arekyao.github.io/</id>
   <author>
     <name><![CDATA[Arek.Yao]]></name>
@@ -21,7 +21,8 @@
     <content type="html"><![CDATA[<ul>
   <li>AliWangwang</li>
   <li>Aperture</li>
-  <li>AppCleaner</li>
+  <li>AppCleaner
+<!-- more --></li>
   <li>Automator</li>
   <li>BaiduYun</li>
   <li>BetterTouchTool</li>
