@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: JavaScript | YY Every Day]]></title>
+  <link href="http://arekyao.github.io/tags/javascript/atom.xml" rel="self"/>
+  <link href="http://arekyao.github.io/"/>
+  <updated>2014-02-05T08:42:59+08:00</updated>
+  <id>http://arekyao.github.io/</id>
+  <author>
+    <name><![CDATA[Arek.Yao]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Scraping JavaScript webpages with webkit]]></title>
+    <link href="http://arekyao.github.io/blog/2014/02/05/scraping-javascript-webpages-with-webkit/"/>
+    <updated>2014-02-05T07:51:00+08:00</updated>
+    <id>http://arekyao.github.io/blog/2014/02/05/scraping-javascript-webpages-with-webkit</id>
+    <content type="html"><![CDATA[<h2 id="preface">1.Preface</h2>
+
+<p>Nowerdays, there are more and more webpages rendered through javascript, tranditional spider such wget, curl is useless.</p>
+
+<p>An alternative solution is webkit, the open source browser engine used most famously in Apple’s Safari browser. Webkit has now been ported to the Qt framework and can be used through its Python bindings.</p>
+
+<p>This solution has those advantages:</p>
+
+<ul>
+  <li>browser, lots of pic,js etc, automaticlly done</li>
+  <li>Python, my fav language</li>
+</ul>
+
+<h2 id="environment">2.Environment</h2>
+
+<h4 id="a-webkit-qtwebkit">a. webkit (QtWebkit)</h4>
+<p>It’s ported to Qt, called <a href="http://qt-project.org/doc/qt-4.8/modules.html">QtWebkit</a>. Here is <a href="http://qt-project.org/doc/qt-4.8/install-x11.html">Qt install</a></p>
+
+<ul>
+  <li>
+    <p>Download the achieve</p>
+  </li>
+  <li>
+    <p><a href="http://qt-project.org/doc/qt-4.8/requirements-x11.html">Dependencies</a></p>
+  </li>
+</ul>
+
+<p><code>bash
+    sudo apt-get install bison flex libqt4-dev libqt4-opengl-dev libphonon-dev libicu-dev libsqlite3-dev libxext-dev libxrender-dev gperf libfontconfig1-dev libphonon-dev g++
+</code></p>
+
+<p><code>bash
+    sudo apt-get build-dep qt4-qmake libqt4-webkit
+</code></p>
+
+<ul>
+  <li>Compiling</li>
+</ul>
+
+<p><code>bash
+./configure
+make
+make install
+</code></p>
+
+<p>Pay attention to configure’s log, webkit module should be “yes”</p>
+
+<p>WebKit module ………. yes</p>
+
+<h4 id="b-pyqt">b. PyQt</h4>
+
+<p><a href="http://www.riverbankcomputing.co.uk/software/pyqt/intro">PyQt</a> is a set of Python v2 and v3 bindings for Digia’s Qt application framework and runs on all platforms supported by Qt including Windows, MacOS/X and Linux. PyQt5 supports Qt v5. PyQt4 supports Qt v4 and will build against Qt v5. The bindings are implemented as a set of Python modules and contain over 620 classes.</p>
+
+<p>ps: another option is <a href="http://qt-project.org/wiki/PySide">PySide</a></p>
+
+<ul>
+  <li>Sip install</li>
+</ul>
+
+<p>```
+sudo apt-get install python-dev</p>
+
+<p>sudo apt-get install libqt4-dev </p>
+
+<p>sudo apt-get install python-qt4</p>
+
+<p>python configure.py</p>
+
+<p>make </p>
+
+<p>make install</p>
+
+<p>```</p>
+
+<ul>
+  <li>PyQt4 install</li>
+</ul>
+
+<p>```
+python configure.py</p>
+
+<p>make </p>
+
+<p>make install</p>
+
+<p>```</p>
+
+<p>ps1: you can see this in “/your/python/env/share/sip/PyQt4”, if your sip works. </p>
+
+<p><code>
+phonon  QtCore  QtDeclarative  QtGui   QtMultimedia  QtOpenGL  QtScriptTools  QtSvg   QtWebKit  QtXmlPatterns
+Qt      QtDBus  QtDesigner     QtHelp  QtNetwork     QtScript  QtSql          QtTest  QtXml
+</code></p>
+
+<p>ps2: you can sess this in “env/lib/python2.7/site-packages/PyQt4”,if your python package works.  </p>
+
+<p>```</p>
+
+<p><strong>init</strong>.py   pyqtconfig.py  QtDeclarative.so  QtHelp.so        QtOpenGL.so       Qt.so     QtTest.so         QtXml.so
+<strong>init</strong>.pyc  QtCore.so      QtDesigner.so     QtMultimedia.so  QtScript.so       QtSql.so  QtWebKit.so       uic
+phonon.so     QtDBus.so      QtGui.so          QtNetwork.so     QtScriptTools.so  QtSvg.so  QtXmlPatterns.so</p>
+
+<p>```</p>
+
+<h4 id="c-xvfb">c. Xvfb</h4>
+
+<p>If you access your sever by ssh, without Graphic Interface, xvfb is one of your choice.</p>
+
+<p>The error log is:</p>
+
+<p>“xxxxxx cannot connect to X server”</p>
+
+<p>```
+sudo apt-get xvfb</p>
+
+<p>xvfb-run –server-args=”-screen 0, 640x480x24” python xxxxx.py</p>
+
+<p>```</p>
+
+<h4 id="d-ttp-and-chinese">d. TTP and Chinese</h4>
+
+<p>Last, qtwebkit works, but maybe you have a new problem is that, chinese word in webkit is [][][][].</p>
+
+<p>TrueType,ttp is the root of the problem, here is the way:</p>
+
+<p><code>
+sudo apt-get update
+sudo apt-get install ttf-arphic-ukai ttf-arphic-uming
+sudo apt-get install ttf-wqy-zenhei 
+sudo fc-cache -v
+</code></p>
+
+<h2 id="one-example">3.One Example</h2>
+
+<p>Here is a simple class that renders a webpage (including executing any JavaScript) and then saves the final HTML to a file:</p>
+
+<p>```python
+import sys<br />
+from PyQt4.QtGui import *<br />
+from PyQt4.QtCore import *<br />
+from PyQt4.QtWebKit import *  </p>
+
+<p>class Render(QWebPage):<br />
+  def <strong>init</strong>(self, url):<br />
+    self.app = QApplication(sys.argv)<br />
+    QWebPage.<strong>init</strong>(self)<br />
+    self.loadFinished.connect(self.<em>loadFinished)<br />
+    self.mainFrame().load(QUrl(url))<br />
+    self.app.exec</em>()  </p>
+
+<p>def _loadFinished(self, result):<br />
+    self.frame = self.mainFrame()<br />
+    self.app.quit()  </p>
+
+<p>url = ‘http://webscraping.com’<br />
+r = Render(url)<br />
+html = r.frame.toHtml()<br />
+```</p>
+
+]]></content>
+  </entry>
+  
+</feed>

@@ -4,7 +4,7 @@
   <title><![CDATA[YY Every Day]]></title>
   <link href="http://arekyao.github.io/atom.xml" rel="self"/>
   <link href="http://arekyao.github.io/"/>
-  <updated>2013-11-19T09:20:59+08:00</updated>
+  <updated>2014-02-05T08:42:59+08:00</updated>
   <id>http://arekyao.github.io/</id>
   <author>
     <name><![CDATA[Arek.Yao]]></name>
@@ -12,6 +12,211 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Scraping JavaScript webpages with webkit]]></title>
+    <link href="http://arekyao.github.io/blog/2014/02/05/scraping-javascript-webpages-with-webkit/"/>
+    <updated>2014-02-05T07:51:00+08:00</updated>
+    <id>http://arekyao.github.io/blog/2014/02/05/scraping-javascript-webpages-with-webkit</id>
+    <content type="html"><![CDATA[<h2 id="preface">1.Preface</h2>
+
+<p>Nowerdays, there are more and more webpages rendered through javascript, tranditional spider such wget, curl is useless.</p>
+
+<p>An alternative solution is webkit, the open source browser engine used most famously in Apple’s Safari browser. Webkit has now been ported to the Qt framework and can be used through its Python bindings.</p>
+
+<p>This solution has those advantages:</p>
+
+<ul>
+  <li>browser, lots of pic,js etc, automaticlly done</li>
+  <li>Python, my fav language</li>
+</ul>
+
+<h2 id="environment">2.Environment</h2>
+
+<h4 id="a-webkit-qtwebkit">a. webkit (QtWebkit)</h4>
+<p>It’s ported to Qt, called <a href="http://qt-project.org/doc/qt-4.8/modules.html">QtWebkit</a>. Here is <a href="http://qt-project.org/doc/qt-4.8/install-x11.html">Qt install</a></p>
+
+<ul>
+  <li>
+    <p>Download the achieve</p>
+  </li>
+  <li>
+    <p><a href="http://qt-project.org/doc/qt-4.8/requirements-x11.html">Dependencies</a></p>
+  </li>
+</ul>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line">sudo apt-get install bison flex libqt4-dev libqt4-opengl-dev libphonon-dev libicu-dev libsqlite3-dev libxext-dev libxrender-dev gperf libfontconfig1-dev libphonon-dev g++
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line">sudo apt-get build-dep qt4-qmake libqt4-webkit
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<ul>
+  <li>Compiling</li>
+</ul>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line">./configure
+</span><span class="line">make
+</span><span class="line">make install
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Pay attention to configure’s log, webkit module should be “yes”</p>
+
+<p>WebKit module ………. yes</p>
+
+<h4 id="b-pyqt">b. PyQt</h4>
+
+<p><a href="http://www.riverbankcomputing.co.uk/software/pyqt/intro">PyQt</a> is a set of Python v2 and v3 bindings for Digia’s Qt application framework and runs on all platforms supported by Qt including Windows, MacOS/X and Linux. PyQt5 supports Qt v5. PyQt4 supports Qt v4 and will build against Qt v5. The bindings are implemented as a set of Python modules and contain over 620 classes.</p>
+
+<p>ps: another option is <a href="http://qt-project.org/wiki/PySide">PySide</a></p>
+
+<ul>
+  <li>Sip install</li>
+</ul>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line">sudo apt-get install python-dev
+</span><span class="line">
+</span><span class="line">sudo apt-get install libqt4-dev
+</span><span class="line">
+</span><span class="line">sudo apt-get install python-qt4
+</span><span class="line">
+</span><span class="line">python configure.py
+</span><span class="line">
+</span><span class="line">make
+</span><span class="line">
+</span><span class="line">make install
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<ul>
+  <li>PyQt4 install</li>
+</ul>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line">python configure.py
+</span><span class="line">
+</span><span class="line">make
+</span><span class="line">
+</span><span class="line">make install
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>ps1: you can see this in “/your/python/env/share/sip/PyQt4”, if your sip works. </p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line">phonon  QtCore  QtDeclarative  QtGui   QtMultimedia  QtOpenGL  QtScriptTools  QtSvg   QtWebKit  QtXmlPatterns
+</span><span class="line">Qt      QtDBus  QtDesigner     QtHelp  QtNetwork     QtScript  QtSql          QtTest  QtXml
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>ps2: you can sess this in “env/lib/python2.7/site-packages/PyQt4”,if your python package works.  </p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line">__init__.py   pyqtconfig.py  QtDeclarative.so  QtHelp.so        QtOpenGL.so       Qt.so     QtTest.so         QtXml.so
+</span><span class="line">__init__.pyc  QtCore.so      QtDesigner.so     QtMultimedia.so  QtScript.so       QtSql.so  QtWebKit.so       uic
+</span><span class="line">phonon.so     QtDBus.so      QtGui.so          QtNetwork.so     QtScriptTools.so  QtSvg.so  QtXmlPatterns.so
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h4 id="c-xvfb">c. Xvfb</h4>
+
+<p>If you access your sever by ssh, without Graphic Interface, xvfb is one of your choice.</p>
+
+<p>The error log is:</p>
+
+<p>“xxxxxx cannot connect to X server”</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line">sudo apt-get xvfb
+</span><span class="line">
+</span><span class="line">xvfb-run --server-args<span class="o">=</span><span class="s2">&quot;-screen 0, 640x480x24&quot;</span> python xxxxx.py
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h4 id="d-ttp-and-chinese">d. TTP and Chinese</h4>
+
+<p>Last, qtwebkit works, but maybe you have a new problem is that, chinese word in webkit is [][][][].</p>
+
+<p>TrueType,ttp is the root of the problem, here is the way:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line">sudo apt-get update
+</span><span class="line">sudo apt-get install ttf-arphic-ukai ttf-arphic-uming
+</span><span class="line">sudo apt-get install ttf-wqy-zenhei
+</span><span class="line">sudo <span class="nb">fc</span>-cache -v
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="one-example">3.One Example</h2>
+
+<p>Here is a simple class that renders a webpage (including executing any JavaScript) and then saves the final HTML to a file:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class="line"><span class="kn">from</span> <span class="nn">PyQt4.QtGui</span> <span class="kn">import</span> <span class="o">*</span>
+</span><span class="line"><span class="kn">from</span> <span class="nn">PyQt4.QtCore</span> <span class="kn">import</span> <span class="o">*</span>
+</span><span class="line"><span class="kn">from</span> <span class="nn">PyQt4.QtWebKit</span> <span class="kn">import</span> <span class="o">*</span>
+</span><span class="line">
+</span><span class="line"><span class="k">class</span> <span class="nc">Render</span><span class="p">(</span><span class="n">QWebPage</span><span class="p">):</span>
+</span><span class="line">  <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">):</span>
+</span><span class="line">    <span class="bp">self</span><span class="o">.</span><span class="n">app</span> <span class="o">=</span> <span class="n">QApplication</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>
+</span><span class="line">    <span class="n">QWebPage</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+</span><span class="line">    <span class="bp">self</span><span class="o">.</span><span class="n">loadFinished</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_loadFinished</span><span class="p">)</span>
+</span><span class="line">    <span class="bp">self</span><span class="o">.</span><span class="n">mainFrame</span><span class="p">()</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">QUrl</span><span class="p">(</span><span class="n">url</span><span class="p">))</span>
+</span><span class="line">    <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">exec_</span><span class="p">()</span>
+</span><span class="line">
+</span><span class="line">  <span class="k">def</span> <span class="nf">_loadFinished</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">result</span><span class="p">):</span>
+</span><span class="line">    <span class="bp">self</span><span class="o">.</span><span class="n">frame</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mainFrame</span><span class="p">()</span>
+</span><span class="line">    <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
+</span><span class="line">
+</span><span class="line"><span class="n">url</span> <span class="o">=</span> <span class="s">&#39;http://webscraping.com&#39;</span>
+</span><span class="line"><span class="n">r</span> <span class="o">=</span> <span class="n">Render</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+</span><span class="line"><span class="n">html</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">toHtml</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Magnet Searcher Engine, DHT Crawler, P2P Resource Saver]]></title>
@@ -192,12 +397,12 @@ http://bt.box.n0808.com  </p>
 
 <p>Yep, you already have the torrent files, decode the files, and you can get more info.</p>
 
-<h2 id="index-module--rank-module">3, Index module &amp; Rank module</h2>
+<h2 id="index-module--rank-module">4, Index module &amp; Rank module</h2>
 
 <p>It’s typical search engine modules.<br />
 Easy to get lots of infomations on Internet.</p>
 
-<h2 id="about-dht-protocolhttpwwwbittorrentorgbepsbep0005html">4, About <a href="http://www.bittorrent.org/beps/bep_0005.html">DHT protocol</a></h2>
+<h2 id="about-dht-protocolhttpwwwbittorrentorgbepsbep0005html">5, About <a href="http://www.bittorrent.org/beps/bep_0005.html">DHT protocol</a></h2>
 
 <p>Four Query Operation:</p>
 
@@ -3183,129 +3388,6 @@ Maybe that’s the reason that the water goes very slowly.
 
 <p>Every night, when my baby don’t wanna go to sleep, I will turn on the radio, choose the CNN channel.
 Then both She and I will have a good night very soon.</p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Machine learning ep2]]></title>
-    <link href="http://arekyao.github.io/blog/2013/03/09/machine-learning-ep2/"/>
-    <updated>2013-03-09T22:56:00+08:00</updated>
-    <id>http://arekyao.github.io/blog/2013/03/09/machine-learning-ep2</id>
-    <content type="html"><![CDATA[<ul>
-  <li>
-    <h2 id="linear-regressionhttpenwikipediaorgwikilinearregression"><a href="http://en.wikipedia.org/wiki/Linear_regression">Linear Regression</a></h2>
-  </li>
-</ul>
-
-<p>It’s a simple model,and very useful</p>
-
-<ul>
-  <li>
-    <h2 id="locally-weighted-linear-regression">Locally Weighted Linear Regression</h2>
-  </li>
-</ul>
-
-<p>the training data only contain the data near X  (is not it cool?)</p>
-
-<!-- more -->
-
-<hr />
-
-<ul>
-  <li>
-    <h2 id="batch-gradient-descent-vs-stochastic-gradient-descent">Batch Gradient Descent vs stochastic gradient descent（随机梯度下降）</h2>
-  </li>
-</ul>
-
-<h5 id="batch-gradient-descent">Batch Gradient Descent:</h5>
-
-<blockquote>
-  <p>You need to run over every training example before doing an update, which means that if you have a large dataset, you might spend much time on getting something that works.</p>
-</blockquote>
-
-<h5 id="stochastic-gradient-descent">Stochastic gradient descent:</h5>
-<blockquote>
-  <p>on the other hand, does updates every time it finds a training example, however, since it only uses one update, it may never converge, although you can still be pretty close to the minimum.</p>
-</blockquote>
-
-<p>In conclusion, if your data is large, you might want to use Stochastic Gradient Descent.</p>
-
-<h4 id="newton-method">Newton Method:</h4>
-<p>Advantage: fast iteration to get result
-Disadvantage: have to invert the N*N’s (N is the number of feature) every step</p>
-
-<ul>
-  <li>
-    <h2 id="when-to-stop-the-iteration-of-gradient-descent">When to stop the iteration of Gradient Descent</h2>
-    <p>It has two ways.</p>
-  </li>
-</ul>
-
-<p><code>Condition 1: the two iteration's result is so close to ignore</code></p>
-
-<p><code>Condition 2: the loss is very small, which can be ignored</code></p>
-
-<ul>
-  <li>parametric learning algorithm &amp; non-parametric learning algorithm</li>
-</ul>
-
-<blockquote>
-  <p>non-parametric learning: the number of arguments will go with size of training data</p>
-</blockquote>
-
-<ul>
-  <li>
-    <h2 id="exponential-distribution-family">Exponential distribution family</h2>
-    <p>eg: Normal Distribution, Poisson Distribution, Bernouli Distribution </p>
-  </li>
-  <li>
-    <h2 id="logistic-regression--softmax-regression">Logistic Regression &amp; Softmax Regression</h2>
-    <p>Logistic Regression only 2 kinds
-Softmax Regession can solve multi</p>
-  </li>
-  <li>
-    <h4 id="discriminative-learning-algorithm">Discriminative learning algorithm</h4>
-  </li>
-</ul>
-
-<p>learn 
-$$
-P(y|x)
-$$
-or</p>
-
-<script type="math/tex; mode=display"> 
-h_{\theta}(x) \in \left \{ 0,1 \right \}
-</script>
-
-<p>directly</p>
-
-<ul>
-  <li>
-    <h4 id="generative-learning-algorithm">Generative learning algorithm</h4>
-  </li>
-</ul>
-
-<p>learn
-P(x|y)</p>
-
-<p>then
-P(y)</p>
-
-<p>such as Native Bayes</p>
-
-<ul>
-  <li>
-    <h4 id="laplace-smoothing">Laplace smoothing</h4>
-  </li>
-</ul>
-
-<p>A/B</p>
-
-<p>==&gt;</p>
-
-<p>(A+1)/(B+1)</p>
 
 ]]></content>
   </entry>
