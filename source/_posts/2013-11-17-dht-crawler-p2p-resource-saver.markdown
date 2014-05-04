@@ -147,13 +147,13 @@ awk '{
 Yep, you already have the torrent files, decode the files, and you can get more info.
 
 
-3, Index module & Rank module
+4, Index module & Rank module
 -------------------
 
 It's typical search engine modules.  
 Easy to get lots of infomations on Internet.
 
-4, About [DHT protocol](http://www.bittorrent.org/beps/bep_0005.html)
+5, About [DHT protocol](http://www.bittorrent.org/beps/bep_0005.html)
 --------
 
 Four Query Operation:
